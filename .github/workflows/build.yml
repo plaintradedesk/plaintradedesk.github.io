@@ -5,7 +5,9 @@ name: build
 
 on:
   push:
-    branches: ['**']
+    # main is covered by deploy.yml, which runs this same build and
+    # only publishes if it passes. Running it here as well would duplicate it.
+    branches-ignore: [main]
   pull_request:
 
 jobs:

@@ -10,13 +10,20 @@
  */
 import { esc, escAttr, fmtDate, dayDiff } from '../util.mjs';
 
-/** Derived from the records themselves, so a gap cannot survive by being forgotten. */
+/**
+ * Derived from the records themselves, so a gap cannot survive by being
+ * forgotten.
+ *
+ * An archived build drops the overdue reason. Every record is overdue by then,
+ * the banner at the top of every page says exactly that, and repeating it once
+ * per record would bury the gaps that are about sourcing rather than about time.
+ */
 export function knownGaps(shocks, copy, ctx) {
   const gaps = [];
   for (const s of shocks) {
     if (s.unverified) {
       gaps.push([copy.reasons.unverified.why, s.title, copy.reasons.unverified.detail]);
-    } else if (dayDiff(s.verified, ctx.today) > ctx.recheckAfter) {
+    } else if (!ctx.archived && dayDiff(s.verified, ctx.today) > ctx.recheckAfter) {
       gaps.push([copy.reasons.overdue.why, s.title, copy.reasons.overdue.detail
         .replace('{date}', fmtDate(s.verified)).replace('{days}', ctx.recheckAfter)]);
     }
@@ -52,11 +59,34 @@ ${log}
 ${gapsBlock}`;
 }
 
-function prose(body) {
+function prose(body, site, mode) {
   return body.map(b => {
+    if (b.tag === 'download') return downloadBlock(site, mode);
     const cls = b.class ? ` class="${escAttr(b.class)}"` : '';
     return `        <${b.tag}${cls}>${esc(b.text)}</${b.tag}>`;
   }).join('\n');
+}
+
+/**
+ * The offline file, offered as what it is.
+ *
+ * This is how somebody with no reliable connection is handed this at all, which
+ * is why it is described as a file you can keep and give away rather than as a
+ * technical curiosity. It is also why the site surviving and this information
+ * surviving are two different questions.
+ *
+ * Where it goes on the page is decided in pages.json, like every other piece of
+ * copy. The offline file does not offer a download of itself.
+ */
+function downloadBlock(site, mode) {
+  const o = site.offline;
+  const lead = mode === 'offline'
+    ? `        <p class="q">${esc(o.this_is_it)}</p>`
+    : `        <p><a class="dl" href="${escAttr(o.filename)}" download>${esc(o.label)}</a></p>`;
+  return `        <div class="download">
+${lead}
+          <p>${esc(o.note)}</p>
+        </div>`;
 }
 
 /**
@@ -71,14 +101,16 @@ export function standingPage({ id, page, corrections, shocks, site, ctx, mode })
 
   const body = page.body === 'CORRECTIONS_DYNAMIC'
     ? correctionsBody(page, corrections, shocks, ctx)
-    : prose(page.body);
+    : prose(page.body, site, mode);
 
   const inner = `${back}
         <h2>${esc(page.title)}</h2>
         <p class="stamp">${esc(page.stamp)}</p>
 ${body}`;
 
+  // The id is what the offline file's own page links point at, so that they
+  // work as ordinary anchors with scripting switched off as well.
   return mode === 'offline'
-    ? `      <div class="standing" data-page="${escAttr(id)}">\n${inner}\n      </div>`
+    ? `      <div class="standing" id="${escAttr(id)}" data-page="${escAttr(id)}">\n${inner}\n      </div>`
     : inner;
 }

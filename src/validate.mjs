@@ -13,9 +13,13 @@
  * failures are collected in one pass rather than stopping at the first.
  *
  * Gates 1 to 6 and 9 read the data and run before anything is rendered.
- * Gates 7 and 8 read the rendered HTML and run before anything is written.
+ * Gates 7, 8, 10 and 11 read the rendered HTML and run before anything is
+ * written. Gates 8 and 12 then load every page in a real browser, which is the
+ * only way to find the two classes of fault that reading the source cannot.
  */
 import vm from 'node:vm';
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { isDate, dayDiff, fmtDate } from './util.mjs';
 
 /* Anything with a legal existence uses the first vocabulary; anything without
@@ -97,7 +101,10 @@ export function validateData(data, ctx) {
       const age = dayDiff(s.verified, ctx.today);
       if (age < 0) {
         r.fail(2, id, `verified date ${fmtDate(s.verified)} is in the future`);
-      } else if (age > ctx.staleFail) {
+      } else if (age > ctx.staleFail && !ctx.archived) {
+        // An archived build is allowed to be stale. That is what archived means,
+        // it says so on every page, and refusing here would leave the promise to
+        // archive the site in place unkeepable the moment the data aged out.
         r.fail(2, id, `last checked ${fmtDate(s.verified)}, ${age} days ago. The limit is ${ctx.staleFail}. ` +
           `The fix is to check the record against its sources, not to raise the threshold.`);
       }
@@ -221,6 +228,16 @@ export function validateData(data, ctx) {
 
 const FETCHING_ATTRS = ['src', 'srcset', 'poster', 'data', 'action', 'formaction', 'background'];
 
+/* An href fetches on everything except <a>, and except one <link>. A canonical
+   link declares an address; it causes no request, and a page that must carry
+   its own published address cannot also be forbidden from naming it. This is
+   not a hole: gate 11 requires every canonical to be under the configured
+   site.baseUrl, so it cannot be turned into a way to name another host. Every
+   other rel, stylesheet and icon and preload and manifest among them, still
+   fetches and is still checked. */
+const isCanonicalLink = (el, attrs) =>
+  el === 'link' && /\brel\s*=\s*"canonical"/i.test(attrs);
+
 /** Local means a relative path, a fragment, or a data: URI. Everything else is a host. */
 function isExternal(url) {
   const u = url.trim();
@@ -244,7 +261,8 @@ export function checkExternalReferences(files) {
       while ((a = at.exec(attrs))) {
         const key = a[1].toLowerCase();
         const value = a[2];
-        const fetching = FETCHING_ATTRS.includes(key) || (key === 'href' && el !== 'a');
+        const fetching = FETCHING_ATTRS.includes(key) ||
+          (key === 'href' && el !== 'a' && !isCanonicalLink(el, attrs));
         if (!fetching) continue;
         for (const url of value.split(',')) {
           const bare = url.trim().split(/\s+/)[0];
@@ -342,11 +360,41 @@ export function checkStructure(files) {
   return r;
 }
 
+/* ================================================================
+   Gate 12: accessibility
+================================================================ */
+
+/* WCAG 2.1 AA was required from the start and, until this gate, never
+   mechanically enforced, which meant it was a hope. It is checked with axe-core
+   in the browser that is already loading every page for gate 8.
+
+   This is not box-ticking. These pages are meant to reach people under stress,
+   reading on a phone, some of them older, some of them not reading English as a
+   first language. Conformance is also a precondition if a provincial or federal
+   body ever adopts this. It is cheap now and expensive to retrofit.
+
+   axe-core is a dev dependency. It runs against the built page and is never
+   part of it. */
+const AXE_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
+const AXE_FAIL_ON = new Set(['serious', 'critical']);
+
+function loadAxe(r) {
+  try {
+    const require = createRequire(import.meta.url);
+    return readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
+  } catch {
+    r.fail(12, 'build', 'axe-core is not installed, so the accessibility gate could not run. ' +
+      'Run "npm install", or pass --no-browser if you accept building without gates 8 and 12.');
+    return null;
+  }
+}
+
 /**
- * The other half of gate 8: the pages have to load in a real browser with no
- * page errors, no console errors and no network requests. A headless load
- * belongs in the build rather than only in the test suite, because this is the
- * exact class of fault that reading the source cannot find.
+ * The other half of gate 8, and the whole of gate 12: the pages have to load in
+ * a real browser with no page errors, no console errors and no network
+ * requests, and then survive an axe-core audit. A headless load belongs in the
+ * build rather than only in the test suite, because this is the exact class of
+ * fault that reading the source cannot find.
  */
 export async function checkInBrowser(dir, names) {
   const r = new Report();
@@ -359,6 +407,8 @@ export async function checkInBrowser(dir, names) {
       'if you accept building without this gate.');
     return r;
   }
+  const axeSource = loadAxe(r);
+  if (!axeSource) return r;
 
   const browser = await chromium.launch(
     process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {}
@@ -379,10 +429,156 @@ export async function checkInBrowser(dir, names) {
       const empty = await page.evaluate(() => document.body.textContent.trim().length < 200);
       if (empty) problems.push('the body is effectively empty');
       for (const p of problems) r.fail(8, name, p);
+
+      // Gate 12, on the same load. Injected as source rather than fetched, so
+      // the page still makes no request of any kind.
+      await page.addScriptTag({ content: axeSource });
+      const violations = await page.evaluate(async tags => {
+        const out = await window.axe.run(document, {
+          runOnly: { type: 'tag', values: tags },
+          resultTypes: ['violations']
+        });
+        return out.violations.map(v => ({
+          id: v.id, impact: v.impact, help: v.help,
+          nodes: v.nodes.slice(0, 3).map(n => n.target.join(' '))
+        }));
+      }, AXE_TAGS);
+      for (const v of violations) {
+        if (!AXE_FAIL_ON.has(v.impact)) continue;
+        r.fail(12, name, `${v.impact}: ${v.help} (${v.id})\n           at ${v.nodes.join(', ')}`);
+      }
       await page.close();
     }
   } finally {
     await browser.close();
+  }
+  return r;
+}
+
+/* ================================================================
+   Gate 10: broken internal link
+================================================================ */
+
+/* Impossible to get wrong with one page, and easy the moment there are nine. A
+   dead link on the commitment page, in front of a municipality deciding whether
+   to link here, is a small disaster for a site whose entire pitch is that it
+   maintains itself honestly.
+
+   Every internal href and every asset path has to resolve to a file this build
+   actually wrote, and every fragment to an id that is actually on the page it
+   points at. */
+
+const LINK_ATTRS = ['href', 'src', 'srcset', 'poster', 'data', 'action', 'formaction'];
+
+function idsIn(html) {
+  const ids = new Set();
+  const rx = /\sid="([^"]+)"/g;
+  let m;
+  while ((m = rx.exec(html))) ids.add(m[1]);
+  return ids;
+}
+
+export function checkLinks(files, assets, ctx) {
+  const r = new Report();
+  const written = new Set([...Object.keys(files), ...Object.keys(assets)]);
+  const ids = {};
+  for (const [name, html] of Object.entries(files)) ids[name] = idsIn(html);
+
+  // The 404 page and the canonical links carry absolute addresses. They are
+  // this site's own addresses, so they are checked like any other internal link
+  // rather than waved through for having a scheme on the front.
+  const base = ctx.baseUrl + '/';
+  const internalise = url => {
+    if (url === ctx.baseUrl || url === base) return 'index.html';
+    if (url.startsWith(base)) return url.slice(base.length) || 'index.html';
+    return null;
+  };
+
+  for (const [name, html] of Object.entries(files)) {
+    const tag = /<([a-zA-Z][a-zA-Z0-9-]*)\b([^>]*)>/g;
+    let m;
+    while ((m = tag.exec(html))) {
+      const el = m[1].toLowerCase();
+      const at = /([a-zA-Z-]+)\s*=\s*"([^"]*)"/g;
+      let a;
+      while ((a = at.exec(m[2]))) {
+        const key = a[1].toLowerCase();
+        if (!LINK_ATTRS.includes(key)) continue;
+        const values = key === 'srcset'
+          ? a[2].split(',').map(v => v.trim().split(/\s+/)[0])
+          : [a[2].trim()];
+        for (const value of values) checkOne(r, name, el, key, value);
+      }
+    }
+  }
+
+  function checkOne(r, name, el, key, value) {
+    const where = `<${el} ${key}>`;
+    if (!value) {
+      r.fail(10, name, `${where} is empty`);
+      return;
+    }
+    if (/^(?:data|mailto|tel):/i.test(value)) return;
+
+    let target = internalise(value);
+    if (target === null) {
+      // Some other host, or a protocol-relative address. Gate 7 decides whether
+      // it is allowed to be there at all; it is not this gate's business.
+      if (value.startsWith('//') || /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(value)) return;
+      target = value;
+    }
+
+    const hash = target.indexOf('#');
+    const file = hash === -1 ? target : target.slice(0, hash);
+    const frag = hash === -1 ? '' : target.slice(hash + 1);
+    const onPage = file === '' ? name : file;
+
+    if (file !== '' && !written.has(file)) {
+      r.fail(10, name, `${where} points at "${value}", and no file called "${file}" was built`);
+      return;
+    }
+    if (frag && ids[onPage] && !ids[onPage].has(frag)) {
+      r.fail(10, name, `${where} points at "${value}", and "${onPage}" has no element with id "${frag}"`);
+    }
+  }
+
+  return r;
+}
+
+/* ================================================================
+   Gate 11: page metadata
+================================================================ */
+
+/* A page on disk does not need to say where it lives. A published one does.
+   The commitment page says in its own text that it has a stable address, which
+   is only true if the page carries that address and no other page claims it. */
+
+export function checkPageMeta(files, ctx) {
+  const r = new Report();
+  const titles = new Map();
+
+  for (const [name, html] of Object.entries(files)) {
+    const head = html.slice(0, html.indexOf('</head>'));
+    const grab = rx => { const m = head.match(rx); return m ? m[1].trim() : ''; };
+
+    const title = grab(/<title>([^]*?)<\/title>/);
+    const description = grab(/<meta name="description" content="([^"]*)">/);
+    const canonical = grab(/<link rel="canonical" href="([^"]*)">/);
+
+    if (!title) r.fail(11, name, 'has no title');
+    else if (titles.has(title)) {
+      r.fail(11, name, `has the same title as ${titles.get(title)}: "${title}". ` +
+        'Two pages with one title are two pages a reader cannot tell apart in a tab, ' +
+        'a bookmark or a search result.');
+    } else titles.set(title, name);
+
+    if (!description) r.fail(11, name, 'has no meta description');
+    if (!canonical) {
+      r.fail(11, name, 'has no canonical URL');
+    } else if (!canonical.startsWith(ctx.baseUrl + '/')) {
+      r.fail(11, name, `canonical URL "${canonical}" is not under the configured ` +
+        `site.baseUrl "${ctx.baseUrl}"`);
+    }
   }
   return r;
 }

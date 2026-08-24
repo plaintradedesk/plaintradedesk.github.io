@@ -28,10 +28,9 @@
  * the page: it could not have been written against a single hand-edited file.
  */
 import { chromium } from 'playwright';
-import { readFileSync, readdirSync, cpSync, rmSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, cpSync, rmSync, mkdtempSync, writeFileSync, existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -53,19 +52,41 @@ const ok = (name, cond) => results.push([cond ? 'PASS' : 'FAIL', name, group]);
    than a simulation of it. */
 
 function tempRepo() {
-  const dir = mkdtempSync(path.join(tmpdir(), 'ptd-'));
+  // Inside the repository rather than in the system temp directory. A build run
+  // in here has to resolve playwright and axe-core, and module resolution walks
+  // up from the file it is running, so this is the only place a temporary copy
+  // can be put and still be able to open a browser. Gate 12 cannot be tested
+  // otherwise. The directories are gitignored and removed after each check.
+  const dir = mkdtempSync(path.join(ROOT, '.tmp-test-'));
   cpSync(path.join(ROOT, 'src'), path.join(dir, 'src'), { recursive: true });
   cpSync(path.join(ROOT, 'data'), path.join(dir, 'data'), { recursive: true });
+  cpSync(path.join(ROOT, 'site.config.json'), path.join(dir, 'site.config.json'));
   return dir;
 }
 
-function build(dir, args = ['--no-browser']) {
+function build(dir, args = ['--no-browser'], env = {}) {
   const r = spawnSync(process.execPath, [path.join(dir, 'src', 'build.mjs'), ...args],
-    { cwd: dir, encoding: 'utf8' });
+    { cwd: dir, encoding: 'utf8', env: { ...process.env, ...env } });
   // Failures print to stderr and warnings to stdout, and a check may be looking
   // for either, so both are returned as one stream.
   return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
 }
+
+/**
+ * Break one line of a template in the copy. It refuses if the line it was told
+ * to break is not there any more, because a setup step that quietly does
+ * nothing turns a gate check into a check that the build succeeds, and that
+ * check would pass forever with the gate switched off.
+ */
+const editSource = (dir, rel, from, to) => {
+  const file = path.join(dir, rel);
+  const before = readFileSync(file, 'utf8');
+  const after = before.replace(from, to);
+  if (after === before) {
+    throw new Error(`test setup is stale: ${rel} no longer contains ${JSON.stringify(from)}`);
+  }
+  writeFileSync(file, after);
+};
 
 const editJson = (dir, name, fn) => {
   const file = path.join(dir, 'data', name);
@@ -186,7 +207,7 @@ const editJson = (dir, name, fn) => {
   await page.selectOption('#sectorSel', 'steel'); await page.waitForTimeout(80);
   ok('sector filter narrows the business door', (await cards()) < cardsAll);
 
-  ok('three standing pages are linked', (await count('.pagelink')) === 3);
+  ok('three standing pages are linked', (await count('.pagelink:not(.download)')) === 3);
   for (const [file, probe] of [['about.html', /not a government site/i],
                                ['promises.html', /will not always be current/],
                                ['corrections.html', /Known gaps/]]) {
@@ -228,9 +249,14 @@ const editJson = (dir, name, fn) => {
      && /data-page="corrections"/.test(offline));
   ok('offline file carries all four doors',
      ['people', 'business', 'place', 'policy'].every(d => offline.includes(`data-door="${d}"`)));
+  // Source links and the canonical link are the two absolute URLs allowed on a
+  // page. Neither is fetched: one is a link a reader chooses to follow, the
+  // other declares where this page lives. Everything else is inline.
   ok('offline file inlines its stylesheet and script and links to no host',
      offline.includes('<style>') && offline.includes('<script>')
-     && !/(?:src|href)="https?:\/\//.test(offline.replace(/<a\b[^>]*>/g, '')));
+     && !/(?:src|href)="https?:\/\//.test(offline
+       .replace(/<a\b[^>]*>/g, '')
+       .replace(/<link rel="canonical"[^>]*>/g, '')));
 
   const offlineNetwork = [];
   const off = await browser.newPage();
@@ -256,6 +282,93 @@ const editJson = (dir, name, fn) => {
   ok('offline file makes no request and raises nothing',
      offlineNetwork.length === 0 && offErrors.length === 0);
   await off.close();
+
+  /* ------------------------------------------------------------------ */
+  g('PUBLICATION: what a page needs in public that a file on disk does not');
+
+  const distFile = n => readFileSync(path.join(DIST, n), 'utf8');
+  const htmlFiles = readdirSync(DIST).filter(n => n.endsWith('.html'));
+  const head = n => { const h = distFile(n); return h.slice(0, h.indexOf('</head>')); };
+  const attr = (html, rx) => { const m = html.match(rx); return m ? m[1] : ''; };
+  const findable = ['index.html', 'business.html', 'place.html', 'policy.html',
+                    'about.html', 'promises.html', 'corrections.html'];
+
+  ok('every built page carries a canonical URL',
+     htmlFiles.every(n => /<link rel="canonical" href="https?:\/\/[^"]+">/.test(head(n))));
+  ok('every built page carries a meta description',
+     htmlFiles.every(n => attr(head(n), /<meta name="description" content="([^"]*)">/).length > 20));
+  ok('no two pages share a title',
+     new Set(htmlFiles.map(n => attr(head(n), /<title>([^]*?)<\/title>/))).size === htmlFiles.length);
+  // A municipality has to cite this address inside their own approval process.
+  ok('the commitment page canonical is its own stable address',
+     attr(head('promises.html'), /<link rel="canonical" href="([^"]+)">/).endsWith('/promises.html'));
+  ok('the front page canonical is the site root',
+     /canonical" href="https?:\/\/[^"]+\/">/.test(head('index.html')));
+  ok('the favicon is inline, and is a wordmark rather than a crest or a flag',
+     /<link rel="icon" href="data:image\/svg\+xml,[^"]*PTD/.test(head('index.html')));
+
+  const sitemap = distFile('sitemap.xml');
+  ok('the sitemap lists the seven pages meant to be found',
+     (sitemap.match(/<loc>/g) || []).length === findable.length);
+  ok('the sitemap leaves out the 404 and the offline copy of everything',
+     !sitemap.includes('404.html') && !sitemap.includes('offline'));
+  ok('robots.txt allows indexing and names the sitemap',
+     /Allow: \//.test(distFile('robots.txt'))
+     && /Sitemap: https?:\/\/\S+\/sitemap\.xml/.test(distFile('robots.txt')));
+  ok('the pages meant to be found do not ask not to be',
+     findable.every(n => !/name="robots"/.test(head(n))));
+  ok('the 404 and the offline copy do ask not to be indexed',
+     /noindex/.test(head('404.html')) && /noindex/.test(head('plain-trade-desk-offline.html')));
+
+  await go('404.html');
+  ok('the 404 carries the same unofficial banner as every other page',
+     /Not a government website/.test(await text('.notice')));
+  ok('the 404 says plainly that the address does not exist',
+     /does not exist/i.test(await text('#pageview')));
+  ok('the 404 links to all four doors, absolutely, because it is served anywhere',
+     (await count('.notfound .doorlist a')) === 4
+     && /^https?:\/\//.test(await page.locator('.notfound .doorlist a').first().getAttribute('href')));
+
+  await go('about.html');
+  ok('the About page offers the offline file as a download', (await count('a.dl[download]')) === 1);
+  ok('the download is described as a file you can keep and hand to somebody',
+     /keep a copy/.test(await text('.download')) && /pass it to somebody/.test(await text('.download')));
+  ok('every page footer links to the offline file',
+     htmlFiles.filter(n => n !== 'plain-trade-desk-offline.html')
+       .every(n => /class="pagelink download" href="[^"]*plain-trade-desk-offline\.html" download/.test(distFile(n))));
+  ok('the offline file does not offer itself as a download',
+     !/pagelink download/.test(distFile('plain-trade-desk-offline.html')));
+
+  /* ------------------------------------------------------------------ */
+  g('ARCHIVE: the promise to stop honestly has to be executable');
+
+  {
+    const dir = tempRepo();
+    const r = build(dir, ['--no-browser', '--archived=2027-03-01']);
+    const out = n => readFileSync(path.join(dir, 'dist', n), 'utf8');
+    const built = readdirSync(path.join(dir, 'dist')).filter(n => n.endsWith('.html'));
+    ok('an archived build stamps a notice on every page, the 404 included',
+       r.code === 0 && built.length === htmlFiles.length
+       && built.every(n => /class="archived"/.test(out(n)) && /No longer maintained/.test(out(n))));
+    ok('an archived build gives the date of the last check',
+       built.every(n => /March 1, 2027/.test(out(n))));
+    ok('an archived build turns off the freshness readout so it cannot read as live',
+       built.every(n => !/id="fileDot"/.test(out(n)) && !/Next review/.test(out(n))));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    // The whole point of the flag. A site whose records have aged out can still
+    // be rebuilt on purpose, which is what archiving in place means. Without
+    // this, the promise to leave the pages up and marked would need somebody to
+    // hand-edit nine pages in the week they decided to stop.
+    const dir = tempRepo();
+    const stale = build(dir, ['--no-browser'], { PTD_TODAY: '2027-03-05' });
+    const archived = build(dir, ['--no-browser', '--archived=2027-03-01'], { PTD_TODAY: '2027-03-05' });
+    ok('gate 2 refuses stale records normally, and is suppressed for an archived build',
+       stale.code !== 0 && /gate 2/.test(stale.out) && archived.code === 0);
+    rmSync(dir, { recursive: true, force: true });
+  }
 
   /* ------------------------------------------------------------------ */
   g('GATES: the build has to refuse, not warn');
@@ -293,11 +406,9 @@ const editJson = (dir, name, fn) => {
     // only place an external reference could be introduced, because everything
     // that comes from data is escaped before it reaches the page.
     const dir = tempRepo();
-    const layout = path.join(dir, 'src', 'templates', 'layout.mjs');
-    writeFileSync(layout, readFileSync(layout, 'utf8').replace(
-      '<title>${esc(site.title)}</title>',
-      '<title>${esc(site.title)}</title>\n<script src="https://example.com/analytics.js"></script>'
-    ));
+    editSource(dir, 'src/templates/layout.mjs',
+      '<title>${esc(meta.title)}</title>',
+      '<title>${esc(meta.title)}</title>\n<script src="https://example.com/analytics.js"></script>');
     const r = build(dir);
     ok('gate 7 fails the build on an injected external script tag',
        r.code !== 0 && /gate 7/.test(r.out) && /example\.com/.test(r.out));
@@ -384,6 +495,99 @@ const editJson = (dir, name, fn) => {
        r.code === 0 && /Nothing rendered, nothing written/.test(r.out));
     rmSync(dir, { recursive: true, force: true });
   }
+
+  {
+    // Impossible to get wrong with one page. Easy with nine, and a dead link on
+    // the commitment page in front of a municipality is a small disaster.
+    const dir = tempRepo();
+    editSource(dir, 'src/templates/layout.mjs',
+      '<footer>', '<footer>\n<a href="programmes.html">Programmes</a>');
+    const r = build(dir);
+    ok('gate 10 fails the build on a link to a page that was never built',
+       r.code !== 0 && /gate 10/.test(r.out) && /programmes\.html/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    const dir = tempRepo();
+    editSource(dir, 'src/templates/layout.mjs',
+      '<footer>', '<footer>\n<a href="#nowhere">Nowhere</a>');
+    const r = build(dir);
+    ok('gate 10 fails the build on a fragment that is not on the page',
+       r.code !== 0 && /gate 10/.test(r.out) && /id "nowhere"/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    // Two pages with one title are two pages a reader cannot tell apart in a
+    // tab, a bookmark or a search result.
+    const dir = tempRepo();
+    editJson(dir, 'doors.json', d => { d.doors[1].title = d.doors[2].title; });
+    const r = build(dir);
+    ok('gate 11 fails the build when two pages share a title',
+       r.code !== 0 && /gate 11/.test(r.out) && /same title/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    const dir = tempRepo();
+    editJson(dir, 'doors.json', d => { d.doors[1].description = ''; });
+    const r = build(dir);
+    ok('gate 11 fails the build on a page with no description',
+       r.code !== 0 && /gate 11/.test(r.out) && /no meta description/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    // The slow one: gate 12 runs in the browser, so this build opens one.
+    // WCAG 2.1 AA was required from the start and was a hope until this gate.
+    const dir = tempRepo();
+    editSource(dir, 'src/templates/layout.mjs', '<html lang="en">', '<html>');
+    const r = build(dir, []);
+    ok('gate 12 fails the build on a serious accessibility violation',
+       r.code !== 0 && /gate 12/.test(r.out) && /lang/i.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    // Changing the domain is meant to be a one-line edit, and everything that
+    // carries the address has to follow it in the same build.
+    const dir = tempRepo();
+    writeFileSync(path.join(dir, 'site.config.json'),
+      JSON.stringify({ site: { baseUrl: 'https://plaintradedesk.example' } }, null, 2));
+    const r = build(dir);
+    const dist = n => readFileSync(path.join(dir, 'dist', n), 'utf8');
+    ok('a configured domain writes CNAME and reaches every canonical URL and the sitemap',
+       r.code === 0
+       && dist('CNAME').trim() === 'plaintradedesk.example'
+       && /canonical" href="https:\/\/plaintradedesk\.example\/promises\.html"/.test(dist('promises.html'))
+       && dist('sitemap.xml').includes('https://plaintradedesk.example/promises.html'));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    // The Pages subdomain is given to us and answers on its own name.
+    const dir = tempRepo();
+    writeFileSync(path.join(dir, 'site.config.json'),
+      JSON.stringify({ site: { baseUrl: 'https://example.github.io/plain-trade-desk' } }, null, 2));
+    const r = build(dir);
+    ok('the Pages subdomain publishes without a CNAME',
+       r.code === 0 && !existsSync(path.join(dir, 'dist', 'CNAME')));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  /* ------------------------------------------------------------------ */
+  g('DEPLOY: a failed build must never publish');
+
+  const deployYml = readFileSync(path.join(ROOT, '.github', 'workflows', 'deploy.yml'), 'utf8');
+  ok('the deploy job depends on the build job', /deploy:\n\s+needs: build\b/.test(deployYml));
+  ok('the build job gates and tests before anything is packaged',
+     /npm run build/.test(deployYml) && /npm test/.test(deployYml)
+     && deployYml.indexOf('npm test') < deployYml.indexOf('upload-pages-artifact'));
+  ok('publishing can be triggered by hand on the day it matters',
+     /workflow_dispatch:/.test(deployYml));
+  ok('the deployed site is checked for third-party requests after it goes out',
+     /live-check\.mjs/.test(deployYml));
 
   /* ------------------------------------------------------------------ */
   let failed = 0;

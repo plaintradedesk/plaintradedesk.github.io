@@ -328,3 +328,33 @@ a.back{
   margin:11px 0 0;font-size:.85rem;color:var(--muted);max-width:var(--measure);
   border-left:2px solid var(--line-strong);padding-left:11px;
 }
+
+/* --- the archive notice, above everything, only in an archived build ---
+   The promise page commits to this notice appearing at the top of every page.
+   It sits above the unofficial banner because it changes how everything below
+   it should be read. */
+.archived{
+  background:var(--stale-soft);color:var(--stale);
+  border-bottom:2px solid var(--stale);
+  font-size:.82rem;line-height:1.45;padding:11px 0;
+}
+.archived b{font-weight:700}
+
+/* --- the offline file, offered as what it is --- */
+.download{
+  border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:var(--surface);padding:15px 16px;margin:14px 0;
+}
+.download p{margin:0}
+.download p + p{margin-top:9px;font-size:.86rem;color:var(--muted)}
+a.dl{
+  display:inline-block;background:var(--accent);color:var(--accent-ink);
+  border-radius:7px;padding:8px 14px;text-decoration:none;font-weight:600;font-size:.92rem;
+}
+a.dl:hover{text-decoration:underline}
+a.pagelink.download{border-color:var(--accent)}
+
+/* --- the 404 --- */
+.notfound .doorlist{margin:12px 0 0;padding-left:1.1rem;color:var(--muted)}
+.notfound .doorlist li{margin:7px 0}
+.notfound .doorlist a{font-weight:600}

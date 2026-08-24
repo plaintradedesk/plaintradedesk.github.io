@@ -63,7 +63,27 @@
       "no_source": "No primary source on file",
       "trend": "Trend, not an instrument"
     },
-    "offline_noscript": "JavaScript is switched off, so all four doors and the three standing pages are shown one after another. Nothing is missing."
+    "offline_noscript": "JavaScript is switched off, so all four doors and the three standing pages are shown one after another. Nothing is missing.",
+    "offline": {
+      "title": "The whole desk in one file",
+      "description": "All four doors and the three standing pages in a single file that works with no connection. Keep it, or give it to somebody else.",
+      "label": "Download the whole desk as one file",
+      "note": "One file that works with no connection at all. Open it from a memory stick, keep a copy, or pass it to somebody who cannot rely on getting online. It carries all four doors and the three standing pages, and it is the reason this site going away and this information going away are not the same event.",
+      "filename": "plain-trade-desk-offline.html",
+      "this_is_it": "You are reading that file now. It is complete, and it works with no connection."
+    },
+    "notfound": {
+      "title": "That address does not exist",
+      "description": "There is no page at this address on the Plain Trade Desk.",
+      "heading": "That address does not exist",
+      "text": "There is nothing here. The address may have been mistyped, or it may be a link from somewhere else that was never right. Nothing has been taken down to make this happen: pages here keep their addresses, and if this site is ever archived the pages stay where they are.",
+      "doors_lead": "Start from one of the four doors."
+    },
+    "archived": {
+      "lead": "No longer maintained.",
+      "text": "This site stopped being updated on {date}. The pages are kept exactly as they were and are no longer being checked against their sources. Do not rely on anything here for a decision now. Read the primary source linked on each record instead.",
+      "stamp": "Last checked {date}"
+    }
   },
   "pages": {
     "about": {
@@ -105,6 +125,13 @@
         },
         {
           "tag": "h3",
+          "text": "If you cannot rely on being online"
+        },
+        {
+          "tag": "download"
+        },
+        {
+          "tag": "h3",
           "text": "Who is writing this"
         },
         {
@@ -124,7 +151,8 @@
           "class": "q",
           "text": "Contact address goes here before publication. It is read by a person, and corrections are welcome and acted on."
         }
-      ]
+      ],
+      "description": "Who runs this site, why it is built the way it is, and how it is kept current. Independent, unofficial, and not affiliated with any government."
     },
     "promise": {
       "path": "promises.html",
@@ -207,7 +235,8 @@
           "tag": "p",
           "text": "Every substantive claim links to the document it came from. Where this site and the original disagree, the original is right and this site is wrong, and it would like to be told."
         }
-      ]
+      ],
+      "description": "What this site commits to: it takes no money, collects nothing about you, requests nothing from any other host, corrects itself in public, and says so within thirty days if it stops being maintained."
     },
     "corrections": {
       "path": "corrections.html",
@@ -234,7 +263,8 @@
             "detail": "No link to an original document is on file for this record."
           }
         }
-      }
+      },
+      "description": "Every correction made to this site, and the list of known gaps worked out from the records themselves each time this page is built."
     }
   }
 }

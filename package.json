@@ -1,16 +1,19 @@
 {
   "name": "plain-trade-desk",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "type": "module",
   "description": "A static build of the Plain Trade Desk. Four audience views over one fact base, generated from data files, with build gates that refuse to publish a page the data has not earned.",
   "scripts": {
     "build": "node src/build.mjs",
     "validate": "node src/build.mjs --validate-only",
+    "serve": "node tools/serve.mjs",
+    "verify:live": "node test/live-check.mjs",
     "pretest": "node src/build.mjs",
     "test": "node test/site.test.mjs"
   },
   "devDependencies": {
+    "axe-core": "^4.13.0",
     "playwright": "^1.49.0"
   },
   "engines": {

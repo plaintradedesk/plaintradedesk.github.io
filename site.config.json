@@ -1,0 +1,12 @@
+{
+  "site": {
+    "baseUrl": ""
+  },
+  "notes": [
+    "site.baseUrl is the one place the published address of this site is written.",
+    "It is used for the canonical URL on every page, for sitemap.xml, for the links on the 404 page, and for the CNAME file.",
+    "Leave it empty and the build uses PTD_BASE_URL instead, which the deploy workflow sets to the GitHub Pages address. That is how the site publishes before a domain is registered.",
+    "When a domain is registered, put it here. One line. Include the scheme, no trailing slash, for example https://plaintradedesk.org",
+    "A host that is not a github.io subdomain also causes the build to write dist/CNAME, which is what tells GitHub Pages to answer on that name."
+  ]
+}

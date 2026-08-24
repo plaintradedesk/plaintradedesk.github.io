@@ -1,0 +1,107 @@
+name: deploy
+
+# Publishing.
+#
+# The deploy job depends on the build job, so a failed build never reaches the
+# public. That is the architecture of this repository carried into publication:
+# gate 2 refusing on a record nobody has checked for thirty days is a correct
+# reason for a deploy to stop, and a page the data has not earned does not go up.
+#
+# workflow_dispatch is here because the owner will want to publish at a moment
+# of their choosing on the day the Canadian counter-measure list lands, rather
+# than by pushing a commit and hoping.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time, and never cancel one that is already going out.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # Tells us the address this site is about to be served from. It is passed
+      # to the build as PTD_BASE_URL, which site.config.json defers to while
+      # site.baseUrl is empty. That is how the canonical links, the sitemap and
+      # robots.txt are all correct before anybody has registered a domain.
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install
+        run: npm ci
+
+      # Gates 8 and 12 load every built page in a real browser.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+        env:
+          PTD_BASE_URL: ${{ steps.pages.outputs.base_url }}
+
+      # npm test rebuilds first, so it needs the same address or it would
+      # replace the built site with one that thinks it lives on localhost.
+      - name: Test
+        run: npm test
+        env:
+          PTD_BASE_URL: ${{ steps.pages.outputs.base_url }}
+
+      - name: Package the built site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # The promise page tells readers that reading this site discloses nothing
+  # about them to anybody. That is a claim about what is served, not about what
+  # was built, and a hosting platform will happily inject things nobody asked
+  # for. So it is checked against the live site every time it changes.
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Check the deployed site
+        run: node test/live-check.mjs "${{ needs.deploy.outputs.page_url }}"

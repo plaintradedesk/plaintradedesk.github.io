@@ -11,7 +11,9 @@ import { esc, escAttr, fmtDate, dayDiff } from '../util.mjs';
 
 export function shockCard(s, register, vocab, labels, ctx) {
   const age = dayDiff(s.verified, ctx.today);
-  const needsCheck = s.unverified || age > ctx.recheckAfter;
+  // An archived site says once, at the top of every page, that it is no longer
+  // being checked. Flagging every record as overdue as well would only be noise.
+  const needsCheck = s.unverified || (!ctx.archived && age > ctx.recheckAfter);
   const trend = s.evidence_class === 'trend';
 
   const flag = needsCheck

@@ -8,7 +8,8 @@
       "lede": "Plain language, no codes. Most Canadian trade is not caught up in this. What follows is what is actually in force, what changes in September, and what is worth asking this week.",
       "register": "plain",
       "filters": false,
-      "seasons": true
+      "seasons": true,
+      "description": "In plain language: which measures are actually in force, what changes next, and what is worth asking this week if you are worried about your job or your grocery bill."
     },
     {
       "id": "business",
@@ -18,7 +19,8 @@
       "lede": "What changes on a quote, a purchase order or a shipment. Narrow by sector if you want only what touches you. Nothing here classifies your goods; that is a job for a licensed broker.",
       "register": "operator",
       "filters": true,
-      "seasons": false
+      "seasons": false,
+      "description": "What the measures in force change on a quote, a purchase order or a shipment, narrowed by sector, with the primary source for each one."
     },
     {
       "id": "place",
@@ -28,7 +30,8 @@
       "lede": "The same measures read through where you live and work. Peel is a logistics and auto-parts region, which puts it closer to the centre of this than most of the country.",
       "register": "operator",
       "filters": true,
-      "seasons": false
+      "seasons": false,
+      "description": "The same measures read through Brampton, Peel and the GTA, a logistics and auto-parts region closer to the centre of this than most of the country."
     },
     {
       "id": "policy",
@@ -38,7 +41,8 @@
       "lede": "Authority, coverage, mechanism, and which instrument still has to be published before anything is operational. The smallest of the four doors, because this space is already well served.",
       "register": "policy",
       "filters": false,
-      "seasons": false
+      "seasons": false,
+      "description": "Legal authority, coverage, mechanism, and which instruments still have to be published before anything is operational."
     }
   ],
   "statuses": {
