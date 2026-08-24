@@ -326,6 +326,17 @@ const editJson = (dir, name, fn) => {
   }
 
   {
+    // Added on review. An action tied to no shock is advice standing free of any
+    // evidence, which is the specific thing this site exists not to publish.
+    const dir = tempRepo();
+    editJson(dir, 'actions.json', d => { d.actions[0].shocks = []; });
+    const r = build(dir);
+    ok('gate 4 fails the build on an action that responds to no shock',
+       r.code !== 0 && /gate 4/.test(r.out) && /no shock/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
     // Collapse three seasons into one action set and the selector becomes fake
     // personalisation, which costs more trust than having no selector.
     const dir = tempRepo();

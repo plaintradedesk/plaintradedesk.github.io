@@ -131,6 +131,13 @@ export function validateData(data, ctx) {
     } else {
       for (const d of a.doors) if (!doorIds.has(d)) r.fail(4, id, `unknown door "${d}"`);
     }
+    // An action tied to no shock is advice standing free of any evidence, which
+    // is the specific thing this site exists not to publish. The brief only
+    // required a valid door and valid shock ids; this is the stricter rule from
+    // DATA-MODEL.md, adopted deliberately on review.
+    if (!Array.isArray(a.shocks) || a.shocks.length === 0) {
+      r.fail(4, id, 'responds to no shock, so it is advice with no evidence behind it');
+    }
     for (const sid of a.shocks || []) {
       if (!shockIds.has(sid)) r.fail(4, id, `refers to shock "${sid}", which does not exist`);
     }
