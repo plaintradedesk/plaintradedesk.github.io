@@ -102,7 +102,12 @@ export function doorPanel({ door, shocks, actions, sectors, seasons, site, vocab
   const recordLabel = site.labels.records_shown
     .replace('{shown}', shocks.length).replace('{total}', totalShocks);
 
-  return `    <section class="doorpanel" data-door="${escAttr(door.id)}"${hidden ? ' hidden' : ''}>
+  // In the offline file the doors are real tabs over panels in one document, so
+  // the panels say what they are and which tab names them.
+  const tabAttrs = ids ? '' :
+    ` id="panel-${escAttr(door.id)}" role="tabpanel" aria-labelledby="tab-${escAttr(door.id)}" tabindex="0"`;
+
+  return `    <section class="doorpanel" data-door="${escAttr(door.id)}"${tabAttrs}${hidden ? ' hidden' : ''}>
       <div class="lede">
         <h2>${esc(door.title)}</h2>
         <p>${esc(door.lede)}</p>

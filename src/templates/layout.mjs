@@ -32,7 +32,8 @@ function doorNav(doors, activeDoor, site, mode) {
       `<span class="who">${esc(d.who)}</span>` +
       `<span class="q">${esc(d.question)}</span>`;
     if (mode === 'offline') {
-      return `        <button class="door" type="button" role="tab" data-door="${escAttr(d.id)}"` +
+      return `        <button class="door" type="button" role="tab" id="tab-${escAttr(d.id)}"` +
+        ` aria-controls="panel-${escAttr(d.id)}" data-door="${escAttr(d.id)}"` +
         ` aria-selected="${d.id === activeDoor ? 'true' : 'false'}">${inner}</button>`;
     }
     return `        <a class="door" href="${escAttr(href(d.id, mode))}" data-door="${escAttr(d.id)}"` +
