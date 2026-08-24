@@ -8,6 +8,7 @@
     "build": "node src/build.mjs",
     "validate": "node src/build.mjs --validate-only",
     "serve": "node tools/serve.mjs",
+    "i18n": "node tools/i18n.mjs",
     "verify:live": "node test/live-check.mjs",
     "pretest": "node src/build.mjs",
     "test": "node test/site.test.mjs"

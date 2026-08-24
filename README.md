@@ -55,7 +55,8 @@ point `PW_CHROMIUM` at it instead.
 |:---|:---|
 | `npm run build` | Validates, renders, gates the output, writes `dist/` |
 | `npm run validate` | The data gates only. Nothing is rendered and nothing is written |
-| `npm test` | Builds, then runs 85 browser and build checks |
+| `npm test` | Builds, then runs 96 browser and build checks |
+| `npm run i18n` | Refreshes the language files from the fact base and reports where each stands |
 | `npm run serve` | Serves `dist/` at `http://localhost:8000` the way Pages serves it, 404 included |
 | `npm run verify:live -- <url>` | Loads a **served** site and checks it discloses nothing. See Publishing |
 | `node src/build.mjs --archived=YYYY-MM-DD` | Builds the site as no longer maintained. See Archiving |
@@ -311,6 +312,45 @@ House style: plain prose, no em dashes, no exclamation marks, no marketing regis
 words like "critical" or "urgent" unless something genuinely is. The existing copy is the
 model.
 
+## Languages
+
+Nothing is translated and the site is English only. `data/i18n/` is room for that to change
+without the fact base having to be rearranged first, because retrofitting this once the fact
+base has grown is the expensive version.
+
+One file per language, keyed by a stable path, each entry carrying the English it is a
+translation of:
+
+```json
+"doors.people.question": {
+  "en": "Is my job or my grocery bill caught up in this?",
+  "t": ""
+}
+```
+
+| Language | Carries |
+|:---|:---|
+| `fr` | Everything, including the policy register. Federal adoption would effectively require French |
+| `pa`, `hi`, `ur` | The plain register and the interface only |
+
+Punjabi, Hindi and Urdu matter more than French for reach in Brampton specifically. Only the
+plain register is worth translating: the policy register is read by people who read policy in
+English, and a half-translated legal instrument is worse than none. Source labels are never
+offered for translation, because "CBSA Customs Notice 26-99" is the name of a document and a
+translated name does not find it.
+
+After changing any copy, run `npm run i18n`. It regenerates every language file from the
+current source and never discards a translation: an entry whose English has changed keeps its
+translation and is reported as stale, because rewriting a sentence is usually cheaper than
+translating it again. Every build reports the same drift as a warning.
+
+The build emits English and ignores every empty translation. `node src/build.mjs --lang=fr`
+builds a language into `dist/fr/` and **refuses unless that language is complete**, because a
+partly translated page is worse than an English one. There is no language switcher and there
+should not be one until a language is actually finished. Nothing here machine translates
+anything: a wrong sentence about somebody's job, in a language the person who wrote it cannot
+read, is worse than an English sentence they can.
+
 ---
 
 ## The gates
@@ -411,19 +451,23 @@ data/            the fact base and all product copy
   seasons.json     the four People-door seasons and their hints
   pages.json       standing-page copy, masthead, footer, and every interface label
   corrections.json the corrections log, append-only
+  i18n/            one file per language, keyed by string, every translation empty
 src/
   build.mjs        entry point: validate, render, gate, publish
   config.mjs       where this site lives, resolved in one place
+  data.mjs         six files to one object, shared by the build and the language tool
+  i18n.mjs         every reader-facing string, addressed and translatable
   validate.mjs     all twelve gates
   render.mjs       data plus templates to HTML strings, and the sitemap and robots.txt
   util.mjs         dates, escaping, and the build's idea of today
   templates/       small functions returning HTML strings
   assets/          one stylesheet and one script, both inlined at build time
 test/
-  site.test.mjs    85 checks: the prototype's 34, plus offline, publication and the gates
+  site.test.mjs    96 checks: the prototype's 34, plus offline, publication and the gates
   live-check.mjs   the checks that only mean anything against a site that is served
 tools/
   serve.mjs        serves dist/ the way Pages serves it, for checking before publishing
+  i18n.mjs         regenerates the language files without discarding a translation
 .github/workflows/
   build.yml        every branch and every pull request
   deploy.yml       main and manual dispatch: build, test, deploy, then verify what went out

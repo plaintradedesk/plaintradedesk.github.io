@@ -105,9 +105,9 @@ function fileState(site, fresh, archived) {
       </div>`;
 }
 
-export function layout({ site, doors, pages, activeDoor, activePage, mode, css, js, fresh, body, meta, archived, linkBase = '' }) {
+export function layout({ site, doors, pages, activeDoor, activePage, mode, css, js, fresh, body, meta, archived, lang = 'en', linkBase = '' }) {
   return `<!doctype html>
-<html lang="en">
+<html lang="${escAttr(lang)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

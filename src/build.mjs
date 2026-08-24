@@ -12,11 +12,13 @@
  * pages are gated in a staging directory and only moved into dist/ once they
  * have passed, so a failed build never leaves a half-written site behind.
  */
-import { readFileSync, writeFileSync, mkdirSync, rmSync, renameSync, existsSync, readdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync, renameSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { today, dayDiff, fmtDate, isDate } from './util.mjs';
+import { loadData as readData } from './data.mjs';
 import { loadConfig } from './config.mjs';
+import { LANGUAGES, collect, coverage, apply, readTable, present } from './i18n.mjs';
 import {
   validateData, checkExternalReferences, checkStructure, checkInBrowser,
   checkLinks, checkPageMeta
@@ -45,36 +47,13 @@ const option = name => {
   return hit ? hit.slice(name.length + 1) : null;
 };
 
-const readJson = name => {
-  const file = path.join(DATA, name);
+function loadData() {
   try {
-    return JSON.parse(readFileSync(file, 'utf8'));
+    return readData(ROOT);
   } catch (e) {
-    console.error(`\ncannot read data/${name}: ${e.message}\n`);
+    console.error(`\n${e.message}\n`);
     process.exit(1);
   }
-};
-
-function loadData() {
-  const shocks = readJson('shocks.json');
-  const actions = readJson('actions.json');
-  const doors = readJson('doors.json');
-  const seasons = readJson('seasons.json');
-  const pages = readJson('pages.json');
-  const corrections = readJson('corrections.json');
-  return {
-    sectors: shocks.sectors,
-    shocks: shocks.shocks,
-    actions: actions.actions,
-    doors: doors.doors,
-    statuses: doors.statuses,
-    referrals: doors.referrals,
-    seasons: seasons.seasons,
-    defaultSeason: seasons.default,
-    site: pages.site,
-    pages: pages.pages,
-    corrections: corrections.corrections
-  };
 }
 
 const GATE_NAMES = {
@@ -141,6 +120,16 @@ async function main() {
     process.exit(1);
   }
 
+  /* The language scaffolding. Nothing is translated yet and this build emits
+     English. --lang exists so that the machinery is exercised rather than
+     asserted, and it refuses anything short of a complete language, because a
+     half-translated page is worse than an English one. */
+  const lang = option('--lang');
+  if (lang !== null && !LANGUAGES[lang]) {
+    console.error(`\n--lang must be one of ${Object.keys(LANGUAGES).join(', ')}. Got "${lang}".\n`);
+    process.exit(1);
+  }
+
   let config;
   try {
     config = loadConfig(ROOT);
@@ -156,9 +145,11 @@ async function main() {
     staleFail: STALE_FAIL,
     baseUrl: config.baseUrl,
     cname: config.cname,
-    archived
+    archived,
+    lang: lang || 'en'
   };
-  const data = loadData();
+  let data = loadData();
+  const outDir = lang ? path.join(DIST, lang) : DIST;
 
   console.log(`Plain Trade Desk build, as at ${ctx.today}`);
   console.log(`  ${data.shocks.length} records, ${data.actions.length} steps, ` +
@@ -168,6 +159,36 @@ async function main() {
     (config.published ? '' : ', which is not a published address'));
   if (archived) console.log(`  ARCHIVED build, last checked ${fmtDate(archived)}`);
   console.log('');
+
+  /* ---------- the language files ---------- */
+  // Checked on every build, not only when a translation is being used. A string
+  // that changes after somebody has translated it is the failure that actually
+  // happens, and it is silent unless something says so.
+  for (const code of present(ROOT)) {
+    if (!LANGUAGES[code]) continue;
+    const cov = coverage(collect(data, LANGUAGES[code].scopes), readTable(ROOT, code));
+    if (cov.missing.length || cov.stale.length || cov.unknown.length) {
+      console.warn(`  warning  data/i18n/${code}.json is behind the fact base: ` +
+        `${cov.missing.length} missing, ${cov.stale.length} stale, ${cov.unknown.length} unknown.` +
+        `\n           Run "npm run i18n". Nothing is emitted from it either way.`);
+    }
+  }
+
+  if (lang) {
+    const table = readTable(ROOT, lang);
+    const cov = coverage(collect(data, LANGUAGES[lang].scopes), table);
+    if (!cov.complete) {
+      console.error(`\nRefusing to build ${LANGUAGES[lang].name}: ` +
+        `${cov.translated} of ${cov.total} strings translated, ` +
+        `${cov.missing.length} missing, ${cov.stale.length} stale.\n\n` +
+        'A partly translated page is worse than an English one, so nothing is\n' +
+        'emitted until a language is complete. Fill in data/i18n/' + lang + '.json.\n');
+      process.exit(1);
+    }
+    data = apply(data, table);
+    ctx.baseUrl = `${ctx.baseUrl}/${lang}`;
+    console.log(`  building ${LANGUAGES[lang].name}, ${cov.total} strings, into dist/${lang}/\n`);
+  }
 
   /* ---------- gates 1 to 6 and 9 ---------- */
   const dataReport = validateData(data, ctx);
@@ -216,10 +237,11 @@ async function main() {
   }
 
   /* ---------- publish ---------- */
-  rmSync(DIST, { recursive: true, force: true });
-  renameSync(STAGE, DIST);
+  rmSync(outDir, { recursive: true, force: true });
+  mkdirSync(path.dirname(outDir), { recursive: true });
+  renameSync(STAGE, outDir);
 
-  const names = readdirSync(DIST).sort();
+  const names = readdirSync(outDir).sort();
   console.log(`\nWrote ${names.length} files to dist/`);
   for (const n of names) {
     const m = meta[n];

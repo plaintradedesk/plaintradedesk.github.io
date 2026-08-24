@@ -93,7 +93,7 @@ export function render(data, ctx) {
   });
 
   const shell = (name, m, opts) => add(name, m, layout({
-    site, doors: data.doors, pages, mode: 'site', css, js, fresh, archived,
+    site, doors: data.doors, pages, mode: 'site', css, js, fresh, archived, lang: ctx.lang,
     meta: { title: m.title, description: m.description, noindex: !!m.noindex, canonical: canonical(name) },
     ...opts
   }));
@@ -162,7 +162,7 @@ export function render(data, ctx) {
   };
   add(OFFLINE_FILE, offlineMeta, layout({
     site, doors: data.doors, pages, activeDoor: data.doors[0].id, mode: 'offline',
-    css, js, fresh, archived,
+    css, js, fresh, archived, lang: ctx.lang,
     meta: Object.assign({}, offlineMeta, { canonical: canonical(OFFLINE_FILE) }),
     body: '    <noscript><p class="noscript">' + esc(site.offline_noscript) + '</p></noscript>\n' +
       '    <section class="page" id="pageview">\n' + standing + '\n    </section>\n' +
@@ -187,6 +187,11 @@ export function render(data, ctx) {
  * the small lie the rest of this repository exists to prevent.
  */
 function siteAssets(meta, ctx) {
+  // A translated build writes a language directory inside the site. The sitemap,
+  // robots.txt and CNAME describe the site as a whole and belong at its root, so
+  // they are written by the English build and by nothing else.
+  if (ctx.lang && ctx.lang !== 'en') return {};
+
   const urls = Object.values(meta).filter(m => m.inSitemap).map(m => m.canonical).sort();
 
   const assets = {

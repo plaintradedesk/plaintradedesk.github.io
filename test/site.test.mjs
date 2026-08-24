@@ -542,7 +542,7 @@ const editJson = (dir, name, fn) => {
     // The slow one: gate 12 runs in the browser, so this build opens one.
     // WCAG 2.1 AA was required from the start and was a hope until this gate.
     const dir = tempRepo();
-    editSource(dir, 'src/templates/layout.mjs', '<html lang="en">', '<html>');
+    editSource(dir, 'src/templates/layout.mjs', '<html lang="${escAttr(lang)}">', '<html>');
     const r = build(dir, []);
     ok('gate 12 fails the build on a serious accessibility violation',
        r.code !== 0 && /gate 12/.test(r.out) && /lang/i.test(r.out));
@@ -573,6 +573,74 @@ const editJson = (dir, name, fn) => {
     const r = build(dir);
     ok('the Pages subdomain publishes without a CNAME',
        r.code === 0 && !existsSync(path.join(dir, 'dist', 'CNAME')));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  /* ------------------------------------------------------------------ */
+  g('LANGUAGE: room for a translation that does not exist yet');
+
+  {
+    const langs = readdirSync(path.join(ROOT, 'data', 'i18n')).filter(n => n.endsWith('.json'));
+    ok('every language named in the plan has a file', langs.length === 4
+       && ['fr.json', 'hi.json', 'pa.json', 'ur.json'].every(n => langs.includes(n)));
+
+    const fr = JSON.parse(readFileSync(path.join(ROOT, 'data', 'i18n', 'fr.json'), 'utf8'));
+    const pa = JSON.parse(readFileSync(path.join(ROOT, 'data', 'i18n', 'pa.json'), 'utf8'));
+    ok('French has room for every string, including the policy register',
+       Object.keys(fr.strings).length > 250
+       && Object.keys(fr.strings).some(k => k.endsWith('.policy')));
+    // Only the plain register is worth translating for reach. A half-translated
+    // legal instrument is worse than none.
+    ok('Punjabi, Hindi and Urdu carry the plain register and not the policy one',
+       Object.keys(pa.strings).length > 200
+       && !Object.keys(pa.strings).some(k => k.endsWith('.policy')));
+    ok('every translation is empty, and every entry carries the English it is for',
+       Object.values(fr.strings).every(r => r.t === '' && typeof r.en === 'string' && r.en.length > 0));
+    ok('a source label is never offered for translation, because it is a document name',
+       !Object.keys(fr.strings).some(k => /sources\[/.test(k)));
+  }
+
+  {
+    const dir = tempRepo();
+    const r = build(dir, ['--no-browser', '--lang=fr']);
+    ok('a language that is not translated refuses to build rather than emitting half of one',
+       r.code !== 0 && /Refusing to build French/.test(r.out) && !existsSync(path.join(dir, 'dist', 'fr')));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    // Nothing is translated, so the only honest way to know the scaffolding
+    // works is to fill a language in and build it. This translation is a
+    // marker, thrown away at the end of the check. It proves the pipeline, not
+    // the French.
+    const dir = tempRepo();
+    const file = path.join(dir, 'data', 'i18n', 'fr.json');
+    const table = JSON.parse(readFileSync(file, 'utf8'));
+    for (const row of Object.values(table.strings)) row.t = 'fr:' + row.en;
+    writeFileSync(file, JSON.stringify(table, null, 2));
+
+    const r = build(dir, ['--no-browser', '--lang=fr']);
+    const out = existsSync(path.join(dir, 'dist', 'fr', 'index.html'))
+      ? readFileSync(path.join(dir, 'dist', 'fr', 'index.html'), 'utf8') : '';
+    ok('a complete language builds into its own directory and says which language it is',
+       r.code === 0 && /<html lang="fr">/.test(out));
+    ok('a complete language reaches the interface, the doors and the fact base',
+       out.includes('fr:Independent and unofficial.')
+       && out.includes('fr:Is my job or my grocery bill caught up in this?')
+       && out.includes('fr:What is happening'));
+    ok('a translated build leaves the sitemap and robots.txt to the site root',
+       !existsSync(path.join(dir, 'dist', 'fr', 'sitemap.xml'))
+       && !existsSync(path.join(dir, 'dist', 'fr', 'robots.txt')));
+
+    // The failure that actually happens: somebody edits a sentence that has
+    // already been translated, and nothing says so.
+    editJson(dir, 'doors.json', d => { d.doors[0].question = 'A different question entirely?'; });
+    const drifted = build(dir, ['--no-browser', '--lang=fr']);
+    ok('a source string that changed after translation makes the language stale, and it refuses',
+       drifted.code !== 0 && /stale/.test(drifted.out));
+    const english = build(dir, ['--no-browser']);
+    ok('the English build only warns about it, because English is what it emits',
+       english.code === 0 && /warning/.test(english.out) && /i18n\/fr\.json/.test(english.out));
     rmSync(dir, { recursive: true, force: true });
   }
 
