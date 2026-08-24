@@ -52,6 +52,13 @@ const ok = (name, cond) => results.push([cond ? 'PASS' : 'FAIL', name, group]);
    nothing in the working tree is touched and the failure is the real one rather
    than a simulation of it. */
 
+/* A check that throws before its own cleanup leaves a copy behind, inside the
+   repository. Clearing them first means a failed run does not slow down or
+   confuse the next one. */
+for (const name of readdirSync(ROOT)) {
+  if (name.startsWith('.tmp-test-')) rmSync(path.join(ROOT, name), { recursive: true, force: true });
+}
+
 function tempRepo() {
   // Inside the repository rather than in the system temp directory. A build run
   // in here has to resolve playwright and axe-core, and module resolution walks
