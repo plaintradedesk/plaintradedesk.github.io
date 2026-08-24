@@ -92,6 +92,29 @@ function archiveNotice(site, archived) {
 `;
 }
 
+/**
+ * What a link to this page looks like when somebody forwards it.
+ *
+ * These are declarations rather than requests: nothing here is fetched by the
+ * reader's browser. The image is only named on the four doors, because those
+ * are the only pages a share card is drawn for, and pointing a standing page at
+ * a door's card would misdescribe it.
+ */
+function social(site, meta) {
+  const tags = [
+    ['og:type', 'website'],
+    ['og:site_name', site.title],
+    ['og:title', meta.title],
+    ['og:description', meta.description],
+    ['og:url', meta.canonical]
+  ];
+  if (meta.image) {
+    tags.push(['og:image', meta.image], ['og:image:width', '1200'], ['og:image:height', '630']);
+  }
+  return tags.map(([p, c]) => `<meta property="${escAttr(p)}" content="${escAttr(c)}">`).join('\n') +
+    `\n<meta name="twitter:card" content="${meta.image ? 'summary_large_image' : 'summary'}">\n`;
+}
+
 /** Live, this reads the freshness out of the records. Archived, it must not. */
 function fileState(site, fresh, archived) {
   if (archived) {
@@ -114,7 +137,7 @@ export function layout({ site, doors, pages, activeDoor, activePage, mode, css, 
 <title>${esc(meta.title)}</title>
 <meta name="description" content="${escAttr(meta.description)}">
 <link rel="canonical" href="${escAttr(meta.canonical)}">
-${meta.noindex ? '<meta name="robots" content="noindex, follow">\n' : ''}<link rel="icon" href="${escAttr(FAVICON)}">
+${meta.noindex ? '<meta name="robots" content="noindex, follow">\n' : ''}${social(site, meta)}<link rel="icon" href="${escAttr(FAVICON)}">
 <style>
 ${css}</style>
 </head>

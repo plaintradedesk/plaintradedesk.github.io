@@ -30,6 +30,7 @@ const PAGES = [
 const ASSETS = ['/robots.txt', '/sitemap.xml'];
 
 const origin = new URL(base).origin;
+const shareImages = new Set();
 const results = [];
 const ok = (name, cond, detail) => results.push([cond ? 'PASS' : 'FAIL', name, detail || '']);
 
@@ -61,6 +62,19 @@ for (const p of PAGES) {
   const banner = await page.textContent('.notice');
   ok(`${p} carries the independent and unofficial banner`,
      !!banner && /Not a government website/.test(banner));
+
+  const image = await page.getAttribute('meta[property="og:image"]', 'content').catch(() => null);
+  if (image) shareImages.add(image);
+}
+
+// The share card is the copy of this that travels furthest, forwarded through
+// WhatsApp by somebody who will never see an error page. If it does not resolve
+// it fails silently inside somebody else's app.
+for (const image of shareImages) {
+  const res = await page.goto(image);
+  ok(`the share card at ${image.replace(origin, '')} is served`,
+     res && res.status() === 200 && /image\/png/.test(res.headers()['content-type'] || ''),
+     res ? String(res.status()) : 'no response');
 }
 
 // Asking for an address that does not exist logs a console error, and that one

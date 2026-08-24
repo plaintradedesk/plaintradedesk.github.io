@@ -499,6 +499,16 @@ export function checkLinks(files, assets, ctx) {
     let m;
     while ((m = tag.exec(html))) {
       const el = m[1].toLowerCase();
+      // A share card is named in a meta tag rather than linked, and a card that
+      // is named but never drawn is the same broken link seen from further
+      // away: it fails silently, inside somebody else's app, on the copy of
+      // this that travels furthest.
+      if (el === 'meta' && /(?:property|name)="(?:og:image|twitter:image)"/i.test(m[2])) {
+        const content = (m[2].match(/content="([^"]*)"/) || [])[1] || '';
+        checkOne(r, name, el, 'content', content.trim());
+        continue;
+      }
+
       const at = /([a-zA-Z-]+)\s*=\s*"([^"]*)"/g;
       let a;
       while ((a = at.exec(m[2]))) {

@@ -55,12 +55,13 @@ point `PW_CHROMIUM` at it instead.
 |:---|:---|
 | `npm run build` | Validates, renders, gates the output, writes `dist/` |
 | `npm run validate` | The data gates only. Nothing is rendered and nothing is written |
-| `npm test` | Builds, then runs 96 browser and build checks |
+| `npm test` | Builds, then runs 104 browser and build checks |
 | `npm run i18n` | Refreshes the language files from the fact base and reports where each stands |
 | `npm run serve` | Serves `dist/` at `http://localhost:8000` the way Pages serves it, 404 included |
 | `npm run verify:live -- <url>` | Loads a **served** site and checks it discloses nothing. See Publishing |
 | `node src/build.mjs --archived=YYYY-MM-DD` | Builds the site as no longer maintained. See Archiving |
-| `node src/build.mjs --no-browser` | Builds without opening a browser. Use it only when you have none, and know that gates 8 and 12 are then off |
+| `node src/build.mjs --lang=fr` | Builds a language into `dist/fr/`, and refuses unless it is complete. See Languages |
+| `node src/build.mjs --no-browser` | Builds without opening a browser. Use it only when you have none, and know that gates 8 and 12 are then off and no share card is drawn |
 
 `dist/` is gitignored. The build is deterministic, so two builds from unchanged input produce
 byte-identical files, which is what makes a diff in the output mean a real change.
@@ -78,6 +79,7 @@ byte-identical files, which is what makes a diff in the output mean a real chang
 | `404.html` | Served for any address that does not exist. Same banner, same look, links to the four doors. Its links are absolute, because it is served at whatever was mistyped |
 | `sitemap.xml`, `robots.txt` | Indexing is allowed. The 404 and the offline file are left out of the sitemap and marked `noindex`, because the offline file is a copy of every other page |
 | `CNAME` | Only when `site.baseUrl` is a domain rather than a `github.io` subdomain. See Publishing |
+| `share-people.png` and three more | One share card per door, 1200 by 630, drawn at build time. See Share cards |
 
 Every page carries its own content in the markup and its stylesheet inline. They work with
 JavaScript switched off, and they make no request to any host. Every page also carries a
@@ -154,6 +156,30 @@ npm run build
 npm run serve            # in one terminal
 npm run verify:live -- http://localhost:8000
 ```
+
+## Share cards
+
+One image per door, 1200 by 630, drawn at build time and named in the `og:image` of that
+door's page.
+
+The People layer is meant to travel as an image forwarded through WhatsApp rather than as a
+link, because that is how it actually reaches the people it is for. Two rules follow from
+that, and both are checked:
+
+- **The unofficial line is on the card**, at the top, in the same words as the banner. A card
+  arriving without it is the one piece of this project that could be read as a government
+  notice.
+- **A card carries no fact, rate or date.** It is a still image that keeps circulating after
+  the record behind it has changed, so it carries the door's question and nothing else that
+  could go out of date. Every word on it comes from `doors.json` and `pages.json`.
+
+They are SVG, drawn in `src/templates/share.mjs` and rendered to PNG by the same headless
+Chromium the build already opens for gates 8 and 12. No image library, no service, no network.
+Gate 10 checks the `og:image` on every page against the files the build actually wrote,
+because a card that is named but never drawn fails silently inside somebody else's app.
+
+`--no-browser` does not draw them, and says so. That build is degraded in three ways rather
+than two.
 
 ## Archiving the site
 
@@ -455,15 +481,16 @@ data/            the fact base and all product copy
 src/
   build.mjs        entry point: validate, render, gate, publish
   config.mjs       where this site lives, resolved in one place
+  images.mjs       SVG to PNG, through the browser the build already opens
   data.mjs         six files to one object, shared by the build and the language tool
   i18n.mjs         every reader-facing string, addressed and translatable
   validate.mjs     all twelve gates
   render.mjs       data plus templates to HTML strings, and the sitemap and robots.txt
   util.mjs         dates, escaping, and the build's idea of today
-  templates/       small functions returning HTML strings
+  templates/       small functions returning HTML strings, and the share card SVG
   assets/          one stylesheet and one script, both inlined at build time
 test/
-  site.test.mjs    96 checks: the prototype's 34, plus offline, publication and the gates
+  site.test.mjs    104 checks: the prototype's 34, plus offline, publication and the gates
   live-check.mjs   the checks that only mean anything against a site that is served
 tools/
   serve.mjs        serves dist/ the way Pages serves it, for checking before publishing

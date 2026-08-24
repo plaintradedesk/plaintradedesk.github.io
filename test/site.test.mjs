@@ -28,6 +28,7 @@
  * the page: it could not have been written against a single hand-edited file.
  */
 import { chromium } from 'playwright';
+import { shareCard } from '../src/templates/share.mjs';
 import { readFileSync, readdirSync, cpSync, rmSync, mkdtempSync, writeFileSync, existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -539,6 +540,19 @@ const editJson = (dir, name, fn) => {
   }
 
   {
+    // A card that is named but never drawn is the same broken link seen from
+    // further away: it fails inside somebody else's app, on the copy of this
+    // that travels furthest, where nobody will report it.
+    const dir = tempRepo();
+    editSource(dir, 'src/templates/layout.mjs',
+      "tags.push(['og:image', meta.image]", "tags.push(['og:image', 'share-nobody-drew.png']");
+    const r = build(dir);
+    ok('gate 10 fails the build on a share card that is named but not drawn',
+       r.code !== 0 && /gate 10/.test(r.out) && /share-nobody-drew\.png/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
     // The slow one: gate 12 runs in the browser, so this build opens one.
     // WCAG 2.1 AA was required from the start and was a hope until this gate.
     const dir = tempRepo();
@@ -574,6 +588,41 @@ const editJson = (dir, name, fn) => {
     ok('the Pages subdomain publishes without a CNAME',
        r.code === 0 && !existsSync(path.join(dir, 'dist', 'CNAME')));
     rmSync(dir, { recursive: true, force: true });
+  }
+
+  /* ------------------------------------------------------------------ */
+  g('SHARE CARDS: the copy of this that travels furthest');
+
+  {
+    const doors = JSON.parse(readFileSync(path.join(ROOT, 'data', 'doors.json'), 'utf8')).doors;
+    const files = doors.map(d => `share-${d.id}.png`);
+    ok('a card is drawn for every door', files.every(n => existsSync(path.join(DIST, n))));
+    ok('the cards are real PNGs',
+       files.every(n => readFileSync(path.join(DIST, n)).slice(1, 4).toString() === 'PNG'));
+
+    // A card arriving without the unofficial line is the one piece of this
+    // project that could be read as a government notice.
+    const site = JSON.parse(readFileSync(path.join(ROOT, 'data', 'pages.json'), 'utf8')).site;
+    const svg = shareCard({ door: doors[0], site, host: 'example.org' });
+    ok('the card says it is independent and unofficial, in the banner\'s own words',
+       svg.includes('Independent and unofficial.') && svg.includes('Not a government website.'));
+    ok('the card carries the door\'s question and the site name, from the data',
+       svg.includes('caught up in this?') && svg.includes(site.title));
+    // A card is a still image that keeps circulating after the record behind it
+    // has changed, so it must carry nothing that can go out of date.
+    const words = (svg.match(/>([^<>]+)</g) || []).join(' ');
+    ok('the card carries no number at all, so no fact, rate or date',
+       words.length > 40 && !/\d/.test(words));
+
+    const doorPages = [['index.html', 'people'], ['business.html', 'business'],
+                       ['place.html', 'place'], ['policy.html', 'policy']];
+    ok('every door page names its own card, absolutely',
+       doorPages.every(([file, id]) =>
+         new RegExp(`<meta property="og:image" content="https?://[^"]+/share-${id}\\.png">`)
+           .test(distFile(file))));
+    ok('the standing pages and the 404 name no card, because none is drawn for them',
+       ['about.html', 'promises.html', 'corrections.html', '404.html']
+         .every(n => !/og:image/.test(distFile(n))));
   }
 
   /* ------------------------------------------------------------------ */

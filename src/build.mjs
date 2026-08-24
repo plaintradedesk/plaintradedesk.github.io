@@ -6,6 +6,7 @@
  *   node src/build.mjs --validate-only    the data gates and nothing else
  *   node src/build.mjs --no-browser       skip the browser, which is gates 8 and 12
  *   node src/build.mjs --archived=DATE    build the site as no longer maintained
+ *   node src/build.mjs --lang=fr          build a language, if it is complete
  *
  * Validation runs first. If it fails, nothing is written and the process exits
  * non-zero having listed every failure rather than the first one. The rendered
@@ -24,10 +25,10 @@ import {
   checkLinks, checkPageMeta
 } from './validate.mjs';
 import { render } from './render.mjs';
+import { writeShareCards } from './images.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(here, '..');
-const DATA = path.join(ROOT, 'data');
 const DIST = path.join(ROOT, 'dist');
 const STAGE = path.join(ROOT, '.dist-staging');
 
@@ -206,13 +207,13 @@ async function main() {
   }
 
   /* ---------- render ---------- */
-  const { files, assets, meta, fresh, gaps } = render(data, ctx);
+  const { files, assets, cards, meta, fresh, gaps } = render(data, ctx);
 
   /* ---------- gates 7, 8, 10 and 11 ---------- */
   const failures = [
     ...checkExternalReferences(files).failures,
     ...checkStructure(files).failures,
-    ...checkLinks(files, assets, ctx).failures,
+    ...checkLinks(files, { ...assets, ...cards }, ctx).failures,
     ...checkPageMeta(files, ctx).failures
   ];
   if (failures.length) {
@@ -225,6 +226,7 @@ async function main() {
 
   if (flag('--no-browser')) {
     console.warn('  gates 8 and 12 SKIPPED because --no-browser was passed');
+    console.warn('  share cards NOT drawn either, so the pages name images that are not there');
   } else {
     const browser = await checkInBrowser(STAGE, Object.keys(files));
     if (!browser.ok) {
@@ -234,6 +236,11 @@ async function main() {
     }
     console.log('  gate 8 headless load passed, no page errors and no requests');
     console.log('  gate 12 accessibility passed, no serious or critical violations');
+
+    // Drawn after the gates, because they are pictures of the doors rather than
+    // pages, and because the browser is already installed by then.
+    const drawn = await writeShareCards(STAGE, cards);
+    console.log(`  ${drawn.length} share cards drawn`);
   }
 
   /* ---------- publish ---------- */

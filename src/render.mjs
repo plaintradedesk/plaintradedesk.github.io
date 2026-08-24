@@ -28,6 +28,7 @@ import { layout, freshness } from './templates/layout.mjs';
 import { doorPanel } from './templates/door.mjs';
 import { standingPage, knownGaps } from './templates/standing.mjs';
 import { notFoundBody } from './templates/notfound.mjs';
+import { shareCard, shareFile } from './templates/share.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 // Line endings are normalised on the way in. These two files are inlined into
@@ -56,6 +57,7 @@ export function render(data, ctx) {
   const fresh = freshness(data.shocks, ctx);
   const files = {};
   const meta = {};
+  const cards = {};
   const archived = ctx.archived || null;
 
   /* The front page is the People door, so the site's address is its address and
@@ -94,7 +96,10 @@ export function render(data, ctx) {
 
   const shell = (name, m, opts) => add(name, m, layout({
     site, doors: data.doors, pages, mode: 'site', css, js, fresh, archived, lang: ctx.lang,
-    meta: { title: m.title, description: m.description, noindex: !!m.noindex, canonical: canonical(name) },
+    meta: {
+      title: m.title, description: m.description, noindex: !!m.noindex,
+      image: m.image || null, canonical: canonical(name)
+    },
     ...opts
   }));
 
@@ -102,9 +107,14 @@ export function render(data, ctx) {
   for (const door of data.doors) {
     const front = door.id === data.doors[0].id;
     const name = front ? 'index.html' : door.id + '.html';
+    // One share card per door, because the People layer travels as an image
+    // forwarded through WhatsApp rather than as a link.
+    cards[shareFile(door.id)] = shareCard({ door, site, host: new URL(ctx.baseUrl).host });
+
     shell(name, {
       title: front ? site.title : titled(door.title),
-      description: door.description
+      description: door.description,
+      image: pageUrl(ctx.baseUrl, shareFile(door.id))
     }, {
       activeDoor: door.id,
       body: '    <div id="doorview">\n' + panelFor(door, { ids: true, hidden: false }) + '\n    </div>'
@@ -172,6 +182,7 @@ export function render(data, ctx) {
   return {
     files,
     meta,
+    cards,
     assets: siteAssets(meta, ctx),
     fresh,
     gaps: knownGaps(data.shocks, pages.corrections.copy, ctx)
