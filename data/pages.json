@@ -1,0 +1,240 @@
+{
+  "site": {
+    "title": "Plain Trade Desk",
+    "eyebrow": "Working prototype",
+    "tagline": "What is actually in force, what changes next, and what you can do about it. Written once, read four ways.",
+    "notice": {
+      "lead": "Independent and unofficial.",
+      "text": "Not a government website. Not affiliated with, endorsed by, or speaking for the Government of Canada, the Government of Ontario, or any municipality. General information only, not legal, customs or financial advice. Always check the linked primary source before acting."
+    },
+    "doors_label": "Choose who you are",
+    "cadence_label": "Reviewed weekly",
+    "freshness_placeholder": "Checking freshness",
+    "filters": {
+      "label": "Narrow to a sector",
+      "all": "All sectors"
+    },
+    "seasons_form": {
+      "legend": "Where are you in working life?",
+      "sub": "This changes which steps you see. It does not change any of the facts.",
+      "family_legend": "Is a household depending on this income?",
+      "family_label": "Yes, include the household steps",
+      "noscript": "JavaScript is switched off, so the steps below are the ones for {season}. Every fact on this page is the same either way."
+    },
+    "sections": {
+      "shocks": "What is happening",
+      "actions": "What you can do"
+    },
+    "mechanism": {
+      "title": "How this stays maintainable",
+      "intro": "Every fact is written once and stored once, at three depths, in the same record. Switching doors changes which depth you read, not which document you are in. When the Canadian list is published, one record is edited and all four doors update together. That is why one person can keep four audiences current.",
+      "registers": [
+        {
+          "eyebrow": "Plain register",
+          "text": "For people. No jargon, no codes, one screen, readable on a phone and shareable as an image."
+        },
+        {
+          "eyebrow": "Operator register",
+          "text": "For a business. What changes on a quote, a purchase order or a shipment, and who carries the liability."
+        },
+        {
+          "eyebrow": "Policy register",
+          "text": "For a policy reader. Legal authority, coverage, mechanism, and the instrument that has to be published."
+        }
+      ]
+    },
+    "nav_label": "About this site",
+    "footer": {
+      "lead": "Prototype notice.",
+      "paragraphs": [
+        "This page is a working demonstration of a design, not a published resource. Its fact base is a small hand-built sample assembled on 23 August 2026. Items marked as needing verification have been carried over from earlier working notes and have not been checked against a primary source. Do not rely on this page for a real decision.",
+        "The importer of record remains legally responsible for their own customs declaration. For classification of your own goods, use a licensed customs broker or request a CBSA advance ruling. For your own legal position, speak to a lawyer.",
+        "Government of Canada and Government of Ontario material is quoted under the non-commercial reproduction terms published by each, with sources linked. Reproduced legislative text is not an official version."
+      ]
+    },
+    "back": "Back to the desk",
+    "labels": {
+      "records_shown": "{shown} of {total} records shown",
+      "step_one": "{shown} step",
+      "step_many": "{shown} steps",
+      "checked": "Checked {date}",
+      "needs_verification": "Needs verification",
+      "recheck_overdue": "Recheck overdue",
+      "no_source": "No primary source on file",
+      "trend": "Trend, not an instrument"
+    },
+    "offline_noscript": "JavaScript is switched off, so all four doors and the three standing pages are shown one after another. Nothing is missing."
+  },
+  "pages": {
+    "about": {
+      "path": "about.html",
+      "title": "About this site",
+      "stamp": "Last updated 24 August 2026",
+      "body": [
+        {
+          "tag": "p",
+          "text": "This site is run by one person in Brampton, Ontario. It is independent. It is not a government site, it is not affiliated with any government, and nothing on it is endorsed or approved by one."
+        },
+        {
+          "tag": "p",
+          "text": "It exists because the pieces of this story are all published somewhere and almost nobody assembles them. The federal pages have the instruments and no locality. The municipal hubs have the local framing and no data of their own. The academic mapping reaches the neighbourhood and stops before saying what anyone should do. A reader is expected to join those up themselves, and almost nobody does. This site is the join."
+        },
+        {
+          "tag": "h3",
+          "text": "Why it looks like this"
+        },
+        {
+          "tag": "p",
+          "text": "Every fact is written once and stored once, at three depths, in one record. The doors change which depth you read, not which document you are in. That is not a design flourish; it is the only arrangement under which one person can keep four audiences current, and it is why this can be free."
+        },
+        {
+          "tag": "p",
+          "text": "The seasons on the People door work the same way. They filter which steps you see. They never change a fact, because a fact does not change with the reader's age."
+        },
+        {
+          "tag": "h3",
+          "text": "How it is kept current"
+        },
+        {
+          "tag": "p",
+          "text": "One pass every Monday morning through the Prime Minister's page, Finance Canada, the Canada Gazette Part II, the CBSA customs notices and a news sweep. Records that changed are updated, their checked dates are bumped, and the site rebuilds itself. On a normal week that is about forty minutes. In the week a major instrument lands it is about two hours."
+        },
+        {
+          "tag": "p",
+          "text": "The site works out its own staleness and displays it. If a record has not been rechecked it says so on the record. If the whole file has gone unchecked, a notice appears before anything else. None of that is typed in by hand, which is the point: a promise to stay current is only worth what the mechanism behind it is worth."
+        },
+        {
+          "tag": "h3",
+          "text": "Who is writing this"
+        },
+        {
+          "tag": "p",
+          "text": "The same person also builds a small family of consumer safety tools under the Guardian name. Those are separate work, separately named, and this site carries none of it and earns nothing from it. The connection worth stating is the discipline rather than the brand: report gaps as gaps, refuse rather than guess, and never claim a clean result you did not earn."
+        },
+        {
+          "tag": "h3",
+          "text": "How it ends"
+        },
+        {
+          "tag": "p",
+          "text": "This is a bounded personal project rather than an institution. It runs for the duration of this disruption and is then archived honestly, or it is deliberately handed to a body that can carry it. The failure it is designed to avoid is the third path, where a site drifts, nobody says it is over, and it sits there being quietly wrong."
+        },
+        {
+          "tag": "p",
+          "class": "q",
+          "text": "Contact address goes here before publication. It is read by a person, and corrections are welcome and acted on."
+        }
+      ]
+    },
+    "promise": {
+      "path": "promises.html",
+      "title": "What this site promises",
+      "stamp": "Version 1.0, published 24 August 2026. This page has a stable address and is versioned, so it can be cited in a decision about whether to link here.",
+      "body": [
+        {
+          "tag": "p",
+          "text": "If you are deciding whether to put a link to this on a page you are accountable for, this is what you are agreeing to and what you are not."
+        },
+        {
+          "tag": "h3",
+          "text": "It will never take money"
+        },
+        {
+          "tag": "p",
+          "text": "No advertising. No sponsorship. No donations. No paid tier. No affiliate links. No sponsored content. No paywall. No lead generation, and no consulting funnel pointed at anyone who reads this."
+        },
+        {
+          "tag": "p",
+          "text": "That is spelled out rather than summarised as free, because free is compatible with all of it. It is also not generosity. Almost every legal footing this site stands on depends on it being non-commercial, and those footings shift together the moment money enters. Keeping it unfunded is the cheapest way to keep it defensible, which makes the commitment self-interested and therefore more reliable than one made out of goodwill."
+        },
+        {
+          "tag": "h3",
+          "text": "It will never collect anything about you"
+        },
+        {
+          "tag": "p",
+          "text": "No accounts. No login. No tracking. No analytics that identify a reader. No email address required to read anything. No third-party requests of any kind, which includes fonts: this page loads nothing from anywhere else, so reading it discloses your address to nobody."
+        },
+        {
+          "tag": "h3",
+          "text": "It tells you how old it is"
+        },
+        {
+          "tag": "p",
+          "text": "Every record shows the date it was last checked against its original source, and the site works out its own staleness rather than being told. This is a promise about the mechanism, not the outcome. The site will not always be current. It will always tell you whether it is."
+        },
+        {
+          "tag": "h3",
+          "text": "It will tell you when it stops"
+        },
+        {
+          "tag": "p",
+          "text": "If this site is no longer being maintained, a notice will appear at the top of every page within thirty days saying so and giving the date of the last check. The pages will be archived in place, still readable and clearly marked historical. They will not be silently left looking current, and they will not vanish and break your link. Anyone who has linked here and said so will be told directly beforehand."
+        },
+        {
+          "tag": "h3",
+          "text": "It wants nothing from you in return"
+        },
+        {
+          "tag": "p",
+          "text": "Link to it, embed it, quote it, print it and hand it to somebody, reproduce any of it with attribution. There will be no request for a logo, a co-brand, a press release or a reciprocal link. Roughly a dozen Ontario municipalities are each separately maintaining a near-identical list of programme links. The purpose here is to carry some of that duplicated effort, not to compete with the pages carrying it now."
+        },
+        {
+          "tag": "h3",
+          "text": "It corrects itself in public"
+        },
+        {
+          "tag": "p",
+          "text": "Mistakes will happen. When one is found it is fixed quickly and recorded in the corrections log, showing what was wrong, what it changed to, and when."
+        },
+        {
+          "tag": "h3",
+          "text": "What it is not"
+        },
+        {
+          "tag": "p",
+          "text": "It is legal and practical information, not legal advice. It is written for classes of reader rather than for anybody's particular situation."
+        },
+        {
+          "tag": "p",
+          "text": "It is not customs brokerage. It will never tell a named business which code to declare its goods under. The importer of record is responsible for their own declaration, and a licensed broker or an advance ruling is the authoritative route."
+        },
+        {
+          "tag": "p",
+          "text": "It is not financial advice. Where a question is genuinely about your own money and timing, this site names the question and names who answers it rather than offering a softer version of an answer it is not qualified to give."
+        },
+        {
+          "tag": "p",
+          "text": "Every substantive claim links to the document it came from. Where this site and the original disagree, the original is right and this site is wrong, and it would like to be told."
+        }
+      ]
+    },
+    "corrections": {
+      "path": "corrections.html",
+      "title": "Corrections and known gaps",
+      "stamp": "Generated from the fact base each time this page is built.",
+      "body": "CORRECTIONS_DYNAMIC",
+      "copy": {
+        "corrections_heading": "Corrections",
+        "empty_log": "Nothing has been corrected yet. This log is here and visibly empty rather than appearing once it has content, because a corrections log that only shows up after the first mistake is one nobody can trust. When something is wrong it is fixed and recorded here, with what it said, what it says now, and the date.",
+        "gaps_heading": "Known gaps, as at today",
+        "gaps_intro": "This list is worked out from the records themselves every time the page is built, so a gap cannot survive by being forgotten. It is the same mechanism as the freshness readout in the masthead. If it is empty, every record has been checked recently and carries a source.",
+        "gaps_none": "No gaps. Every record carries a primary source and has been checked within the last {days} days.",
+        "reasons": {
+          "unverified": {
+            "why": "Not verified",
+            "detail": "Carried over from earlier working notes and never checked against the primary instrument. It is shown on the doors with a flag rather than removed, so that it cannot be mistaken for a checked fact."
+          },
+          "overdue": {
+            "why": "Recheck overdue",
+            "detail": "Last checked {date}, which is more than {days} days ago."
+          },
+          "nosource": {
+            "why": "No primary source",
+            "detail": "No link to an original document is on file for this record."
+          }
+        }
+      }
+    }
+  }
+}

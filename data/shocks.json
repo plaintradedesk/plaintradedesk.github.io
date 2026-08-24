@@ -1,0 +1,302 @@
+{
+  "sectors": {
+    "auto": "Auto and parts",
+    "steel": "Steel and aluminum",
+    "food": "Food, dairy and drink",
+    "wood": "Wood, paper and furniture",
+    "electronics": "Electronics and plastics",
+    "apparel": "Clothing and textiles",
+    "construction": "Construction and renovation",
+    "machinery": "Appliances and equipment",
+    "logistics": "Logistics and trucking"
+  },
+  "shocks": [
+    {
+      "id": "US_S338_2026-08",
+      "title": "United States 50 percent tariffs on selected Canadian goods",
+      "status": "inforce",
+      "evidence_class": "instrument",
+      "effective": "2026-08-19",
+      "verified": "2026-08-23",
+      "sectors": [
+        "auto",
+        "food",
+        "wood",
+        "electronics",
+        "apparel",
+        "construction"
+      ],
+      "doors": [
+        "people",
+        "business",
+        "place",
+        "policy"
+      ],
+      "facts": [
+        {
+          "label": "In force since",
+          "value": "19 August 2026"
+        },
+        {
+          "label": "Coverage",
+          "value": "554 tariff lines, three proclamations"
+        },
+        {
+          "label": "Scale",
+          "value": "Roughly 5 percent of Canadian goods exports to the US"
+        },
+        {
+          "label": "CUSMA exempt",
+          "value": "No"
+        }
+      ],
+      "plain": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, cement, plywood, circuit boards and some vehicles. If your workplace ships any of those south, this is the week to ask your employer what it means for orders.",
+      "operator": "Effective 12:01am on 19 August 2026 across 554 tariff subheadings in three proclamations. The United States importer of record pays the duty, so the pressure arrives as cancelled orders and price renegotiation rather than as a bill to you. Qualifying under CUSMA does not exempt these lines, which catches most people out. Stop quoting a US landed cost without it, and check your Incoterms to confirm who actually carries the duty.",
+      "policy": "First use in history of Section 338 of the Tariff Act of 1930, which permits up to 50 percent against a country found to have discriminated against United States commerce, requires no investigation and carries no expiry. Three proclamations: 52 subheadings covering dairy and agriculture, 439 covering motor vehicles and diverse manufactured and agricultural goods, and 63 covering alcohol, wood, paper and hockey equipment. Chapter 99 headings 9903.03.12 to 9903.03.14 carry the 50 percent rate; 9903.03.15 and 9903.03.16 list carve-outs at zero. Goods already under Section 232 are generally excluded. Legal challenge is widely expected given the statute has no judicial precedent.",
+      "sources": [
+        {
+          "label": "White and Case, first use of Section 338",
+          "url": "https://www.whitecase.com/insight-alert/trump-administration-imposes-50-tariffs-certain-canadian-products-first-use-section"
+        },
+        {
+          "label": "GHY International, coverage and Chapter 99 headings",
+          "url": "https://www.ghy.com/trade-compliance/us-imposes-50-section-338-tariffs-on-canadian-imports-dairy-alcoholic-beverages-and-motor-vehicles/"
+        }
+      ]
+    },
+    {
+      "id": "CA_RETAL_2026-09",
+      "title": "Canada's matching counter-tariffs",
+      "status": "announced",
+      "evidence_class": "instrument",
+      "effective": "2026-09-08",
+      "verified": "2026-08-23",
+      "sectors": [
+        "steel",
+        "food",
+        "machinery",
+        "wood",
+        "electronics"
+      ],
+      "doors": [
+        "people",
+        "business",
+        "place",
+        "policy"
+      ],
+      "facts": [
+        {
+          "label": "Announced",
+          "value": "22 August 2026"
+        },
+        {
+          "label": "Comes into force",
+          "value": "8 September 2026"
+        },
+        {
+          "label": "Instrument",
+          "value": "Not yet published"
+        },
+        {
+          "label": "Approach",
+          "value": "Dollar for dollar"
+        }
+      ],
+      "plain": "Canada is answering with its own taxes on American goods, starting Tuesday 8 September, the day after Labour Day. It will cover American steel, dairy, appliances, farm equipment, paper and electronics. Some things in shops will cost more. The exact list has not been published yet, so anyone telling you precisely which products are affected is guessing.",
+      "operator": "If you import from the United States, this is the date that changes your landed cost, not 19 August. Named sectors are steel, dairy, appliances, agricultural equipment, pulp and paper, and electronics, plus goods already under Section 232 and 338. Until the surtax order is published in the Canada Gazette and CBSA issues a customs notice, there is no product list and no HS detail. Practical move before 8 September: put a tariff clause in open quotes, and either bring forward or pause US-origin purchases in the named sectors.",
+      "policy": "Announced by the Prime Minister on 22 August 2026 following suspension of negotiations, described as matching the United States measures dollar for dollar and framed as a focused response rather than a broad one. The operative instruments will be a surtax order published in Canada Gazette Part II and a CBSA customs notice setting out how to declare. Until those appear, sector names are the only public detail and every product-level claim should be treated as preliminary.",
+      "sources": [
+        {
+          "label": "Prime Minister's remarks, 22 August 2026",
+          "url": "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations"
+        },
+        {
+          "label": "Al Jazeera report on the announcement",
+          "url": "https://www.aljazeera.com/news/2026/8/23/canada-to-hit-us-with-retaliatory-tariffs-as-trade-war-escalates"
+        }
+      ]
+    },
+    {
+      "id": "CA_SUPPORT_2026-08",
+      "title": "Federal support package for affected workers and businesses",
+      "status": "announced",
+      "evidence_class": "instrument",
+      "effective": "2026-08-22",
+      "verified": "2026-08-23",
+      "sectors": [
+        "auto",
+        "steel",
+        "food",
+        "wood",
+        "electronics",
+        "machinery",
+        "logistics"
+      ],
+      "doors": [
+        "people",
+        "business",
+        "place",
+        "policy"
+      ],
+      "facts": [
+        {
+          "label": "Size",
+          "value": "25 billion dollars"
+        },
+        {
+          "label": "Announced",
+          "value": "22 August 2026"
+        },
+        {
+          "label": "Program detail",
+          "value": "Not yet published"
+        }
+      ],
+      "plain": "The federal government says it is putting 25 billion dollars behind workers and businesses hurt by these tariffs. That includes money to help companies keep people employed and to help hard-hit industries change what they make and who they sell to. How to apply has not been published yet. If your hours are cut, ask your employer whether they are applying for Work-Sharing, because that is the program that keeps people on payroll at reduced hours.",
+      "operator": "Announced 22 August as 25 billion dollars covering investment in equipment, productivity and supply chain resilience for small and medium businesses, financing for large employers to retain workers, and help for the hardest-hit industries to retool and pivot to new markets. Application detail is pending. Prepare now rather than later: most of these programs open and close on short notice and ask for the same evidence, so have your last two years of financials, your US revenue concentration and your affected headcount ready to submit the day a window opens.",
+      "policy": "Stated from the podium on 22 August 2026 and sitting on top of earlier tranches, including a 1 billion dollar Business Development Bank of Canada program and 500 million dollars in additional Regional Tariff Response Initiative funding announced in May 2026, delivered through the regional development agencies. Terms, delivery agents and eligibility have not been published. Earlier working notes in this project carried unsourced figures for a national support envelope; those should be discarded in favour of this one.",
+      "sources": [
+        {
+          "label": "Prime Minister's remarks, 22 August 2026",
+          "url": "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations"
+        },
+        {
+          "label": "BDC and Regional Tariff Response Initiative, May 2026",
+          "url": "https://www.canada.ca/en/innovation-science-economic-development/news/2026/05/government-of-canada-announces-a-new-1-billion-business-development-bank-of-canada-program-and-500-million-in-additional-funding-for-the-regional-t.html"
+        }
+      ]
+    },
+    {
+      "id": "CA_STEEL_ALU_2025",
+      "title": "Canadian surtax on United States steel and aluminum",
+      "status": "inforce",
+      "evidence_class": "instrument",
+      "effective": "2025-03",
+      "verified": "2026-08-24",
+      "sectors": [
+        "steel",
+        "construction"
+      ],
+      "doors": [
+        "business",
+        "place",
+        "policy"
+      ],
+      "facts": [
+        {
+          "label": "Rate",
+          "value": "25 percent of the value for duty"
+        },
+        {
+          "label": "In force since",
+          "value": "13 March 2025"
+        },
+        {
+          "label": "Instrument",
+          "value": "SOR/2025-95, last amended 1 September 2025"
+        },
+        {
+          "label": "Remission",
+          "value": "Steel Derivative Goods Surtax Remission Order exists"
+        }
+      ],
+      "plain": "Canada has had its own tax on American steel and aluminum since March 2025, well before this month. It is 25 percent, it is still in place, and it is part of why building materials have been getting more expensive.",
+      "operator": "A 25 percent surtax on US-origin steel and aluminum, in force since 13 March 2025 and separate from anything happening in September. It already sits in your landed cost. The schedule of covered goods was replaced on 1 September 2025, so a list you saved before that date is out of date. A remission framework exists for steel derivative goods, so if you are paying surtax on inputs with no Canadian substitute, that is worth raising with your broker. Goods marked as originating in Puerto Rico, Guam, the Northern Mariana Islands, American Samoa or the US Virgin Islands are outside the order.",
+      "policy": "United States Surtax Order (Steel and Aluminum 2025), SOR/2025-95, registered 12 March 2025 and effective 13 March 2025, imposing 25 percent of the value for duty on US-origin goods in the listed classifications. Amended 27 March 2025, 8 April 2025, and 1 September 2025, the last of which replaced Schedule 1 with Schedule 2. Not repealed. Note that the consolidated text on the Justice Laws site is current only to 17 June 2026, so an amendment made after that date would not yet appear there and should be checked against the CBSA customs notices.",
+      "sources": [
+        {
+          "label": "CBSA Customs Notice 25-11, the surtax order",
+          "url": "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-11-eng.html"
+        },
+        {
+          "label": "SOR/2025-95 consolidated text",
+          "url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2025-95/page-1.html"
+        },
+        {
+          "label": "CBSA Customs Notice 26-07, steel derivative remission",
+          "url": "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-07-eng.html"
+        }
+      ]
+    },
+    {
+      "id": "CA_CABINETS_2026-07",
+      "title": "Global safeguard on imported cabinets and vanities",
+      "status": "inforce",
+      "evidence_class": "instrument",
+      "effective": "2026-07-31",
+      "verified": "2026-08-24",
+      "sectors": [
+        "construction",
+        "wood"
+      ],
+      "doors": [
+        "business",
+        "place"
+      ],
+      "facts": [
+        {
+          "label": "Rate",
+          "value": "25 percent of the value for duty"
+        },
+        {
+          "label": "In force since",
+          "value": "31 July 2026, provisional for up to 200 days"
+        },
+        {
+          "label": "Not applicable to",
+          "value": "Canada, United States, Mexico, Chile, Israel and CIFTA beneficiaries, developing countries"
+        },
+        {
+          "label": "Tribunal inquiry due",
+          "value": "by 15 January 2027"
+        }
+      ],
+      "plain": "Kitchen cabinets and bathroom vanities brought into Canada from most countries carry an extra 25 percent charge. Cabinets made in Canada, the United States or Mexico are not affected. This has nothing to do with the argument with the United States, and it is temporary while a tribunal decides whether to make it permanent.",
+      "operator": "A provisional safeguard surtax of 25 percent of the value for duty on certain wood cabinets and vanities and their subassemblies, including flat-pack, in force from 31 July 2026 for up to 200 days. It does not apply to goods originating in Canada, the United States, Mexico, Chile, Israel or another CIFTA beneficiary, or in developing countries. If you are sourcing cabinets from the United States or Mexico this does not touch your cost. If you are sourcing from elsewhere in Asia or Europe it very likely does, and it is a live line in a renovation quote alongside the steel and aluminum surtax. Classification of a subassembly is not obvious here, so confirm it with your broker rather than assuming.",
+      "policy": "Certain Wood Cabinet and Vanity Goods Surtax Order, effective 31 July 2026, imposing 25 percent of the value for duty as a provisional safeguard for a period of up to 200 days while the Canadian International Trade Tribunal conducts a global safeguard inquiry. The Tribunal inquiry is expected to conclude by 15 January 2027 and the provisional measure ceases if no injury to domestic producers is found. The exclusions follow Canada's trade obligations rather than being discretionary, which is why the United States and Mexico are outside it. This is a domestic trade remedy and not a counter-measure, and treating it as part of the United States dispute misreads it.",
+      "sources": [
+        {
+          "label": "CBSA Customs Notice 26-17",
+          "url": "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html"
+        },
+        {
+          "label": "Finance Canada announcement, 31 July 2026",
+          "url": "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html"
+        }
+      ]
+    },
+    {
+      "id": "TALKS_SUSPENDED_2026-08",
+      "title": "Trade negotiations suspended",
+      "status": "inforce",
+      "evidence_class": "instrument",
+      "effective": "2026-08-21",
+      "verified": "2026-08-23",
+      "sectors": [],
+      "doors": [
+        "people",
+        "policy",
+        "business"
+      ],
+      "facts": [
+        {
+          "label": "Negotiators recalled",
+          "value": "21 August 2026"
+        },
+        {
+          "label": "Next formal talks",
+          "value": "None scheduled"
+        }
+      ],
+      "plain": "Canada walked away from a deal rather than sign one it judged bad. That means there is no quick fix coming and no date to wait for. Plan on this lasting.",
+      "operator": "There is no near-term settlement to hold out for, so treat the current cost structure as the working assumption for at least the next two quarters rather than as a temporary spike to absorb. That changes the calculation on repricing, on qualifying an alternate supplier, and on whether to renew a US-dependent contract at current terms.",
+      "policy": "Negotiations suspended on the evening of 21 August 2026 and negotiators recalled to Ottawa, with the Prime Minister citing terms described as uneconomic and unfair and demands that would have constrained Canada's ability to conclude other trade agreements. Sovereignty, protection of the French language and culture were stated as never having been on the table. The stated alternative track is domestic building and diversification, including more than twenty trade and security agreements signed in the past year, tariff-free access to 1.5 billion consumers with an intent to double that within six months through ASEAN and India, and European Union discussions opening this autumn.",
+      "sources": [
+        {
+          "label": "Prime Minister's remarks, 22 August 2026",
+          "url": "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations"
+        }
+      ]
+    }
+  ]
+}

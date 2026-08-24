@@ -1,0 +1,77 @@
+name: weekly-check
+
+# Monday morning. Runs validation only and opens an issue listing every record
+# within seven days of the thirty-day staleness gate.
+#
+# This exists to convert the maintainer's discipline from a habit into a
+# mechanism, which matters because habits fail in December. It never edits
+# anything and it never publishes; it only tells you what is about to go stale
+# while there is still a week to do something about it.
+
+on:
+  schedule:
+    - cron: '0 12 * * 1'      # Mondays, 12:00 UTC, which is 8am in Toronto
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate the fact base
+        id: validate
+        run: |
+          set +e
+          node src/build.mjs --validate-only > report.txt 2>&1
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat report.txt
+
+      - name: Decide whether anything needs saying
+        id: decide
+        run: |
+          if [ "${{ steps.validate.outputs.code }}" != "0" ]; then
+            echo "why=validation is failing" >> "$GITHUB_OUTPUT"
+            echo "raise=yes" >> "$GITHUB_OUTPUT"
+          elif grep -q 'Approaching the staleness gate' report.txt; then
+            echo "why=records are approaching the staleness gate" >> "$GITHUB_OUTPUT"
+            echo "raise=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "raise=no" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or update the issue
+        if: steps.decide.outputs.raise == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'Weekly check: the fact base needs attention'
+        run: |
+          {
+            echo "The Monday check ran and ${{ steps.decide.outputs.why }}."
+            echo
+            echo "The build refuses at thirty days. A record listed here still has"
+            echo "time on it. The fix is to open the record's sources, confirm what"
+            echo "they say now, and move its \`verified\` date. Raising the threshold"
+            echo "is not the fix."
+            echo
+            echo '```'
+            cat report.txt
+            echo '```'
+            echo
+            echo "Run \`npm run validate\` locally to see the same output."
+          } > body.md
+
+          existing=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh issue create --title "$TITLE" --body-file body.md
+          fi

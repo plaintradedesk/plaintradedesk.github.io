@@ -1,0 +1,330 @@
+/* Plain Trade Desk. One stylesheet, inlined into every page at build time so
+   that a reader's browser makes no request to anything, including this file.
+   Everything above the "build additions" marker is the prototype's stylesheet
+   unchanged. */
+
+:root{
+  --ground:#F1F5F5;
+  --surface:#FFFFFF;
+  --surface-2:#E8EFEF;
+  --ink:#14222A;
+  --muted:#56696F;
+  --line:#D2DDDE;
+  --line-strong:#B4C4C6;
+  --accent:#0E5A6A;
+  --accent-ink:#FFFFFF;
+  --accent-soft:#DDEBEE;
+  --pending:#8A5D0B;
+  --pending-soft:#F6ECD6;
+  --unconfirmed:#66757B;
+  --fresh:#2C6A50;
+  --stale:#9E3524;
+  --stale-soft:#F7E3DF;
+  --shadow:0 1px 2px rgba(20,34,42,.06), 0 8px 24px -16px rgba(20,34,42,.28);
+  --radius:10px;
+  --measure:68ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1618;
+    --surface:#141F22;
+    --surface-2:#1B282B;
+    --ink:#E4EDEE;
+    --muted:#94A6AB;
+    --line:#26363A;
+    --line-strong:#384C51;
+    --accent:#4FB0C2;
+    --accent-ink:#08171B;
+    --accent-soft:#15323A;
+    --pending:#D9A445;
+    --pending-soft:#2D2417;
+    --unconfirmed:#84979C;
+    --fresh:#5CB58C;
+    --stale:#E0705A;
+    --stale-soft:#31201C;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1618;
+  --surface:#141F22;
+  --surface-2:#1B282B;
+  --ink:#E4EDEE;
+  --muted:#94A6AB;
+  --line:#26363A;
+  --line-strong:#384C51;
+  --accent:#4FB0C2;
+  --accent-ink:#08171B;
+  --accent-soft:#15323A;
+  --pending:#D9A445;
+  --pending-soft:#2D2417;
+  --unconfirmed:#84979C;
+  --fresh:#5CB58C;
+  --stale:#E0705A;
+  --stale-soft:#31201C;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",serif;text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.005em}
+h1{font-size:clamp(1.7rem,1.2rem + 2.2vw,2.5rem);line-height:1.15}
+h2{font-size:clamp(1.25rem,1.05rem + .8vw,1.6rem);line-height:1.2}
+h3{font-size:1.05rem;line-height:1.3}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;
+}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* --- unofficial banner: required, never dismissable --- */
+.notice{
+  background:var(--ink);color:var(--ground);
+  font-size:.78rem;line-height:1.4;padding:9px 0;
+}
+.notice .wrap{display:flex;gap:10px;align-items:flex-start}
+.notice b{font-weight:600}
+
+/* --- masthead --- */
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+.masthead{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;padding:26px 0 20px}
+.brand{display:flex;flex-direction:column;gap:5px;max-width:46ch}
+.brand h1{font-weight:700}
+.brand p{color:var(--muted);font-size:.92rem}
+.filestate{
+  display:flex;flex-direction:column;gap:6px;align-items:flex-start;
+  border-left:2px solid var(--line-strong);padding-left:14px;
+}
+.filestate .row{display:flex;gap:8px;align-items:center;font-size:.82rem;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dot.ok{background:var(--fresh)}
+.dot.warn{background:var(--pending)}
+.dot.bad{background:var(--stale)}
+
+/* --- doors --- */
+.doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));gap:10px;padding:0 0 24px}
+.door{
+  text-align:left;cursor:pointer;font:inherit;
+  background:var(--surface);color:var(--ink);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 15px;display:flex;flex-direction:column;gap:5px;
+  transition:border-color .14s ease, background .14s ease, transform .14s ease;
+}
+.door:hover{border-color:var(--line-strong)}
+.door .who{font-family:Georgia,"Iowan Old Style",Palatino,serif;font-size:1.08rem;font-weight:600}
+.door .q{font-size:.82rem;color:var(--muted);line-height:1.35}
+.door[aria-selected="true"]{
+  background:var(--accent);border-color:var(--accent);color:var(--accent-ink);
+}
+.door[aria-selected="true"] .q{color:var(--accent-ink);opacity:.82}
+
+main{padding:26px 0 60px}
+.lede{max-width:var(--measure);margin-bottom:26px}
+.lede h2{margin-bottom:8px}
+.lede p{color:var(--muted)}
+
+.section-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding-bottom:9px;margin:34px 0 16px;border-bottom:1px solid var(--line);
+}
+.section-head:first-of-type{margin-top:0}
+.count{font-size:.78rem;color:var(--muted)}
+
+/* --- filters --- */
+.filters{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:18px}
+.filters[hidden]{display:none}
+.filters label{font-size:.78rem;color:var(--muted);font-weight:500}
+select{
+  font:inherit;font-size:.85rem;padding:6px 9px;border-radius:7px;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+}
+
+/* --- shock cards --- */
+.cards{display:flex;flex-direction:column;gap:13px}
+.card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:17px 18px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:11px;
+}
+.card-top{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.card h3{flex:1 1 22ch;min-width:0}
+
+/* status weight encodes certainty: solid = in force, outline = announced, dashed = reported */
+.status{
+  font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;
+  padding:4px 9px;border-radius:999px;white-space:nowrap;
+}
+.status.inforce{background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent)}
+.status.announced{background:var(--pending-soft);color:var(--pending);border:1px solid var(--pending)}
+.status.reported{background:transparent;color:var(--unconfirmed);border:1px dashed var(--line-strong)}
+.status.ended{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+
+.register{max-width:var(--measure)}
+.register.plain{font-size:1.05rem;line-height:1.6}
+.facts{
+  display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;color:var(--muted);
+  padding-top:2px;
+}
+.facts b{color:var(--ink);font-weight:500}
+.srcs{
+  display:flex;flex-wrap:wrap;gap:5px 14px;align-items:center;
+  font-size:.78rem;padding-top:10px;border-top:1px dashed var(--line);
+}
+.verif{display:flex;align-items:center;gap:6px;color:var(--muted);margin-left:auto}
+.flag{
+  font-size:.72rem;padding:3px 8px;border-radius:6px;
+  background:var(--stale-soft);color:var(--stale);border:1px solid var(--stale);
+  font-weight:500;
+}
+
+/* --- actions --- */
+.actions{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.action{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:flex-start}
+.action:last-child{border-bottom:none}
+.by{
+  font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;padding-top:2px;min-width:7.5em;
+}
+.by.urgent{color:var(--stale)}
+.action .txt{max-width:var(--measure)}
+.action .txt small{display:block;color:var(--muted);font-size:.8rem;margin-top:3px}
+.action .refer{
+  display:inline-block;margin-top:6px;font-size:.72rem;font-weight:600;
+  padding:2px 7px;border-radius:4px;border:1px solid var(--stale);color:var(--stale);
+}
+
+/* --- season control, People door only --- */
+.seasons{
+  margin:0 0 22px;padding:16px 18px;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:var(--radius);
+}
+.seasons .q{font-weight:600;font-size:.95rem;margin:0}
+.seasons .sub{margin:3px 0 0;font-size:.82rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{
+  display:inline-block;padding:6px 13px;border:1px solid var(--line);border-radius:999px;
+  font-size:.88rem;cursor:pointer;color:var(--muted);background:var(--surface);
+}
+.chip input:checked + span{border-color:var(--ink);color:var(--ink);font-weight:600}
+.chip input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
+.seasons .hint{margin:12px 0 0;font-size:.85rem;color:var(--muted);max-width:var(--measure)}
+.seasons hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+
+/* --- standing pages: about, promise, corrections --- */
+.sitenav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.pagelink{
+  font:inherit;font-size:.82rem;cursor:pointer;background:transparent;color:var(--accent);
+  border:1px solid var(--line-strong);border-radius:999px;padding:5px 13px;
+}
+.pagelink:hover{border-color:var(--accent)}
+.page[hidden]{display:none}
+.page{max-width:var(--measure)}
+.page .back{
+  font:inherit;font-size:.82rem;cursor:pointer;background:transparent;color:var(--accent);
+  border:0;padding:0;margin-bottom:18px;text-decoration:underline;text-underline-offset:3px;
+}
+.page h2{margin-bottom:10px}
+.page h3{margin:26px 0 6px}
+.page p{margin:9px 0;color:var(--ink)}
+.page p.q{color:var(--muted)}
+.page .stamp{font-size:.8rem;color:var(--muted);margin-bottom:20px}
+.gaps{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+  padding:0;margin:14px 0;overflow:hidden;
+}
+.gap{display:flex;gap:12px;padding:12px 15px;border-bottom:1px solid var(--line);align-items:flex-start}
+.gap:last-child{border-bottom:none}
+.gap .why{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--stale);white-space:nowrap;min-width:9em;padding-top:2px}
+.gap .what{font-size:.9rem}
+.gap .what small{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
+.emptylog{
+  border:1px dashed var(--line-strong);border-radius:var(--radius);
+  padding:15px 16px;color:var(--muted);font-size:.9rem;margin:14px 0;
+}
+
+/* --- mechanism explainer --- */
+.mech{
+  margin-top:44px;background:var(--surface-2);border-radius:var(--radius);
+  padding:22px;border:1px solid var(--line);
+}
+.mech h2{margin-bottom:10px}
+.mech > p{max-width:var(--measure);color:var(--muted);margin-bottom:16px}
+.regs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.reg{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:13px 14px}
+.reg .eyebrow{margin-bottom:6px;color:var(--accent)}
+.reg p{font-size:.86rem;line-height:1.5}
+
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:.82rem}
+footer .wrap{display:flex;flex-direction:column;gap:9px;max-width:1080px}
+footer p{max-width:var(--measure)}
+
+@media (max-width:640px){
+  .masthead{padding:20px 0 16px}
+  .filestate{border-left:none;border-top:1px solid var(--line);padding:12px 0 0;width:100%}
+  .action{flex-direction:column;gap:4px}
+  .by{min-width:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+
+/* =========================================================
+   BUILD ADDITIONS. Everything above this line is the
+   prototype's stylesheet unchanged.
+========================================================= */
+
+/* The prototype rebuilt its lists on every change, so nothing was ever hidden.
+   The built pages ship every card and every step in the markup and hide what
+   does not apply, which is what makes them work with JavaScript switched off.
+   .card and .action set their own display, so the hidden attribute has to win
+   here or a filtered card stays on screen. */
+[hidden]{display:none !important}
+
+/* Doors are links between real pages rather than tabs inside one document, so
+   the current one is marked with aria-current. The offline single file keeps
+   the prototype's tabs, and both get the same treatment. */
+a.door{text-decoration:none;color:var(--ink)}
+.door[aria-current="page"]{
+  background:var(--accent);border-color:var(--accent);color:var(--accent-ink);
+}
+.door[aria-current="page"] .q{color:var(--accent-ink);opacity:.82}
+a.pagelink{text-decoration:none;display:inline-block}
+/* The prototype carried these three as inline style attributes. They are rules
+   now, because a stylesheet is the only place a rule can be reviewed. */
+.seasons fieldset{border:0;padding:0;margin:0}
+.seasons legend{padding:0}
+.nosource{color:var(--stale)}
+a.back{
+  font-size:.82rem;color:var(--accent);display:inline-block;margin-bottom:18px;
+}
+
+/* trend records: a forecast must never be able to read as an instrument.
+   No trend record exists yet. This is the treatment waiting for the first one. */
+.card.trend{border-left:3px dashed var(--line-strong);background:var(--surface-2)}
+.card.trend h3{font-style:italic}
+.status.observed{background:transparent;color:var(--unconfirmed);border:1px solid var(--line-strong)}
+.status.forecast{background:transparent;color:var(--unconfirmed);border:1px dotted var(--line-strong);font-style:italic}
+.evidence{
+  font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;
+  color:var(--muted);white-space:nowrap;
+}
+
+/* The season control needs JavaScript. Saying which list is on screen without
+   it is more useful than leaving a dead control and no explanation. */
+.noscript{
+  margin:11px 0 0;font-size:.85rem;color:var(--muted);max-width:var(--measure);
+  border-left:2px solid var(--line-strong);padding-left:11px;
+}

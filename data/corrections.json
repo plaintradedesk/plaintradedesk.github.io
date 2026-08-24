@@ -1,0 +1,19 @@
+{
+  "corrections": [
+    {
+      "date": "24 Aug 2026",
+      "what": "The safeguard on wood cabinets and vanities does not apply to goods from the United States or Mexico. This page previously said it applied regardless of origin.",
+      "detail": "It said the charge applied \"no matter which country they come from\" and that it \"applies regardless of origin\". Checked against CBSA Customs Notice 26-17 and the Finance Canada announcement of 31 July 2026: goods originating in Canada, the United States, Mexico, Chile, Israel or another CIFTA beneficiary, and in developing countries, are outside the order. This mattered because a contractor pricing US-made or Mexican-made cabinets would have added a 25 percent line that does not exist. The record now states the exclusions, and that the measure is provisional for up to 200 days pending a Trade Tribunal inquiry due by 15 January 2027."
+    },
+    {
+      "date": "24 Aug 2026",
+      "what": "Two records that had never been checked against a primary instrument are now checked, and both carry sources.",
+      "detail": "The steel and aluminum surtax is confirmed as SOR/2025-95, 25 percent of the value for duty on US-origin goods, in force since 13 March 2025 and last amended 1 September 2025 when Schedule 1 was replaced. The cabinets safeguard is confirmed and corrected as above. One limitation is now stated on the steel record rather than hidden: the consolidated text on the Justice Laws site is current only to 17 June 2026, so a more recent amendment would not appear there."
+    },
+    {
+      "date": "24 Aug 2026",
+      "what": "The page no longer loads webfonts from a third party.",
+      "detail": "Three font families were being requested from Google Fonts on every page load, which disclosed each reader's address and user agent to a third party and contradicted the offline and nothing-collected claims this site makes. Removed. The page now makes no external request of any kind."
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# The stylesheet and the script are inlined into the built pages, so their line
+# endings end up in the output. Pinning them to LF everywhere keeps a build on
+# Windows byte-identical to a build on the CI runner.
+* text=auto eol=lf
+*.png binary

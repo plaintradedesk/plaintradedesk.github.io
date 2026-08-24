@@ -1,0 +1,63 @@
+{
+  "doors": [
+    {
+      "id": "people",
+      "who": "People",
+      "question": "Is my job or my grocery bill caught up in this?",
+      "title": "For people, workers and families",
+      "lede": "Plain language, no codes. Most Canadian trade is not caught up in this. What follows is what is actually in force, what changes in September, and what is worth asking this week.",
+      "register": "plain",
+      "filters": false,
+      "seasons": true
+    },
+    {
+      "id": "business",
+      "who": "Small business",
+      "question": "Does tomorrow's purchase order change?",
+      "title": "For small businesses, traders and contractors",
+      "lede": "What changes on a quote, a purchase order or a shipment. Narrow by sector if you want only what touches you. Nothing here classifies your goods; that is a job for a licensed broker.",
+      "register": "operator",
+      "filters": true,
+      "seasons": false
+    },
+    {
+      "id": "place",
+      "who": "Brampton and Peel",
+      "question": "What does this mean for where I live?",
+      "title": "For Brampton, Peel and the GTA",
+      "lede": "The same measures read through where you live and work. Peel is a logistics and auto-parts region, which puts it closer to the centre of this than most of the country.",
+      "register": "operator",
+      "filters": true,
+      "seasons": false
+    },
+    {
+      "id": "policy",
+      "who": "Policy",
+      "question": "What is the legal basis and the national picture?",
+      "title": "The legal basis and the national picture",
+      "lede": "Authority, coverage, mechanism, and which instrument still has to be published before anything is operational. The smallest of the four doors, because this space is already well served.",
+      "register": "policy",
+      "filters": false,
+      "seasons": false
+    }
+  ],
+  "statuses": {
+    "instrument": {
+      "inforce": "In force",
+      "announced": "Announced, not yet published",
+      "reported": "Reported only",
+      "ended": "Ended"
+    },
+    "trend": {
+      "observed": "Observed trend",
+      "reported": "Reported trend",
+      "forecast": "Forecast only"
+    }
+  },
+  "referrals": {
+    "financial_advisor": "Ask a licensed advisor",
+    "employment_standards": "Check your provincial employment standards",
+    "broker": "Ask a licensed customs broker",
+    "lawyer": "Ask a lawyer"
+  }
+}

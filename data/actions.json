@@ -1,0 +1,477 @@
+{
+  "actions": [
+    {
+      "id": "ACT_ASK_EMPLOYER_EXPOSURE",
+      "text": "Ask your employer directly whether your plant or site ships to the United States, and whether any of it is on the 50 percent list.",
+      "note": "Most Canadian trade is not affected. Knowing which side of that line your workplace sits on is the single most useful thing you can find out.",
+      "by": "This week",
+      "urgent": true,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "working"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_ASK_WORK_SHARING",
+      "text": "If your hours are already being cut, ask whether your employer is applying for Work-Sharing.",
+      "note": "Work-Sharing keeps people on payroll at reduced hours instead of laying them off, and it has to be applied for by the employer, not by you.",
+      "by": "This week",
+      "urgent": true,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "US_S338_2026-08",
+        "CA_SUPPORT_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "working"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_READ_STANDARDS_EARLY",
+      "text": "Find out now what your province's rules are on reduced hours and temporary layoff.",
+      "note": "The thresholds differ by province and they matter. Reading them while calm is a different experience from reading them the week hours are cut.",
+      "by": "This week",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "working"
+      ],
+      "family": false,
+      "refer": "employment_standards"
+    },
+    {
+      "id": "ACT_PRICES_MOVE_SEPTEMBER",
+      "text": "Expect some prices to move in September, not August, and mostly on American-made goods.",
+      "note": "The Canadian counter-tariffs are what touch shop prices here. They start 8 September and the product list is not published yet.",
+      "by": "Before 8 Sept",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [],
+      "seasons": [
+        "entering",
+        "working",
+        "approaching",
+        "past"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_WAIT_FOR_THE_GAZETTE",
+      "text": "Treat any specific claim about which products are affected as unconfirmed until the list is published in the Canada Gazette.",
+      "note": "News explains why something is happening. The Gazette and the CBSA customs notice are what actually happened.",
+      "by": "Ongoing",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [],
+      "seasons": [
+        "entering",
+        "working",
+        "approaching",
+        "past"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_CHOOSE_A_DIRECTION",
+      "text": "Before committing to a programme or a first job, look at which industries near you are exposed and which are not.",
+      "note": "This is the one season where the useful response is about direction rather than defence. Nothing here is urgent, and none of it should change a decision you have already made well.",
+      "by": "No rush",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "entering"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_ASK_AT_OFFER_STAGE",
+      "text": "If you have an offer from a company that exports, ask what share of its sales go to the United States.",
+      "note": "It is a fair question at offer stage and the answer tells you more about the next two years than the job title does. A diversified customer base is a different position from selling almost entirely south.",
+      "by": "At offer stage",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "entering"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_TIMING_RISK_NOT_TARIFFS",
+      "text": "If you are within a few years of turning savings into income, the question worth raising is timing risk, not tariffs.",
+      "note": "This reaches you through currency and market movement rather than through employment, and it lands on the conversion moment rather than the accumulation years. The answer depends entirely on your own circumstances, so this page names the question rather than answering it.",
+      "by": "Ongoing",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "TALKS_SUSPENDED_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "approaching"
+      ],
+      "family": false,
+      "refer": "financial_advisor"
+    },
+    {
+      "id": "ACT_ANNOUNCED_IS_NOT_IN_FORCE",
+      "text": "Announced is not in force. Several measures being discussed this month do not exist as instruments yet.",
+      "note": "This page marks which is which for exactly that reason. The status on each card above is the thing to read before acting on anything.",
+      "by": "Ongoing",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09",
+        "CA_SUPPORT_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "approaching"
+      ],
+      "family": false,
+      "refer": "financial_advisor"
+    },
+    {
+      "id": "ACT_FIXED_INCOME_WATCH_CANADA",
+      "text": "On a fixed income the exposure is prices rather than employment, so the list to watch is the Canadian one.",
+      "note": "Counter-measures raise the cost of goods coming in from the United States, which is what reaches a shopping basket. The measures already in force apply to what Canada sells outward and mostly do not.",
+      "by": "Before 8 Sept",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [],
+      "seasons": [
+        "past"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_WAIT_ON_A_BIG_PURCHASE",
+      "text": "If you were planning to replace something imported and expensive this autumn, the early September list is worth waiting to read.",
+      "note": "Two weeks of patience costs nothing while the list is unpublished. This is not a suggestion to buy early, which would be acting on a guess about a document that does not exist yet.",
+      "by": "Before 8 Sept",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [],
+      "seasons": [
+        "past"
+      ],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_ANSWER_THE_CHILDREN",
+      "text": "If children in the house are picking up on the worry, the plain version is that this affects some workplaces and not most, and that nobody has lost anything yet.",
+      "note": "Children generally handle a specific and honest answer better than an atmosphere with no answer in it.",
+      "by": "If it comes up",
+      "urgent": false,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "entering",
+        "working",
+        "approaching",
+        "past"
+      ],
+      "family": true,
+      "refer": null
+    },
+    {
+      "id": "ACT_HOURS_CUT_FIRST_CALLS",
+      "text": "If household hours are reduced, the first calls are to Employment Insurance and to whoever holds your largest fixed payment, in that order.",
+      "note": "Lenders and utilities have hardship processes that work considerably better when contacted before a payment is missed rather than after.",
+      "by": "If hours are cut",
+      "urgent": true,
+      "doors": [
+        "people"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [
+        "working",
+        "entering"
+      ],
+      "family": true,
+      "refer": null
+    },
+    {
+      "id": "ACT_TARIFF_CLAUSE_IN_QUOTES",
+      "text": "Put a tariff clause in every open quote and every contract you are about to sign.",
+      "note": "A quote issued today without one is a quote you may have to honour at a cost you cannot yet calculate.",
+      "by": "Before 8 Sept",
+      "urgent": true,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09",
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_REVIEW_OPEN_POS",
+      "text": "Review open purchase orders for US-origin steel, appliances, agricultural equipment, paper and electronics.",
+      "note": "These are the named counter-tariff sectors. Decide deliberately whether to bring an order forward, hold it, or source elsewhere.",
+      "by": "Before 8 Sept",
+      "urgent": true,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [
+        "steel",
+        "machinery",
+        "electronics",
+        "wood"
+      ],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_CONFIRM_INCOTERMS",
+      "text": "Confirm who pays the duty under your Incoterms on every live shipment in both directions.",
+      "note": "This is the most common expensive surprise. The importer of record carries the liability regardless of who filed the paperwork.",
+      "by": "This week",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "US_S338_2026-08",
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_CHECK_YOUR_OWN_LINES",
+      "text": "Check your own products against the published US list using the free CFIB tool or the Canada Tariff Finder.",
+      "note": "Both are free and both are better than anything this project would build. Use them rather than guessing at a classification.",
+      "by": "This week",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_ASSEMBLE_EVIDENCE_PACK",
+      "text": "Assemble the evidence pack that every support program will ask for, before any window opens.",
+      "note": "Two years of financials, your US revenue concentration, affected headcount, and your top exposed inputs. Programs open on short notice.",
+      "by": "Prepare now",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "CA_SUPPORT_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_USE_A_BROKER_OR_RULING",
+      "text": "Use a licensed customs broker for classification, or request a CBSA advance ruling for a binding answer.",
+      "note": "No website, including this one, can classify your goods for you. The advance ruling is the only route that binds CBSA.",
+      "by": "Ongoing",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "US_S338_2026-08",
+        "CA_CABINETS_2026-07"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_LOCAL_TARIFF_HUBS",
+      "text": "Start with Invest Brampton's tariff hub and Invest Mississauga's Partners in Trade.",
+      "note": "Both are actively maintained, both aggregate the funding programs, and both give you an actual person to speak to locally.",
+      "by": "This week",
+      "urgent": false,
+      "doors": [
+        "place"
+      ],
+      "shocks": [
+        "CA_SUPPORT_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_AUTO_AND_PARTS_IN_PEEL",
+      "text": "If you are in auto or parts, note that motor vehicles are on the Section 338 list, contrary to a lot of early commentary.",
+      "note": "This matters more in Peel and Windsor-Essex than anywhere else in the country.",
+      "by": "This week",
+      "urgent": false,
+      "doors": [
+        "place"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [
+        "auto"
+      ],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_MAP_YOUR_AREA",
+      "text": "Look up your own neighbourhood's exposure on the University of Toronto's mappingtariffs.org.",
+      "note": "It maps business counts and employment exposure down to the dissemination area. Note that its underlying data predates the August 2026 escalation.",
+      "by": "Ongoing",
+      "urgent": false,
+      "doors": [
+        "place"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_WATCH_THE_GAZETTE",
+      "text": "Canada Gazette Part II for the surtax order, then the CBSA customs notice that makes it operational.",
+      "note": "Part II publishes every second Wednesday at 9am Eastern, with extra editions in a crisis. The customs notice is what brokers actually key.",
+      "by": "Watch",
+      "urgent": true,
+      "doors": [
+        "policy"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_WATCH_DELIVERY_MECHANISM",
+      "text": "Whether the 25 billion dollar package arrives as new programs or as expansion of the existing BDC and regional agency channels.",
+      "note": "The delivery mechanism determines how fast money actually reaches a firm, and it is the difference between weeks and quarters.",
+      "by": "Watch",
+      "urgent": false,
+      "doors": [
+        "policy"
+      ],
+      "shocks": [
+        "CA_SUPPORT_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    },
+    {
+      "id": "ACT_WATCH_S338_CHALLENGE",
+      "text": "Any court challenge to the first-ever use of Section 338.",
+      "note": "The statute has no judicial precedent. A successful challenge would unwind the 19 August measures entirely.",
+      "by": "Watch",
+      "urgent": false,
+      "doors": [
+        "policy"
+      ],
+      "shocks": [
+        "US_S338_2026-08"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null
+    }
+  ]
+}

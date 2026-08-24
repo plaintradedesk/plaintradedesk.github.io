@@ -1,0 +1,25 @@
+{
+  "default": "working",
+  "seasons": [
+    {
+      "id": "entering",
+      "label": "Studying or just starting out",
+      "hint": "For this season the useful response is about direction rather than defence. Nothing here is urgent."
+    },
+    {
+      "id": "working",
+      "label": "Working, at any stage",
+      "hint": "Your exposure runs through an employer and a sector. These are the questions worth asking early rather than late."
+    },
+    {
+      "id": "approaching",
+      "label": "A few years from retiring",
+      "hint": "This season is deliberately thin. Most of what matters here is a question for a licensed advisor rather than something a public page should answer, and saying so is more useful than padding the list."
+    },
+    {
+      "id": "past",
+      "label": "Retired",
+      "hint": "On a fixed income the exposure is prices rather than employment, which inverts which of the two lists matters to you."
+    }
+  ]
+}
