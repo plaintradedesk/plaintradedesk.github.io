@@ -13,10 +13,6 @@
       "en": "Plain Trade Desk",
       "t": ""
     },
-    "site.eyebrow": {
-      "en": "Working prototype",
-      "t": ""
-    },
     "site.tagline": {
       "en": "What is actually in force, what changes next, and what you can do about it. Written once, read four ways.",
       "t": ""
@@ -114,11 +110,11 @@
       "t": ""
     },
     "site.footer.lead": {
-      "en": "Prototype notice.",
+      "en": "About this page.",
       "t": ""
     },
     "site.footer.paragraphs[0]": {
-      "en": "This page is a working demonstration of a design, not a published resource. Its fact base is a small hand-built sample assembled on 23 August 2026. Items marked as needing verification have been carried over from earlier working notes and have not been checked against a primary source. Do not rely on this page for a real decision.",
+      "en": "This is an independent, one-person project, not an official publication. Every record carries at least one primary source and the date it was last checked against that source, and every correction found is logged rather than quietly fixed. Read it as a starting point, not a substitute for checking the primary source yourself.",
       "t": ""
     },
     "site.footer.paragraphs[1]": {

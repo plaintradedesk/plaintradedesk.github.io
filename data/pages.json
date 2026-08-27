@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Plain Trade Desk",
-    "eyebrow": "Working prototype",
+    "eyebrow": "",
     "tagline": "What is actually in force, what changes next, and what you can do about it. Written once, read four ways.",
     "notice": {
       "lead": "Independent and unofficial.",
@@ -45,9 +45,9 @@
     },
     "nav_label": "About this site",
     "footer": {
-      "lead": "Prototype notice.",
+      "lead": "About this page.",
       "paragraphs": [
-        "This page is a working demonstration of a design, not a published resource. Its fact base is a small hand-built sample assembled on 23 August 2026. Items marked as needing verification have been carried over from earlier working notes and have not been checked against a primary source. Do not rely on this page for a real decision.",
+        "This is an independent, one-person project, not an official publication. Every record carries at least one primary source and the date it was last checked against that source, and every correction found is logged rather than quietly fixed. Read it as a starting point, not a substitute for checking the primary source yourself.",
         "The importer of record remains legally responsible for their own customs declaration. For classification of your own goods, use a licensed customs broker or request a CBSA advance ruling. For your own legal position, speak to a lawyer.",
         "Government of Canada and Government of Ontario material is quoted under the non-commercial reproduction terms published by each, with sources linked. Reproduced legislative text is not an official version."
       ]
