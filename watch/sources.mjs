@@ -19,19 +19,28 @@ import { parseFeed, parseFederalRegister, parseIndex } from './extract.mjs';
  *
  * `weight` is not a score. It only marks the two Part I style sources whose
  * items are proposals rather than instruments, so the report can say so.
+ *
+ * The two Gazette URLs were guesses until 2026-08-27, and both were wrong: the
+ * first live run returned 404 for each. The real feeds are linked from the
+ * Gazette's own RSS index at gazette.gc.ca/rss/sc-rb-eng.html, which is an HTML
+ * page listing them and not a feed itself, and that is where the guess came
+ * from. Worth noting that the watcher reported this as unread rather than as a
+ * quiet feed with nothing in it, which is the distinction the whole design
+ * turns on: a wrong URL and a calm week look identical to anything that
+ * collapses the two.
  */
 export const FEEDS = [
   {
     key: 'gazette2',
     name: 'Canada Gazette Part II',
-    url: 'https://gazette.gc.ca/rss/sc-rb-eng.xml',
+    url: 'https://gazette.gc.ca/rss/p2-eng.xml',
     parse: parseFeed,
     note: 'where a surtax order actually appears'
   },
   {
     key: 'gazette1',
     name: 'Canada Gazette Part I',
-    url: 'https://gazette.gc.ca/rss/sc-rb-p1-eng.xml',
+    url: 'https://gazette.gc.ca/rss/p1-eng.xml',
     parse: parseFeed,
     weight: 'proposal',
     note: 'proposals and notices of intent'

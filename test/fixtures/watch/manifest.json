@@ -1,10 +1,10 @@
 {
   "_comment": "Fixture responses for the watcher. The six feeds are named; the \"*\" entry stands in for every cited source URL, so this file never has to know how many of them there are or what they are. The test suite writes its own manifest into a temporary directory for the cases that need a 403, a 304 or a changed page.",
-  "https://gazette.gc.ca/rss/sc-rb-eng.xml": {
+  "https://gazette.gc.ca/rss/p2-eng.xml": {
     "status": 200,
     "body": "gazette2-baseline.xml"
   },
-  "https://gazette.gc.ca/rss/sc-rb-p1-eng.xml": {
+  "https://gazette.gc.ca/rss/p1-eng.xml": {
     "status": 200,
     "body": "gazette1-baseline.xml"
   },
