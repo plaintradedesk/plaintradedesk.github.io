@@ -449,18 +449,13 @@ check the record. It is not to raise the threshold.
 
 ---
 
-## Two things that are deliberately not finished
+## One thing that is deliberately not finished
 
-Both were left as they are on instruction, and both need a decision from you rather than from
-a build.
+This was left as it is on instruction, and needs a decision from you rather than from a build.
 
-1. **The contact address on the About page is a placeholder.** It is the last paragraph of
-   `pages.about.body` in `data/pages.json`, marked with the class `q` so it renders in the
-   muted colour. It has to be filled in before publication, because the same page says
-   corrections are welcome and acted on.
-2. **The AI and careers shock class is shape only.** The `trend` evidence class, its status
-   vocabulary and its visual treatment are built and gated. No `trend` record exists. That is
-   intentional until the tariff layer has shipped.
+The AI and careers shock class is shape only. The `trend` evidence class, its status
+vocabulary and its visual treatment are built and gated. No `trend` record exists. That is
+intentional until the tariff layer has shipped.
 
 The Gazette and CBSA watcher is a separate job and is deliberately out of scope here.
 
