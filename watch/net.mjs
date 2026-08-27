@@ -145,27 +145,56 @@ export class Client {
    * server gets the chance to answer 304 and send nothing.
    */
   async get(url, cached = {}) {
+    return this.send(url, { cached });
+  }
+
+  /**
+   * The same request, sent as a form POST.
+   *
+   * This exists for exactly one source. The Prime Minister's news listing is
+   * rendered in the browser: the served HTML contains no items at all, and the
+   * page fills itself from a Drupal view endpoint that answers 404 to GET and
+   * only responds to POST. That was found by loading the page in a real
+   * browser and reading the one request it fires, not by guessing at a path.
+   * Sending it is still a plain, keyless, cookieless form post, and it is
+   * still subject to robots.txt and the same pacing as everything else.
+   */
+  async post(url, body, cached = {}) {
+    return this.send(url, { cached, method: 'POST', body });
+  }
+
+  async send(url, { cached = {}, method = 'GET', body = null } = {}) {
     if (!(await this.allowed(url))) {
       return unread(null, 'robots.txt disallows this path');
     }
     await this.pace();
 
     const headers = { 'user-agent': USER_AGENT, accept: '*/*' };
-    if (cached.etag) headers['if-none-match'] = cached.etag;
-    if (cached.lastModified) headers['if-modified-since'] = cached.lastModified;
+    if (method === 'POST') {
+      // A conditional POST is meaningless, so this one always reads in full.
+      headers['content-type'] = 'application/x-www-form-urlencoded';
+      headers['x-requested-with'] = 'XMLHttpRequest';
+    } else {
+      if (cached.etag) headers['if-none-match'] = cached.etag;
+      if (cached.lastModified) headers['if-modified-since'] = cached.lastModified;
+    }
 
     const ac = typeof AbortController === 'function' ? new AbortController() : null;
     const timer = ac ? setTimeout(() => ac.abort(), this.timeoutMs) : null;
 
     try {
-      const r = await this.fetchImpl(url, { headers, signal: ac ? ac.signal : undefined });
+      const r = await this.fetchImpl(url, {
+        method, headers,
+        body: body === null ? undefined : body,
+        signal: ac ? ac.signal : undefined
+      });
       if (r.status === 304) return unchanged();
       if (r.status < 200 || r.status >= 300) {
         return unread(r.status, `HTTP ${r.status}`);
       }
-      const body = await r.text();
+      const text = await r.text();
       const h = r.headers && typeof r.headers.get === 'function' ? r.headers : null;
-      return ok(r.status, body, h && h.get('etag'), h && h.get('last-modified'));
+      return ok(r.status, text, h && h.get('etag'), h && h.get('last-modified'));
     } catch (e) {
       // A timeout, a DNS failure, a reset connection. All of them are "we do
       // not know what this page says", which is the thing that has to be said

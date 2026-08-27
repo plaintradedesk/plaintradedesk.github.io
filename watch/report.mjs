@@ -20,7 +20,7 @@ const RECORDS = ids => ids.length
 
 /**
  * @param {object} r
- * @param {Array}  r.newItems   { feed, name, title, link, date, records, proposal }
+ * @param {Array}  r.newItems   { feed, name, title, link, date, records, proposal, issue }
  * @param {Array}  r.moved      { url, label, ids }
  * @param {Array}  r.unread     { what, url, reason }
  * @param {string} r.runDate
@@ -42,6 +42,8 @@ export function composeBody(r) {
     const unmatched = newItems.filter(i => !i.records.length).length;
     for (const i of newItems) {
       const bits = [i.name];
+      // Where it was found, when it came out of an issue rather than a feed.
+      if (i.issue) bits.push(i.issue);
       if (i.date) bits.push(i.date);
       if (i.proposal) bits.push('a proposal, not an instrument');
       out.push(`- **${i.title}**`);

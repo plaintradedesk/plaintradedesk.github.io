@@ -3,30 +3,27 @@
   "lastRun": "2026-08-27",
   "feeds": {
     "gazette2": {
-      "seen": [],
+      "seen": null,
       "etag": "\"29429-659cb5efa2554\"",
       "lastModified": "Mon, 24 Aug 2026 13:57:46 GMT",
       "lastRead": "2026-08-27"
     },
     "gazette1": {
-      "seen": [],
+      "seen": null,
       "etag": "\"47a1b-659c9f47789ff\"",
       "lastModified": "Mon, 24 Aug 2026 12:16:25 GMT",
       "lastRead": "2026-08-27"
     },
     "cbsa": {
-      "seen": [],
+      "seen": null,
       "lastRead": "2026-08-27"
     },
     "finance": {
-      "seen": [],
-      "lastModified": "Thu, 27 Aug 2026 20:36:40 GMT",
+      "seen": null,
       "lastRead": "2026-08-27"
     },
     "pmo": {
-      "seen": [],
-      "etag": "\"1787810890\"",
-      "lastModified": "Thu, 27 Aug 2026 06:08:10 GMT",
+      "seen": null,
       "lastRead": "2026-08-27"
     },
     "fedreg": {

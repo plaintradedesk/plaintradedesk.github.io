@@ -1,5 +1,5 @@
 {
-  "_comment": "Fixture responses for the watcher. The six feeds are named; the \"*\" entry stands in for every cited source URL, so this file never has to know how many of them there are or what they are. The test suite writes its own manifest into a temporary directory for the cases that need a 403, a 304 or a changed page.",
+  "_comment": "Fixture responses for the watcher. The six feeds are named, then the issue contents pages the two Gazette feeds link to, since reading the Gazette takes a second request. The \"*\" entry stands in for every cited source URL, so this file never has to know how many of them there are or what they are. The test suite writes its own manifest into a temporary directory for the cases that need a 403, a 304 or a changed page.",
   "https://gazette.gc.ca/rss/p2-eng.xml": {
     "status": 200,
     "body": "gazette2-baseline.xml"
@@ -8,17 +8,41 @@
     "status": 200,
     "body": "gazette1-baseline.xml"
   },
+  "https://gazette.gc.ca/rp-pr/p2/2026/2026-08-19/html/index-eng.html": {
+    "status": 200,
+    "body": "gazette2-issue-baseline.html"
+  },
+  "https://gazette.gc.ca/rp-pr/p2/2026/2026-08-05/html/index-eng.html": {
+    "status": 200,
+    "body": "gazette2-issue-baseline.html"
+  },
+  "https://gazette.gc.ca/rp-pr/p2/2026/2026-09-02/html/index-eng.html": {
+    "status": 200,
+    "body": "gazette2-issue-new.html"
+  },
+  "https://gazette.gc.ca/rp-pr/p1/2026/2026-08-22/html/index-eng.html": {
+    "status": 200,
+    "body": "gazette1-issue-baseline.html"
+  },
+  "https://gazette.gc.ca/rp-pr/p1/2026/2026-08-08/html/index-eng.html": {
+    "status": 200,
+    "body": "gazette1-issue-baseline.html"
+  },
+  "https://gazette.gc.ca/rp-pr/p1/2026/2026-09-05/html/index-eng.html": {
+    "status": 200,
+    "body": "gazette1-issue-new.html"
+  },
   "https://www.cbsa-asfc.gc.ca/publications/cn-ad/menu-eng.html": {
     "status": 200,
     "body": "cbsa-index.html"
   },
-  "https://www.canada.ca/en/department-finance/news.html": {
+  "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentfinance&sort=publishedDate&orderBy=desc&pick=25": {
     "status": 200,
-    "body": "finance-news.html"
+    "body": "finance-news.json"
   },
-  "https://www.pm.gc.ca/en/news": {
+  "https://www.pm.gc.ca/views/ajax": {
     "status": 200,
-    "body": "pmo-news.html"
+    "body": "pmo-news.json"
   },
   "https://www.federalregister.gov/api/v1/documents.json?per_page=40&order=newest&conditions[term]=Canada%20tariff&fields[]=document_number&fields[]=title&fields[]=html_url&fields[]=publication_date": {
     "status": 200,

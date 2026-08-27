@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Canada Gazette, Part I</title>
-    <link>https://gazette.gc.ca/rp-pr/p1/index-eng.html</link>
-    <description>Proposals and notices of intent.</description>
+    <title>Canada Gazette - Part I</title>
+    <link>https://gazette.gc.ca/rss/p1-eng.xml</link>
+    <description>The Canada Gazette, Part I, consists of a weekly issue, published every Saturday.</description>
     <item>
-      <title>Notice of intent to amend the Wild Animal and Plant Trade Regulations</title>
-      <link>https://gazette.gc.ca/rp-pr/p1/2026/2026-08-08/html/notice-avis-eng.html</link>
-      <guid>p1-notice-avis-2026-08-08</guid>
-      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+      <title>Canada Gazette - Part I, August 22, 2026, volume 160, number 34</title>
+      <link>https://gazette.gc.ca/rp-pr/p1/2026/2026-08-22/html/index-eng.html</link>
+      <description>The Canada Gazette, Part I, consists of a weekly issue, published every Saturday.</description>
+      <pubDate>Sat, 22 Aug 2026 09:00:00 -0500</pubDate>
+    </item>
+    <item>
+      <title>Canada Gazette - Part I, August 08, 2026, volume 160, number 32</title>
+      <link>https://gazette.gc.ca/rp-pr/p1/2026/2026-08-08/html/index-eng.html</link>
+      <description>The Canada Gazette, Part I, consists of a weekly issue, published every Saturday.</description>
+      <pubDate>Sat, 08 Aug 2026 09:00:00 -0500</pubDate>
     </item>
   </channel>
 </rss>

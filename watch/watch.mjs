@@ -30,7 +30,24 @@ import { today } from '../src/util.mjs';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.join(here, '..');
 const STATE_VERSION = 1;
-const KEEP_SEEN = 300;   // per feed; enough for months at these cadences
+/**
+ * Per feed. This has to stay larger than the longest feed, or the oldest ids
+ * fall off the end and look new again on the next run: Canada Gazette Part I
+ * carries 431 issues in a single response today, so 300 was already too small
+ * for it the moment that feed started being read properly.
+ */
+const KEEP_SEEN = 800;
+
+/**
+ * How many issues one run will open and read in detail.
+ *
+ * Ordinarily this is never reached; the Gazette publishes an issue a week or a
+ * fortnight. It is here so that a feed being reordered, re-dated or re-issued
+ * upstream cannot turn one run into hundreds of requests against gazette.gc.ca.
+ * Anything over the limit is reported as unread and left unmarked, so the next
+ * run picks it up rather than it being silently dropped.
+ */
+const MAX_EXPAND_PER_RUN = 6;
 
 /* ------------------------------------------------------------------ */
 /* The boundary that is the product                                    */
@@ -128,6 +145,45 @@ function response(status, body, headers) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Reading one issue                                                   */
+
+/**
+ * Open an issue a feed has just announced, and return the entries in it that
+ * are worth a person's attention.
+ *
+ * This is the second request, and it is the whole reason the Gazette is worth
+ * watching at all. The feed says "Part II, volume 159, number 17" and the
+ * contents page says "Customs Tariff — Order Amending the Schedule to the
+ * Customs Tariff, SOR/2026-173". Only the second of those can be matched
+ * against a fact base, so relevance is decided here rather than on the feed
+ * item, and an issue containing nothing relevant correctly produces nothing.
+ *
+ * A failure to open the issue is returned rather than thrown, because the
+ * caller has to be able to tell it apart from an issue that held nothing.
+ */
+async function readIssue(client, feed, issue, factBase) {
+  const res = await client.get(issue.link);
+  if (res.kind === 'unread') return { ok: false, reason: res.reason };
+  if (res.kind === 'unchanged') return { ok: true, items: [] };
+
+  const items = [];
+  for (const entry of feed.expand(res.body, issue.link)) {
+    if (!isRelevant(entry, factBase)) continue;
+    items.push({
+      feed: feed.key,
+      name: feed.name,
+      title: entry.title || entry.id,
+      link: entry.link,
+      date: entry.date || issue.date,
+      proposal: feed.weight === 'proposal',
+      records: relatedRecords(entry, factBase),
+      issue: issue.title
+    });
+  }
+  return { ok: true, items };
+}
+
+/* ------------------------------------------------------------------ */
 /* The run                                                             */
 
 export async function run(opts = {}) {
@@ -152,7 +208,9 @@ export async function run(opts = {}) {
   /* ---- half one: new material ---- */
   for (const feed of (opts.feeds || FEEDS)) {
     const prev = state.feeds[feed.key] || {};
-    const res = await client.get(feed.url, prev);
+    const res = feed.method === 'POST'
+      ? await client.post(feed.url, feed.body, prev)
+      : await client.get(feed.url, prev);
 
     if (res.kind === 'unread') {
       // Carry the previous state forward untouched. Not knowing what a feed
@@ -163,25 +221,58 @@ export async function run(opts = {}) {
     }
     if (res.kind === 'unchanged') { next.feeds[feed.key] = prev; continue; }
 
-    const items = feed.parse(res.body, feed.url).filter(i => isRelevant(i, factBase));
+    const parsed = feed.parse(res.body, feed.url);
+    // An expanding feed lists issues rather than instruments, and an issue's
+    // own title can never match a record. Every issue is tracked so it is
+    // opened once; whether anything in it matters is decided on its contents.
+    const items = feed.expand ? parsed : parsed.filter(i => isRelevant(i, factBase));
     const seen = Array.isArray(prev.seen) ? prev.seen : null;
+    const ids = [];
 
     if (seen) {
+      let opened = 0;
       for (const item of items) {
-        if (seen.includes(item.id)) continue;
-        newItems.push({
-          feed: feed.key,
-          name: feed.name,
-          title: item.title || item.id,
-          link: item.link,
-          date: item.date,
-          proposal: feed.weight === 'proposal',
-          records: relatedRecords(item, factBase)
-        });
+        if (seen.includes(item.id)) { ids.push(item.id); continue; }
+
+        if (feed.expand) {
+          if (opened >= MAX_EXPAND_PER_RUN) {
+            // Not marked seen, so this is picked up next run rather than lost.
+            unread.push({
+              what: `${feed.name}, ${item.title || item.id}`,
+              url: item.link,
+              reason: `more new issues than one run opens (limit ${MAX_EXPAND_PER_RUN})`,
+              ids: []
+            });
+            continue;
+          }
+          opened++;
+          const read = await readIssue(client, feed, item, factBase);
+          if (!read.ok) {
+            // An issue that could not be opened is not an issue with nothing
+            // in it, and it stays unmarked so the next run tries again.
+            unread.push({ what: `${feed.name}, ${item.title || item.id}`,
+                          url: item.link, reason: read.reason, ids: [] });
+            continue;
+          }
+          newItems.push(...read.items);
+        } else {
+          newItems.push({
+            feed: feed.key,
+            name: feed.name,
+            title: item.title || item.id,
+            link: item.link,
+            date: item.date,
+            proposal: feed.weight === 'proposal',
+            records: relatedRecords(item, factBase)
+          });
+        }
+        ids.push(item.id);
       }
+    } else {
+      // A first sighting of a feed is a baseline, not a hundred new items.
+      ids.push(...items.map(i => i.id));
     }
-    // A first sighting of a feed is a baseline, not a hundred new items.
-    const ids = items.map(i => i.id);
+
     next.feeds[feed.key] = {
       seen: [...new Set([...ids, ...(seen || [])])].slice(0, KEEP_SEEN),
       etag: res.etag || prev.etag,

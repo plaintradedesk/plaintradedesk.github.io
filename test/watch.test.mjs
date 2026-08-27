@@ -25,7 +25,10 @@ import os from 'node:os';
 
 import { run, refuseDataPath, fixtureFetch, loadState, emptyState } from '../watch/watch.mjs';
 import { Client, parseRobots, robotsAllow, USER_AGENT } from '../watch/net.mjs';
-import { contentHash, meaningfulText, parseFeed, parseFederalRegister, parseIndex } from '../watch/extract.mjs';
+import {
+  contentHash, meaningfulText, parseFeed, parseFederalRegister, parseIndex,
+  parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax
+} from '../watch/extract.mjs';
 import { FEEDS, loadFactBase, instrumentTokens, isRelevant, relatedRecords } from '../watch/sources.mjs';
 import { composeBody, hasSomethingToSay } from '../watch/report.mjs';
 
@@ -84,9 +87,26 @@ const FEED_BODY = {
   gazette2: 'gazette2-baseline.xml',
   gazette1: 'gazette1-baseline.xml',
   cbsa: 'cbsa-index.html',
-  finance: 'finance-news.html',
-  pmo: 'pmo-news.html',
+  finance: 'finance-news.json',
+  pmo: 'pmo-news.json',
   fedreg: 'fedreg.json'
+};
+
+/**
+ * The issue contents pages the two Gazette feeds link to.
+ *
+ * These exist because reading the Gazette takes two requests, not one. The
+ * feed announces an issue and this is what the watcher opens to find out
+ * whether anything in it matters. A fixture set without them would test a
+ * shape the watcher never meets.
+ */
+const ISSUE_BODY = {
+  'https://gazette.gc.ca/rp-pr/p2/2026/2026-08-19/html/index-eng.html': 'gazette2-issue-baseline.html',
+  'https://gazette.gc.ca/rp-pr/p2/2026/2026-08-05/html/index-eng.html': 'gazette2-issue-baseline.html',
+  'https://gazette.gc.ca/rp-pr/p2/2026/2026-09-02/html/index-eng.html': 'gazette2-issue-new.html',
+  'https://gazette.gc.ca/rp-pr/p1/2026/2026-08-22/html/index-eng.html': 'gazette1-issue-baseline.html',
+  'https://gazette.gc.ca/rp-pr/p1/2026/2026-08-08/html/index-eng.html': 'gazette1-issue-baseline.html',
+  'https://gazette.gc.ca/rp-pr/p1/2026/2026-09-05/html/index-eng.html': 'gazette1-issue-new.html'
 };
 
 /**
@@ -102,6 +122,7 @@ function fixtures(dir, { feeds = {}, source = 'source-page.html', overrides = {}
     const body = feeds[f.key] || FEED_BODY[f.key];
     manifest[f.url] = { status: 200, body };
   }
+  for (const [url, body] of Object.entries(ISSUE_BODY)) manifest[url] = { status: 200, body };
   for (const url of citedUrls().keys()) manifest[url] = { status: 200, body: source };
   for (const [url, entry] of Object.entries(overrides)) manifest[url] = entry;
   writeFileSync(path.join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2));
@@ -420,11 +441,47 @@ const runWith = (root, dir, extra = {}) => run({
     ok('a malformed feed yields nothing rather than throwing', parseFeed('<rss><channel>').length === 0);
     ok('malformed JSON yields nothing rather than throwing', parseFederalRegister('{oops').length === 0);
 
-    const cbsa = parseIndex(readFileSync(path.join(FIX, 'cbsa-index.html'), 'utf8'),
-      'https://www.cbsa-asfc.gc.ca/publications/cn-ad/menu-eng.html', /\/cn-ad\/cn\d{2}-\d{2}/i);
+    const CBSA_URL = 'https://www.cbsa-asfc.gc.ca/publications/cn-ad/menu-eng.html';
+    const cbsaHtml = readFileSync(path.join(FIX, 'cbsa-index.html'), 'utf8');
+    const cbsa = parseNoticeTable(cbsaHtml, CBSA_URL, /\/cn-ad\/cn\d{2}-\d{2}/i);
     ok('the CBSA index yields customs notices and not navigation', cbsa.length === 4);
     ok('index links are made absolute',
        cbsa.every(i => i.link.startsWith('https://www.cbsa-asfc.gc.ca/')));
+    // The regression this whole round exists for. The anchor holds "26-17" and
+    // the title is in the next cell, so a reader that trusts the anchor text
+    // finds nothing, which is what shipped and what nothing here caught.
+    ok('a notice title is read from the cell beside the link, not the link text',
+       cbsa.some(i => /Wood Cabinet and Vanity/i.test(i.title)));
+    ok('the notice number is kept, because the fact base cites notices by number',
+       cbsa.some(i => /\b26-17\b/.test(i.title)));
+    ok('the generic index reader cannot read this page, which is why there are two',
+       parseIndex(cbsaHtml, CBSA_URL, /\/cn-ad\/cn\d{2}-\d{2}/i).length === 0);
+
+    const issue = parseGazetteIssue(
+      readFileSync(path.join(FIX, 'gazette2-issue-new.html'), 'utf8'),
+      'https://gazette.gc.ca/rp-pr/p2/2026/2026-09-02/html/index-eng.html');
+    ok('a Gazette issue yields the instruments in it', issue.length === 2);
+    ok('an instrument carries its registration number, which sits outside the link',
+       issue.some(i => /SOR\/2025-95/.test(i.title)));
+    ok('an instrument link is made absolute against the issue it came from',
+       issue.every(i => i.link.startsWith('https://gazette.gc.ca/rp-pr/p2/2026/2026-09-02/html/')));
+    ok('site furniture on the contents page is not read as an instrument',
+       !issue.some(i => /Jobs and the workplace|Contact us/i.test(i.title)));
+
+    const finance = parseCanadaNews(readFileSync(path.join(FIX, 'finance-news.json'), 'utf8'));
+    ok('the canada.ca news API is read', finance.length === 3);
+    ok('a news entry carries its title, link and date',
+       Boolean(finance[0].title && finance[0].link && finance[0].date));
+    ok('malformed news JSON yields nothing rather than throwing',
+       parseCanadaNews('{oops').length === 0);
+
+    const pmo = parseDrupalAjax(readFileSync(path.join(FIX, 'pmo-news.json'), 'utf8'),
+      'https://www.pm.gc.ca/en/news', /\/news\/[a-z-]+\/\d{4}\/\d{2}\/\d{2}\//i);
+    ok('a Drupal AJAX reply is unwrapped to the listing it carries', pmo.length === 2);
+    ok('the listing links are made absolute',
+       pmo.every(i => i.link.startsWith('https://www.pm.gc.ca/')));
+    ok('a Drupal reply that is not an array yields nothing rather than throwing',
+       parseDrupalAjax('{"command":"insert"}', 'https://www.pm.gc.ca/en/news').length === 0);
 
     const fb = loadFactBase(ROOT);
     ok('instrument names are read out of the data, not hardcoded',

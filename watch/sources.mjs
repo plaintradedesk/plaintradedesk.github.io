@@ -12,7 +12,10 @@
  */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { parseFeed, parseFederalRegister, parseIndex } from './extract.mjs';
+import {
+  parseFeed, parseFederalRegister, parseIndex,
+  parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax
+} from './extract.mjs';
 
 /**
  * The six places worth reading, in the order the brief lists them.
@@ -35,6 +38,9 @@ export const FEEDS = [
     name: 'Canada Gazette Part II',
     url: 'https://gazette.gc.ca/rss/p2-eng.xml',
     parse: parseFeed,
+    // An item here is an issue, not an instrument. `expand` says so: read the
+    // issue's contents page before deciding whether anything in it matters.
+    expand: parseGazetteIssue,
     note: 'where a surtax order actually appears'
   },
   {
@@ -42,6 +48,7 @@ export const FEEDS = [
     name: 'Canada Gazette Part I',
     url: 'https://gazette.gc.ca/rss/p1-eng.xml',
     parse: parseFeed,
+    expand: parseGazetteIssue,
     weight: 'proposal',
     note: 'proposals and notices of intent'
   },
@@ -49,21 +56,29 @@ export const FEEDS = [
     key: 'cbsa',
     name: 'CBSA customs notices',
     url: 'https://www.cbsa-asfc.gc.ca/publications/cn-ad/menu-eng.html',
-    parse: (body, url) => parseIndex(body, url, /\/cn-ad\/cn\d{2}-\d{2}/i),
+    parse: (body, url) => parseNoticeTable(body, url, /\/cn-ad\/cn\d{2}-\d{2}/i),
     note: 'declaration mechanics and remission'
   },
   {
     key: 'finance',
     name: 'Finance Canada news',
-    url: 'https://www.canada.ca/en/department-finance/news.html',
-    parse: (body, url) => parseIndex(body, url, /\/news\/\d{4}\/\d{2}\//),
+    // Not the news page a person would open. That page lists nothing any more;
+    // it fills itself from this after load. See parseCanadaNews.
+    url: 'https://api.io.canada.ca/io-server/gc/news/en/v2'
+      + '?dept=departmentfinance&sort=publishedDate&orderBy=desc&pick=25',
+    parse: parseCanadaNews,
     note: 'announcements; status stays announced until Gazette or CBSA catches up'
   },
   {
     key: 'pmo',
     name: "Prime Minister's statements",
-    url: 'https://www.pm.gc.ca/en/news',
-    parse: (body, url) => parseIndex(body, url, /\/(news|statements)\//),
+    // Likewise rendered in the browser. `view_args=all` is the argument the
+    // site's own listing uses to mix releases, statements, readouts, speeches
+    // and media advisories rather than one kind at a time.
+    url: 'https://www.pm.gc.ca/views/ajax',
+    method: 'POST',
+    body: 'view_name=news&view_display_id=page_1&view_args=all&page=0',
+    parse: (body, url) => parseDrupalAjax(body, url, /\/news\/[a-z-]+\/\d{4}\/\d{2}\/\d{2}\//i),
     note: 'announcements; same caveat as Finance'
   },
   {

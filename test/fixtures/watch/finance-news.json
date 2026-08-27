@@ -1,0 +1,24 @@
+{
+  "feed": {
+    "entry": [
+      {
+        "link": "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html",
+        "teaser": "The Government of Canada announced targeted countermeasures in response to United States tariffs.",
+        "publishedDate": "2026-08-26T11:00:00-04:00",
+        "title": "Canada announces targeted countermeasures and substantive support for workers and businesses in response to U.S. tariffs"
+      },
+      {
+        "link": "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html",
+        "teaser": "The list of products subject to counter-tariffs takes effect on September 8, 2026.",
+        "publishedDate": "2026-08-22T09:30:00-04:00",
+        "title": "List of products from the United States subject to counter-tariffs effective September 8, 2026"
+      },
+      {
+        "link": "https://www.canada.ca/en/department-finance/news/2026/08/minister-of-finance-meets-with-chief-economists.html",
+        "teaser": "The Minister met with chief economists to discuss the economic outlook.",
+        "publishedDate": "2026-08-18T14:05:00-04:00",
+        "title": "Minister of Finance meets with chief economists to discuss economic outlook and fiscal priorities"
+      }
+    ]
+  }
+}
