@@ -449,6 +449,50 @@ check the record. It is not to raise the threshold.
 
 ---
 
+## What the source watcher tells you
+
+`watch.yml` runs twice a day, at 03:15 and 15:15 Toronto time, and can be triggered by hand
+on a day when something is expected. It reads six places: both parts of the Canada Gazette,
+the CBSA customs notice index, Finance Canada news, the Prime Minister's statements, and the
+US Federal Register. It also re-reads every URL cited by a record and compares a hash of the
+page's meaningful content against the last run.
+
+**It never edits a record.** It writes nothing under `data/`, and the only file it commits is
+`watch/state.json`. Moving a `verified` date is always a person's act, after opening the
+primary instrument and reading it. That is the whole boundary, and the test suite fails if
+anybody widens it.
+
+An issue from it has up to three sections, and each is a pointer rather than a conclusion:
+
+- **New material.** Something was published that names an instrument a record cites, or uses
+  the vocabulary the fact base uses. It names the related record ids, and says plainly when
+  nothing matched, because that is the signal that a new record may be needed.
+- **Sources that moved.** A page a record already cites has changed. It names the page and the
+  records citing it and stops there. It does not summarise the difference, because a wrong
+  summary is worse than none and would invite acting on the summary instead of the source.
+- **Sources that could not be read.** A 403, a timeout, a refusal. These are reported as
+  unread, never as unchanged, and no new hash is recorded, so the next run still compares
+  against the last reading that actually succeeded.
+
+When all three are empty it closes the issue rather than commenting on it. An issue reopened
+daily with "nothing found" trains you to ignore it.
+
+What to do with one: read the document it points at. Then follow the same five steps as the
+weekly issue above. The watcher shortens the list of things you have to check; it does not
+check them for you.
+
+Gate 2 remains the backstop. If every issue is ignored for thirty days the build refuses and
+nothing publishes. The watcher does not change that and is not allowed to.
+
+Run it locally against fixtures rather than the live sources:
+
+```
+node watch/watch.mjs --help
+node watch/watch.mjs --fixtures test/fixtures/watch --dry-run
+```
+
+---
+
 ## One thing that is deliberately not finished
 
 This was left as it is on instruction, and needs a decision from you rather than from a build.
@@ -486,7 +530,9 @@ src/
   assets/          one stylesheet and one script, both inlined at build time
 test/
   site.test.mjs    104 checks: the prototype's 34, plus offline, publication and the gates
+  watch.test.mjs   74 checks on the watcher, the boundary ones first
   live-check.mjs   the checks that only mean anything against a site that is served
+  fixtures/watch/  the pages and feeds the watcher checks run against, never the internet
 tools/
   serve.mjs        serves dist/ the way Pages serves it, for checking before publishing
   i18n.mjs         regenerates the language files without discarding a translation
@@ -494,6 +540,14 @@ tools/
   build.yml        every branch and every pull request
   deploy.yml       main and manual dispatch: build, test, deploy, then verify what went out
   weekly-check.yml Monday morning staleness issue
+  watch.yml        twice daily source watch; may commit watch/state.json and nothing else
+watch/
+  watch.mjs        the run: read the sources, compare against state, compose the issue
+  net.mjs          a polite client: identified, serial, conditional, robots-respecting
+  extract.mjs      main content out of a government page, and the feed parsers
+  sources.mjs      what it reads, and what counts as related to which record
+  report.mjs       the issue body, which names documents and never summarises them
+  state.json       last-seen item ids and last content hashes; the only file it writes
 dist/              build output, gitignored
 ```
 

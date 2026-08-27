@@ -11,7 +11,8 @@
     "i18n": "node tools/i18n.mjs",
     "verify:live": "node test/live-check.mjs",
     "pretest": "node src/build.mjs",
-    "test": "node test/site.test.mjs"
+    "test": "node test/site.test.mjs && node test/watch.test.mjs",
+    "watch": "node watch/watch.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",

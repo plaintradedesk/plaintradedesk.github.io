@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Canada Gazette, Part II</title>
+    <link>https://gazette.gc.ca/rp-pr/p2/index-eng.html</link>
+    <description>Registered statutory instruments.</description>
+    <item>
+      <title>Order Amending the United States Surtax Order (Steel and Aluminum 2025), SOR/2025-95</title>
+      <link>https://gazette.gc.ca/rp-pr/p2/2026/2026-09-02/html/sor-dors203-eng.html</link>
+      <guid>sor-dors203-2026</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Regulations Amending the Food and Drug Regulations (potassium salts)</title>
+      <link>https://gazette.gc.ca/rp-pr/p2/2026/2026-08-05/html/sor-dors170-eng.html</link>
+      <guid>sor-dors170-2026</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Order Amending the United States Surtax Order (Steel and Aluminum 2025), SOR/2025-95</title>
+      <link>https://gazette.gc.ca/rp-pr/p2/2026/2026-08-19/html/sor-dors181-eng.html</link>
+      <guid>sor-dors181-2026</guid>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

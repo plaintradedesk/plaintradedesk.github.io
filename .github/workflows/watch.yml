@@ -1,0 +1,92 @@
+name: watch
+
+# The source watcher. weekly-check.yml watches the fact base for age; this
+# watches the world for change. They are complements and neither replaces the
+# other.
+#
+# Twice a day, offset from the Monday weekly check so the two never land
+# together, plus workflow_dispatch for a day like 8 September when the owner
+# wants to look on demand. Not more often than this. Nothing in this fact base
+# changes on a ten minute cadence, and frequent polling turns a polite reader
+# into a nuisance on government infrastructure while buying nothing.
+#
+# It detects and drafts. It never applies. The only file it may commit is
+# watch/state.json, and the commit step below refuses outright if anything
+# under data/ has been staged.
+
+on:
+  schedule:
+    - cron: '15 7,19 * * *'    # 03:15 and 15:15 in Toronto
+  workflow_dispatch:
+
+permissions:
+  contents: write     # only ever watch/state.json, enforced below
+  issues: write
+
+concurrency:
+  group: watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # No npm ci. The watcher runs on Node built-ins and one date helper, so
+      # there is nothing to install and nothing to go wrong in an install.
+      - name: Read the sources
+        id: watch
+        run: node watch/watch.mjs --out body.md --json report.json
+
+      - name: Record what was seen
+        run: |
+          set -euo pipefail
+
+          # The path filter. Only watch/state.json is ever staged, and if
+          # anything under data/ has reached the index the run fails rather
+          # than committing. Breaking this is meant to fail the test suite.
+          git add -- watch/state.json
+
+          if git diff --cached --name-only | grep -q '^data/'; then
+            echo "the watcher staged a file under data/, which it must never do" >&2
+            exit 1
+          fi
+
+          if git diff --cached --quiet; then
+            echo "state unchanged"
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "watch: record what the sources looked like on $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Open, update or close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: 'Source watch: something to read'
+        run: |
+          set -euo pipefail
+          existing=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
+
+          if [ "${{ steps.watch.outputs.raise }}" != "yes" ]; then
+            # Nothing to say. An issue that is reopened daily with "nothing
+            # found" trains the maintainer to ignore it, so close it instead.
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" \
+                --comment "Nothing new and nothing moved on the last run. Closing; the watcher will reopen this if that changes."
+            fi
+            exit 0
+          fi
+
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh issue create --title "$TITLE" --body-file body.md
+          fi
