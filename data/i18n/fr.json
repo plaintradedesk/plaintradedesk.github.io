@@ -286,7 +286,7 @@
       "t": ""
     },
     "pages.about.body[14].text": {
-      "en": "Contact address goes here before publication. It is read by a person, and corrections are welcome and acted on.",
+      "en": "Corrections and questions go to dasoftworks@gmail.com. It is read by a person, and corrections are welcome and acted on.",
       "t": ""
     },
     "pages.promise.title": {
@@ -678,15 +678,15 @@
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.plain": {
-      "en": "Canada is answering with its own taxes on American goods, starting Tuesday 8 September, the day after Labour Day. It will cover American steel, dairy, appliances, farm equipment, paper and electronics. Some things in shops will cost more. The exact list has not been published yet, so anyone telling you precisely which products are affected is guessing.",
+      "en": "Canada is answering with its own taxes on American goods, starting Tuesday 8 September, the day after Labour Day. The list was published 25 August: steel, dairy, appliances, farm equipment, paper, electronics and more, covering 27.6 billion dollars of what Canada buys from the US. Each product gets matched to whatever rate the US is charging on the equivalent Canadian good, so some items carry 15 percent, some 25, some 50.",
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.operator": {
-      "en": "If you import from the United States, this is the date that changes your landed cost, not 19 August. Named sectors are steel, dairy, appliances, agricultural equipment, pulp and paper, and electronics, plus goods already under Section 232 and 338. Until the surtax order is published in the Canada Gazette and CBSA issues a customs notice, there is no product list and no HS detail. Practical move before 8 September: put a tariff clause in open quotes, and either bring forward or pause US-origin purchases in the named sectors.",
+      "en": "The product list and rate schedule were published 25 August 2026 and updated 26 August, covering 27.6 billion dollars of US imports at 15, 25 or 50 percent depending on the good, mirroring the US rate on the matching line. If you import from the United States, 8 September is the date that changes your landed cost, not 19 August. Named sectors are steel, dairy, appliances, agricultural equipment, pulp and paper, and electronics. Check your own HS codes against the published list now rather than waiting for the formal surtax order and CBSA customs notice, which will formalize what has already been announced.",
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.policy": {
-      "en": "Announced by the Prime Minister on 22 August 2026 following suspension of negotiations, described as matching the United States measures dollar for dollar and framed as a focused response rather than a broad one. The operative instruments will be a surtax order published in Canada Gazette Part II and a CBSA customs notice setting out how to declare. Until those appear, sector names are the only public detail and every product-level claim should be treated as preliminary.",
+      "en": "Announced by the Prime Minister on 22 August 2026 following suspension of negotiations. The Department of Finance published the product list and rate structure on 25 August 2026, updated 26 August, setting three tariff rates of 15, 25 and 50 percent, with each product's rate matching what the United States charges on the equivalent Canadian good, covering 27.6 billion dollars of US imports. The formal surtax order in Canada Gazette Part II and the CBSA customs notice giving declaration detail were not yet located as of this check on 27 August 2026 and should still be confirmed against the Department of Finance list in the meantime.",
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.facts[0].label": {
@@ -710,7 +710,7 @@
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.facts[2].value": {
-      "en": "Not yet published",
+      "en": "Product list and rates published 25 August 2026, updated 26 August (27.6 billion dollars of US imports)",
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.facts[3].label": {
@@ -718,7 +718,7 @@
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.facts[3].value": {
-      "en": "Dollar for dollar",
+      "en": "15, 25 or 50 percent, matching the US rate line for line",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.title": {
@@ -726,15 +726,15 @@
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.plain": {
-      "en": "The federal government says it is putting 25 billion dollars behind workers and businesses hurt by these tariffs. That includes money to help companies keep people employed and to help hard-hit industries change what they make and who they sell to. How to apply has not been published yet. If your hours are cut, ask your employer whether they are applying for Work-Sharing, because that is the program that keeps people on payroll at reduced hours.",
+      "en": "The federal government has now published exactly what it is doing to help workers and businesses hurt by these tariffs: an extra 7.5 billion dollars announced 25 August, on top of nearly 25 billion dollars already put into support programs over the past year and a half. It covers loans and grants for affected businesses, extra help for large employers under strain, and better Employment Insurance for people who are laid off or have their hours cut. If your hours are cut, ask your employer about Work-Sharing and the expanded EI measures, since those are the two programs built to keep people on payroll or afloat between jobs.",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.operator": {
-      "en": "Announced 22 August as 25 billion dollars covering investment in equipment, productivity and supply chain resilience for small and medium businesses, financing for large employers to retain workers, and help for the hardest-hit industries to retool and pivot to new markets. Application detail is pending. Prepare now rather than later: most of these programs open and close on short notice and ask for the same evidence, so have your last two years of financials, your US revenue concentration and your affected headcount ready to submit the day a window opens.",
+      "en": "Announced 25 August 2026 as 7.5 billion dollars in new and enhanced measures, layered on nearly 25 billion dollars the government says it has delivered over the prior 18 months. The five pieces: the Regional Tariff Response Initiative (1.5 billion, higher per-SME funding caps), the BDC Pivot to Grow program (500 million in new working-capital loans of 250,000 to 5 million dollars), the Canada Strong Diversification Fund (2 billion, a new Strategic Response Fund stream), Rapid Response Supports for Workers and Employers (3.5 billion, including waived EI waiting periods, expanded benefits and a Workforce Retention and Retraining Program), and expanded flexibility on the existing 10 billion dollar Large Enterprise Tariff Loan Facility (up to 36 months of liquidity support, 15-year maximum terms). Application windows for the newer pieces are still opening; have your last two years of financials, your US revenue concentration and your affected headcount ready.",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.policy": {
-      "en": "Stated from the podium on 22 August 2026 and sitting on top of earlier tranches, including a 1 billion dollar Business Development Bank of Canada program and 500 million dollars in additional Regional Tariff Response Initiative funding announced in May 2026, delivered through the regional development agencies. Terms, delivery agents and eligibility have not been published. Earlier working notes in this project carried unsourced figures for a national support envelope; those should be discarded in favour of this one.",
+      "en": "Announced 25 August 2026 as 7.5 billion dollars in new and enhanced measures, on top of nearly 25 billion dollars in supports the government says it has delivered over the prior 18 months, including the earlier 1 billion dollar Business Development Bank of Canada program and 500 million dollars in additional Regional Tariff Response Initiative funding announced in May 2026, delivered through the regional development agencies. Delivery agents and full eligibility criteria for each new stream were still being rolled out as of this check on 27 August 2026. Earlier working notes in this project carried unsourced figures for a national support envelope; those should be discarded in favour of this one.",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[0].label": {
@@ -742,7 +742,7 @@
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[0].value": {
-      "en": "25 billion dollars",
+      "en": "7.5 billion dollars in new measures announced 25 August 2026, on top of nearly 25 billion dollars delivered over the prior 18 months",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[1].label": {
@@ -758,7 +758,7 @@
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[2].value": {
-      "en": "Not yet published",
+      "en": "Published 25 Aug 2026: Regional Tariff Response Initiative (1.5B), BDC Pivot to Grow (500M), Canada Strong Diversification Fund (2B), Rapid Response Supports for Workers and Employers (3.5B), and expanded flexibility on the existing 10B Large Enterprise Tariff Loan Facility",
       "t": ""
     },
     "shocks.CA_STEEL_ALU_2025.title": {
@@ -766,15 +766,15 @@
       "t": ""
     },
     "shocks.CA_STEEL_ALU_2025.plain": {
-      "en": "Canada has had its own tax on American steel and aluminum since March 2025, well before this month. It is 25 percent, it is still in place, and it is part of why building materials have been getting more expensive.",
+      "en": "Canada has had its own tax on American steel and aluminum since March 2025, well before this month. It is 25 percent, it is still in place, and it is part of why building materials have been getting more expensive. From 8 September 2026 that charge doubles to 50 percent.",
       "t": ""
     },
     "shocks.CA_STEEL_ALU_2025.operator": {
-      "en": "A 25 percent surtax on US-origin steel and aluminum, in force since 13 March 2025 and separate from anything happening in September. It already sits in your landed cost. The schedule of covered goods was replaced on 1 September 2025, so a list you saved before that date is out of date. A remission framework exists for steel derivative goods, so if you are paying surtax on inputs with no Canadian substitute, that is worth raising with your broker. Goods marked as originating in Puerto Rico, Guam, the Northern Mariana Islands, American Samoa or the US Virgin Islands are outside the order.",
+      "en": "A 25 percent surtax on US-origin steel and aluminum, in force since 13 March 2025 and separate from anything happening in September. It already sits in your landed cost. The schedule of covered goods was replaced on 1 September 2025, so a list you saved before that date is out of date. A remission framework exists for steel derivative goods, so if you are paying surtax on inputs with no Canadian substitute, that is worth raising with your broker. Goods marked as originating in Puerto Rico, Guam, the Northern Mariana Islands, American Samoa or the US Virgin Islands are outside the order. Finance Canada's published counter-tariff list confirms that steel and aluminum goods already carrying the 25 percent surtax move to 50 percent on 8 September 2026, under this same order rather than a new one. Price anything landing on or after that date at the higher rate, and check your classifications against the published list rather than against a schedule you saved earlier.",
       "t": ""
     },
     "shocks.CA_STEEL_ALU_2025.policy": {
-      "en": "United States Surtax Order (Steel and Aluminum 2025), SOR/2025-95, registered 12 March 2025 and effective 13 March 2025, imposing 25 percent of the value for duty on US-origin goods in the listed classifications. Amended 27 March 2025, 8 April 2025, and 1 September 2025, the last of which replaced Schedule 1 with Schedule 2. Not repealed. Note that the consolidated text on the Justice Laws site is current only to 17 June 2026, so an amendment made after that date would not yet appear there and should be checked against the CBSA customs notices.",
+      "en": "United States Surtax Order (Steel and Aluminum 2025), SOR/2025-95, registered 12 March 2025 and effective 13 March 2025, imposing 25 percent of the value for duty on US-origin goods in the listed classifications. Amended 27 March 2025, 8 April 2025, and 1 September 2025, the last of which replaced Schedule 1 with Schedule 2. Not repealed. Note that the consolidated text on the Justice Laws site is current only to 17 June 2026, so an amendment made after that date would not yet appear there and should be checked against the CBSA customs notices. Finance Canada's complete list of US products subject to counter-tariffs, published 25 August 2026 and updated 26 August, increases the rate on the steel and aluminum goods already covered by this order from 25 to 50 percent effective 8 September 2026. The increase runs under this order, SOR/2025-95, rather than a separate instrument.",
       "t": ""
     },
     "shocks.CA_STEEL_ALU_2025.facts[0].label": {
@@ -807,6 +807,14 @@
     },
     "shocks.CA_STEEL_ALU_2025.facts[3].value": {
       "en": "Steel Derivative Goods Surtax Remission Order exists",
+      "t": ""
+    },
+    "shocks.CA_STEEL_ALU_2025.facts[4].label": {
+      "en": "Rate from 8 September 2026",
+      "t": ""
+    },
+    "shocks.CA_STEEL_ALU_2025.facts[4].value": {
+      "en": "50 percent of the value for duty, under the same order",
       "t": ""
     },
     "shocks.CA_CABINETS_2026-07.title": {
@@ -1190,26 +1198,34 @@
       "t": ""
     },
     "corrections[0].what": {
-      "en": "The safeguard on wood cabinets and vanities does not apply to goods from the United States or Mexico. This page previously said it applied regardless of origin.",
+      "en": "The counter-tariff and support-package records carried placeholder text ('Not yet published') that has now been filled in from primary sources, the steel and aluminum record now carries its scheduled increase to 50 percent, and all six shock records were re-checked against current sources as part of a scheduled review.",
       "t": ""
     },
     "corrections[0].detail": {
-      "en": "It said the charge applied \"no matter which country they come from\" and that it \"applies regardless of origin\". Checked against CBSA Customs Notice 26-17 and the Finance Canada announcement of 31 July 2026: goods originating in Canada, the United States, Mexico, Chile, Israel or another CIFTA beneficiary, and in developing countries, are outside the order. This mattered because a contractor pricing US-made or Mexican-made cabinets would have added a 25 percent line that does not exist. The record now states the exclusions, and that the measure is provisional for up to 200 days pending a Trade Tribunal inquiry due by 15 January 2027.",
+      "en": "Canada's counter-tariff product list and rate structure were published by Finance Canada on 25 August 2026 (updated 26 August): three rates of 15, 25 or 50 percent, each product matched to the rate the US charges on the equivalent Canadian good, covering 27.6 billion dollars of US imports. The federal support package record was updated to reflect the 7.5 billion dollars in new and enhanced measures Finance Canada announced 25 August 2026 (Regional Tariff Response Initiative, BDC Pivot to Grow, Canada Strong Diversification Fund, Rapid Response Supports for Workers and Employers, and expanded flexibility on the Large Enterprise Tariff Loan Facility), on top of the nearly 25 billion dollars in supports delivered over the prior 18 months. The steel and aluminum record was also updated: the same published list raises the rate on goods already covered by SOR/2025-95 from 25 to 50 percent effective 8 September 2026, under that order rather than a new instrument. The remaining three records (the US Section 338 tariffs, the wood cabinets safeguard, and the suspension of talks) were checked against current sources and found unchanged; only their verified dates were refreshed.",
       "t": ""
     },
     "corrections[1].what": {
-      "en": "Two records that had never been checked against a primary instrument are now checked, and both carry sources.",
+      "en": "The safeguard on wood cabinets and vanities does not apply to goods from the United States or Mexico. This page previously said it applied regardless of origin.",
       "t": ""
     },
     "corrections[1].detail": {
-      "en": "The steel and aluminum surtax is confirmed as SOR/2025-95, 25 percent of the value for duty on US-origin goods, in force since 13 March 2025 and last amended 1 September 2025 when Schedule 1 was replaced. The cabinets safeguard is confirmed and corrected as above. One limitation is now stated on the steel record rather than hidden: the consolidated text on the Justice Laws site is current only to 17 June 2026, so a more recent amendment would not appear there.",
+      "en": "It said the charge applied \"no matter which country they come from\" and that it \"applies regardless of origin\". Checked against CBSA Customs Notice 26-17 and the Finance Canada announcement of 31 July 2026: goods originating in Canada, the United States, Mexico, Chile, Israel or another CIFTA beneficiary, and in developing countries, are outside the order. This mattered because a contractor pricing US-made or Mexican-made cabinets would have added a 25 percent line that does not exist. The record now states the exclusions, and that the measure is provisional for up to 200 days pending a Trade Tribunal inquiry due by 15 January 2027.",
       "t": ""
     },
     "corrections[2].what": {
-      "en": "The page no longer loads webfonts from a third party.",
+      "en": "Two records that had never been checked against a primary instrument are now checked, and both carry sources.",
       "t": ""
     },
     "corrections[2].detail": {
+      "en": "The steel and aluminum surtax is confirmed as SOR/2025-95, 25 percent of the value for duty on US-origin goods, in force since 13 March 2025 and last amended 1 September 2025 when Schedule 1 was replaced. The cabinets safeguard is confirmed and corrected as above. One limitation is now stated on the steel record rather than hidden: the consolidated text on the Justice Laws site is current only to 17 June 2026, so a more recent amendment would not appear there.",
+      "t": ""
+    },
+    "corrections[3].what": {
+      "en": "The page no longer loads webfonts from a third party.",
+      "t": ""
+    },
+    "corrections[3].detail": {
       "en": "Three font families were being requested from Google Fonts on every page load, which disclosed each reader's address and user agent to a third party and contradicted the offline and nothing-collected claims this site makes. Removed. The page now makes no external request of any kind.",
       "t": ""
     }
