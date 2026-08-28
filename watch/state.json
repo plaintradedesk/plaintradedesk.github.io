@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastRun": "2026-08-27",
+  "lastRun": "2026-08-28",
   "feeds": {
     "gazette2": {
       "seen": null,
@@ -15,16 +15,106 @@
       "lastRead": "2026-08-27"
     },
     "cbsa": {
-      "seen": null,
-      "lastRead": "2026-08-27"
+      "seen": [
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-21-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-20-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-14-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-10-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-07-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-02-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-33-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-31-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-30-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-28-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-26-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-24-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-19-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-17-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-15-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-11-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-10-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-05-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-04-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-41-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-39-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-36-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-32-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-28-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-24-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-30-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-28-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-27-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-23-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-21-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-19-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-14-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-11-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-07-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-06-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-05-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-03-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn23-02-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn22-24-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn22-22-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn22-20-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn22-18-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn22-13-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn22-12-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn22-08-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-23-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-22-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-21-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-20-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-19-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-16-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-11-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-06-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-01-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn20-35-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn20-20-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn20-19-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn20-13-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn20-12-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn20-02-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn19-25-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn19-19-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn19-16-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn19-13-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn19-09-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn19-02-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-26-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-24-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-23-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-20-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-17-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-16-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-13-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-11-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-08-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn18-07-eng.html",
+        "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn17-32-eng.html"
+      ],
+      "lastRead": "2026-08-28"
     },
     "finance": {
-      "seen": null,
-      "lastRead": "2026-08-27"
+      "seen": [
+        "https://www.canada.ca/en/department-finance/news/2026/08/the-governement-of-canada-highlights-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html",
+        "https://www.canada.ca/en/department-finance/news/2026/08/secretary-of-state-long-in-sarnia-to-highlight-canadian-response-to-us-tariffs.html",
+        "https://www.canada.ca/en/department-finance/news/2026/08/department-of-finance-meets-with-stakeholders-on-canadas-response-to-us-tariffs.html",
+        "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html",
+        "https://www.canada.ca/en/department-finance/news/2026/08/support-for-canadian-workers-and-businesses-affected-by-us-tariffs.html",
+        "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html",
+        "https://www.canada.ca/en/department-finance/news/2026/08/minister-of-finance-meets-with-provincial-and-territorial-counterparts-on-canadas-response-to-latest-us-tariffs.html",
+        "https://www.canada.ca/en/department-finance/news/2026/08/ministers-champagne-joly-hajdu-and-solomon-to-announce-canadian-response-to-us-tariffs.html",
+        "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html"
+      ],
+      "etag": "W/\"404a-RcORQrIfx+tEQ6r4y0IZLIUi/A8\"",
+      "lastRead": "2026-08-28"
     },
     "pmo": {
-      "seen": null,
-      "lastRead": "2026-08-27"
+      "seen": [],
+      "lastRead": "2026-08-28"
     },
     "fedreg": {
       "seen": [
@@ -33,7 +123,7 @@
         "2026-15050",
         "2026-14542"
       ],
-      "lastRead": "2026-08-27"
+      "lastRead": "2026-08-28"
     }
   },
   "sources": {
@@ -44,9 +134,9 @@
       "lastRead": "2026-08-27"
     },
     "https://www.ghy.com/trade-compliance/us-imposes-50-section-338-tariffs-on-canadian-imports-dairy-alcoholic-beverages-and-motor-vehicles/": {
-      "hash": "1c082ec917a15dfa57e06a6c762c8686",
-      "lastModified": "Thu, 27 Aug 2026 13:51:14 GMT",
-      "lastRead": "2026-08-27"
+      "hash": "53c545468aff4677104a5c1ac33e3ecc",
+      "lastModified": "Thu, 27 Aug 2026 23:51:30 GMT",
+      "lastRead": "2026-08-28"
     },
     "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations": {
       "hash": "5ab30825388462cae7b6493df48baf2e",
@@ -56,8 +146,8 @@
     },
     "https://www.aljazeera.com/news/2026/8/23/canada-to-hit-us-with-retaliatory-tariffs-as-trade-war-escalates": {
       "hash": "39cec09e8bfb7650dc4e0261b3e24819",
-      "etag": "W/\"31d8a-tUM+XhWkbGchSVKy4wT+ZqgDQ1w\"",
-      "lastRead": "2026-08-27"
+      "etag": "W/\"31d8a-xhl85zhMIhdjjI7JCpsAcqpvv+g\"",
+      "lastRead": "2026-08-28"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html": {
       "hash": "07bd2235e0eb6c4b3808e3031dfed713",
@@ -66,25 +156,25 @@
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/05/government-of-canada-announces-a-new-1-billion-business-development-bank-of-canada-program-and-500-million-in-additional-funding-for-the-regional-t.html": {
       "hash": "3b58c01da596f3345541432f88f758cd",
-      "lastModified": "Thu, 27 Aug 2026 22:49:12 GMT",
-      "lastRead": "2026-08-27"
+      "lastModified": "Fri, 28 Aug 2026 00:03:18 GMT",
+      "lastRead": "2026-08-28"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/support-for-canadian-workers-and-businesses-affected-by-us-tariffs.html": {
       "hash": "677ad9b44002b69250e4d5b79c94b741",
-      "lastModified": "Thu, 27 Aug 2026 20:59:44 GMT",
-      "lastRead": "2026-08-27"
+      "lastModified": "Fri, 28 Aug 2026 00:06:59 GMT",
+      "lastRead": "2026-08-28"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-11-eng.html": {
       "hash": "ed4600c638b66c937beb1edca0acf51c",
-      "lastRead": "2026-08-27"
+      "lastRead": "2026-08-28"
     },
     "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2025-95/page-1.html": {
       "hash": "18dfdb3a64bbc74372199f083ae6cd12",
-      "lastRead": "2026-08-27"
+      "lastRead": "2026-08-28"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-07-eng.html": {
       "hash": "d31471f578bd41bf603b345fd90a9308",
-      "lastRead": "2026-08-27"
+      "lastRead": "2026-08-28"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html": {
       "hash": "c94772e97fe13855bfda355110677e52",
@@ -93,12 +183,12 @@
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html": {
       "hash": "42ad792bd358e3428d405879ee43f42e",
-      "lastRead": "2026-08-27"
+      "lastRead": "2026-08-28"
     },
     "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html": {
       "hash": "3a085067dd885a41846aabb5f6b04c52",
-      "lastModified": "Thu, 27 Aug 2026 19:58:50 GMT",
-      "lastRead": "2026-08-27"
+      "lastModified": "Thu, 27 Aug 2026 22:55:51 GMT",
+      "lastRead": "2026-08-28"
     }
   }
 }
