@@ -24,14 +24,14 @@
     },
     {
       "id": "place",
-      "who": "Brampton and Peel",
+      "who": "The GTA",
       "question": "What does this mean for where I live?",
-      "title": "For Brampton, Peel and the GTA",
-      "lede": "The same measures read through where you live and work. Peel is a logistics and auto-parts region, which puts it closer to the centre of this than most of the country.",
+      "title": "The GTA lens on a national fact base",
+      "lede": "The same national measures everyone else on this site is reading, just read through the Greater Toronto Area, starting with Brampton and Peel. Peel is a logistics and auto-parts region, which puts it closer to the centre of this than most of the country.",
       "register": "operator",
       "filters": true,
       "seasons": false,
-      "description": "The same measures read through Brampton, Peel and the GTA, a logistics and auto-parts region closer to the centre of this than most of the country."
+      "description": "The same national fact base as the other three doors, read through the GTA, starting with Brampton and Peel, a logistics and auto-parts region closer to the centre of this than most of the country."
     },
     {
       "id": "policy",

@@ -470,7 +470,7 @@
       "t": ""
     },
     "doors.place.who": {
-      "en": "Brampton and Peel",
+      "en": "The GTA",
       "t": ""
     },
     "doors.place.question": {
@@ -478,15 +478,15 @@
       "t": ""
     },
     "doors.place.title": {
-      "en": "For Brampton, Peel and the GTA",
+      "en": "The GTA lens on a national fact base",
       "t": ""
     },
     "doors.place.lede": {
-      "en": "The same measures read through where you live and work. Peel is a logistics and auto-parts region, which puts it closer to the centre of this than most of the country.",
+      "en": "The same national measures everyone else on this site is reading, just read through the Greater Toronto Area, starting with Brampton and Peel. Peel is a logistics and auto-parts region, which puts it closer to the centre of this than most of the country.",
       "t": ""
     },
     "doors.place.description": {
-      "en": "The same measures read through Brampton, Peel and the GTA, a logistics and auto-parts region closer to the centre of this than most of the country.",
+      "en": "The same national fact base as the other three doors, read through the GTA, starting with Brampton and Peel, a logistics and auto-parts region closer to the centre of this than most of the country.",
       "t": ""
     },
     "doors.policy.who": {
