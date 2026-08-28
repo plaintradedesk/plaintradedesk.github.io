@@ -16,7 +16,7 @@
       "title": "United States 50 percent tariffs on selected Canadian goods",
       "status": "inforce",
       "evidence_class": "instrument",
-      "effective": "2026-08-19",
+      "effective": "2026-08-22",
       "verified": "2026-08-27",
       "sectors": [
         "auto",
@@ -35,7 +35,7 @@
       "facts": [
         {
           "label": "In force since",
-          "value": "19 August 2026"
+          "value": "22 August 2026"
         },
         {
           "label": "Coverage",
@@ -51,9 +51,13 @@
         }
       ],
       "plain": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, cement, plywood, circuit boards and some vehicles. If your workplace ships any of those south, this is the week to ask your employer what it means for orders.",
-      "operator": "Effective 12:01am on 19 August 2026 across 554 tariff subheadings in three proclamations. The United States importer of record pays the duty, so the pressure arrives as cancelled orders and price renegotiation rather than as a bill to you. Qualifying under CUSMA does not exempt these lines, which catches most people out. Stop quoting a US landed cost without it, and check your Incoterms to confirm who actually carries the duty.",
+      "operator": "Effective 12:01am on 22 August 2026 across 554 tariff subheadings in three proclamations, after a three-day suspension, 18 to 21 August, of the original 19 August date. The United States importer of record pays the duty, so the pressure arrives as cancelled orders and price renegotiation rather than as a bill to you. Qualifying under CUSMA does not exempt these lines, which catches most people out. Stop quoting a US landed cost without it, and check your Incoterms to confirm who actually carries the duty.",
       "policy": "First use in history of Section 338 of the Tariff Act of 1930, which permits up to 50 percent against a country found to have discriminated against United States commerce, requires no investigation and carries no expiry. Three proclamations: 52 subheadings covering dairy and agriculture, 439 covering motor vehicles and diverse manufactured and agricultural goods, and 63 covering alcohol, wood, paper and hockey equipment. Chapter 99 headings 9903.03.12 to 9903.03.14 carry the 50 percent rate; 9903.03.15 and 9903.03.16 list carve-outs at zero. Goods already under Section 232 are generally excluded. Legal challenge is widely expected given the statute has no judicial precedent.",
       "sources": [
+        {
+          "label": "US Customs and Border Protection, bulletin confirming the 22 August effective date",
+          "url": "https://content.govdelivery.com/bulletins/gd/USDHSCBP-4261d04"
+        },
         {
           "label": "White and Case, first use of Section 338",
           "url": "https://www.whitecase.com/insight-alert/trump-administration-imposes-50-tariffs-certain-canadian-products-first-use-section"
