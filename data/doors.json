@@ -48,7 +48,7 @@
   "statuses": {
     "instrument": {
       "inforce": "In force",
-      "announced": "Announced, not yet published",
+      "announced": "Announced, formal order not yet published",
       "reported": "Reported only",
       "ended": "Ended"
     },

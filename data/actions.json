@@ -441,7 +441,7 @@
     },
     {
       "id": "ACT_WATCH_DELIVERY_MECHANISM",
-      "text": "Whether the 25 billion dollar package arrives as new programs or as expansion of the existing BDC and regional agency channels.",
+      "text": "Whether the 7.5 billion dollar package arrives as new programs or as expansion of the existing BDC and regional agency channels.",
       "note": "The delivery mechanism determines how fast money actually reaches a firm, and it is the difference between weeks and quarters.",
       "by": "Watch",
       "urgent": false,
@@ -459,7 +459,7 @@
     {
       "id": "ACT_WATCH_S338_CHALLENGE",
       "text": "Any court challenge to the first-ever use of Section 338.",
-      "note": "The statute has no judicial precedent. A successful challenge would unwind the 19 August measures entirely.",
+      "note": "The statute has no judicial precedent. A successful challenge would unwind the 22 August measures entirely.",
       "by": "Watch",
       "urgent": false,
       "doors": [

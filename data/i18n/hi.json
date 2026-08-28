@@ -452,7 +452,7 @@
       "t": ""
     },
     "statuses.instrument.announced": {
-      "en": "Announced, not yet published",
+      "en": "Announced, formal order not yet published",
       "t": ""
     },
     "statuses.instrument.reported": {
@@ -940,42 +940,50 @@
       "t": ""
     },
     "corrections[0].what": {
-      "en": "The US Section 338 record said the 50 percent tariffs took effect 19 August 2026. They were suspended for three days and actually took effect 22 August 2026.",
+      "en": "Four places the 22 August effective-date correction and the 25 August support-package review did not reach: two still gave 19 August as a live date, one named the wrong support figure, and the status label above a fully detailed record read as a contradiction.",
       "t": ""
     },
     "corrections[0].detail": {
-      "en": "A suspension proclamation on 18 August 2026 halted the duties before they took effect, and CBP's own bulletin, sent 21 August 2026, states they resumed at 12:01 a.m. Eastern on 22 August 2026. This record still said 19 August, the original date before the suspension. It was caught when the watcher's drift check flagged that a cited source, GHY International's coverage page, had changed since it was last read; that page's own 25 August revision already carried the corrected date. The review logged earlier the same day checked this record against current sources and reported it unchanged, which the effective date shows wasn't quite right: the rate and coverage held, the date didn't. This matters in practice, because a shipment that moved between 19 and 21 August was not actually subject to the 50 percent duty, contrary to what the record implied. CBP's bulletin is now added as a source alongside the existing two.",
+      "en": "None of these are new facts changing. They are earlier corrections not reaching every place that referenced them, found by reading the live site rather than assuming the earlier edits had propagated. The watch item on a possible Section 338 court challenge still said a successful challenge would unwind \"the 19 August measures\", and the counter-tariff record still contrasted 8 September against \"19 August\" as though that were the operative date; both now say 22 August. The Section 338 record's own account of the three-day suspension still says 19 August, deliberately, because there the date is the history being described. The watch item on how the federal support package will be delivered asked whether \"the 25 billion dollar package\" would arrive as new programs or as expanded existing channels, but the 25 billion is the already-delivered figure from the prior 18 months; the five new programs whose delivery mechanism is genuinely still open total 7.5 billion, and the item now names that figure. Lastly, the shared status label \"Announced, not yet published\" sat directly above records carrying published product lists, rates, dollar figures and sources, because \"published\" was doing two jobs at once: whether Finance Canada has released real detail, which it has, and whether the formal legal instrument exists, which it does not yet. It now reads \"Announced, formal order not yet published\", naming the thing that is actually outstanding.",
       "t": ""
     },
     "corrections[1].what": {
-      "en": "The counter-tariff and support-package records carried placeholder text ('Not yet published') that has now been filled in from primary sources, the steel and aluminum record now carries its scheduled increase to 50 percent, and all six shock records were re-checked against current sources as part of a scheduled review.",
+      "en": "The US Section 338 record said the 50 percent tariffs took effect 19 August 2026. They were suspended for three days and actually took effect 22 August 2026.",
       "t": ""
     },
     "corrections[1].detail": {
-      "en": "Canada's counter-tariff product list and rate structure were published by Finance Canada on 25 August 2026 (updated 26 August): three rates of 15, 25 or 50 percent, each product matched to the rate the US charges on the equivalent Canadian good, covering 27.6 billion dollars of US imports. The federal support package record was updated to reflect the 7.5 billion dollars in new and enhanced measures Finance Canada announced 25 August 2026 (Regional Tariff Response Initiative, BDC Pivot to Grow, Canada Strong Diversification Fund, Rapid Response Supports for Workers and Employers, and expanded flexibility on the Large Enterprise Tariff Loan Facility), on top of the nearly 25 billion dollars in supports delivered over the prior 18 months. The steel and aluminum record was also updated: the same published list raises the rate on goods already covered by SOR/2025-95 from 25 to 50 percent effective 8 September 2026, under that order rather than a new instrument. The remaining three records (the US Section 338 tariffs, the wood cabinets safeguard, and the suspension of talks) were checked against current sources and found unchanged; only their verified dates were refreshed.",
+      "en": "A suspension proclamation on 18 August 2026 halted the duties before they took effect, and CBP's own bulletin, sent 21 August 2026, states they resumed at 12:01 a.m. Eastern on 22 August 2026. This record still said 19 August, the original date before the suspension. It was caught when the watcher's drift check flagged that a cited source, GHY International's coverage page, had changed since it was last read; that page's own 25 August revision already carried the corrected date. The review logged earlier the same day checked this record against current sources and reported it unchanged, which the effective date shows wasn't quite right: the rate and coverage held, the date didn't. This matters in practice, because a shipment that moved between 19 and 21 August was not actually subject to the 50 percent duty, contrary to what the record implied. CBP's bulletin is now added as a source alongside the existing two.",
       "t": ""
     },
     "corrections[2].what": {
-      "en": "The safeguard on wood cabinets and vanities does not apply to goods from the United States or Mexico. This page previously said it applied regardless of origin.",
+      "en": "The counter-tariff and support-package records carried placeholder text ('Not yet published') that has now been filled in from primary sources, the steel and aluminum record now carries its scheduled increase to 50 percent, and all six shock records were re-checked against current sources as part of a scheduled review.",
       "t": ""
     },
     "corrections[2].detail": {
-      "en": "It said the charge applied \"no matter which country they come from\" and that it \"applies regardless of origin\". Checked against CBSA Customs Notice 26-17 and the Finance Canada announcement of 31 July 2026: goods originating in Canada, the United States, Mexico, Chile, Israel or another CIFTA beneficiary, and in developing countries, are outside the order. This mattered because a contractor pricing US-made or Mexican-made cabinets would have added a 25 percent line that does not exist. The record now states the exclusions, and that the measure is provisional for up to 200 days pending a Trade Tribunal inquiry due by 15 January 2027.",
+      "en": "Canada's counter-tariff product list and rate structure were published by Finance Canada on 25 August 2026 (updated 26 August): three rates of 15, 25 or 50 percent, each product matched to the rate the US charges on the equivalent Canadian good, covering 27.6 billion dollars of US imports. The federal support package record was updated to reflect the 7.5 billion dollars in new and enhanced measures Finance Canada announced 25 August 2026 (Regional Tariff Response Initiative, BDC Pivot to Grow, Canada Strong Diversification Fund, Rapid Response Supports for Workers and Employers, and expanded flexibility on the Large Enterprise Tariff Loan Facility), on top of the nearly 25 billion dollars in supports delivered over the prior 18 months. The steel and aluminum record was also updated: the same published list raises the rate on goods already covered by SOR/2025-95 from 25 to 50 percent effective 8 September 2026, under that order rather than a new instrument. The remaining three records (the US Section 338 tariffs, the wood cabinets safeguard, and the suspension of talks) were checked against current sources and found unchanged; only their verified dates were refreshed.",
       "t": ""
     },
     "corrections[3].what": {
-      "en": "Two records that had never been checked against a primary instrument are now checked, and both carry sources.",
+      "en": "The safeguard on wood cabinets and vanities does not apply to goods from the United States or Mexico. This page previously said it applied regardless of origin.",
       "t": ""
     },
     "corrections[3].detail": {
-      "en": "The steel and aluminum surtax is confirmed as SOR/2025-95, 25 percent of the value for duty on US-origin goods, in force since 13 March 2025 and last amended 1 September 2025 when Schedule 1 was replaced. The cabinets safeguard is confirmed and corrected as above. One limitation is now stated on the steel record rather than hidden: the consolidated text on the Justice Laws site is current only to 17 June 2026, so a more recent amendment would not appear there.",
+      "en": "It said the charge applied \"no matter which country they come from\" and that it \"applies regardless of origin\". Checked against CBSA Customs Notice 26-17 and the Finance Canada announcement of 31 July 2026: goods originating in Canada, the United States, Mexico, Chile, Israel or another CIFTA beneficiary, and in developing countries, are outside the order. This mattered because a contractor pricing US-made or Mexican-made cabinets would have added a 25 percent line that does not exist. The record now states the exclusions, and that the measure is provisional for up to 200 days pending a Trade Tribunal inquiry due by 15 January 2027.",
       "t": ""
     },
     "corrections[4].what": {
-      "en": "The page no longer loads webfonts from a third party.",
+      "en": "Two records that had never been checked against a primary instrument are now checked, and both carry sources.",
       "t": ""
     },
     "corrections[4].detail": {
+      "en": "The steel and aluminum surtax is confirmed as SOR/2025-95, 25 percent of the value for duty on US-origin goods, in force since 13 March 2025 and last amended 1 September 2025 when Schedule 1 was replaced. The cabinets safeguard is confirmed and corrected as above. One limitation is now stated on the steel record rather than hidden: the consolidated text on the Justice Laws site is current only to 17 June 2026, so a more recent amendment would not appear there.",
+      "t": ""
+    },
+    "corrections[5].what": {
+      "en": "The page no longer loads webfonts from a third party.",
+      "t": ""
+    },
+    "corrections[5].detail": {
       "en": "Three font families were being requested from Google Fonts on every page load, which disclosed each reader's address and user agent to a third party and contradicted the offline and nothing-collected claims this site makes. Removed. The page now makes no external request of any kind.",
       "t": ""
     }
