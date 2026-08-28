@@ -330,6 +330,58 @@ const runWith = (root, dir, extra = {}) => run({
   }
 
   /* ---------------------------------------------------------------- */
+  g('EMPTY PARSE: read cleanly, and nothing came out');
+
+  // The gap that let four parsers read nothing for a week while every run
+  // reported "everything readable". A 200 that yields zero raw items is a
+  // parser that has stopped fitting its page, and it now says so itself
+  // instead of waiting for somebody to find a zero-item baseline suspicious.
+  {
+    const root = tempRoot();
+    const dir = fixtures(path.join(root, 'fx'), { feeds: { cbsa: 'cbsa-empty.html' } });
+    const r = await runWith(root, dir);
+
+    ok('a source that reads cleanly and parses to nothing is reported',
+       r.report.emptyParse.some(e => /CBSA/i.test(e.what)));
+    ok('it is not reported as unread, because the page was read',
+       !r.report.unread.some(u => /CBSA/i.test(u.what)));
+    ok('an empty parse opens the issue rather than closing it as a quiet run', r.raise);
+    ok('the issue states it as its own claim, not as nothing-to-report',
+       /read fine but parsed to nothing/i.test(r.body));
+    ok('the run log counts it apart from unread', /parsed to nothing/.test(r.summary));
+  }
+
+  {
+    // The case this must never fire on. Items were found and none of them
+    // mattered, which is an ordinary quiet week and says nothing is broken.
+    const root = tempRoot();
+    const dir = fixtures(path.join(root, 'fx'), { feeds: { pmo: 'pmo-nothing-relevant.json' } });
+    const r = await runWith(root, dir);
+    ok('a feed with items but none relevant is not an empty parse',
+       !r.report.emptyParse.some(e => /Prime Minister/i.test(e.what)));
+    ok('and a run where that is all that happened stays quiet', !r.raise);
+  }
+
+  {
+    // The same signal one level down: the Gazette's second request.
+    const root = tempRoot();
+    await runWith(root, fixtures(path.join(root, 'fx')));
+    const dir2 = fixtures(path.join(root, 'fx2'), {
+      feeds: { gazette2: 'gazette2-new.xml' },
+      overrides: {
+        'https://gazette.gc.ca/rp-pr/p2/2026/2026-09-02/html/index-eng.html':
+          { status: 200, body: 'gazette2-issue-empty.html' }
+      }
+    });
+    const r = await runWith(root, dir2);
+    ok('an issue that opens but yields no instruments is reported as an empty parse',
+       r.report.emptyParse.some(e => /2026-09-02/.test(e.url)));
+    ok('an empty issue is not reported as new material', r.report.newItems.length === 0);
+    ok('an empty issue is not reported as unread either',
+       !r.report.unread.some(u => /2026-09-02/.test(u.url)));
+  }
+
+  /* ---------------------------------------------------------------- */
   g('THE ISSUE: what the maintainer actually receives');
 
   {

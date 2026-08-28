@@ -1,0 +1,8 @@
+[
+  {
+    "command": "insert",
+    "method": "replaceWith",
+    "selector": ".js-view-dom-id-abc",
+    "data": "<div class=\"view view-news\"><div class=\"view-content\"><div class=\"views-row\"><article><h3><a href=\"/en/news/readouts/2026/08/26/readout-prime-minister-call-chancellor-germany\">Readout of the Prime Minister's call with the Chancellor of Germany</a></h3></article></div><div class=\"views-row\"><article><h3><a href=\"/en/news/speeches/2026/08/25/remarks-prime-minister-opening-new-hospital-wing\">Remarks by the Prime Minister at the opening of a new hospital wing</a></h3></article></div></div></div>"
+  }
+]

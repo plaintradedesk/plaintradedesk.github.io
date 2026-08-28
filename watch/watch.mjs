@@ -166,8 +166,14 @@ async function readIssue(client, feed, issue, factBase) {
   if (res.kind === 'unread') return { ok: false, reason: res.reason };
   if (res.kind === 'unchanged') return { ok: true, items: [] };
 
+  const entries = feed.expand(res.body, issue.link);
+  // An issue of the Gazette always contains at least one instrument. Opening
+  // one and finding none means the contents page no longer has the shape the
+  // parser expects, not that the issue was empty.
+  if (!entries.length) return { ok: true, items: [], empty: true };
+
   const items = [];
-  for (const entry of feed.expand(res.body, issue.link)) {
+  for (const entry of entries) {
     if (!isRelevant(entry, factBase)) continue;
     items.push({
       feed: feed.key,
@@ -204,6 +210,20 @@ export async function run(opts = {}) {
   const newItems = [];
   const moved = [];
   const unread = [];
+  /**
+   * Read cleanly, and produced nothing at all.
+   *
+   * Its own category rather than a kind of `unread`, because these pages were
+   * read: the request was fine and the body arrived. `unread` means the client
+   * could not get the page, and folding this into it would repeat one layer up
+   * the confusion this project spent a whole round removing one layer down.
+   *
+   * Counted before relevance, never after. Zero relevant items is an ordinary
+   * quiet week and says nothing is wrong. Zero raw items is a parser that has
+   * stopped fitting its page, which is what four of these six sources were
+   * doing while every run reported everything readable.
+   */
+  const emptyParse = [];
 
   /* ---- half one: new material ---- */
   for (const feed of (opts.feeds || FEEDS)) {
@@ -222,6 +242,11 @@ export async function run(opts = {}) {
     if (res.kind === 'unchanged') { next.feeds[feed.key] = prev; continue; }
 
     const parsed = feed.parse(res.body, feed.url);
+    // Before the relevance filter, deliberately. None of these six sources is
+    // asked for a date range; every one is a standing list of the most recent
+    // items of its kind, so an empty parse is a broken reader rather than a
+    // quiet week, and it is worth saying out loud on its own.
+    if (!parsed.length) emptyParse.push({ what: feed.name, url: feed.url });
     // An expanding feed lists issues rather than instruments, and an issue's
     // own title can never match a record. Every issue is tracked so it is
     // opened once; whether anything in it matters is decided on its contents.
@@ -253,6 +278,9 @@ export async function run(opts = {}) {
             unread.push({ what: `${feed.name}, ${item.title || item.id}`,
                           url: item.link, reason: read.reason, ids: [] });
             continue;
+          }
+          if (read.empty) {
+            emptyParse.push({ what: `${feed.name}, ${item.title || item.id}`, url: item.link });
           }
           newItems.push(...read.items);
         } else {
@@ -305,7 +333,7 @@ export async function run(opts = {}) {
     };
   }
 
-  const report = { newItems, moved, unread, runDate };
+  const report = { newItems, moved, unread, emptyParse, runDate };
   const result = {
     report,
     state: next,

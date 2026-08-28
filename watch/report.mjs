@@ -23,11 +23,12 @@ const RECORDS = ids => ids.length
  * @param {Array}  r.newItems   { feed, name, title, link, date, records, proposal, issue }
  * @param {Array}  r.moved      { url, label, ids }
  * @param {Array}  r.unread     { what, url, reason }
+ * @param {Array}  r.emptyParse { what, url }
  * @param {string} r.runDate
  */
 export function composeBody(r) {
   const out = [];
-  const { newItems = [], moved = [], unread = [], runDate = '' } = r;
+  const { newItems = [], moved = [], unread = [], emptyParse = [], runDate = '' } = r;
 
   out.push(`The source watcher ran${runDate ? ` on ${runDate}` : ''} and has something to report.`);
   out.push('');
@@ -90,6 +91,23 @@ export function composeBody(r) {
     out.push('');
   }
 
+  if (emptyParse.length) {
+    out.push('## Sources that read fine but parsed to nothing');
+    out.push('');
+    out.push('These answered normally and were read in full. Nothing was wrong '
+      + 'with the request. What came back produced no items at all, which is '
+      + 'not the same claim as "nothing new here": none of these sources asks '
+      + 'for a date range, so each one is a standing list that should never be '
+      + 'empty. Read this as the page having changed shape under a parser that '
+      + 'no longer fits it, until somebody has opened it and found otherwise.');
+    out.push('');
+    for (const e of emptyParse) {
+      out.push(`- ${e.url}`);
+      out.push(`  ${e.what}`);
+    }
+    out.push('');
+  }
+
   out.push('---');
   out.push('');
   out.push('Run `node watch/watch.mjs --help` to see how this is produced. '
@@ -101,15 +119,21 @@ export function composeBody(r) {
 export const hasSomethingToSay = r =>
   Boolean((r.newItems && r.newItems.length)
     || (r.moved && r.moved.length)
-    || (r.unread && r.unread.length));
+    || (r.unread && r.unread.length)
+    // A structural break has to open the issue too. Left out of this, a parser
+    // that stopped reading its page would close the issue and report a quiet
+    // week, which is the whole failure this category exists to make visible.
+    || (r.emptyParse && r.emptyParse.length));
 
 /** One line for the run log, so a quiet run still says what it did. */
 export function summarise(r) {
   const n = (r.newItems || []).length;
   const m = (r.moved || []).length;
   const u = (r.unread || []).length;
-  if (!n && !m && !u) return 'nothing new, nothing moved, everything readable';
+  const e = (r.emptyParse || []).length;
+  if (!n && !m && !u && !e) return 'nothing new, nothing moved, everything readable';
   return `${n} new item${n === 1 ? '' : 's'}, `
     + `${m} source${m === 1 ? '' : 's'} moved, `
-    + `${u} unread`;
+    + `${u} unread`
+    + (e ? `, ${e} read but parsed to nothing` : '');
 }
