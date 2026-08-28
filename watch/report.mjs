@@ -24,11 +24,14 @@ const RECORDS = ids => ids.length
  * @param {Array}  r.moved      { url, label, ids }
  * @param {Array}  r.unread     { what, url, reason }
  * @param {Array}  r.emptyParse { what, url }
+ * @param {Array}  r.thinParse  { what, url, count, usual, recent }
  * @param {string} r.runDate
  */
 export function composeBody(r) {
   const out = [];
-  const { newItems = [], moved = [], unread = [], emptyParse = [], runDate = '' } = r;
+  const {
+    newItems = [], moved = [], unread = [], emptyParse = [], thinParse = [], runDate = ''
+  } = r;
 
   out.push(`The source watcher ran${runDate ? ` on ${runDate}` : ''} and has something to report.`);
   out.push('');
@@ -108,6 +111,25 @@ export function composeBody(r) {
     out.push('');
   }
 
+  if (thinParse.length) {
+    out.push('## Sources that read noticeably fewer items than usual');
+    out.push('');
+    out.push('These read fine and did return items, just far fewer than this '
+      + 'watcher has seen from them before. None of these sources is asked for '
+      + 'a date range: each is either a standing index that only grows or a '
+      + 'list pinned to the size the request asks for, so the count should not '
+      + 'fall by itself. Read this as part of the page having changed shape '
+      + 'under a parser that still fits the rest of it.');
+    out.push('');
+    for (const t of thinParse) {
+      out.push(`- ${t.url}`);
+      out.push(`  ${t.what}`);
+      out.push(`  ${t.count} this run, against ${t.usual} at the lowest recently`
+        + `${t.recent && t.recent.length ? ` (${t.recent.join(', ')})` : ''}`);
+    }
+    out.push('');
+  }
+
   out.push('---');
   out.push('');
   out.push('Run `node watch/watch.mjs --help` to see how this is produced. '
@@ -123,7 +145,10 @@ export const hasSomethingToSay = r =>
     // A structural break has to open the issue too. Left out of this, a parser
     // that stopped reading its page would close the issue and report a quiet
     // week, which is the whole failure this category exists to make visible.
-    || (r.emptyParse && r.emptyParse.length));
+    || (r.emptyParse && r.emptyParse.length)
+    // Same reasoning as emptyParse: a source that quietly halved is a
+    // structural break, and a run that found one is not a quiet run.
+    || (r.thinParse && r.thinParse.length));
 
 /** One line for the run log, so a quiet run still says what it did. */
 export function summarise(r) {
@@ -131,9 +156,11 @@ export function summarise(r) {
   const m = (r.moved || []).length;
   const u = (r.unread || []).length;
   const e = (r.emptyParse || []).length;
-  if (!n && !m && !u && !e) return 'nothing new, nothing moved, everything readable';
+  const t = (r.thinParse || []).length;
+  if (!n && !m && !u && !e && !t) return 'nothing new, nothing moved, everything readable';
   return `${n} new item${n === 1 ? '' : 's'}, `
     + `${m} source${m === 1 ? '' : 's'} moved, `
     + `${u} unread`
-    + (e ? `, ${e} read but parsed to nothing` : '');
+    + (e ? `, ${e} read but parsed to nothing` : '')
+    + (t ? `, ${t} read unusually thin` : '');
 }

@@ -184,8 +184,32 @@ export function relatedRecords(item, factBase) {
   const byWords = [];
   for (const s of factBase.shocks) {
     const words = titleWords(s.title);
-    const hits = words.filter(w => hay.includes(w));
+    const hits = words.filter(w => [...wordForms(w)].some(f => hay.includes(f)));
     if (new Set(hits).size >= 2) byWords.push(s.id);
   }
   return byWords;
+}
+
+/**
+ * A record's title word and an item's text, matched across an ordinary plural.
+ *
+ * The Gazette names an instrument "Certain Wood Cabinet and Vanity Goods
+ * Surtax Order", singular, and the record it belongs to is titled "Global
+ * safeguard on imported cabinets and vanities", plural. Two words in common
+ * and neither of them matched, so the order was reported with no record
+ * attached, on a record that exists precisely because of that order.
+ *
+ * Deliberately only ordinary plurals. No stemmer and no other inflections:
+ * this is the one gap that has actually been observed, and widening what
+ * counts as a word is only safe while it stays this dull. The two-word
+ * threshold above is untouched, because that is what stops "tariff" alone
+ * from matching everything.
+ */
+export function wordForms(w) {
+  const forms = new Set([w]);
+  if (w.endsWith('ies') && w.length > 4) forms.add(w.slice(0, -3) + 'y');
+  else if (w.endsWith('y')) forms.add(w.slice(0, -1) + 'ies');
+  if (w.endsWith('s') && !w.endsWith('ss')) forms.add(w.slice(0, -1));
+  else if (!w.endsWith('s')) forms.add(w + 's');
+  return forms;
 }

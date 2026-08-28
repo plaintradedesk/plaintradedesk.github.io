@@ -49,6 +49,32 @@ const KEEP_SEEN = 800;
  */
 const MAX_EXPAND_PER_RUN = 6;
 
+/**
+ * How many past raw counts each feed remembers, and how many are needed before
+ * they are worth comparing against.
+ *
+ * Eight covers four days at twice daily, which is enough to see a normal range
+ * without state.json growing without bound. Three is the smallest history that
+ * is not one bad reading: comparing against a single prior run would make the
+ * first run after any upstream hiccup look like a collapse.
+ */
+const KEEP_COUNTS = 8;
+const MIN_COUNT_HISTORY = 3;
+
+/**
+ * How far below its own recent floor a feed has to fall to be worth reporting.
+ *
+ * Half is a blunt number and it is meant to be. Every one of the four ordinary
+ * feeds is either a standing index that only grows (CBSA lists notices back to
+ * 2014) or a list pinned to a size the request itself asks for (Finance 25 of
+ * at least 50 available, the Federal Register 40 of 5,449 matches, the Prime
+ * Minister's ten, which is a fixed page size, since pages 0, 1 and 2 all return
+ * exactly ten). None of them can halve through anything the sources do
+ * normally, so anything this check fires on is a page that changed shape or a
+ * parser that stopped fitting it.
+ */
+const THIN_FRACTION = 0.5;
+
 /* ------------------------------------------------------------------ */
 /* The boundary that is the product                                    */
 
@@ -224,6 +250,21 @@ export async function run(opts = {}) {
    * doing while every run reported everything readable.
    */
   const emptyParse = [];
+  /**
+   * Read fine, produced items, and produced far fewer than this feed usually
+   * does.
+   *
+   * The gap left open when emptyParse shipped. That one catches a parser that
+   * returns nothing; this catches one that returns three notices where the
+   * index has held two hundred for months, which until now read as an ordinary
+   * run. Its own category for the same reason again: the page was read, so it
+   * is not unread, and items came back, so it is not an empty parse.
+   *
+   * The Gazette is deliberately not covered. Its second request reads one
+   * issue, and issue sizes vary honestly, so there is no stable floor to
+   * compare against and any threshold would be invented rather than observed.
+   */
+  const thinParse = [];
 
   /* ---- half one: new material ---- */
   for (const feed of (opts.feeds || FEEDS)) {
@@ -247,6 +288,19 @@ export async function run(opts = {}) {
     // items of its kind, so an empty parse is a broken reader rather than a
     // quiet week, and it is worth saying out loud on its own.
     if (!parsed.length) emptyParse.push({ what: feed.name, url: feed.url });
+
+    // The same reading, against this feed's own recent history rather than
+    // against zero. Only when it produced something: a count of nothing is
+    // already emptyParse's to report, and saying it twice helps nobody.
+    const history = Array.isArray(prev.counts) ? prev.counts : [];
+    if (parsed.length && history.length >= MIN_COUNT_HISTORY) {
+      const usual = Math.min(...history);
+      if (parsed.length < usual * THIN_FRACTION) {
+        thinParse.push({
+          what: feed.name, url: feed.url, count: parsed.length, usual, recent: history
+        });
+      }
+    }
     // An expanding feed lists issues rather than instruments, and an issue's
     // own title can never match a record. Every issue is tracked so it is
     // opened once; whether anything in it matters is decided on its contents.
@@ -303,6 +357,11 @@ export async function run(opts = {}) {
 
     next.feeds[feed.key] = {
       seen: [...new Set([...ids, ...(seen || [])])].slice(0, KEEP_SEEN),
+      // Raw, not relevant. What this feed handed over, so the next run can tell
+      // a quiet week from a reader that has stopped fitting its page. Recorded
+      // only when the feed was actually read: a 304 carries the old state
+      // forward and must not add a reading nobody took.
+      counts: [parsed.length, ...history].slice(0, KEEP_COUNTS),
       etag: res.etag || prev.etag,
       lastModified: res.lastModified || prev.lastModified,
       lastRead: runDate
@@ -333,7 +392,7 @@ export async function run(opts = {}) {
     };
   }
 
-  const report = { newItems, moved, unread, emptyParse, runDate };
+  const report = { newItems, moved, unread, emptyParse, thinParse, runDate };
   const result = {
     report,
     state: next,

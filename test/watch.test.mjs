@@ -29,7 +29,7 @@ import {
   contentHash, meaningfulText, parseFeed, parseFederalRegister, parseIndex,
   parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax
 } from '../watch/extract.mjs';
-import { FEEDS, loadFactBase, instrumentTokens, isRelevant, relatedRecords } from '../watch/sources.mjs';
+import { FEEDS, loadFactBase, instrumentTokens, isRelevant, relatedRecords, wordForms } from '../watch/sources.mjs';
 import { composeBody, hasSomethingToSay } from '../watch/report.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -382,6 +382,93 @@ const runWith = (root, dir, extra = {}) => run({
   }
 
   /* ---------------------------------------------------------------- */
+  g('THIN PARSE: read fine, and read far less than usual');
+
+  // The gap emptyParse left: a source that halves rather than empties. The
+  // baseline CBSA fixture carries four notices, so three prior readings of
+  // four make the floor four, and one notice is under half of it.
+  {
+    const root = tempRoot();
+    for (let i = 0; i < 3; i++) await runWith(root, fixtures(path.join(root, `fx${i}`)));
+    const r = await runWith(root, fixtures(path.join(root, 'thin'), { feeds: { cbsa: 'cbsa-thin.html' } }));
+
+    const t = r.report.thinParse.find(x => /CBSA/i.test(x.what));
+    ok('a source that reads far fewer items than usual is reported', Boolean(t));
+    ok('it says what it read and what it usually reads',
+       Boolean(t) && t.count === 1 && t.usual === 4);
+    ok('it is not reported as an empty parse, because items came back',
+       !r.report.emptyParse.some(e => /CBSA/i.test(e.what)));
+    ok('it is not reported as unread, because the page was read',
+       !r.report.unread.some(u => /CBSA/i.test(u.what)));
+    ok('a thin read opens the issue rather than closing it as a quiet run', r.raise);
+    ok('the issue states it as its own claim',
+       /read noticeably fewer items than usual/i.test(r.body));
+    ok('the run log counts it apart from the others', /read unusually thin/.test(r.summary));
+  }
+
+  {
+    // Too little history to judge. Two readings is one bad reading away from
+    // calling an upstream hiccup a collapse, so it must stay quiet.
+    const root = tempRoot();
+    for (let i = 0; i < 2; i++) await runWith(root, fixtures(path.join(root, `fx${i}`)));
+    const r = await runWith(root, fixtures(path.join(root, 'thin'), { feeds: { cbsa: 'cbsa-thin.html' } }));
+    ok('a feed without enough history is not judged, however low the count',
+       !r.report.thinParse.some(x => /CBSA/i.test(x.what)));
+  }
+
+  {
+    // Moved, but within range. A threshold that fires on ordinary movement is
+    // one that gets ignored.
+    const root = tempRoot();
+    for (let i = 0; i < 3; i++) await runWith(root, fixtures(path.join(root, `fx${i}`)));
+    const r = await runWith(root, fixtures(path.join(root, 'two'), { feeds: { cbsa: 'cbsa-two.html' } }));
+    ok('a count that moved but stayed in range is not reported',
+       !r.report.thinParse.some(x => /CBSA/i.test(x.what)));
+  }
+
+  {
+    // Zero is emptyParse's to report. Saying it twice helps nobody.
+    const root = tempRoot();
+    for (let i = 0; i < 3; i++) await runWith(root, fixtures(path.join(root, `fx${i}`)));
+    const r = await runWith(root, fixtures(path.join(root, 'empty'), { feeds: { cbsa: 'cbsa-empty.html' } }));
+    ok('a count of zero is reported once, as an empty parse and not also as thin',
+       r.report.emptyParse.some(e => /CBSA/i.test(e.what))
+       && !r.report.thinParse.some(x => /CBSA/i.test(x.what)));
+  }
+
+  {
+    // The history itself, which is what any of this rests on.
+    const root = tempRoot();
+    await runWith(root, fixtures(path.join(root, 'fx')));
+    const st = loadState(path.join(root, 'watch', 'state.json'));
+    ok('a feed records the raw count it read, not the relevant one',
+       st.feeds.cbsa.counts[0] === 4);
+    // The Gazette's own feed is a standing list of issues and is compared like
+    // any other. What is deliberately not compared is the size of one issue,
+    // which varies honestly and has no floor worth inventing.
+    ok('the Gazette feed records its issue count like any other feed',
+       st.feeds.gazette2.counts[0] === 2);
+    ok('history is kept newest first and bounded',
+       Array.isArray(st.feeds.cbsa.counts) && st.feeds.cbsa.counts.length <= 8);
+  }
+
+  {
+    // The Gazette's second request stays out of it: a thin issue is reported
+    // only when it is empty, and never as a count compared to other issues.
+    const root = tempRoot();
+    for (let i = 0; i < 3; i++) await runWith(root, fixtures(path.join(root, `fx${i}`)));
+    const r = await runWith(root, fixtures(path.join(root, 'g'), {
+      feeds: { gazette2: 'gazette2-new.xml' },
+      overrides: {
+        'https://gazette.gc.ca/rp-pr/p2/2026/2026-09-02/html/index-eng.html':
+          { status: 200, body: 'gazette1-issue-new.html' }
+      }
+    }));
+    ok('a smaller-than-usual issue is not reported as thin',
+       !r.report.thinParse.some(x => /2026-09-02/.test(x.url || '')));
+  }
+
+  /* ---------------------------------------------------------------- */
   g('THE ISSUE: what the maintainer actually receives');
 
   {
@@ -553,6 +640,23 @@ const runWith = (root, dir, extra = {}) => run({
        isRelevant({ title: 'Order Amending SOR/2025-95', link: 'https://x/y' }, fb));
     ok('one shared word is not enough to claim a record is related',
        relatedRecords({ title: 'A tariff on something else entirely', link: 'https://x/y' }, fb).length === 0);
+
+    // The real case: the Gazette titles this instrument in the singular and
+    // the record it belongs to is titled in the plural, so two words in common
+    // matched neither, and the order that created the record was reported
+    // with no record attached.
+    ok('a singular in the item matches a plural in the record title',
+       relatedRecords({
+         title: 'Certain Wood Cabinet and Vanity Goods Surtax Order',
+         link: 'https://gazette.gc.ca/rp-pr/p2/2026/2026-08-12/html/sor-dors169-eng.html'
+       }, fb).includes('CA_CABINETS_2026-07'));
+    ok('cabinets matches cabinet, both directions', wordForms('cabinets').has('cabinet')
+       && wordForms('cabinet').has('cabinets'));
+    ok('vanities matches vanity, both directions', wordForms('vanities').has('vanity')
+       && wordForms('vanity').has('vanities'));
+    ok('a double s is not mistaken for a plural', !wordForms('address').has('addres'));
+    ok('the widening is only plurals, not stemming',
+       !wordForms('imported').has('import') && !wordForms('safeguard').has('safeguarding'));
   }
 
   /* ---------------------------------------------------------------- */
