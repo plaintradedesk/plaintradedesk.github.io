@@ -165,7 +165,7 @@ select{
 /* status weight encodes certainty: solid = in force, outline = announced, dashed = reported */
 .status{
   font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;
-  padding:4px 9px;border-radius:999px;white-space:nowrap;
+  padding:4px 9px;border-radius:999px;
 }
 .status.inforce{background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent)}
 .status.announced{background:var(--pending-soft);color:var(--pending);border:1px solid var(--pending)}
