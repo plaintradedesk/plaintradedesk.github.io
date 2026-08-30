@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastRun": "2026-08-29",
+  "lastRun": "2026-08-30",
   "feeds": {
     "gazette2": {
       "seen": null,
@@ -531,9 +531,10 @@
       "counts": [
         225,
         225,
+        225,
         225
       ],
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "finance": {
       "seen": [
@@ -550,19 +551,21 @@
       "counts": [
         25,
         25,
+        25,
         25
       ],
       "etag": "W/\"40e4-+ly5Wd8+wTwY/ChRYG577lFhakI\"",
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "pmo": {
       "seen": [],
       "counts": [
         10,
         10,
+        10,
         10
       ],
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "fedreg": {
       "seen": [
@@ -574,16 +577,17 @@
       "counts": [
         40,
         40,
+        40,
         40
       ],
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     }
   },
   "sources": {
     "https://content.govdelivery.com/bulletins/gd/USDHSCBP-4261d04": {
       "hash": "b8b4c933694bbcec8ed24bc1f4a181f4",
       "etag": "W/\"f3c2a27a357d3ec0b95502400f1df473\"",
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "https://www.whitecase.com/insight-alert/trump-administration-imposes-50-tariffs-certain-canadian-products-first-use-section": {
       "hash": "1bf5f3270f1ad6779405dd279b5a3178",
@@ -593,60 +597,60 @@
     },
     "https://www.ghy.com/trade-compliance/us-imposes-50-section-338-tariffs-on-canadian-imports-dairy-alcoholic-beverages-and-motor-vehicles/": {
       "hash": "2b5826ca313e15f9d0179ff38bca69ba",
-      "lastModified": "Sat, 29 Aug 2026 20:16:59 GMT",
-      "lastRead": "2026-08-29"
+      "lastModified": "Sun, 30 Aug 2026 07:02:02 GMT",
+      "lastRead": "2026-08-30"
     },
     "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations": {
       "hash": "5ab30825388462cae7b6493df48baf2e",
-      "etag": "\"1787983739\"",
-      "lastModified": "Sat, 29 Aug 2026 06:08:59 GMT",
-      "lastRead": "2026-08-29"
+      "etag": "\"1788070126\"",
+      "lastModified": "Sun, 30 Aug 2026 06:08:46 GMT",
+      "lastRead": "2026-08-30"
     },
     "https://www.aljazeera.com/news/2026/8/23/canada-to-hit-us-with-retaliatory-tariffs-as-trade-war-escalates": {
       "hash": "39cec09e8bfb7650dc4e0261b3e24819",
-      "etag": "W/\"31d8a-yYGBUegiE1+nDUTWtE0lEu+Z1EE\"",
-      "lastRead": "2026-08-29"
+      "etag": "W/\"31d8a-6K6EU0k3nBQnqO/gW7tHRfWE1lw\"",
+      "lastRead": "2026-08-30"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html": {
       "hash": "07bd2235e0eb6c4b3808e3031dfed713",
-      "lastModified": "Sat, 29 Aug 2026 14:39:34 GMT",
-      "lastRead": "2026-08-29"
+      "lastModified": "Sun, 30 Aug 2026 04:33:50 GMT",
+      "lastRead": "2026-08-30"
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/05/government-of-canada-announces-a-new-1-billion-business-development-bank-of-canada-program-and-500-million-in-additional-funding-for-the-regional-t.html": {
       "hash": "3b58c01da596f3345541432f88f758cd",
-      "lastModified": "Sat, 29 Aug 2026 16:28:05 GMT",
-      "lastRead": "2026-08-29"
+      "lastModified": "Sun, 30 Aug 2026 04:42:07 GMT",
+      "lastRead": "2026-08-30"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/support-for-canadian-workers-and-businesses-affected-by-us-tariffs.html": {
       "hash": "677ad9b44002b69250e4d5b79c94b741",
-      "lastModified": "Sat, 29 Aug 2026 15:23:52 GMT",
-      "lastRead": "2026-08-29"
+      "lastModified": "Sun, 30 Aug 2026 04:32:25 GMT",
+      "lastRead": "2026-08-30"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-11-eng.html": {
       "hash": "ed4600c638b66c937beb1edca0acf51c",
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2025-95/page-1.html": {
       "hash": "18dfdb3a64bbc74372199f083ae6cd12",
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-07-eng.html": {
       "hash": "d31471f578bd41bf603b345fd90a9308",
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html": {
       "hash": "c94772e97fe13855bfda355110677e52",
-      "lastModified": "Sat, 29 Aug 2026 15:32:40 GMT",
-      "lastRead": "2026-08-29"
+      "lastModified": "Sun, 30 Aug 2026 05:06:33 GMT",
+      "lastRead": "2026-08-30"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html": {
       "hash": "42ad792bd358e3428d405879ee43f42e",
-      "lastRead": "2026-08-29"
+      "lastRead": "2026-08-30"
     },
     "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html": {
       "hash": "3a085067dd885a41846aabb5f6b04c52",
-      "lastModified": "Sat, 29 Aug 2026 15:54:48 GMT",
-      "lastRead": "2026-08-29"
+      "lastModified": "Sun, 30 Aug 2026 05:42:05 GMT",
+      "lastRead": "2026-08-30"
     }
   }
 }
