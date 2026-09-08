@@ -71,10 +71,10 @@
     {
       "id": "CA_RETAL_2026-09",
       "title": "Canada's matching counter-tariffs",
-      "status": "announced",
+      "status": "inforce",
       "evidence_class": "instrument",
       "effective": "2026-09-08",
-      "verified": "2026-08-27",
+      "verified": "2026-09-08",
       "sectors": [
         "steel",
         "food",
@@ -94,7 +94,7 @@
           "value": "22 August 2026"
         },
         {
-          "label": "Comes into force",
+          "label": "In force since",
           "value": "8 September 2026"
         },
         {
@@ -106,9 +106,9 @@
           "value": "15, 25 or 50 percent, matching the US rate line for line"
         }
       ],
-      "plain": "Canada is answering with its own taxes on American goods, starting Tuesday 8 September, the day after Labour Day. The list was published 25 August: steel, dairy, appliances, farm equipment, paper, electronics and more, covering 27.6 billion dollars of what Canada buys from the US. Each product gets matched to whatever rate the US is charging on the equivalent Canadian good, so some items carry 15 percent, some 25, some 50.",
-      "operator": "The product list and rate schedule were published 25 August 2026 and updated 26 August, covering 27.6 billion dollars of US imports at 15, 25 or 50 percent depending on the good, mirroring the US rate on the matching line. If you import from the United States, 8 September is the date that changes your landed cost, not 22 August. Named sectors are steel, dairy, appliances, agricultural equipment, pulp and paper, and electronics. Check your own HS codes against the published list now rather than waiting for the formal surtax order and CBSA customs notice, which will formalize what has already been announced.",
-      "policy": "Announced by the Prime Minister on 22 August 2026 following suspension of negotiations. The Department of Finance published the product list and rate structure on 25 August 2026, updated 26 August, setting three tariff rates of 15, 25 and 50 percent, with each product's rate matching what the United States charges on the equivalent Canadian good, covering 27.6 billion dollars of US imports. The formal surtax order in Canada Gazette Part II and the CBSA customs notice giving declaration detail were not yet located as of this check on 27 August 2026 and should still be confirmed against the Department of Finance list in the meantime.",
+      "plain": "Canada is answering with its own taxes on American goods, which took effect on Tuesday 8 September, the day after Labour Day. The list was published 25 August: steel, dairy, appliances, farm equipment, paper, electronics and more, covering 27.6 billion dollars of what Canada buys from the US. Each product gets matched to whatever rate the US is charging on the equivalent Canadian good, so some items carry 15 percent, some 25, some 50.",
+      "operator": "The product list and rate schedule were published 25 August 2026 and updated 26 August, covering 27.6 billion dollars of US imports at 15, 25 or 50 percent depending on the good, mirroring the US rate on the matching line. If you import from the United States, 8 September, not 22 August, is the date that changed your landed cost. Named sectors are steel, dairy, appliances, agricultural equipment, pulp and paper, and electronics. The formal instrument is now in hand: CBSA Customs Notice 26-23 announces the United States Surtax Order (2026) as of the same date and points back to the Finance Canada list for the goods. Check your own HS codes against that list, and take your declaration detail from the customs notice.",
+      "policy": "Announced by the Prime Minister on 22 August 2026 following suspension of negotiations. The Department of Finance published the product list and rate structure on 25 August 2026, updated 26 August, setting three tariff rates of 15, 25 and 50 percent, with each product's rate matching what the United States charges on the equivalent Canadian good, covering 27.6 billion dollars of US imports. The formal instrument, the United States Surtax Order (2026), is confirmed via CBSA Customs Notice 26-23, effective 8 September 2026, applying the same 15, 25 and 50 percent schedule structure as the Department of Finance list. The notice cites no SOR number and refers to the Department of Finance list for the goods covered.",
       "sources": [
         {
           "label": "Prime Minister's remarks, 22 August 2026",
@@ -121,6 +121,10 @@
         {
           "label": "Finance Canada, list of products subject to counter-tariffs, published 25 August 2026 (updated 26 August)",
           "url": "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html"
+        },
+        {
+          "label": "CBSA Customs Notice 26-23, United States Surtax Order (2026)",
+          "url": "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-23-eng.html"
         }
       ]
     },
@@ -184,7 +188,7 @@
       "status": "inforce",
       "evidence_class": "instrument",
       "effective": "2025-03",
-      "verified": "2026-08-27",
+      "verified": "2026-09-08",
       "sectors": [
         "steel",
         "construction"
@@ -197,7 +201,7 @@
       "facts": [
         {
           "label": "Rate",
-          "value": "25 percent of the value for duty"
+          "value": "50 percent of the value for duty, from 8 September 2026"
         },
         {
           "label": "In force since",
@@ -212,13 +216,13 @@
           "value": "Steel Derivative Goods Surtax Remission Order exists"
         },
         {
-          "label": "Rate from 8 September 2026",
-          "value": "50 percent of the value for duty, under the same order"
+          "label": "Rate until 7 September 2026",
+          "value": "25 percent of the value for duty, from 13 March 2025, under the same order"
         }
       ],
-      "plain": "Canada has had its own tax on American steel and aluminum since March 2025, well before this month. It is 25 percent, it is still in place, and it is part of why building materials have been getting more expensive. From 8 September 2026 that charge doubles to 50 percent.",
-      "operator": "A 25 percent surtax on US-origin steel and aluminum, in force since 13 March 2025 and separate from anything happening in September. It already sits in your landed cost. The schedule of covered goods was replaced on 1 September 2025, so a list you saved before that date is out of date. A remission framework exists for steel derivative goods, so if you are paying surtax on inputs with no Canadian substitute, that is worth raising with your broker. Goods marked as originating in Puerto Rico, Guam, the Northern Mariana Islands, American Samoa or the US Virgin Islands are outside the order. Finance Canada's published counter-tariff list confirms that steel and aluminum goods already carrying the 25 percent surtax move to 50 percent on 8 September 2026, under this same order rather than a new one. Price anything landing on or after that date at the higher rate, and check your classifications against the published list rather than against a schedule you saved earlier.",
-      "policy": "United States Surtax Order (Steel and Aluminum 2025), SOR/2025-95, registered 12 March 2025 and effective 13 March 2025, imposing 25 percent of the value for duty on US-origin goods in the listed classifications. Amended 27 March 2025, 8 April 2025, and 1 September 2025, the last of which replaced Schedule 1 with Schedule 2. Not repealed. Note that the consolidated text on the Justice Laws site is current only to 17 June 2026, so an amendment made after that date would not yet appear there and should be checked against the CBSA customs notices. Finance Canada's complete list of US products subject to counter-tariffs, published 25 August 2026 and updated 26 August, increases the rate on the steel and aluminum goods already covered by this order from 25 to 50 percent effective 8 September 2026. The increase runs under this order, SOR/2025-95, rather than a separate instrument.",
+      "plain": "Canada has had its own tax on American steel and aluminum since March 2025, well before this month. It is still in place, and it is part of why building materials have been getting more expensive. On 8 September 2026 that charge doubled, from 25 percent to 50 percent.",
+      "operator": "A surtax on US-origin steel and aluminum, in force since 13 March 2025 under its own order rather than under the September counter-tariffs. It stands at 50 percent of the value for duty from 8 September 2026, doubled from the 25 percent that ran until 7 September. It already sits in your landed cost. The schedule of covered goods was replaced on 1 September 2025, so a list you saved before that date is out of date. A remission framework exists for steel derivative goods, so if you are paying surtax on inputs with no Canadian substitute, that is worth raising with your broker. Goods marked as originating in Puerto Rico, Guam, the Northern Mariana Islands, American Samoa or the US Virgin Islands are outside the order. Finance Canada's published counter-tariff list confirms that steel and aluminum goods already carrying the 25 percent surtax moved to 50 percent on 8 September 2026, under this same order rather than a new one. Price anything landing on or after that date at the higher rate, and check your classifications against the published list rather than against a schedule you saved earlier.",
+      "policy": "United States Surtax Order (Steel and Aluminum 2025), SOR/2025-95, registered 12 March 2025 and effective 13 March 2025, imposing 25 percent of the value for duty on US-origin goods in the listed classifications. Amended 27 March 2025, 8 April 2025, and 1 September 2025, the last of which replaced Schedule 1 with Schedule 2. Not repealed. Note that the consolidated text on the Justice Laws site is current only to 17 June 2026, so an amendment made after that date would not yet appear there and should be checked against the CBSA customs notices. Finance Canada's complete list of US products subject to counter-tariffs, published 25 August 2026 and updated 26 August, increased the rate on the steel and aluminum goods already covered by this order from 25 to 50 percent, effective 8 September 2026. The increase runs under this order, SOR/2025-95, rather than a separate instrument.",
       "sources": [
         {
           "label": "CBSA Customs Notice 25-11, the surtax order",
