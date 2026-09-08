@@ -26,12 +26,27 @@ const COMMENTS = /<!--[\s\S]*?-->/g;
 const CHROME = [
   /<header\b[^>]*>[\s\S]*?<\/header>/gi,
   /<nav\b[^>]*>[\s\S]*?<\/nav>/gi,
-  /<footer\b[^>]*>[\s\S]*?<\/footer>/gi
+  /<footer\b[^>]*>[\s\S]*?<\/footer>/gi,
+  // A sidebar is tangential by definition, and on a trade blog it carries a
+  // rolling "Recent Posts" list that turns over every few days. Left in, it
+  // reports drift on an article nobody has touched in weeks. Checked against
+  // every URL this fact base cites: only one of them has an <aside> at all.
+  /<aside\b[^>]*>[\s\S]*?<\/aside>/gi
 ];
 
 /**
  * Text that changes on its own schedule and says nothing about the instrument.
  * Each of these is a real thing seen on the sites this watches.
+ *
+ * Note what is deliberately absent. A rule for written-month bylines, the
+ * "Published July 20, 2026 | Updated Aug. 25, 2026" a blog carries, was tried
+ * and removed: on a CBSA customs notice the same words are the notice's own
+ * amendment history, printed in its header as "Updated: September 1, 2025",
+ * and a new line appearing there is the single most useful thing this watcher
+ * can report. A pattern broad enough to catch the blog also erases that. The
+ * two cases are not distinguishable by their shape, only by what the page is,
+ * so this list stays with stamps that are unambiguously machinery. Noise costs
+ * an issue somebody closes; silence costs a correction nobody makes.
  */
 const VOLATILE_TEXT = [
   /date\s*modified\s*:?\s*\d{4}-\d{2}-\d{2}/gi,

@@ -236,6 +236,38 @@ const runWith = (root, dir, extra = {}) => run({
   }
 
   {
+    // The same check against the shape that actually cried wolf in production.
+    // A trade blog cited by US_S338_2026-08 reported drift on four of five
+    // consecutive runs while its article sat untouched, because the hashed
+    // region held a "Recent Posts" sidebar that turns over every few days.
+    const a = contentHash(readFileSync(path.join(FIX, 'blog-post.html'), 'utf8'));
+    const b = contentHash(readFileSync(path.join(FIX, 'blog-post-noise.html'), 'utf8'));
+    const c = contentHash(readFileSync(path.join(FIX, 'blog-post-changed.html'), 'utf8'));
+    ok('a rotating sidebar does not count as drift', a === b);
+    ok('an edit to the headings the record cites does count as drift', a !== c);
+
+    const text = meaningfulText(readFileSync(path.join(FIX, 'blog-post.html'), 'utf8'));
+    ok('a sidebar is not part of what a page says',
+       !text.includes('recent posts') && !text.includes('archives'));
+    ok('the article itself survives the sidebar being dropped',
+       text.includes('9903.03.12') && text.includes('554 tariff subheadings'));
+
+    // The one that guards the fix from being widened. The same blog carries
+    // "Published July 20, 2026 | Updated Aug. 25, 2026", and stripping that
+    // shape is tempting. On a customs notice the identical words are the
+    // notice's own amendment history, and a new line appearing there is the
+    // most valuable thing this watcher reports: it is how SOR/2026-187 was
+    // found. Anything that silences the second to quieten the first is a bad
+    // trade, so both of these must keep passing.
+    const notice = meaningfulText(readFileSync(path.join(FIX, 'customs-notice-amended.html'), 'utf8'));
+    ok("a customs notice's amendment history is content, not a date stamp",
+       notice.includes('updated: march 27, 2025') && notice.includes('updated: september 7, 2026'));
+    const amended = readFileSync(path.join(FIX, 'customs-notice-amended.html'), 'utf8');
+    ok('a newly added amendment line on a notice does count as drift',
+       contentHash(amended) !== contentHash(amended.replace('<p>Updated: September 7, 2026</p>', '')));
+  }
+
+  {
     const root = tempRoot();
     const dir = fixtures(path.join(root, 'fx'));
     await runWith(root, dir);
