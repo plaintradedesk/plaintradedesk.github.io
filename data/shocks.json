@@ -17,7 +17,7 @@
       "status": "inforce",
       "evidence_class": "instrument",
       "effective": "2026-08-22",
-      "verified": "2026-08-27",
+      "verified": "2026-09-08",
       "sectors": [
         "auto",
         "food",
@@ -134,7 +134,7 @@
       "status": "announced",
       "evidence_class": "instrument",
       "effective": "2026-08-22",
-      "verified": "2026-08-27",
+      "verified": "2026-09-08",
       "sectors": [
         "auto",
         "steel",
@@ -162,11 +162,15 @@
         {
           "label": "Program detail",
           "value": "Published 25 Aug 2026: Regional Tariff Response Initiative (1.5B), BDC Pivot to Grow (500M), Canada Strong Diversification Fund (2B), Rapid Response Supports for Workers and Employers (3.5B), and expanded flexibility on the existing 10B Large Enterprise Tariff Loan Facility"
+        },
+        {
+          "label": "Confirmed active",
+          "value": "The Canada Strong Diversification Fund only. Finance Canada's release creates it \"effective immediately\" as a 2 billion dollar stream of the existing Strategic Response Fund. The other four pieces are not yet confirmed active against a primary source"
         }
       ],
       "plain": "The federal government has now published exactly what it is doing to help workers and businesses hurt by these tariffs: an extra 7.5 billion dollars announced 25 August, on top of nearly 25 billion dollars already put into support programs over the past year and a half. It covers loans and grants for affected businesses, extra help for large employers under strain, and better Employment Insurance for people who are laid off or have their hours cut. If your hours are cut, ask your employer about Work-Sharing and the expanded EI measures, since those are the two programs built to keep people on payroll or afloat between jobs.",
       "operator": "Announced 25 August 2026 as 7.5 billion dollars in new and enhanced measures, layered on nearly 25 billion dollars the government says it has delivered over the prior 18 months. The five pieces: the Regional Tariff Response Initiative (1.5 billion, higher per-SME funding caps), the BDC Pivot to Grow program (500 million in new working-capital loans of 250,000 to 5 million dollars), the Canada Strong Diversification Fund (2 billion, a new Strategic Response Fund stream), Rapid Response Supports for Workers and Employers (3.5 billion, including waived EI waiting periods, expanded benefits and a Workforce Retention and Retraining Program), and expanded flexibility on the existing 10 billion dollar Large Enterprise Tariff Loan Facility (up to 36 months of liquidity support, 15-year maximum terms). Application windows for the newer pieces are still opening; have your last two years of financials, your US revenue concentration and your affected headcount ready.",
-      "policy": "Announced 25 August 2026 as 7.5 billion dollars in new and enhanced measures, on top of nearly 25 billion dollars in supports the government says it has delivered over the prior 18 months, including the earlier 1 billion dollar Business Development Bank of Canada program and 500 million dollars in additional Regional Tariff Response Initiative funding announced in May 2026, delivered through the regional development agencies. Delivery agents and full eligibility criteria for each new stream were still being rolled out as of this check on 27 August 2026. Earlier working notes in this project carried unsourced figures for a national support envelope; those should be discarded in favour of this one.",
+      "policy": "Announced 25 August 2026 as 7.5 billion dollars in new and enhanced measures, on top of nearly 25 billion dollars in supports the government says it has delivered over the prior 18 months, including the earlier 1 billion dollar Business Development Bank of Canada program and 500 million dollars in additional Regional Tariff Response Initiative funding announced in May 2026, delivered through the regional development agencies. Checked program by program on 8 September 2026, with one piece confirmed and four not. The Canada Strong Diversification Fund is confirmed active: Finance Canada's release states that \"effective immediately, the government is creating the Canada Strong Diversification Fund,\" a new stream of the existing Strategic Response Fund carrying 2 billion dollars in new funding. The Regional Tariff Response Initiative's higher funding caps are described as effective September 2026 without a specific date. The BDC Pivot to Grow terms, the Rapid Response waiver of the Employment Insurance waiting period, and the expanded terms on the Large Enterprise Tariff Loan Facility are not confirmed active either way from a primary source, and should be checked against bdc.ca and the ESDC Employment Insurance temporary-measures page before this record's status moves from announced to in force. That is why the status is still announced despite one confirmed piece. Earlier working notes in this project carried unsourced figures for a national support envelope; those should be discarded in favour of this one.",
       "sources": [
         {
           "label": "Prime Minister's remarks, 22 August 2026",
