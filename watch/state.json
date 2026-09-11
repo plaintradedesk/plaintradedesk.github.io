@@ -245,6 +245,7 @@
     },
     "gazette1": {
       "seen": [
+        "https://gazette.gc.ca/rp-pr/p1/2026/2026-09-12/html/index-eng.html",
         "https://gazette.gc.ca/rp-pr/p1/2026/2026-09-05/html/index-eng.html",
         "https://gazette.gc.ca/rp-pr/p1/2026/2026-08-29/html/index-eng.html",
         "https://gazette.gc.ca/rp-pr/p1/2026/2026-08-24-x7/html/extra7-eng.html",
@@ -677,12 +678,13 @@
         "https://gazette.gc.ca/rp-pr/p1/2019/2019-12-03-x17/html/extra17-eng.html"
       ],
       "counts": [
+        434,
         433,
         432
       ],
-      "etag": "\"47f7f-65a6fd402dd11\"",
-      "lastModified": "Tue, 01 Sep 2026 18:10:05 GMT",
-      "lastRead": "2026-09-04"
+      "etag": "\"48221-65b0ffba78434\"",
+      "lastModified": "Wed, 09 Sep 2026 17:14:24 GMT",
+      "lastRead": "2026-09-11"
     },
     "cbsa": {
       "seen": [
@@ -775,7 +777,7 @@
         227,
         227,
         227,
-        226
+        227
       ],
       "lastRead": "2026-09-11"
     },
@@ -847,13 +849,13 @@
     },
     "https://www.whitecase.com/insight-alert/trump-administration-imposes-50-tariffs-certain-canadian-products-first-use-section": {
       "hash": "1bf5f3270f1ad6779405dd279b5a3178",
-      "etag": "\"1789086194-gzip\"",
-      "lastModified": "Fri, 11 Sep 2026 00:23:14 GMT",
+      "etag": "\"1789157945-gzip\"",
+      "lastModified": "Fri, 11 Sep 2026 20:19:05 GMT",
       "lastRead": "2026-09-11"
     },
     "https://www.ghy.com/trade-compliance/us-imposes-50-section-338-tariffs-on-canadian-imports-dairy-alcoholic-beverages-and-motor-vehicles/": {
       "hash": "4adc9b47ab9bb6cdef204a81a11535cc",
-      "lastModified": "Fri, 11 Sep 2026 08:51:35 GMT",
+      "lastModified": "Fri, 11 Sep 2026 19:52:24 GMT",
       "lastRead": "2026-09-11"
     },
     "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations": {
@@ -864,12 +866,12 @@
     },
     "https://www.aljazeera.com/news/2026/8/23/canada-to-hit-us-with-retaliatory-tariffs-as-trade-war-escalates": {
       "hash": "39cec09e8bfb7650dc4e0261b3e24819",
-      "etag": "W/\"332ca-r6fl63z2MSK9ixT226BWzGqP8m8\"",
+      "etag": "W/\"332ca-sIehHZv1/JHa+2vXMiRL50dXYag\"",
       "lastRead": "2026-09-11"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html": {
       "hash": "07bd2235e0eb6c4b3808e3031dfed713",
-      "lastModified": "Fri, 11 Sep 2026 00:37:33 GMT",
+      "lastModified": "Fri, 11 Sep 2026 19:12:55 GMT",
       "lastRead": "2026-09-11"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-23-eng.html": {
@@ -878,12 +880,12 @@
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/05/government-of-canada-announces-a-new-1-billion-business-development-bank-of-canada-program-and-500-million-in-additional-funding-for-the-regional-t.html": {
       "hash": "3b58c01da596f3345541432f88f758cd",
-      "lastModified": "Fri, 11 Sep 2026 12:11:42 GMT",
+      "lastModified": "Fri, 11 Sep 2026 21:42:59 GMT",
       "lastRead": "2026-09-11"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/support-for-canadian-workers-and-businesses-affected-by-us-tariffs.html": {
       "hash": "677ad9b44002b69250e4d5b79c94b741",
-      "lastModified": "Fri, 11 Sep 2026 02:12:20 GMT",
+      "lastModified": "Fri, 11 Sep 2026 20:25:03 GMT",
       "lastRead": "2026-09-11"
     },
     "https://www.bdc.ca/en/financing/pivot-grow-loan": {
@@ -892,13 +894,13 @@
     },
     "https://www.canada.ca/en/services/benefits/ei/temporary-measures-for-major-economic-conditions.html": {
       "hash": "d16b1242aa6901129c01e70385a2f130",
-      "lastModified": "Fri, 11 Sep 2026 00:34:13 GMT",
+      "lastModified": "Fri, 11 Sep 2026 20:50:21 GMT",
       "lastRead": "2026-09-11"
     },
     "https://feddev-ontario.canada.ca/en/funding-southern-ontario/regional-tariff-response-initiative-southern-ontario": {
       "hash": "9fac770292f6d9f23dfcf6efdc616162",
-      "etag": "W/\"1789128711\"",
-      "lastModified": "Fri, 11 Sep 2026 12:11:51 GMT",
+      "etag": "W/\"1789162988\"",
+      "lastModified": "Fri, 11 Sep 2026 21:43:08 GMT",
       "lastRead": "2026-09-11"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-11-eng.html": {
@@ -915,7 +917,7 @@
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html": {
       "hash": "e650e547d9b2a3a6b68846b31f41f356",
-      "lastModified": "Fri, 11 Sep 2026 00:20:42 GMT",
+      "lastModified": "Fri, 11 Sep 2026 20:07:54 GMT",
       "lastRead": "2026-09-11"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html": {
@@ -924,7 +926,7 @@
     },
     "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html": {
       "hash": "3a085067dd885a41846aabb5f6b04c52",
-      "lastModified": "Fri, 11 Sep 2026 12:12:01 GMT",
+      "lastModified": "Fri, 11 Sep 2026 17:58:30 GMT",
       "lastRead": "2026-09-11"
     }
   }
