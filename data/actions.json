@@ -169,8 +169,7 @@
         "people"
       ],
       "shocks": [
-        "CA_RETAL_2026-09",
-        "CA_SUPPORT_2026-08"
+        "US_S338_BAN_2026-09"
       ],
       "sectors": [],
       "seasons": [
@@ -336,8 +335,8 @@
     },
     {
       "id": "ACT_ASSEMBLE_EVIDENCE_PACK",
-      "text": "Assemble the evidence pack that every support program will ask for, before any window opens.",
-      "note": "Two years of financials, your US revenue concentration, affected headcount, and your top exposed inputs. Programs open on short notice.",
+      "text": "Assemble the evidence pack that every support program will ask for.",
+      "note": "Two years of financials, your US revenue concentration, affected headcount, and your top exposed inputs. Most of the support package's windows are already open; have this ready for the ones that are and the ones still to come.",
       "by": "Prepare now",
       "urgent": false,
       "doors": [

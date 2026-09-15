@@ -17,7 +17,7 @@
       "status": "inforce",
       "evidence_class": "instrument",
       "effective": "2026-08-22",
-      "verified": "2026-09-08",
+      "verified": "2026-09-14",
       "sectors": [
         "auto",
         "food",
@@ -39,7 +39,7 @@
         },
         {
           "label": "Coverage",
-          "value": "554 tariff lines, three proclamations"
+          "value": "554 tariff lines, three proclamations, as of 22 August 2026. From 15 September 2026, US Customs guidance (CSMS 69851916) reports 122 classifications added and 10 removed under two Federal Register scope modifications; no new total is stated there and none is computed here"
         },
         {
           "label": "Scale",
@@ -50,9 +50,9 @@
           "value": "No"
         }
       ],
-      "plain": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, cement, plywood, circuit boards and some vehicles. If your workplace ships any of those south, this is the week to ask your employer what it means for orders.",
-      "operator": "Effective 12:01am on 22 August 2026 across 554 tariff subheadings in three proclamations, after a three-day suspension, 18 to 21 August, of the original 19 August date. The United States importer of record pays the duty, so the pressure arrives as cancelled orders and price renegotiation rather than as a bill to you. Qualifying under CUSMA does not exempt these lines, which catches most people out. Stop quoting a US landed cost without it, and check your Incoterms to confirm who actually carries the duty.",
-      "policy": "First use in history of Section 338 of the Tariff Act of 1930, which permits up to 50 percent against a country found to have discriminated against United States commerce, requires no investigation and carries no expiry. Three proclamations: 52 subheadings covering dairy and agriculture, 439 covering motor vehicles and diverse manufactured and agricultural goods, and 63 covering alcohol, wood, paper and hockey equipment. Chapter 99 headings 9903.03.12 to 9903.03.14 carry the 50 percent rate; 9903.03.15 and 9903.03.16 list carve-outs at zero. Goods already under Section 232 are generally excluded. Legal challenge is widely expected given the statute has no judicial precedent.",
+      "plain": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, cement, plywood, circuit boards and some vehicles. On 15 September 2026 some products were added to the list and a few taken off, so a product's place on it is worth re-checking. If your workplace ships any of those south, this is the week to ask your employer what it means for orders.",
+      "operator": "Effective 12:01am on 22 August 2026 across 554 tariff subheadings in three proclamations, after a three-day suspension, 18 to 21 August, of the original 19 August date. The United States importer of record pays the duty, so the pressure arrives as cancelled orders and price renegotiation rather than as a bill to you. Qualifying under CUSMA does not exempt these lines, which catches most people out. Stop quoting a US landed cost without it, and check your Incoterms to confirm who actually carries the duty. The list moved on 15 September 2026: two scope modifications added 122 classifications to headings 9903.03.12 and 9903.03.14 and removed 10, per CBP's CSMS 69851916, so re-check your lines against CBP's current list rather than the August one.",
+      "policy": "First use in history of Section 338 of the Tariff Act of 1930, which permits up to 50 percent against a country found to have discriminated against United States commerce, requires no investigation and carries no expiry. Three proclamations: 52 subheadings covering dairy and agriculture, 439 covering motor vehicles and diverse manufactured and agricultural goods, and 63 covering alcohol, wood, paper and hockey equipment. Chapter 99 headings 9903.03.12 to 9903.03.14 carry the 50 percent rate; 9903.03.15 and 9903.03.16 list carve-outs at zero. Goods already under Section 232 are generally excluded. Legal challenge is widely expected given the statute has no judicial precedent. The coverage was modified with effect from 12:01am Eastern on 15 September 2026 by two proclamations signed 8 September and published in the Federal Register on 14 September: Proclamation 11064 (alcoholic beverages, document 2026-18838) amending Proclamation 11046, and Proclamation 11065 (motor vehicles, document 2026-18839) amending Proclamation 11048. Each keeps the products in its Annex I, Part A under the 50 percent duty and removes those in Annex I, Part B from it; neither states a new running total. CBP's operational guidance, CSMS 69851916 of 11 September, counts 122 classifications added to headings 9903.03.12 or 9903.03.14 and 10 removed (2 from .12, 8 from .14), with no change to 9903.03.13. A separate and larger step was signed the same day: three further proclamations converting a subset of the covered motor vehicle, dairy and alcoholic-beverage lines from a duty to an outright exclusion from importation, effective 29 September. That is a different instrument, a ban rather than a rate or coverage change, and it has its own record on this site.",
       "sources": [
         {
           "label": "US Customs and Border Protection, bulletin confirming the 22 August effective date",
@@ -65,6 +65,75 @@
         {
           "label": "GHY International, coverage and Chapter 99 headings",
           "url": "https://www.ghy.com/trade-compliance/us-imposes-50-section-338-tariffs-on-canadian-imports-dairy-alcoholic-beverages-and-motor-vehicles/"
+        },
+        {
+          "label": "Proclamation 11065, modifying the scope of the motor-vehicle duties, Federal Register 14 September 2026",
+          "url": "https://www.federalregister.gov/documents/2026/09/14/2026-18839/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset"
+        },
+        {
+          "label": "Proclamation 11064, modifying the scope of the alcoholic-beverage duties, Federal Register 14 September 2026",
+          "url": "https://www.federalregister.gov/documents/2026/09/14/2026-18838/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset"
+        },
+        {
+          "label": "US Customs and Border Protection, CSMS 69851916, the 15 September modifications",
+          "url": "https://content.govdelivery.com/bulletins/gd/USDHSCBP-429db0c"
+        }
+      ]
+    },
+    {
+      "id": "US_S338_BAN_2026-09",
+      "title": "United States import ban on selected Canadian motor vehicles, dairy and alcohol",
+      "status": "announced",
+      "evidence_class": "instrument",
+      "effective": "2026-09-29",
+      "verified": "2026-09-14",
+      "sectors": [
+        "auto",
+        "food"
+      ],
+      "doors": [
+        "people",
+        "business",
+        "place",
+        "policy"
+      ],
+      "facts": [
+        {
+          "label": "Signed",
+          "value": "8 September 2026, three proclamations: 11061, 11062 and 11063"
+        },
+        {
+          "label": "Published",
+          "value": "Federal Register, 14 September 2026"
+        },
+        {
+          "label": "Takes effect",
+          "value": "29 September 2026, 12:01am Eastern. Not yet in force"
+        },
+        {
+          "label": "What changes",
+          "value": "Specific motor vehicle, dairy and alcoholic-beverage products that already carry the 50 percent duty become barred from entering the United States at all. Only the lines in each proclamation's Annex, not every product in the three categories"
+        },
+        {
+          "label": "Separate from",
+          "value": "The 15 September changes to the 50 percent duty's coverage, which altered what is taxed, not whether it may enter"
+        }
+      ],
+      "plain": "This has not happened yet. From 29 September 2026, the United States plans to stop certain Canadian products from entering at all, not just tax them. It applies to specific motor vehicles, dairy products and alcoholic drinks that already carry the 50 percent tax, and only to the ones on the published lists, not to everything in those three categories. If your workplace makes or ships any of these, ask now whether your product is on the list rather than waiting for the 29th.",
+      "operator": "Three proclamations signed 8 September 2026 and published 14 September, effective for goods imported on or after 12:01am Eastern on 29 September 2026. Each takes a subset of the motor vehicle, dairy and alcoholic-beverage lines already under the 50 percent Section 338 duty and excludes them from importation outright. The category is not the test; the Annex to each proclamation is. Check your specific tariff line against the relevant Annex before assuming you are in or out, because a line that is in cannot be landed at any duty rate, under any Incoterm, or on a CUSMA claim once the ban applies. Anything you can ship and enter before 12:01am Eastern on the 29th is under the existing duty, not the ban.",
+      "policy": "Three proclamations signed 8 September 2026 and published in the Federal Register on 14 September: Proclamation 11061 (alcoholic beverages, document 2026-18835, 91 FR 58311), Proclamation 11062 (dairy, document 2026-18836, 91 FR 58319) and Proclamation 11063 (motor vehicles, document 2026-18837, 91 FR 58325). Each rests on the same authority as the original duties: Section 338 of the Tariff Act of 1930 (19 U.S.C. 1338), Section 301 of title 3 of the United States Code, and Section 604 of the Trade Act of 1974 (19 U.S.C. 2483). Section 338 also authorizes the President to exclude from importation the articles of a country that maintains or increases its discrimination after duties have been imposed, and that is the step each proclamation takes: certain products of Canada currently subject to the additional duties under Proclamations 11046, 11047 and 11048 respectively are excluded from importation into the United States, effective for goods imported on or after 12:01am Eastern on 29 September 2026. The excluded products are set out in each proclamation's own Annex. This record describes the three categories and the mechanism; it does not enumerate the lines, which have not been read heading by heading, and a reader with a specific product needs the Annex, not this summary. The sequence, for tracing: the 50 percent duties under the three July proclamations took effect 22 August 2026; Proclamations 11064 and 11065, signed the same 8 September, modified the alcoholic-beverage and motor-vehicle coverage of that duty with effect from 15 September; and these three proclamations convert a covered subset in all three categories from a duty to a bar on entry from 29 September. The status is announced: the instruments are published and dated, and nothing changes at the border until the 29th.",
+      "sources": [
+        {
+          "label": "Proclamation 11063, excluding certain Canadian motor vehicles, Federal Register 14 September 2026",
+          "url": "https://www.federalregister.gov/documents/2026/09/14/2026-18837/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued"
+        },
+        {
+          "label": "Proclamation 11062, excluding certain Canadian dairy products, Federal Register 14 September 2026",
+          "url": "https://www.federalregister.gov/documents/2026/09/14/2026-18836/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued"
+        },
+        {
+          "label": "Proclamation 11061, excluding certain Canadian alcoholic beverages, Federal Register 14 September 2026",
+          "url": "https://www.federalregister.gov/documents/2026/09/14/2026-18835/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued"
         }
       ]
     },
