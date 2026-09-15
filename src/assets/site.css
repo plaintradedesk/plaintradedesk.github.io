@@ -157,7 +157,7 @@ select{
 .card{
   background:var(--surface);border:1px solid var(--line);
   border-radius:var(--radius);padding:17px 18px;box-shadow:var(--shadow);
-  display:flex;flex-direction:column;gap:11px;
+  display:flex;flex-direction:column;gap:13px;
 }
 .card-top{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
 .card h3{flex:1 1 22ch;min-width:0}
@@ -174,16 +174,33 @@ select{
 
 .register{max-width:var(--measure)}
 .register.plain{font-size:1.05rem;line-height:1.6}
+/* facts: a label column sized to its content, a value column that wraps freely.
+   dt/dd pairs fall into rows on their own, so a two-sentence value gets its own
+   labelled row instead of running the chips together. */
 .facts{
-  display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;color:var(--muted);
-  padding-top:2px;
+  display:grid;grid-template-columns:fit-content(10rem) minmax(0,1fr);gap:8px 14px;
+  margin:0;padding-top:3px;
 }
-.facts b{color:var(--ink);font-weight:500}
+.facts dt{
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;padding-top:.3em;
+}
+.facts dd{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink);max-width:var(--measure)}
 .srcs{
-  display:flex;flex-wrap:wrap;gap:5px 14px;align-items:center;
-  font-size:.78rem;padding-top:10px;border-top:1px dashed var(--line);
+  display:flex;flex-wrap:wrap;gap:5px 14px;align-items:flex-start;
+  font-size:.78rem;padding-top:12px;border-top:1px dashed var(--line);
 }
-.verif{display:flex;align-items:center;gap:6px;color:var(--muted);margin-left:auto}
+.srcs a{line-height:1.5}
+/* more than three sources fold behind a native disclosure; the checked date stays outside it */
+.srcmore{flex:1 1 auto;min-width:0}
+.srcmore summary{
+  cursor:pointer;color:var(--accent);line-height:1.5;width:max-content;max-width:100%;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+}
+.srcmore summary::marker{color:var(--muted)}
+.srcmore[open] summary{margin-bottom:6px}
+.srclist{display:flex;flex-wrap:wrap;gap:5px 14px}
+.verif{display:flex;align-items:center;gap:6px;color:var(--muted);margin-left:auto;line-height:1.5}
 .flag{
   font-size:.72rem;padding:3px 8px;border-radius:6px;
   background:var(--stale-soft);color:var(--stale);border:1px solid var(--stale);
@@ -275,6 +292,9 @@ footer p{max-width:var(--measure)}
 
 @media (max-width:640px){
   .masthead{padding:20px 0 16px}
+  .facts{grid-template-columns:minmax(0,1fr);gap:2px}
+  .facts dt{padding-top:0}
+  .facts dd+dt{margin-top:8px}
   .filestate{border-left:none;border-top:1px solid var(--line);padding:12px 0 0;width:100%}
   .action{flex-direction:column;gap:4px}
   .by{min-width:0}

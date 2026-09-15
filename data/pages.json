@@ -61,6 +61,7 @@
       "needs_verification": "Needs verification",
       "recheck_overdue": "Recheck overdue",
       "no_source": "No primary source on file",
+      "sources_count": "{n} sources",
       "trend": "Trend, not an instrument"
     },
     "offline_noscript": "JavaScript is switched off, so all four doors and the three standing pages are shown one after another. Nothing is missing.",

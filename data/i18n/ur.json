@@ -155,6 +155,10 @@
       "en": "No primary source on file",
       "t": ""
     },
+    "site.labels.sources_count": {
+      "en": "{n} sources",
+      "t": ""
+    },
     "site.labels.trend": {
       "en": "Trend, not an instrument",
       "t": ""
