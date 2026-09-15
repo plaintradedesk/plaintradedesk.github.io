@@ -2,6 +2,11 @@
   "corrections": [
     {
       "date": "14 Sep 2026",
+      "what": "Cement is no longer offered as an example of a good under the 50 percent tariff. The 15 September scope change took the cement line off the list.",
+      "detail": "The plain-language register on the 50 percent tariff record listed cement among its examples of covered goods. CBP's CSMS 69851916 names HTSUS 2523.29.00, Portland cement, among the ten classifications removed from Section 338 coverage effective 15 September 2026, and the bulletin's attached list of every classification covered as of that date, including the 122 added ones, contains no chapter 25 line at all. So cement is out, not merely moved. The example is dropped and the register now names cement as one of the goods taken off on 15 September, so a reader who remembers it being there is told why it is not."
+    },
+    {
+      "date": "14 Sep 2026",
       "what": "A new record: the United States has announced an outright import ban on selected Canadian motor vehicles, dairy and alcoholic beverages, effective 29 September 2026. It is announced, not in force.",
       "detail": "Three proclamations, 11061, 11062 and 11063, signed 8 September 2026 and published in the Federal Register on 14 September, each take a subset of the products already under the 50 percent Section 338 duty and exclude them from importation altogether from 12:01am Eastern on 29 September. This is a different kind of instrument from a duty, a bar on entry rather than a cost, so it is a record of its own rather than a line added to the tariff record, and it carries the announced status because nothing changes at the border until the 29th. The specific products are in each proclamation's Annex, which this pass did not read heading by heading; the record says so and describes the categories and the mechanism only. The People door note that announced is not in force now points at this record, since the two records it pointed at before are both in force. The Business door step about assembling an evidence pack no longer says no window has opened, because most of the support package's windows have."
     },
