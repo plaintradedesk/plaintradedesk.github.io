@@ -322,6 +322,19 @@ a.door{text-decoration:none;color:var(--ink)}
 }
 .door[aria-current="page"] .q{color:var(--accent-ink);opacity:.82}
 a.pagelink{text-decoration:none;display:inline-block}
+/* A pagelink has carried aria-current since the standing pages were split into
+   real pages; it just had nothing to show for it, so a screen reader knew which
+   page you were on and a sighted reader did not.
+   A door is a card and can take the full accent fill. A pagelink is a pill, and
+   the site already has a language for a selected pill: .chip input:checked, which
+   marks itself with a border and weight rather than a fill, because white-on-teal
+   at this size would outshout the door it sits under. This does the same, with
+   --accent-soft behind it so it still reads as the accent family rather than as a
+   fourth idea. That token has been defined in all three theme blocks since the
+   beginning and used nowhere; this is what it was for. */
+.pagelink[aria-current="page"]{
+  background:var(--accent-soft);border-color:var(--accent);font-weight:600;
+}
 /* The prototype carried these three as inline style attributes. They are rules
    now, because a stylesheet is the only place a rule can be reviewed. */
 .seasons fieldset{border:0;padding:0;margin:0}

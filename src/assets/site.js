@@ -88,8 +88,28 @@
     var desk = doc.getElementById('doorview');
     var doors = doc.querySelectorAll('.door');
     var standing = doc.querySelectorAll('.standing');
+    // Collected here rather than beside their click handlers below, because
+    // showDoor and showPage both mark them and neither should depend on where
+    // in this block a var happens to be written.
+    var links = doc.querySelectorAll('.pagelink');
     var opening = activePanel();
     var currentDoor = opening ? opening.getAttribute('data-door') : null;
+
+    // The multi-page build writes aria-current on the pagelink you are on and
+    // simply leaves it off the others; it never writes aria-current="false".
+    // Doing exactly the same here leaves the offline file in the same DOM state
+    // as the built page, so the one rule in the stylesheet covers both and there
+    // is no second way for a pagelink to say it is not the current one. null
+    // clears the lot, which is what standing on a door means.
+    var markPage = function (id) {
+      for (var p = 0; p < links.length; p++) {
+        if (id !== null && links[p].getAttribute('data-page') === id) {
+          links[p].setAttribute('aria-current', 'page');
+        } else {
+          links[p].removeAttribute('aria-current');
+        }
+      }
+    };
 
     var showDoor = function (id, scroll) {
       currentDoor = id;
@@ -100,6 +120,7 @@
         doors[d].setAttribute('aria-selected',
           doors[d].getAttribute('data-door') === id ? 'true' : 'false');
       }
+      markPage(null);
       view.hidden = true;
       desk.hidden = false;
       apply();
@@ -117,6 +138,7 @@
       desk.hidden = true;
       view.hidden = false;
       for (var d = 0; d < doors.length; d++) doors[d].setAttribute('aria-selected', 'false');
+      markPage(id);
       view.scrollIntoView({ block: 'start' });
       return true;
     };
@@ -127,7 +149,6 @@
         showDoor(this.getAttribute('data-door'), true);
       });
     }
-    var links = doc.querySelectorAll('.pagelink');
     for (var l = 0; l < links.length; l++) {
       links[l].addEventListener('click', function (e) {
         e.preventDefault();
