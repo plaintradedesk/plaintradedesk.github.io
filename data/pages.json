@@ -90,7 +90,7 @@
     "about": {
       "path": "about.html",
       "title": "About this site",
-      "stamp": "Last updated 24 August 2026",
+      "stamp": "Last updated 16 September 2026",
       "body": [
         {
           "tag": "p",
@@ -111,6 +111,27 @@
         {
           "tag": "p",
           "text": "The seasons on the People door work the same way. They filter which steps you see. They never change a fact, because a fact does not change with the reader's age."
+        },
+        {
+          "tag": "h3",
+          "text": "Two agreements you'll see named here"
+        },
+        {
+          "tag": "p",
+          "text": "CUSMA is the Canada-United States-Mexico Agreement, in force since 2020, and the successor to NAFTA. It is named on the US tariff records for one reason worth stating plainly: qualifying under it does not exempt a line from the Section 338 duty, and it does not make a banned line importable. CUSMA membership is widely taken to be a shield against any US tariff. On these measures it is not one."
+        },
+        {
+          "tag": "p",
+          "text": "CIFTA is the Canada-Israel Free Trade Agreement, in force since 1997. It is named on the cabinet safeguard record because goods originating in a CIFTA beneficiary are one of the exclusions from that surtax. That is the whole of why it appears here."
+        },
+        {
+          "tag": "p",
+          "text": "Those are the only two this site names, and it explains them only as far as its own records use them. The legal detail is in the records themselves. Canada has many more agreements than these, at every stage from under negotiation to signed to in force, and Global Affairs Canada keeps that list current. This site points at it rather than holding a copy that would go quietly out of date."
+        },
+        {
+          "tag": "link",
+          "href": "https://international.canada.ca/en/services/business/trade/agreements-negotiations/investment-agreements",
+          "text": "Canada's international trade and investment agreements, from Global Affairs Canada"
         },
         {
           "tag": "h3",

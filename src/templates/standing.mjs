@@ -62,9 +62,27 @@ ${gapsBlock}`;
 function prose(body, site, mode) {
   return body.map(b => {
     if (b.tag === 'download') return downloadBlock(site, mode);
+    if (b.tag === 'link') return linkBlock(b);
     const cls = b.class ? ` class="${escAttr(b.class)}"` : '';
     return `        <${b.tag}${cls}>${esc(b.text)}</${b.tag}>`;
   }).join('\n');
+}
+
+/**
+ * A paragraph that is a link out.
+ *
+ * Body text goes through esc(), so markup inside a p block is escaped and there
+ * is no way to write a link into one. That is the right default for copy. Where
+ * this site sends a reader somewhere else on purpose, the destination is its own
+ * block, with the URL in the data rather than buried in prose, so it is visible
+ * to the link checker and to whoever is maintaining the copy.
+ *
+ * Same target and rel as a source link on a record, and no mode branch: in the
+ * offline file this is still the honest answer to "where is the rest of this",
+ * whether or not the reader can reach it today.
+ */
+function linkBlock(b) {
+  return `        <p><a href="${escAttr(b.href)}" target="_blank" rel="noopener noreferrer">${esc(b.text)}</a></p>`;
 }
 
 /**

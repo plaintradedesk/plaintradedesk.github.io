@@ -226,7 +226,7 @@
       "t": ""
     },
     "pages.about.stamp": {
-      "en": "Last updated 24 August 2026",
+      "en": "Last updated 16 September 2026",
       "t": ""
     },
     "pages.about.description": {
@@ -254,38 +254,58 @@
       "t": ""
     },
     "pages.about.body[5].text": {
-      "en": "How it is kept current",
+      "en": "Two agreements you'll see named here",
       "t": ""
     },
     "pages.about.body[6].text": {
-      "en": "One pass every Monday morning through the Prime Minister's page, Finance Canada, the Canada Gazette Part II, the CBSA customs notices and a news sweep. Records that changed are updated, their checked dates are bumped, and the site rebuilds itself. On a normal week that is about forty minutes. In the week a major instrument lands it is about two hours.",
+      "en": "CUSMA is the Canada-United States-Mexico Agreement, in force since 2020, and the successor to NAFTA. It is named on the US tariff records for one reason worth stating plainly: qualifying under it does not exempt a line from the Section 338 duty, and it does not make a banned line importable. CUSMA membership is widely taken to be a shield against any US tariff. On these measures it is not one.",
       "t": ""
     },
     "pages.about.body[7].text": {
-      "en": "The site works out its own staleness and displays it. If a record has not been rechecked it says so on the record. If the whole file has gone unchecked, a notice appears before anything else. None of that is typed in by hand, which is the point: a promise to stay current is only worth what the mechanism behind it is worth.",
+      "en": "CIFTA is the Canada-Israel Free Trade Agreement, in force since 1997. It is named on the cabinet safeguard record because goods originating in a CIFTA beneficiary are one of the exclusions from that surtax. That is the whole of why it appears here.",
       "t": ""
     },
     "pages.about.body[8].text": {
-      "en": "If you cannot rely on being online",
+      "en": "Those are the only two this site names, and it explains them only as far as its own records use them. The legal detail is in the records themselves. Canada has many more agreements than these, at every stage from under negotiation to signed to in force, and Global Affairs Canada keeps that list current. This site points at it rather than holding a copy that would go quietly out of date.",
+      "t": ""
+    },
+    "pages.about.body[9].text": {
+      "en": "Canada's international trade and investment agreements, from Global Affairs Canada",
       "t": ""
     },
     "pages.about.body[10].text": {
-      "en": "Who is writing this",
+      "en": "How it is kept current",
       "t": ""
     },
     "pages.about.body[11].text": {
-      "en": "The same person also builds a small family of consumer safety tools under the Guardian name. Those are separate work, separately named, and this site carries none of it and earns nothing from it. The connection worth stating is the discipline rather than the brand: report gaps as gaps, refuse rather than guess, and never claim a clean result you did not earn.",
+      "en": "One pass every Monday morning through the Prime Minister's page, Finance Canada, the Canada Gazette Part II, the CBSA customs notices and a news sweep. Records that changed are updated, their checked dates are bumped, and the site rebuilds itself. On a normal week that is about forty minutes. In the week a major instrument lands it is about two hours.",
       "t": ""
     },
     "pages.about.body[12].text": {
-      "en": "How it ends",
+      "en": "The site works out its own staleness and displays it. If a record has not been rechecked it says so on the record. If the whole file has gone unchecked, a notice appears before anything else. None of that is typed in by hand, which is the point: a promise to stay current is only worth what the mechanism behind it is worth.",
       "t": ""
     },
     "pages.about.body[13].text": {
+      "en": "If you cannot rely on being online",
+      "t": ""
+    },
+    "pages.about.body[15].text": {
+      "en": "Who is writing this",
+      "t": ""
+    },
+    "pages.about.body[16].text": {
+      "en": "The same person also builds a small family of consumer safety tools under the Guardian name. Those are separate work, separately named, and this site carries none of it and earns nothing from it. The connection worth stating is the discipline rather than the brand: report gaps as gaps, refuse rather than guess, and never claim a clean result you did not earn.",
+      "t": ""
+    },
+    "pages.about.body[17].text": {
+      "en": "How it ends",
+      "t": ""
+    },
+    "pages.about.body[18].text": {
       "en": "This is a bounded personal project rather than an institution. It runs for the duration of this disruption and is then archived honestly, or it is deliberately handed to a body that can carry it. The failure it is designed to avoid is the third path, where a site drifts, nobody says it is over, and it sits there being quietly wrong.",
       "t": ""
     },
-    "pages.about.body[14].text": {
+    "pages.about.body[19].text": {
       "en": "Corrections and questions go to dasoftworks@gmail.com. It is read by a person, and corrections are welcome and acted on.",
       "t": ""
     },
