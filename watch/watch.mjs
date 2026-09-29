@@ -418,7 +418,7 @@ const HELP = `The Plain Trade Desk source watcher.
 
   --fixtures DIR   read from a fixture manifest instead of the network
   --state PATH     state file (default watch/state.json)
-  --out PATH       write the issue body here when there is something to say
+  --out PATH       write the issue body here; empty when there is nothing to say
   --json PATH      write the machine-readable report here
   --dry-run        do not write state
   --no-robots      skip the robots.txt check (fixtures only)
