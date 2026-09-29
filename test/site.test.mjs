@@ -162,7 +162,7 @@ const editJson = (dir, name, fn) => {
   await go('policy.html');
   const policy = await text('#cards');
   ok('steel surtax carries its instrument number', /SOR\/2025-95/.test(policy));
-  ok('steel surtax states the consolidation limitation openly', /17 June 2026/.test(policy));
+  ok('steel surtax states how current the consolidated text is', /current to 21 September 2026/.test(policy));
 
   /* ------------------------------------------------------------------ */
   g('SEASONS: they filter steps, never facts');
