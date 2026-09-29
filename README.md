@@ -462,7 +462,7 @@ page's meaningful content against the last run.
 primary instrument and reading it. That is the whole boundary, and the test suite fails if
 anybody widens it.
 
-An issue from it has up to three sections, and each is a pointer rather than a conclusion:
+An issue from it has up to five sections, and each is a pointer rather than a conclusion:
 
 - **New material.** Something was published that names an instrument a record cites, or uses
   the vocabulary the fact base uses. It names the related record ids, and says plainly when
@@ -473,8 +473,14 @@ An issue from it has up to three sections, and each is a pointer rather than a c
 - **Sources that could not be read.** A 403, a timeout, a refusal. These are reported as
   unread, never as unchanged, and no new hash is recorded, so the next run still compares
   against the last reading that actually succeeded.
+- **Sources that read fine but parsed to nothing.** The page answered, and the watcher got no
+  items out of it at all. None of the six sources can honestly be empty, so this means the page
+  changed shape under the reader. It is not a quiet week, and it is not unread either.
+- **Sources that read noticeably fewer items than usual.** Under half the source's recent
+  floor, once there are at least three earlier readings to compare against. Same cause, caught
+  earlier: a reader that still fits part of the page.
 
-When all three are empty it closes the issue rather than commenting on it. An issue reopened
+When all five are empty it closes the issue rather than commenting on it. An issue reopened
 daily with "nothing found" trains you to ignore it.
 
 What to do with one: read the document it points at. Then follow the same five steps as the
