@@ -83,10 +83,10 @@
     {
       "id": "US_S338_BAN_2026-09",
       "title": "United States import ban on selected Canadian motor vehicles, dairy and alcohol",
-      "status": "announced",
+      "status": "inforce",
       "evidence_class": "instrument",
       "effective": "2026-09-29",
-      "verified": "2026-09-14",
+      "verified": "2026-09-29",
       "sectors": [
         "auto",
         "food"
@@ -107,8 +107,8 @@
           "value": "Federal Register, 14 September 2026"
         },
         {
-          "label": "Takes effect",
-          "value": "29 September 2026, 12:01am Eastern. Not yet in force"
+          "label": "In force since",
+          "value": "29 September 2026, 12:01am Eastern"
         },
         {
           "label": "What changes",
@@ -119,9 +119,9 @@
           "value": "The 15 September changes to the 50 percent duty's coverage, which altered what is taxed, not whether it may enter"
         }
       ],
-      "plain": "This has not happened yet. From 29 September 2026, the United States plans to stop certain Canadian products from entering at all, not just tax them. It applies to specific motor vehicles, dairy products and alcoholic drinks that already carry the 50 percent tax, and only to the ones on the published lists, not to everything in those three categories. If your workplace makes or ships any of these, ask now whether your product is on the list rather than waiting for the 29th.",
-      "operator": "Three proclamations signed 8 September 2026 and published 14 September, effective for goods imported on or after 12:01am Eastern on 29 September 2026. Each takes a subset of the motor vehicle, dairy and alcoholic-beverage lines already under the 50 percent Section 338 duty and excludes them from importation outright. The category is not the test; the Annex to each proclamation is. Check your specific tariff line against the relevant Annex before assuming you are in or out, because a line that is in cannot be landed at any duty rate, under any Incoterm, or on a CUSMA claim once the ban applies. Anything you can ship and enter before 12:01am Eastern on the 29th is under the existing duty, not the ban.",
-      "policy": "Three proclamations signed 8 September 2026 and published in the Federal Register on 14 September: Proclamation 11061 (alcoholic beverages, document 2026-18835, 91 FR 58311), Proclamation 11062 (dairy, document 2026-18836, 91 FR 58319) and Proclamation 11063 (motor vehicles, document 2026-18837, 91 FR 58325). Each rests on the same authority as the original duties: Section 338 of the Tariff Act of 1930 (19 U.S.C. 1338), Section 301 of title 3 of the United States Code, and Section 604 of the Trade Act of 1974 (19 U.S.C. 2483). Section 338 also authorizes the President to exclude from importation the articles of a country that maintains or increases its discrimination after duties have been imposed, and that is the step each proclamation takes: certain products of Canada currently subject to the additional duties under Proclamations 11046, 11047 and 11048 respectively are excluded from importation into the United States, effective for goods imported on or after 12:01am Eastern on 29 September 2026. The excluded products are set out in each proclamation's own Annex. This record describes the three categories and the mechanism; it does not enumerate the lines, which have not been read heading by heading, and a reader with a specific product needs the Annex, not this summary.\n\nThe sequence, for tracing: the 50 percent duties under the three July proclamations took effect 22 August 2026; Proclamations 11064 and 11065, signed the same 8 September, modified the alcoholic-beverage and motor-vehicle coverage of that duty with effect from 15 September; and these three proclamations convert a covered subset in all three categories from a duty to a bar on entry from 29 September. The status is announced: the instruments are published and dated, and nothing changes at the border until the 29th.",
+      "plain": "Since 29 September 2026, the United States has stopped certain Canadian products from entering at all, not just taxed them. It applies to specific motor vehicles, dairy products and alcoholic drinks that already carried the 50 percent tax, and only to the ones on the published lists, not to everything in those three categories. If your workplace makes or ships any of these, ask whether your product is on the list.",
+      "operator": "Three proclamations signed 8 September 2026 and published 14 September, in force for goods imported on or after 12:01am Eastern on 29 September 2026. Each takes a subset of the motor vehicle, dairy and alcoholic-beverage lines already under the 50 percent Section 338 duty and excludes them from importation outright. The category is not the test; the Annex to each proclamation is. Check your specific tariff line against the relevant Annex before assuming you are in or out, because a line that is in cannot be landed at any duty rate, under any Incoterm, or on a CUSMA claim. Goods imported before the cutoff but not yet entered for consumption, or withdrawn from warehouse for consumption, stay under the 50 percent duty rather than the ban, by each proclamation's own terms. This site has not found a CBP CSMS message implementing the exclusion, so CBP's handling of goods in transit, in bonded warehouse or in a foreign-trade zone is not confirmed here.",
+      "policy": "Three proclamations signed 8 September 2026 and published in the Federal Register on 14 September: Proclamation 11061 (alcoholic beverages, document 2026-18835, 91 FR 58311), Proclamation 11062 (dairy, document 2026-18836, 91 FR 58319) and Proclamation 11063 (motor vehicles, document 2026-18837, 91 FR 58325). Each rests on the same authority as the original duties: Section 338 of the Tariff Act of 1930 (19 U.S.C. 1338), Section 301 of title 3 of the United States Code, and Section 604 of the Trade Act of 1974 (19 U.S.C. 2483). Section 338 also authorizes the President to exclude from importation the articles of a country that maintains or increases its discrimination after duties have been imposed, and that is the step each proclamation takes: certain products of Canada currently subject to the additional duties under Proclamations 11046, 11047 and 11048 respectively are excluded from importation into the United States, effective for goods imported on or after 12:01am Eastern on 29 September 2026. The excluded products are set out in each proclamation's own Annex. This record describes the three categories and the mechanism; it does not enumerate the lines, which have not been read heading by heading, and a reader with a specific product needs the Annex, not this summary.\n\nThe sequence, for tracing: the 50 percent duties under the three July proclamations took effect 22 August 2026; Proclamations 11064 and 11065, signed the same 8 September, modified the alcoholic-beverage and motor-vehicle coverage of that duty with effect from 15 September; and these three proclamations convert a covered subset in all three categories from a duty to a bar on entry from 29 September. The status is in force: the proclamations are self-executing on their stated date, 12:01am Eastern on 29 September 2026, and nothing published in the Federal Register since they were signed amends, delays or suspends them.",
       "sources": [
         {
           "label": "Proclamation 11063, excluding certain Canadian motor vehicles, Federal Register 14 September 2026",
@@ -134,6 +134,50 @@
         {
           "label": "Proclamation 11061, excluding certain Canadian alcoholic beverages, Federal Register 14 September 2026",
           "url": "https://www.federalregister.gov/documents/2026/09/14/2026-18835/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued"
+        }
+      ]
+    },
+    {
+      "id": "US_PROCUREMENT_2026-09",
+      "title": "United States moves to shut Canadian goods out of federal civil procurement",
+      "status": "announced",
+      "evidence_class": "instrument",
+      "effective": "2026-09-16",
+      "verified": "2026-09-29",
+      "sectors": [],
+      "doors": [
+        "business",
+        "policy"
+      ],
+      "facts": [
+        {
+          "label": "Signed",
+          "value": "16 September 2026, presidential memorandum, Restoring Reciprocity in Government Procurement"
+        },
+        {
+          "label": "Published",
+          "value": "Federal Register, 21 September 2026, 91 FR 59979"
+        },
+        {
+          "label": "Scope",
+          "value": "Federal civil procurement, Canadian-origin items"
+        },
+        {
+          "label": "What changes now",
+          "value": "Nothing yet. Agencies are directed to identify Canadian-origin items that can be removed or made non-available for purchase"
+        },
+        {
+          "label": "Deadline",
+          "value": "None stated"
+        }
+      ],
+      "plain": "The United States government has said it will look for Canadian-made goods that its civilian agencies can stop buying. Nothing has been taken off yet, and no date is set. It matters mainly to Canadian companies that sell to the US government, not to what you buy in a store.",
+      "operator": "This matters if you sell Canadian-origin goods to US federal civil agencies, directly or through a US reseller or distributor. Nothing has been removed from any procurement system yet. The memorandum directs the Office of Management and Budget and the US Trade Representative to identify Canadian-origin items that can be removed or made non-available for purchase, and to tell agencies about domestic alternatives, but it sets no deadline and names no mechanism. The things to watch are action by the agencies you sell to and any OMB, GSA or Federal Acquisition Regulatory Council notice. It covers federal civil procurement only, as written.",
+      "policy": "A presidential memorandum, Restoring Reciprocity in Government Procurement, signed 16 September 2026 and published in the Federal Register on 21 September (91 FR 59979, document 2026-19336). It applies to Canada only. It is issued under \"the Constitution and the laws of the United States of America\" with no statute named as its authority; section 301 of title 3 appears only as the basis on which agency heads may redelegate.\n\nSection 1 gives its stated reasons: that Canada \"has unreasonably imposed new barriers to United States companies seeking to access the Canadian government procurement market by, among other things, establishing preferences for Canadian products and Canadian content under its 'Buy Canadian' policy\"; that Canadian provinces have also limited access to their procurement markets; and that Canadian companies \"continue to have preferential access to the United States Government procurement system\", including all procurement the United States covers under the WTO Agreement on Government Procurement, which the memorandum puts at over $280 billion a year. Those are the memorandum's own reasons, reported as such.\n\nSection 2(a) directs the OMB Director and the Trade Representative, with the Federal Acquisition Regulatory Council, to \"identify and take all steps permitted by applicable law with respect to Canadian origin items in the Federal civil procurement system that can, where warranted, be removed or made non-available for purchase\", and the Director to notify agencies of domestic alternatives. Section 2(b) requires progress updates \"from time to time\"; 2(c) has the Trade Representative keep monitoring Canadian federal and provincial procurement, report any need for further action, and report circumstances that might warrant restoring an item, such as a change in Canadian policy; 2(d) directs agency heads to implement. It states no deadline and no effective date, specifies no mechanism beyond steps permitted by applicable law, and does not mention the Trade Agreements Act, the Buy American Act or CUSMA. The status is announced: the instrument is published, but no Canadian-origin item has been found removed from any federal procurement system.",
+      "sources": [
+        {
+          "label": "Presidential memorandum, Restoring Reciprocity in Government Procurement, Federal Register 21 September 2026",
+          "url": "https://www.federalregister.gov/d/2026-19336"
         }
       ]
     },

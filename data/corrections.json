@@ -1,6 +1,16 @@
 {
   "corrections": [
     {
+      "date": "29 Sep 2026",
+      "what": "The United States import ban on selected Canadian motor vehicles, dairy and alcoholic beverages is now in force, not announced.",
+      "detail": "Proclamations 11061, 11062 and 11063 exclude the covered lines from importation for goods imported on or after 12:01am Eastern on 29 September 2026, and nothing published in the Federal Register since they were signed amends, delays or suspends them. They are self-executing on their stated date, the same standard used for the 15 September scope change, so the record moves to in force without waiting for a CBP bulletin, which this site has not found. The registers no longer describe the ban as coming, and the operator register now gives the proclamations' own transition rule for goods imported before the cutoff. The People door note that announced is not in force now points at the procurement memorandum record, which is announced."
+    },
+    {
+      "date": "29 Sep 2026",
+      "what": "A new record: the United States has directed its agencies to find Canadian-origin goods that can be removed from federal civil procurement. It is announced, not in force.",
+      "detail": "A presidential memorandum signed 16 September 2026 and published in the Federal Register on 21 September, 91 FR 59979, directs the OMB Director and the Trade Representative to identify Canadian-origin items in federal civil procurement that can be removed or made non-available for purchase. It sets no deadline and no effective date, and no item has been found removed yet, so the record is announced. The record gives the memorandum's stated reasons, Canada's Buy Canadian policy and provincial procurement, as its stated reasons. It sits on the Business and Policy doors only; nothing in the instrument says anything specific about the GTA, and it does not reach a household directly."
+    },
+    {
       "date": "14 Sep 2026",
       "what": "Cement is no longer offered as an example of a good under the 50 percent tariff. The 15 September scope change took the cement line off the list.",
       "detail": "The plain-language register on the 50 percent tariff record listed cement among its examples of covered goods. CBP's CSMS 69851916 names HTSUS 2523.29.00, Portland cement, among the ten classifications removed from Section 338 coverage effective 15 September 2026, and the bulletin's attached list of every classification covered as of that date, including the 122 added ones, contains no chapter 25 line at all. So cement is out, not merely moved. The example is dropped and the register now names cement as one of the goods taken off on 15 September, so a reader who remembers it being there is told why it is not."
