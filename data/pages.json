@@ -27,7 +27,7 @@
     },
     "mechanism": {
       "title": "How this stays maintainable",
-      "intro": "Every fact is written once and stored once, at three depths, in the same record. Switching doors changes which depth you read, not which document you are in. When the Canadian list is published, one record is edited and all four doors update together. That is why one person can keep four audiences current.",
+      "intro": "Every fact is written once and stored once, at three depths, in the same record. Switching doors changes which depth you read, not which document you are in. When a measure changes, one record is edited and all four doors update together. That is why one person can keep four audiences current.",
       "registers": [
         {
           "eyebrow": "Plain register",

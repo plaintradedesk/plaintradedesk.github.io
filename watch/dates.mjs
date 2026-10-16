@@ -58,7 +58,7 @@ export function dateEvents(shocks, runDate, previous = {}) {
       // Read once, into a name of its own: the boundary check in the test suite
       // forbids anything in watch/ that looks like assigning a verified date,
       // and a comparison written against the field directly looks like one.
-      const lastChecked = s.verified;
+      const lastChecked = s.verified ?? s.checked;
       const checkedSince = typeof lastChecked === 'string' && lastChecked >= d.date;
 
       if (ahead >= 1 && ahead <= AHEAD_DAYS && !seen.coming) {

@@ -4,7 +4,7 @@
       "id": "ACT_ASK_EMPLOYER_EXPOSURE",
       "text": "Ask your employer directly whether your plant or site ships to the United States, and whether any of it is on the 50 percent list.",
       "note": "Most Canadian trade is not affected. Knowing which side of that line your workplace sits on is the single most useful thing you can find out.",
-      "by": "This week",
+      "by": "Now",
       "urgent": true,
       "doors": [
         "people"
@@ -17,13 +17,14 @@
         "working"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_ASK_WORK_SHARING",
       "text": "If your hours are already being cut, ask whether your employer is applying for Work-Sharing.",
       "note": "Work-Sharing keeps people on payroll at reduced hours instead of laying them off, and it has to be applied for by the employer, not by you.",
-      "by": "This week",
+      "by": "Now",
       "urgent": true,
       "doors": [
         "people"
@@ -37,13 +38,14 @@
         "working"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_READ_STANDARDS_EARLY",
       "text": "Find out now what your province's rules are on reduced hours and temporary layoff.",
       "note": "The thresholds differ by province and they matter. Reading them while calm is a different experience from reading them the week hours are cut.",
-      "by": "This week",
+      "by": "Now",
       "urgent": false,
       "doors": [
         "people"
@@ -56,13 +58,14 @@
         "working"
       ],
       "family": false,
-      "refer": "employment_standards"
+      "refer": "employment_standards",
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_PRICES_MOVE_SEPTEMBER",
-      "text": "Expect some prices to move in September, not August, and mostly on American-made goods.",
-      "note": "The Canadian counter-tariffs are what touch shop prices here. They start 8 September and the product list is not published yet.",
-      "by": "Before 8 Sept",
+      "text": "Expect some prices to have moved since 8 September, mostly on American-made goods.",
+      "note": "The Canadian counter-tariffs are what touch shop prices here. They have applied since 8 September, and Finance Canada publishes the full list of products they cover.",
+      "by": "Now",
       "urgent": false,
       "doors": [
         "people"
@@ -78,12 +81,13 @@
         "past"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_WAIT_FOR_THE_GAZETTE",
-      "text": "Treat any specific claim about which products are affected as unconfirmed until the list is published in the Canada Gazette.",
-      "note": "News explains why something is happening. The Gazette and the CBSA customs notice are what actually happened.",
+      "text": "Check any specific claim about which products are affected against the published order or Finance's complete list.",
+      "note": "News explains why something is happening. The order, SOR/2026-186, and the CBSA customs notice are what actually happened.",
       "by": "Ongoing",
       "urgent": false,
       "doors": [
@@ -100,7 +104,8 @@
         "past"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_CHOOSE_A_DIRECTION",
@@ -119,7 +124,8 @@
         "entering"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_ASK_AT_OFFER_STAGE",
@@ -138,7 +144,8 @@
         "entering"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_TIMING_RISK_NOT_TARIFFS",
@@ -157,11 +164,12 @@
         "approaching"
       ],
       "family": false,
-      "refer": "financial_advisor"
+      "refer": "financial_advisor",
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_ANNOUNCED_IS_NOT_IN_FORCE",
-      "text": "Announced is not in force. Several measures being discussed this month do not exist as instruments yet.",
+      "text": "Announced is not in force. The US procurement memorandum exists, but it has not yet taken any Canadian product off a purchasing list.",
       "note": "This page marks which is which for exactly that reason. The status on each card above is the thing to read before acting on anything.",
       "by": "Ongoing",
       "urgent": false,
@@ -176,13 +184,14 @@
         "approaching"
       ],
       "family": false,
-      "refer": "financial_advisor"
+      "refer": "financial_advisor",
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_FIXED_INCOME_WATCH_CANADA",
       "text": "On a fixed income the exposure is prices rather than employment, so the list to watch is the Canadian one.",
-      "note": "Counter-measures raise the cost of goods coming in from the United States, which is what reaches a shopping basket. The measures already in force apply to what Canada sells outward and mostly do not.",
-      "by": "Before 8 Sept",
+      "note": "Counter-measures raise the cost of goods coming in from the United States, which is what reaches a shopping basket, and Canada's have been in force since 8 September. The US measures apply to what Canada sells outward and mostly do not.",
+      "by": "Ongoing",
       "urgent": false,
       "doors": [
         "people"
@@ -195,13 +204,14 @@
         "past"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_WAIT_ON_A_BIG_PURCHASE",
-      "text": "If you were planning to replace something imported and expensive this autumn, the early September list is worth waiting to read.",
-      "note": "Two weeks of patience costs nothing while the list is unpublished. This is not a suggestion to buy early, which would be acting on a guess about a document that does not exist yet.",
-      "by": "Before 8 Sept",
+      "text": "If you are replacing something imported and expensive, check whether it is American-made and on Finance Canada's published list first.",
+      "note": "A US-made item on the list carries a Canadian surtax of 15, 25 or 50 percent at the border, and the same thing made elsewhere does not. That is a fact to have in hand, not a reason to buy or wait.",
+      "by": "Before you buy",
       "urgent": false,
       "doors": [
         "people"
@@ -214,11 +224,12 @@
         "past"
       ],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_ANSWER_THE_CHILDREN",
-      "text": "If children in the house are picking up on the worry, the plain version is that this affects some workplaces and not most, and that nobody has lost anything yet.",
+      "text": "If children in the house are picking up on the worry, the plain version is that this affects some workplaces and not most, and that there is help for families where it does.",
       "note": "Children generally handle a specific and honest answer better than an atmosphere with no answer in it.",
       "by": "If it comes up",
       "urgent": false,
@@ -226,7 +237,8 @@
         "people"
       ],
       "shocks": [
-        "US_S338_2026-08"
+        "US_S338_2026-08",
+        "CA_SUPPORT_2026-08"
       ],
       "sectors": [],
       "seasons": [
@@ -236,7 +248,8 @@
         "past"
       ],
       "family": true,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_HOURS_CUT_FIRST_CALLS",
@@ -256,13 +269,14 @@
         "entering"
       ],
       "family": true,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_TARIFF_CLAUSE_IN_QUOTES",
       "text": "Put a tariff clause in every open quote and every contract you are about to sign.",
       "note": "A quote issued today without one is a quote you may have to honour at a cost you cannot yet calculate.",
-      "by": "Before 8 Sept",
+      "by": "Now",
       "urgent": true,
       "doors": [
         "business"
@@ -274,13 +288,14 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_REVIEW_OPEN_POS",
-      "text": "Review open purchase orders for US-origin steel, appliances, agricultural equipment, paper and electronics.",
-      "note": "These are the named counter-tariff sectors. Decide deliberately whether to bring an order forward, hold it, or source elsewhere.",
-      "by": "Before 8 Sept",
+      "text": "Check open purchase orders for US-origin steel, appliances, agricultural equipment, paper and electronics against the published list.",
+      "note": "These are the named counter-tariff sectors, and the surtax has applied to US-origin goods imported since 8 September, at 15, 25 or 50 percent. Price it into anything still to arrive, or decide deliberately to source elsewhere.",
+      "by": "Now",
       "urgent": true,
       "doors": [
         "business"
@@ -296,13 +311,14 @@
       ],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_CONFIRM_INCOTERMS",
       "text": "Confirm who pays the duty under your Incoterms on every live shipment in both directions.",
       "note": "This is the most common expensive surprise. The importer of record carries the liability regardless of who filed the paperwork.",
-      "by": "This week",
+      "by": "Now",
       "urgent": false,
       "doors": [
         "business"
@@ -314,13 +330,14 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_CHECK_YOUR_OWN_LINES",
       "text": "Check your own products against the published US list using the free CFIB tool or the Canada Tariff Finder.",
       "note": "Both are free and both are better than anything this project would build. Use them rather than guessing at a classification.",
-      "by": "This week",
+      "by": "Now",
       "urgent": false,
       "doors": [
         "business"
@@ -331,12 +348,13 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_ASSEMBLE_EVIDENCE_PACK",
       "text": "Assemble the evidence pack that every support program will ask for.",
-      "note": "Two years of financials, your US revenue concentration, affected headcount, and your top exposed inputs. Most of the support package's windows are already open; have this ready for the ones that are and the ones still to come.",
+      "note": "Two years of financials, your US revenue concentration, affected headcount, and your top exposed inputs. All five pieces of the support package are now open, so have this ready before applying to any of them.",
       "by": "Prepare now",
       "urgent": false,
       "doors": [
@@ -348,7 +366,8 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_USE_A_BROKER_OR_RULING",
@@ -366,13 +385,14 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_LOCAL_TARIFF_HUBS",
       "text": "Start with Invest Brampton's tariff hub and Invest Mississauga's Partners in Trade.",
       "note": "Both are actively maintained, both aggregate the funding programs, and both give you an actual person to speak to locally.",
-      "by": "This week",
+      "by": "Now",
       "urgent": false,
       "doors": [
         "place"
@@ -383,13 +403,14 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_AUTO_AND_PARTS_IN_PEEL",
       "text": "If you are in auto or parts, note that motor vehicles are on the Section 338 list, contrary to a lot of early commentary.",
       "note": "This matters more in Peel and Windsor-Essex than anywhere else in the country.",
-      "by": "This week",
+      "by": "Now",
       "urgent": false,
       "doors": [
         "place"
@@ -402,7 +423,8 @@
       ],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_MAP_YOUR_AREA",
@@ -419,11 +441,12 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_WATCH_THE_GAZETTE",
-      "text": "Canada Gazette Part II for the surtax order, then the CBSA customs notice that makes it operational.",
+      "text": "Canada Gazette Part II for amendments or remission orders under the United States Surtax Order (2026), SOR/2026-186, then the CBSA customs notice that makes each one operational.",
       "note": "Part II publishes every second Wednesday at 9am Eastern, with extra editions in a crisis. The customs notice is what brokers actually key.",
       "by": "Watch",
       "urgent": true,
@@ -436,12 +459,13 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_WATCH_DELIVERY_MECHANISM",
-      "text": "Whether the 7.5 billion dollar package arrives as new programs or as expansion of the existing BDC and regional agency channels.",
-      "note": "The delivery mechanism determines how fast money actually reaches a firm, and it is the difference between weeks and quarters.",
+      "text": "Each support program's own page, not the 25 August announcement, for the terms that actually apply.",
+      "note": "All five pieces went through existing channels: a Strategic Response Fund stream, BDC, the regional development agencies and the loan facility's administrator. Their pages are where terms change, and they do not always agree with each other: the loan facility's own factsheet still gives the old maximum term.",
       "by": "Watch",
       "urgent": false,
       "doors": [
@@ -453,7 +477,8 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     },
     {
       "id": "ACT_WATCH_S338_CHALLENGE",
@@ -470,7 +495,8 @@
       "sectors": [],
       "seasons": [],
       "family": false,
-      "refer": null
+      "refer": null,
+      "reviewed": "2026-10-16"
     }
   ]
 }

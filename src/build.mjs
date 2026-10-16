@@ -41,6 +41,14 @@ export const CADENCE_DAYS = 7;
 export const RECHECK_AFTER = 21;
 export const STALE_FAIL = 30;
 
+/* Steps have a gate of their own. A step is advice built on records, and it went
+   stale in slower motion: "Before 8 Sept" was still on the site in October, and
+   "This week" had been there since August. A step carries `reviewed`, the date
+   somebody last read it against its records, and the build refuses at sixty
+   days, twice the records' limit because a step restates rather than reports.
+   A step tied to a date carries `until`, and the build refuses once it passes. */
+export const STEP_STALE_FAIL = 60;
+
 const argv = process.argv.slice(2);
 const flag = name => argv.includes(name);
 const option = name => {
@@ -101,6 +109,33 @@ function stalenessReport(data, ctx, warnWithin = 7) {
       `${STALE_FAIL - s.age} day${STALE_FAIL - s.age === 1 ? '' : 's'} left\n    ${s.title}`).join('\n');
 }
 
+/**
+ * Steps approaching their own gates: `reviewed` within a week of sixty days, or
+ * an `until` within a week. Printed beside the records' report, and the weekly
+ * check raises on its heading the same way.
+ */
+function stepsReport(data, ctx, warnWithin = 7) {
+  const rows = [];
+  for (const a of data.actions) {
+    if (a.reviewed) {
+      const left = STEP_STALE_FAIL - dayDiff(a.reviewed, ctx.today);
+      if (left <= warnWithin) {
+        rows.push(`  ${a.id}  last reviewed ${fmtDate(a.reviewed)}, ${left} day${left === 1 ? '' : 's'} left`);
+      }
+    }
+    if (a.until) {
+      const left = dayDiff(ctx.today, a.until);
+      if (left <= warnWithin) {
+        rows.push(`  ${a.id}  "${a.by}" runs until ${fmtDate(a.until)}, ${left} day${left === 1 ? '' : 's'} left`);
+      }
+    }
+  }
+  if (!rows.length) {
+    return `No step is within ${warnWithin} days of its until date or of the ${STEP_STALE_FAIL} day review gate.`;
+  }
+  return `Steps approaching their gates (within ${warnWithin} days):\n` + rows.join('\n');
+}
+
 function writeInto(dir, files) {
   rmSync(dir, { recursive: true, force: true });
   mkdirSync(dir, { recursive: true });
@@ -144,6 +179,7 @@ async function main() {
     cadenceDays: CADENCE_DAYS,
     recheckAfter: RECHECK_AFTER,
     staleFail: STALE_FAIL,
+    stepStaleFail: STEP_STALE_FAIL,
     baseUrl: config.baseUrl,
     cname: config.cname,
     archived,
@@ -202,6 +238,7 @@ async function main() {
 
   if (flag('--validate-only')) {
     console.log('\n' + stalenessReport(data, ctx));
+    if (!ctx.archived) console.log(stepsReport(data, ctx));
     console.log('\nValidation only. Nothing rendered, nothing written.');
     return;
   }
@@ -256,6 +293,7 @@ async function main() {
   }
   console.log(`\nFreshness: ${fresh.label}. Known gaps: ${gaps.length}.`);
   console.log(stalenessReport(data, ctx));
+  if (!ctx.archived) console.log(stepsReport(data, ctx));
 }
 
 main().catch(e => {

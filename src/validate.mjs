@@ -51,6 +51,15 @@ const isText = v => typeof v === 'string' && v.trim().length > 0;
  */
 export const DATE_KINDS = ['starts', 'ends', 'review'];
 
+/**
+ * A step's `by` label that only holds until some date: one with a number or a
+ * month in it ("Before 8 Sept", "By 31 March"), or a relative time ("This week",
+ * "Today"). "Before you buy" and "If hours are cut" are conditions, not dates.
+ */
+const MONTH = /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\b/i;
+const RELATIVE = /\b(this|next) (week|month|year)\b|\btoday\b|\btomorrow\b|\btonight\b/i;
+export const isTimeBound = by => /\d/.test(String(by)) || MONTH.test(String(by)) || RELATIVE.test(String(by));
+
 /** The shape, and also a day the calendar has: 2027-02-30 is not a date. */
 const isRealDate = v => {
   if (!isDate(v)) return false;
@@ -188,6 +197,30 @@ export function validateData(data, ctx) {
 
     for (const k of a.sectors || []) if (!sectorKeys.has(k)) r.fail('schema', id, `unknown sector "${k}"`);
     for (const s of a.seasons || []) if (!seasonIds.has(s)) r.fail('schema', id, `unknown season "${s}"`);
+
+    // Gate 2, for steps. Records had a staleness gate and steps had none, so
+    // "Before 8 Sept" was still telling people what to do in October and "This
+    // week" had been on the site since August, with nothing to flag either.
+    if (!isRealDate(a.reviewed)) {
+      r.fail(2, id, `reviewed must be the YYYY-MM-DD date this step was last read against its records, got "${a.reviewed}"`);
+    } else {
+      const age = dayDiff(a.reviewed, ctx.today);
+      if (age < 0) r.fail(2, id, `reviewed date ${fmtDate(a.reviewed)} is in the future`);
+      else if (age > (ctx.stepStaleFail ?? 60) && !ctx.archived) {
+        r.fail(2, id, `step last reviewed ${fmtDate(a.reviewed)}, ${age} days ago. The limit for steps is ` +
+          `${ctx.stepStaleFail ?? 60}. Read it against the records it links, then move the date.`);
+      }
+    }
+    if (a.until !== undefined) {
+      if (!isRealDate(a.until)) r.fail('schema', id, `until must be a real YYYY-MM-DD date, got "${a.until}"`);
+      else if (dayDiff(ctx.today, a.until) < 0 && !ctx.archived) {
+        r.fail(2, id, `"${a.by}" ran until ${fmtDate(a.until)}, which has passed. ` +
+          'Rewrite the step for the present or retire it.');
+      }
+    } else if (isTimeBound(a.by)) {
+      r.fail('schema', id, `"${a.by}" names a date or a time, so the step needs an until date ` +
+        'after which it stops being true');
+    }
 
     if (a.refer !== null && a.refer !== undefined) {
       if (!REFERRALS.includes(a.refer)) r.fail('schema', id, `refer "${a.refer}" is not one of ${REFERRALS.join(', ')}`);

@@ -948,6 +948,24 @@ const runWith = (root, dir, extra = {}) => run({
   }
 
   {
+    // A step's until date, which the build enforces only when something is
+    // pushed. The watcher runs twice a day and says so a week ahead.
+    const root = tempRoot();
+    const file = path.join(root, 'data', 'actions.json');
+    const d = JSON.parse(readFileSync(file, 'utf8'));
+    d.actions[0].by = 'Before 3 Sept';
+    d.actions[0].until = '2026-09-03';
+    d.actions[1].by = 'Before 4 Sept';
+    d.actions[1].until = '2026-09-04';
+    writeFileSync(file, JSON.stringify(d, null, 2) + '\n');
+    const r = await runWith(root, fixtures(path.join(root, 'fx')));
+    ok('a step whose until is seven days out is reported as coming up',
+       r.report.comingUp.some(c => c.id === d.actions[0].id && /stops being true/.test(c.what)));
+    ok('one eight days out is not', !r.report.comingUp.some(c => c.id === d.actions[1].id));
+    ok('and the issue names the step', r.body.includes(`\`${d.actions[0].id}\``));
+  }
+
+  {
     // The real records, on the brief's own date: nothing is due within a week
     // of 15 October 2026, and nothing already handled is reported as arrived.
     const fb = loadFactBase(ROOT);

@@ -202,7 +202,29 @@ export function loadFactBase(root) {
     }
   }
 
-  return { shocks, citedBy, instruments };
+  return { shocks, citedBy, instruments, steps: stepDates(root) };
+}
+
+/**
+ * Steps that hold only until a date, in the shape the date watch reads.
+ *
+ * A step's `until` is the day it stops being true, and the build refuses once
+ * it passes. But the site is only rebuilt when something is pushed, so the
+ * refusal can arrive days late; the watcher runs twice a day and says so a week
+ * ahead. `reviewed` stands in for a record's verified date (as `checked`): a step read again on
+ * or after its `until` is not reported as arrived.
+ */
+export function stepDates(root) {
+  let actions = [];
+  try {
+    actions = JSON.parse(readFileSync(path.join(root, 'data', 'actions.json'), 'utf8')).actions || [];
+  } catch { return []; }
+  return actions.filter(a => typeof a.until === 'string').map(a => ({
+    id: a.id,
+    title: a.text,
+    checked: a.reviewed,
+    dates: [{ date: a.until, kind: 'ends', what: `step "${a.by}" stops being true` }]
+  }));
 }
 
 /**

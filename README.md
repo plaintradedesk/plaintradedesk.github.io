@@ -287,7 +287,9 @@ Open `data/actions.json`. Order in the array is the order on the page.
   "id": "ACT_SOMETHING_SPECIFIC",
   "text": "One sentence, imperative, plain.",
   "note": "One short paragraph at most. Why this is worth doing.",
-  "by": "This week",
+  "by": "Before 9 Nov",
+  "until": "2026-11-09",
+  "reviewed": "2026-10-16",
   "urgent": false,
   "doors": ["people"],
   "shocks": ["CA_SOMETHING_2026-11"],
@@ -298,7 +300,15 @@ Open `data/actions.json`. Order in the array is the order on the page.
 }
 ```
 
-- **`by` is a human phrase**, not a date. "This week", "Before 8 Sept", "Ongoing", "Watch".
+- **`by` is a human phrase**, not a date. "Now", "Ongoing", "Before you buy", "Watch".
+- **`reviewed` is required**: the date you last read the step against the records it links.
+  The build refuses a step not reviewed for sixty days. Steps went stale before this existed:
+  "Before 8 Sept" was still on the site in October and "This week" had been there since August.
+- **A `by` that names a date or a time needs `until`**, the last day the step is true. "Before
+  9 Nov", "By 31 March" and "This week" all count; "Before you buy" does not. The build refuses
+  once `until` has passed, the Monday check raises a step within a week of either gate, and the
+  source watcher reports an `until` a week ahead. When it fires, rewrite the step for the
+  present or retire it; do not move the date.
 - **`doors` cannot be empty** and every id in `shocks` has to exist. Either failure is an
   orphan and fails the build.
 - **`sectors: []` means it always shows.** A step with sectors listed only appears when the
@@ -396,7 +406,7 @@ each naming the record and saying what is wrong with it.
 | Gate | Fails when |
 |:---|:---|
 | 1 Unsourced record | A shock has an empty `sources` array, or a source is missing its label or its URL |
-| 2 Stale record | A shock's `verified` date is more than **30 days** old, or is in the future. The site itself shows a softer flag at 21 days |
+| 2 Stale record | A shock's `verified` date is more than **30 days** old, or is in the future. The site itself shows a softer flag at 21 days. Also a step whose `reviewed` date is more than **60 days** old, or whose `until` has passed |
 | 3 Missing register | A shock is missing or empty on any of `plain`, `operator`, `policy` |
 | 4 Orphaned action | An action's `doors` is empty, or it points at a shock id that does not exist |
 | 5 Vocabulary mismatch | A `status` is not valid for that record's `evidence_class` |

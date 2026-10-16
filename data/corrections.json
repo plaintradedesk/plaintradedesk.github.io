@@ -1,6 +1,11 @@
 {
   "corrections": [
     {
+      "date": "16 Oct 2026",
+      "what": "Several of the \"What you can do\" steps still described the world before 8 September. They have been rewritten for the present.",
+      "detail": "Steps marked \"Before 8 Sept\" still said the Canadian counter-tariffs were about to start and that their product list was not yet published; one told readers to treat product claims as unconfirmed until the order appeared in the Canada Gazette, which happened on 23 September; one suggested waiting for a list that has been public since 25 August; and the business steps were framed around bringing orders forward before a surtax that has been in force since 8 September. The policy steps asked readers to watch for the surtax order, which is published, and for how the support package would be delivered, which is now known. A step about the US procurement memorandum said the measure did not exist yet; it exists, but has not yet removed any product. Steps labelled \"This week\" since August now say \"Now\". Records carried a staleness check and steps did not, which is why none of this was flagged. Steps now carry the date they were last reviewed, the build refuses one not reviewed in sixty days, and a step tied to a date must say when it stops being true."
+    },
+    {
       "date": "15 Oct 2026",
       "what": "The Employment Insurance extension became law on 11 October. From 11 October until today this page still said it was not yet law and that the no-waiting-period rule covered only claims starting by 10 October 2026.",
       "detail": "The extension is SOR/2026-203, published in the Canada Gazette on 7 October 2026 and in force 11 October 2026. For claims starting up to 9 October 2027 there is no one-week waiting period and severance or vacation pay is not counted against benefits; long-tenured workers whose claims start by 12 June 2027 get 20 extra weeks; and only the reason a claimant's most recent job ended is reviewed. The page had been accurate when last checked on 5 October. Our source watcher flagged a change to Canada's EI page on 6 October, but the alert closed the next day without being read, so for five days the page told laid-off workers to check dates with Service Canada instead of giving them. Anyone who held off applying because of that should apply now."

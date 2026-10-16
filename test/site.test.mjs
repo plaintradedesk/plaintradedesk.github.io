@@ -121,6 +121,7 @@ const editJson = (dir, name, fn) => {
   const stepText = () => page.locator('#actions .action:not([hidden]) .txt p').allTextContents();
 
   const shockData = JSON.parse(readFileSync(path.join(ROOT, 'data', 'shocks.json'), 'utf8')).shocks;
+  const actionData = JSON.parse(readFileSync(path.join(ROOT, 'data', 'actions.json'), 'utf8')).actions;
   const built = readdirSync(DIST).map(f => readFileSync(path.join(DIST, f), 'utf8'));
 
   await go('index.html');
@@ -397,6 +398,34 @@ const editJson = (dir, name, fn) => {
     ok('gate 2 fails the build on a stale record, and says how stale',
        r.code !== 0 && /gate 2/.test(r.out) && r.out.includes(shockData[1].id)
        && /days ago/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    // Steps went stale with nothing to say so: "Before 8 Sept" in October and
+    // "This week" since August. Three ways a step can be out of date, one build.
+    const dir = tempRepo();
+    editJson(dir, 'actions.json', d => {
+      d.actions[0].until = '2026-09-07';
+      d.actions[1].by = 'Before 9 Nov';
+      delete d.actions[1].until;
+      d.actions[2].reviewed = '2026-01-02';
+    });
+    const r = build(dir);
+    ok('a step whose until date has passed fails the build',
+       r.code !== 0 && /gate 2/.test(r.out) && r.out.includes(actionData[0].id) && /has passed/.test(r.out));
+    ok('a step whose by label names a date but has no until fails',
+       r.out.includes(actionData[1].id) && /"Before 9 Nov" names a date or a time/.test(r.out));
+    ok('a step not reviewed for over sixty days fails',
+       r.out.includes(actionData[2].id) && /The limit for steps is 60/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    const dir = tempRepo();
+    editJson(dir, 'actions.json', d => { d.actions[0].by = 'Before 9 Nov'; d.actions[0].until = '2099-11-09'; });
+    const r = build(dir, ['--validate-only']);
+    ok('a dated step with an until still ahead passes', r.code === 0);
     rmSync(dir, { recursive: true, force: true });
   }
 

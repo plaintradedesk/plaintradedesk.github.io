@@ -44,6 +44,9 @@ jobs:
           elif grep -q 'Approaching the staleness gate' report.txt; then
             echo "why=records are approaching the staleness gate" >> "$GITHUB_OUTPUT"
             echo "raise=yes" >> "$GITHUB_OUTPUT"
+          elif grep -q 'Steps approaching their gates' report.txt; then
+            echo "why=steps are approaching their until date or review gate" >> "$GITHUB_OUTPUT"
+            echo "raise=yes" >> "$GITHUB_OUTPUT"
           else
             echo "raise=no" >> "$GITHUB_OUTPUT"
           fi

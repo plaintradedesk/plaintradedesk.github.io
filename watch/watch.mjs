@@ -454,7 +454,7 @@ export async function run(opts = {}) {
   }
 
   /* ---- the calendar: dates the records themselves state ---- */
-  const dates = dateEvents(factBase.shocks, runDate, state.dates);
+  const dates = dateEvents([...factBase.shocks, ...factBase.steps], runDate, state.dates);
   next.dates = dates.next;
 
   const report = {
