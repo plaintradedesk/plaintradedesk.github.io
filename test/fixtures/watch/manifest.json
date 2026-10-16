@@ -48,6 +48,10 @@
     "status": 200,
     "body": "fedreg.json"
   },
+  "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[type][]=PRESDOCU&conditions[term]=Canada&fields[]=document_number&fields[]=title&fields[]=html_url&fields[]=publication_date": {
+    "status": 200,
+    "body": "fedreg-pres.json"
+  },
   "*": {
     "status": 200,
     "body": "source-page.html"

@@ -44,6 +44,20 @@ class Report {
 
 const isText = v => typeof v === 'string' && v.trim().length > 0;
 
+/**
+ * What a record's dated event can be. `starts` and `ends` are a measure coming
+ * into or going out of force; `review` is anything else due on a date, such as
+ * a tribunal's report, after which the record needs reading again.
+ */
+export const DATE_KINDS = ['starts', 'ends', 'review'];
+
+/** The shape, and also a day the calendar has: 2027-02-30 is not a date. */
+const isRealDate = v => {
+  if (!isDate(v)) return false;
+  const t = Date.parse(v + 'T00:00:00Z');
+  return Number.isFinite(t) && new Date(t).toISOString().slice(0, 10) === v;
+};
+
 /* ================================================================
    Gates 1 to 6 and 9: the data
 ================================================================ */
@@ -117,6 +131,29 @@ export function validateData(data, ctx) {
 
     for (const f of s.facts || []) {
       if (!isText(f.label) || !isText(f.value)) r.fail('schema', id, 'a fact is missing its label or its value');
+    }
+
+    // Dated events, which the source watcher compares with today. Optional, but
+    // a malformed one fails here rather than being skipped there: a date the
+    // watcher cannot read is a date nobody is told about.
+    if (s.dates !== undefined) {
+      if (!Array.isArray(s.dates)) {
+        r.fail('schema', id, 'dates must be a list of { date, kind, what }');
+      } else {
+        const seenDates = new Set();
+        for (const [k, d] of s.dates.entries()) {
+          const where = `dates[${k}]`;
+          if (!d || typeof d !== 'object') { r.fail('schema', id, `${where} is not an object`); continue; }
+          if (!isRealDate(d.date)) r.fail('schema', id, `${where}.date must be a real YYYY-MM-DD date, got "${d.date}"`);
+          if (!DATE_KINDS.includes(d.kind)) {
+            r.fail('schema', id, `${where}.kind "${d.kind}" is not one of ${DATE_KINDS.join(', ')}`);
+          }
+          if (!isText(d.what)) r.fail('schema', id, `${where}.what is empty; say what happens on that date`);
+          const key = `${d.date}|${String(d.what || '').trim().toLowerCase()}`;
+          if (seenDates.has(key)) r.fail('schema', id, `${where} repeats an earlier entry (${d.date}, same what)`);
+          seenDates.add(key);
+        }
+      }
     }
   }
 

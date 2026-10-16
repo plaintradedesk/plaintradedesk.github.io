@@ -260,6 +260,23 @@
       "evidence_class": "instrument",
       "effective": "2026-08-22",
       "verified": "2026-10-15",
+      "dates": [
+        {
+          "date": "2027-06-12",
+          "kind": "ends",
+          "what": "EI: 20 extra weeks for long-tenured workers, for benefit periods beginning no later than this date (SOR/2026-203, s. 77.9994)"
+        },
+        {
+          "date": "2027-10-09",
+          "kind": "ends",
+          "what": "EI: waiting-period waiver, separation monies and the most-recent-separation rule, for benefit periods beginning no later than this date (SOR/2026-203)"
+        },
+        {
+          "date": "2028-03-31",
+          "kind": "ends",
+          "what": "BDC Pivot to Grow loan available until this date, per BDC's program page"
+        }
+      ],
       "sectors": [
         "auto",
         "steel",
@@ -410,6 +427,18 @@
       "evidence_class": "instrument",
       "effective": "2026-07-31",
       "verified": "2026-10-15",
+      "dates": [
+        {
+          "date": "2027-01-15",
+          "kind": "review",
+          "what": "Trade Tribunal safeguard inquiry expected to conclude by this date"
+        },
+        {
+          "date": "2027-02-15",
+          "kind": "ends",
+          "what": "Last day of the provisional surtax's 200 days, counting 31 July 2026 as day one (computed from the record's start date, not printed in the order)"
+        }
+      ],
       "sectors": [
         "construction",
         "wood"

@@ -18,7 +18,8 @@ import {
 } from './extract.mjs';
 
 /**
- * The six places worth reading, in the order the brief lists them.
+ * The places worth reading, in the order the brief lists them. Six until
+ * October 2026, when the Federal Register gained a second query; see below.
  *
  * `weight` is not a score. It only marks the two Part I style sources whose
  * items are proposals rather than instruments, so the report can say so.
@@ -72,6 +73,7 @@ export const FEEDS = [
   {
     key: 'pmo',
     name: "Prime Minister's statements",
+    relevant: item => pmoRelevant(item),
     // Likewise rendered in the browser. `view_args=all` is the argument the
     // site's own listing uses to mix releases, statements, readouts, speeches
     // and media advisories rather than one kind at a time.
@@ -89,7 +91,26 @@ export const FEEDS = [
       + '&conditions[term]=Canada%20tariff'
       + '&fields[]=document_number&fields[]=title&fields[]=html_url&fields[]=publication_date',
     parse: parseFederalRegister,
+    vocabulary: () => US_VOCABULARY,
     note: 'proclamations under Section 338 and Section 232'
+  },
+  {
+    key: 'fedregpres',
+    name: 'US Federal Register, presidential documents naming Canada',
+    // A second query rather than a wider first one. The procurement memorandum
+    // of 21 September never says "tariff", so the query above never returns it
+    // at all; no relevance rule could have seen it. Presidential documents are
+    // few (232 have named Canada, ever), so asking for all of them that do is
+    // cheap. The API's abstract is empty for every one of them, and its
+    // excerpts would let in the drug-transit determination and the Lake Ontario
+    // renaming, so the title is still what is judged.
+    url: 'https://www.federalregister.gov/api/v1/documents.json'
+      + '?per_page=20&order=newest'
+      + '&conditions[type][]=PRESDOCU&conditions[term]=Canada'
+      + '&fields[]=document_number&fields[]=title&fields[]=html_url&fields[]=publication_date',
+    parse: parseFederalRegister,
+    vocabulary: () => US_VOCABULARY,
+    note: 'proclamations, orders and memoranda that name Canada'
   }
 ];
 
@@ -101,6 +122,60 @@ export const VOCABULARY = [
   'surtax', 'counter-tariff', 'counter tariff', 'countertariff', 'countermeasure',
   'tariff', 'remission', 'safeguard', 'section 338', 'section 232'
 ];
+
+/**
+ * The words United States instruments use about Canada, for the two Federal
+ * Register feeds only.
+ *
+ * None of the Section 338 proclamations says "tariff" in its title. They say
+ * additional duties, importation, and discrimination against the commerce of
+ * the United States, and the 21 September memorandum says procurement. Section
+ * 232 proclamations are all titled "Adjusting Imports of ... Into the United
+ * States". Checked against the forty items the Canada query returned on
+ * 15 October 2026: these let through the six Section 338 documents among them
+ * and nothing else. The antidumping notices say "Countervailing Duty", singular,
+ * and stay out.
+ *
+ * Not shared with the other feeds, deliberately. The same CBSA index lists
+ * notices on the importation of firearms and of dogs, and Canadian headlines
+ * say "duties" about excise. Both Federal Register queries already require
+ * Canada, which is what makes broad words cheap there and nowhere else.
+ */
+export const US_VOCABULARY = [
+  'duties', 'importation', 'discrimination against the commerce', 'procurement',
+  'adjusting imports', 'section 301'
+];
+
+/**
+ * The Prime Minister's feed has its own rule rather than a wider vocabulary.
+ *
+ * His statements on the dispute are titled "Canada-U.S. trade negotiations",
+ * which no tariff word matches, so the feed accepted nothing at all for five
+ * weeks. But "trade" alone would take in every trip abroad that mentions a
+ * trade mission. So: trade together with the United States, in the title or
+ * the link slug. And one addition of judgment: a readout of a call with the
+ * President of the United States, which is how the 11 October call appears and
+ * which during this dispute is never not about trade.
+ */
+export function pmoRelevant(item) {
+  const title = norm(item.title);
+  const link = String(item.link || '').toLowerCase();
+  const slug = link.split('/').pop() || '';
+  const trade = /\btrade\b/.test(title) || /(^|-)trade(-|$)/.test(slug);
+  const us = /\bu\.\s?s\.|\bunited states\b|\bamerica\b|\bamerican\b/.test(title)
+    || /(^|-)(us|u-s|united-states)(-|$)/.test(slug);
+  if (trade && us) return true;
+  return /\bpresident of the united states\b/.test(title)
+    || /president-united-states/.test(slug);
+}
+
+/**
+ * Text as it is compared: lower case, whitespace collapsed, and no space just
+ * inside a bracket. CBSA prints "United States Surtax Order ( 2026 )" and the
+ * records write "(2026)", and that is one instrument.
+ */
+export const norm = s => String(s || '').toLowerCase().replace(/[’‘]/g, "'")
+  .replace(/\s+/g, ' ').replace(/\(\s+/g, '(').replace(/\s+\)/g, ')').trim();
 
 /** Load the fact base's own view of itself: cited URLs and instrument names. */
 export function loadFactBase(root) {
@@ -134,6 +209,16 @@ export function loadFactBase(root) {
  * Instrument names as the records write them: `SOR/2025-95`, and customs notice
  * numbers in either the prose form ("Customs Notice 25-11") or the URL form
  * ("cn25-11-eng.html"). Both are normalised to the same token.
+ *
+ * Then the United States side, which until October 2026 had none: a
+ * "Proclamation 11061" anywhere in a record, and the document number in any
+ * federalregister.gov URL a record cites, kept with its slashes so it can only
+ * ever match another Federal Register link.
+ *
+ * Then instruments a record names in words, which is what missed SOR/2026-186.
+ * CA_RETAL_2026-09 said "United States Surtax Order (2026)" for weeks before
+ * that order's registration number was known, and only the number could match,
+ * so the Gazette entry for it was reported with no record attached.
  */
 export function instrumentTokens(text) {
   const out = new Set();
@@ -142,6 +227,47 @@ export function instrumentTokens(text) {
   for (const m of s.matchAll(/\bSI\/\d{4}-\d+\b/gi)) out.add(m[0].toLowerCase());
   for (const m of s.matchAll(/customs\s+notice\s+(\d{2}-\d{2})\b/gi)) out.add('cn' + m[1]);
   for (const m of s.matchAll(/\bcn(\d{2}-\d{2})\b/gi)) out.add('cn' + m[1]);
+  for (const m of s.matchAll(/\bproclamation\s+(?:no\.\s*)?(\d{4,5})\b/gi)) out.add('proclamation ' + m[1]);
+  for (const m of s.matchAll(/federalregister\.gov\/(?:documents|d)\/(?:\d{4}\/\d{2}\/\d{2}\/)?(\d{4}-\d{5})\b/gi)) {
+    out.add(`/${m[1]}/`);
+  }
+  for (const name of instrumentNames(s)) out.add(name);
+  return out;
+}
+
+/**
+ * Canadian instruments named in words: a run of capitalised words ending in
+ * "Order" or "Regulations", with an optional bracket such as "(2026)".
+ *
+ * The bracket is kept, because it is the difference between two instruments:
+ * "United States Surtax Order (2026)" and "United States Surtax Order (Steel
+ * and Aluminum 2025)" are different orders cited by different records. An
+ * amending instrument also yields the instrument it amends, so a record citing
+ * "Regulations Amending the Employment Insurance Regulations" matches the next
+ * amendment to the Employment Insurance Regulations as well. That is how
+ * SOR/2026-203 would have been surfaced on 7 October.
+ *
+ * At least two words before the noun, and none of them only a connective, so
+ * "the Order" in a sentence about some order is never a name.
+ */
+const NAME_WORD = String.raw`[A-Z][A-Za-z'’-]*`;
+const NAME_JOIN = String.raw`(?:and|of|on|for|the|to|in|\d{4})`;
+const NAME = new RegExp(String.raw`\b(${NAME_WORD}(?:[ \t]+(?:${NAME_WORD}|${NAME_JOIN}))*?[ \t]+(?:Order|Regulations))([ \t]*\([^()\n\\]{1,40}\))?`, 'g');
+const CONNECTIVE = new Set(['and', 'of', 'on', 'for', 'the', 'to', 'in', 'amending', 'certain']);
+
+export function instrumentNames(text) {
+  const out = new Set();
+  const add = phrase => {
+    const words = phrase.replace(/\([^()]*\)/g, ' ').trim().split(/\s+/);
+    const body = words.slice(0, -1).filter(w => !CONNECTIVE.has(w.toLowerCase()) && !/^\d{4}$/.test(w));
+    if (body.length >= 2) out.add(norm(phrase));
+  };
+  for (const m of String(text).matchAll(NAME)) {
+    const phrase = (m[1] + (m[2] || '')).replace(/^(?:The|This|That|An?)\s+/, '');
+    add(phrase);
+    const amended = phrase.match(/\b(?:Regulations|Order)\s+Amending\s+the\s+(.+)$/);
+    if (amended) add(amended[1].replace(/\s*\([^()]*\)\s*$/, ''));
+  }
   return out;
 }
 
@@ -154,11 +280,21 @@ export function titleWords(title) {
   return String(title).toLowerCase().match(/[a-z]{4,}/g)?.filter(w => !STOP.has(w)) || [];
 }
 
-/** True when an item is about the things this fact base is about. */
-export function isRelevant(item, factBase) {
-  const hay = `${item.title} ${item.link}`.toLowerCase();
+/**
+ * True when an item is about the things this fact base is about.
+ *
+ * Three ways in, any one enough: the shared vocabulary, an instrument a record
+ * cites or names, and whatever the feed itself adds. A feed adds either more
+ * words (the Federal Register) or a rule of its own (the Prime Minister). The
+ * feed is optional so that a caller with only an item still gets the shared
+ * test, which is what the Gazette's issue entries and the old callers use.
+ */
+export function isRelevant(item, factBase, feed = null) {
+  const hay = norm(`${item.title} ${item.link}`);
   if (VOCABULARY.some(v => hay.includes(v))) return true;
   for (const token of factBase.instruments.keys()) if (hay.includes(token)) return true;
+  if (feed && feed.vocabulary && feed.vocabulary().some(v => hay.includes(v))) return true;
+  if (feed && feed.relevant && feed.relevant(item)) return true;
   return false;
 }
 
@@ -174,7 +310,7 @@ export function isRelevant(item, factBase) {
  * need to be written.
  */
 export function relatedRecords(item, factBase) {
-  const hay = `${item.title} ${item.link}`.toLowerCase();
+  const hay = norm(`${item.title} ${item.link}`);
   const byInstrument = new Set();
   for (const [token, ids] of factBase.instruments) {
     if (hay.includes(token)) ids.forEach(id => byInstrument.add(id));

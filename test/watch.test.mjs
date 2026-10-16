@@ -23,14 +23,19 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import os from 'node:os';
 
-import { run, refuseDataPath, fixtureFetch, loadState, emptyState } from '../watch/watch.mjs';
+import { spawnSync } from 'node:child_process';
+import { run, refuseDataPath, fixtureFetch, loadState, emptyState, formatDropped } from '../watch/watch.mjs';
 import { Client, parseRobots, robotsAllow, USER_AGENT } from '../watch/net.mjs';
 import {
   contentHash, meaningfulText, parseFeed, parseFederalRegister, parseIndex,
   parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax
 } from '../watch/extract.mjs';
-import { FEEDS, loadFactBase, instrumentTokens, isRelevant, relatedRecords, wordForms } from '../watch/sources.mjs';
-import { composeBody, hasSomethingToSay } from '../watch/report.mjs';
+import {
+  FEEDS, VOCABULARY, US_VOCABULARY, loadFactBase, instrumentTokens, instrumentNames,
+  isRelevant, relatedRecords, wordForms
+} from '../watch/sources.mjs';
+import { composeBody, hasSomethingToSay, needsAPerson, NEEDS_A_PERSON } from '../watch/report.mjs';
+import { dateEvents } from '../watch/dates.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(here, '..');
@@ -89,8 +94,21 @@ const FEED_BODY = {
   cbsa: 'cbsa-index.html',
   finance: 'finance-news.json',
   pmo: 'pmo-news.json',
-  fedreg: 'fedreg.json'
+  fedreg: 'fedreg.json',
+  fedregpres: 'fedreg-pres.json'
 };
+
+const feed = key => FEEDS.find(f => f.key === key);
+
+/** A copy of the data with one record's JSON text edited, for fact-base cases. */
+function editedFactBase(edit) {
+  const root = tempRoot();
+  const file = path.join(root, 'data', 'shocks.json');
+  const d = JSON.parse(readFileSync(file, 'utf8'));
+  edit(d);
+  writeFileSync(file, JSON.stringify(d, null, 2) + '\n');
+  return { root, fb: loadFactBase(root) };
+}
 
 /**
  * The issue contents pages the two Gazette feeds link to.
@@ -689,6 +707,281 @@ const runWith = (root, dir, extra = {}) => run({
     ok('a double s is not mistaken for a plural', !wordForms('address').has('addres'));
     ok('the widening is only plurals, not stemming',
        !wordForms('imported').has('import') && !wordForms('safeguard').has('safeguarding'));
+  }
+
+  /* ---------------------------------------------------------------- */
+  g('RELEVANCE: what the US side and the Prime Minister actually call things');
+
+  // The real titles that every one returned false in the October quarterly
+  // review, and the Section 232 guidance the watcher found on 14 October.
+  // Judged twice: against the fact base as it is, and against one with no
+  // instrument tokens at all, because the next US instrument will not be cited
+  // by any record yet and the words alone have to carry it.
+  {
+    const FR = 'https://www.federalregister.gov/documents/';
+    const POSITIVE = [
+      ['fedreg', 'Excluding Certain Canadian Products From Importation Into the United States in Response to Continued Discrimination Against the Commerce of the United States With Respect to Alcoholic Beverages',
+        FR + '2026/09/14/2026-18835/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued'],
+      ['fedreg', 'Modifying the Scope of Products of Canada Subject to the Additional Duties Imposed To Offset Canadian Discrimination Against the Commerce of the United States With Respect to Motor Vehicles',
+        FR + '2026/09/14/2026-18839/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset'],
+      ['fedregpres', 'Restoring Reciprocity in Government Procurement',
+        FR + '2026/09/21/2026-19336/restoring-reciprocity-in-government-procurement'],
+      ['pmo', 'Statement by Prime Minister Carney on Canada-U.S. trade negotiations',
+        'https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations'],
+      ['pmo', 'Prime Minister Carney delivers remarks on Canada-U.S. trade negotiations',
+        'https://www.pm.gc.ca/en/news/speeches/2026/08/22/prime-minister-carney-delivers-remarks-canada-us-trade-negotiations'],
+      ['fedreg', "Guidance to U.S. Customs and Border Protection Regarding the Assessment of “U.S. Content” for Purposes of Implementing Tariffs Pursuant to Clause (2)(D) of Proclamation 11032 of June 1, 2026",
+        FR + '2026/10/14/2026-20938/guidance-to-us-customs-and-border-protection-regarding-the-assessment-of-us-content']
+    ];
+    const fb = loadFactBase(ROOT);
+    const bare = { ...fb, instruments: new Map() };
+    for (const [key, title, link] of POSITIVE) {
+      ok(`relevant: ${title.slice(0, 70)}`, isRelevant({ title, link }, fb, feed(key)));
+      ok(`relevant with no record citing it: ${title.slice(0, 50)}`, isRelevant({ title, link }, bare, feed(key)));
+    }
+    ok('the Section 232 wording is accepted on the Federal Register feeds',
+       isRelevant({ title: 'Adjusting Imports of Copper Into the United States', link: FR + 'x' }, bare, feed('fedreg'))
+       && isRelevant({ title: 'Adjusting Imports of Copper Into the United States', link: FR + 'x' }, bare, feed('fedregpres')));
+    ok('the procurement memorandum is not even returned by the tariff query, which is why there is a second one',
+       /PRESDOCU/.test(feed('fedregpres').url) && /conditions\[term\]=Canada&/.test(feed('fedregpres').url)
+       && /Canada%20tariff/.test(feed('fedreg').url));
+
+    const NEGATIVE = [
+      // The Federal Register vocabulary, on real titles from the Canada query.
+      ['fedreg', 'Large Diameter Welded Pipe From Canada: Preliminary Results of Changed Circumstances Review'],
+      ['fedreg', 'Initiation of Antidumping and Countervailing Duty Administrative Reviews'],
+      ['fedreg', 'Advance Traveler Information for Rail'],
+      // The presidential query, which names Canada in everything it returns.
+      ['fedregpres', 'Honoring the American History of the Great Lakes and Renaming Lake Ontario as Lake America'],
+      ['fedregpres', 'Presidential Determination on Major Drug Transit or Major Illicit Drug Producing Countries for Fiscal Year 2027'],
+      ['fedregpres', 'National Forest Products Week, 2026'],
+      // The Prime Minister: trade without the United States, and visits abroad.
+      ['pmo', 'Prime Minister Carney speaks with Prime Minister of India Narendra Modi',
+        'https://www.pm.gc.ca/en/news/readouts/2026/10/13/prime-minister-carney-speaks-prime-minister-india-narendra-modi'],
+      ['pmo', 'Prime Minister Carney announces new trade and security partnership with the European Union',
+        'https://www.pm.gc.ca/en/news/news-releases/2026/10/20/prime-minister-carney-announces-new-trade-and-security-partnership-european-union'],
+      ['pmo', 'Prime Minister Carney travels to Brussels for the Canada-EU Summit',
+        'https://www.pm.gc.ca/en/news/news-releases/2026/10/21/prime-minister-carney-travels-brussels-canada-eu-summit'],
+      ['pmo', 'Statement by Prime Minister Carney on Thanksgiving',
+        'https://www.pm.gc.ca/en/news/statements/2026/10/12/statement-prime-minister-carney-thanksgiving'],
+      // Finance, whose rule did not change, on real titles from its feed.
+      ['finance', 'Canada successfully prices seventh green bond issuance, raising $2 billion'],
+      ['finance', 'Minister Champagne to travel to the United Kingdom and Ireland to strengthen economic and security ties with Europe'],
+      ['finance', 'Minister Champagne introduces legislation to extend the federal fuel excise tax relief for Canadians'],
+      // And the reason the US words stay off the shared list: a real CBSA notice.
+      ['cbsa', '22-21 Customs Notice 22-21: New Measure Prohibiting the Importation of all Commercial Dogs from Countries at High Risk for Dog Rabies']
+    ];
+    for (const [key, title, link = 'https://example.test/item'] of NEGATIVE) {
+      ok(`not relevant (${key}): ${title.slice(0, 60)}`, !isRelevant({ title, link }, fb, feed(key)));
+    }
+
+    ok('a readout of a call with the President of the United States is relevant on its own',
+       isRelevant({ title: 'Prime Minister Carney speaks with President of the United States Donald J. Trump',
+         link: 'https://www.pm.gc.ca/en/news/readouts/2026/10/11/prime-minister-carney-speaks-president-united-states-donald-j-t' },
+         bare, feed('pmo')));
+    ok('the Prime Minister rule is the feed\'s own and widens no other feed',
+       !isRelevant({ title: 'Canada-U.S. trade negotiations', link: 'https://x/y' }, bare, feed('finance')));
+    ok('the US words are not in the shared vocabulary',
+       US_VOCABULARY.every(w => !VOCABULARY.includes(w)));
+    ok('only the two Federal Register feeds carry the US words',
+       FEEDS.filter(f => f.vocabulary).map(f => f.key).sort().join(',') === 'fedreg,fedregpres');
+  }
+
+  /* ---------------------------------------------------------------- */
+  g('INSTRUMENTS: what a record names, as well as what it numbers');
+
+  {
+    ok('a proclamation number in a record is an instrument token',
+       instrumentTokens('under Proclamation 11061 and Proclamation No. 11032').has('proclamation 11061')
+       && instrumentTokens('Proclamation No. 11032').has('proclamation 11032'));
+    ok('a cited Federal Register document number is a token that only a Federal Register link can match',
+       instrumentTokens('https://www.federalregister.gov/documents/2026/09/14/2026-18835/excluding').has('/2026-18835/'));
+    const fb = loadFactBase(ROOT);
+    ok('a new Federal Register item that a record cites is matched to it by number',
+       relatedRecords({ title: 'Something', link: 'https://www.federalregister.gov/documents/2026/09/14/2026-18835/x' }, fb)
+         .includes('US_S338_BAN_2026-09'));
+
+    // Issue #13. CA_RETAL_2026-09 named the order in words before its number
+    // was cited, and only numbers could match, so the Gazette entry for it was
+    // reported as matching no record. Rebuilt here: the number taken out of
+    // the record, the words left in.
+    const { fb: early } = editedFactBase(d => {
+      const r = d.shocks.find(s => s.id === 'CA_RETAL_2026-09');
+      const text = JSON.stringify(r).replaceAll('SOR/2026-186', 'SOR/2026-XXX').replaceAll('sor-dors186', 'sor-dorsXXX');
+      Object.assign(r, JSON.parse(text));
+    });
+    ok('the case is real: without the number, no numeric token names this order',
+       !early.instruments.has('sor/2026-186'));
+    const sor186 = {
+      title: 'United States Surtax Order (2026) Customs Tariff SOR/2026-186',
+      link: 'https://gazette.gc.ca/rp-pr/p2/2026/2026-09-23/html/sor-dors186-eng.html'
+    };
+    ok('an instrument a record names in words is matched to it (SOR/2026-186, issue #13)',
+       relatedRecords(sor186, early).includes('CA_RETAL_2026-09'));
+    ok('the bracket keeps two orders of the same name apart',
+       !relatedRecords({ title: 'United States Surtax Order (Steel and Aluminum 2025) — Order Amending the Customs Tariff SOR/2026-187', link: 'https://x/y' }, early)
+         .includes('CA_RETAL_2026-09'));
+    ok('CBSA\'s spacing inside the bracket is the same instrument',
+       relatedRecords({ title: '26-23 Customs Notice 26-23: United States Surtax Order ( 2026 )', link: 'https://x/y' }, early)
+         .includes('CA_RETAL_2026-09'));
+
+    // The EI regulation, 7 October. Not tariff vocabulary, so only the record
+    // naming the regulation it amends could have surfaced it.
+    const eiAmendment = {
+      title: 'Employment Insurance Act — Regulations Amending the Employment Insurance Regulations SOR/2027-15',
+      link: 'https://gazette.gc.ca/rp-pr/p2/2027/2027-02-10/html/sor-dors15-eng.html'
+    };
+    ok('an amendment to a regulation a record already cites is relevant on the Gazette',
+       isRelevant(eiAmendment, fb, feed('gazette2')));
+    ok('and it names the record that cites the regulation', relatedRecords(eiAmendment, fb).includes('CA_SUPPORT_2026-08'));
+    ok('"Regulations Amending the X Regulations" yields X Regulations as a name',
+       instrumentNames('SOR/2026-64, Regulations Amending the Employment Insurance Regulations').has('employment insurance regulations'));
+    ok('"the Order" in a sentence is not a name',
+       instrumentNames('The Order was made on 4 September. The Order sets three rates.').size === 0);
+    ok('an unrelated amending regulation is still not relevant',
+       !isRelevant({ title: 'Regulations Amending the Food and Drug Regulations', link: 'https://x/y' }, fb, feed('gazette2')));
+  }
+
+  /* ---------------------------------------------------------------- */
+  g('INSPECTION: what was set aside can be seen, and a blind feed says so');
+
+  {
+    const root = tempRoot();
+    const r = await runWith(root, fixtures(path.join(root, 'fx'), { feeds: { pmo: 'pmo-nothing-relevant.json' } }));
+    const pmoDropped = r.dropped.find(d => d.key === 'pmo');
+    ok('a run returns what each feed read and judged not relevant',
+       Boolean(pmoDropped) && pmoDropped.items.some(i => /Chancellor of Germany/.test(i.title)));
+    ok('--show-dropped prints it feed by feed', /Chancellor of Germany/.test(formatDropped(r.dropped))
+       && formatDropped(r.dropped).includes("Prime Minister's statements"));
+    ok('what was dropped never goes into the issue', !/Chancellor of Germany/.test(r.body));
+    const help = spawnSync(process.execPath, [path.join(ROOT, 'watch', 'watch.mjs'), '--help'], { encoding: 'utf8' });
+    ok('--show-dropped is a documented option', /--show-dropped/.test(help.stdout));
+  }
+
+  {
+    // Four weeks of reading fine and accepting nothing, which is what the
+    // Prime Minister's feed did after launch with nobody able to tell.
+    const root = tempRoot();
+    const quietDir = fixtures(path.join(root, 'fx'), { feeds: { pmo: 'pmo-nothing-relevant.json' } });
+    await runWith(root, quietDir, { runDate: '2026-08-01' });
+    const d27 = await runWith(root, quietDir, { runDate: '2026-08-28' });
+    ok('a feed quiet for 27 days is not reported', !d27.report.quietFeeds.length);
+    const d28 = await runWith(root, quietDir, { runDate: '2026-08-29' });
+    const q = d28.report.quietFeeds.find(x => /Prime Minister/.test(x.what));
+    ok('a feed that reads fine and accepts nothing for 28 days is reported', Boolean(q));
+    ok('only that feed: the others had something relevant in their lists',
+       d28.report.quietFeeds.length === 1);
+    ok('it is its own section of the issue', /offered nothing relevant for weeks/.test(d28.body));
+    ok('it raises the issue, and does not hold it open', d28.raise && !d28.sticky);
+    const d29 = await runWith(root, quietDir, { runDate: '2026-08-30' });
+    ok('and it is said once a month at most, not every run', !d29.report.quietFeeds.length);
+  }
+
+  {
+    // Both Federal Register queries return the same proclamation when it names
+    // Canada and says "tariff". It is one document and it arrives once.
+    const root = tempRoot();
+    await runWith(root, fixtures(path.join(root, 'fx')));
+    const r = await runWith(root, fixtures(path.join(root, 'fx2'),
+      { feeds: { fedreg: 'fedreg-new.json', fedregpres: 'fedreg-pres-new.json' } }));
+    const hits = r.report.newItems.filter(i => /2026-99901/.test(i.link));
+    ok('a document both Federal Register queries return is reported once', hits.length === 1);
+    const again = await runWith(root, fixtures(path.join(root, 'fx3'),
+      { feeds: { fedreg: 'fedreg-new.json', fedregpres: 'fedreg-pres-new.json' } }));
+    ok('and not again on the next run, from either', !again.report.newItems.some(i => /2026-99901/.test(i.link)));
+  }
+
+  /* ---------------------------------------------------------------- */
+  g('DATES: a date in a record arriving is something to say');
+
+  {
+    const rec = (dates, verified = '2026-10-01') => [{ id: 'X', title: 'A record', verified, dates }];
+    const ev = (date, kind = 'starts') => ({ date, kind, what: `something on ${date}` });
+
+    ok('a date seven days out is reported as coming up',
+       dateEvents(rec([ev('2026-10-10')]), '2026-10-03').comingUp.length === 1);
+    ok('a date eight days out is not',
+       dateEvents(rec([ev('2026-10-11')]), '2026-10-03').comingUp.length === 0);
+    ok('a passed date with the record checked before it is reported as arrived',
+       dateEvents(rec([ev('2026-10-02', 'ends')], '2026-09-30'), '2026-10-03').arrived.length === 1);
+    ok('a passed date with the record checked on that day is not',
+       dateEvents(rec([ev('2026-10-02', 'ends')], '2026-10-02'), '2026-10-03').arrived.length === 0);
+    ok('a passed date with the record checked after it is not',
+       dateEvents(rec([ev('2026-10-02', 'ends')], '2026-10-03'), '2026-10-03').arrived.length === 0);
+    ok('a date that is today, unchecked, has arrived (the ban took effect on a Tuesday)',
+       dateEvents(rec([ev('2026-10-03')], '2026-10-01'), '2026-10-03').arrived.length === 1);
+
+    const first = dateEvents(rec([ev('2026-10-08')]), '2026-10-03');
+    const second = dateEvents(rec([ev('2026-10-08')]), '2026-10-04', first.next);
+    ok('coming up is said once, not on every run of the week', first.comingUp.length === 1 && second.comingUp.length === 0);
+    const day = dateEvents(rec([ev('2026-10-08')]), '2026-10-08', second.next);
+    ok('the same event is said again when it arrives', day.arrived.length === 1);
+    const after = dateEvents(rec([ev('2026-10-08')]), '2026-10-09', day.next);
+    ok('and arrived is said once too', after.arrived.length === 0);
+    ok('a record with no dates says nothing', dateEvents([{ id: 'Y', verified: '2026-10-01' }], '2026-10-03').arrived.length === 0);
+  }
+
+  {
+    // Through the whole run, with the dates sitting in a copy of the real data.
+    const root = tempRoot();
+    const file = path.join(root, 'data', 'shocks.json');
+    const d = JSON.parse(readFileSync(file, 'utf8'));
+    const target = d.shocks.find(s => s.id === 'CA_CABINETS_2026-07');
+    target.verified = '2026-08-20';
+    target.dates = [
+      { date: '2026-08-25', kind: 'ends', what: 'a window that closed' },
+      { date: '2026-09-03', kind: 'review', what: 'a report due in a week' }
+    ];
+    writeFileSync(file, JSON.stringify(d, null, 2) + '\n');
+    const before = treeHash(path.join(root, 'data'));
+    const dir = fixtures(path.join(root, 'fx'));
+    const r = await runWith(root, dir);
+    ok('a run reports a date that arrived unchecked', r.report.arrived.some(a => a.what === 'a window that closed'));
+    ok('and one coming up', r.report.comingUp.some(c => c.what === 'a report due in a week'));
+    ok('under their own heading, naming the record',
+       /## Dates in the records/.test(r.body) && r.body.includes('`CA_CABINETS_2026-07`'));
+    ok('an arrived date holds the issue open for a person', r.sticky && r.body.includes(NEEDS_A_PERSON));
+    ok('the date watch changes nothing under data/, verified dates included',
+       treeHash(path.join(root, 'data')) === before);
+    const again = await runWith(root, dir);
+    ok('the next run does not say either again', !again.report.arrived.length && !again.report.comingUp.length);
+  }
+
+  {
+    // The real records, on the brief's own date: nothing is due within a week
+    // of 15 October 2026, and nothing already handled is reported as arrived.
+    const fb = loadFactBase(ROOT);
+    const now = dateEvents(fb.shocks, '2026-10-15');
+    ok('the dates in the real records are quiet today', !now.comingUp.length && !now.arrived.length);
+    const cab = dateEvents(fb.shocks, '2027-01-08');
+    ok('the cabinet inquiry date is announced a week ahead',
+       cab.comingUp.some(e => e.id === 'CA_CABINETS_2026-07' && e.date === '2027-01-15'));
+  }
+
+  /* ---------------------------------------------------------------- */
+  g('CLOSING: what was reported once stays open until a person closes it');
+
+  {
+    const item = { name: 'Canada Gazette Part II', title: 'An order', link: 'https://x/y', date: '', records: [] };
+    ok('new material holds the issue open', needsAPerson({ newItems: [item] }));
+    ok('a moved source holds the issue open', needsAPerson({ moved: [{ url: 'u', ids: [] }] }));
+    ok('an arrived date holds the issue open', needsAPerson({ arrived: [{}] }));
+    ok('an unread source does not, because it is said again until it clears',
+       !needsAPerson({ unread: [{ what: 'f', url: 'u', reason: 'r', ids: [] }] }));
+    ok('nor does a misparse, a thin read, a quiet feed or a date coming up',
+       !needsAPerson({ emptyParse: [{}], thinParse: [{}], quietFeeds: [{}], comingUp: [{}] }));
+    ok('the body carries the marker when, and only when, a person is needed',
+       composeBody({ newItems: [item] }).includes(NEEDS_A_PERSON)
+       && !composeBody({ unread: [{ what: 'f', url: 'u', reason: 'r', ids: [] }] }).includes(NEEDS_A_PERSON));
+
+    const yml = readFileSync(path.join(ROOT, '.github', 'workflows', 'watch.yml'), 'utf8');
+    ok('the workflow looks for exactly that marker before closing', yml.includes(NEEDS_A_PERSON));
+    ok('it looks in the comments as well as the body, since later runs comment',
+       /--json body,comments/.test(yml) && /\.comments\[\]\.body/.test(yml));
+    const quietBranch = yml.slice(yml.indexOf('outputs.raise'), yml.indexOf('gh issue close'));
+    ok('the check comes before the close, and leaves the issue open when the marker is there',
+       quietBranch.includes(NEEDS_A_PERSON)
+       && /held=\$\(gh issue view[\s\S]*?\)\s*\n\s*if \[ "\$held" != "0" \]; then\s*\n[^\n]*\n\s*exit 0\s*\n\s*fi/.test(quietBranch));
   }
 
   /* ---------------------------------------------------------------- */

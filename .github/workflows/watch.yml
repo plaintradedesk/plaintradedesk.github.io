@@ -78,7 +78,18 @@ jobs:
           if [ "${{ steps.watch.outputs.raise }}" != "yes" ]; then
             # Nothing to say. An issue that is reopened daily with "nothing
             # found" trains the maintainer to ignore it, so close it instead.
+            # Unless it holds something reported only once (new material, a
+            # moved source, a date that arrived unchecked): the watcher has
+            # already marked that seen, so its quiet run says nothing about
+            # whether anybody read it. #13 closed itself twelve hours after
+            # reporting SOR/2026-186, unread. Those issues wait for a person.
             if [ -n "$existing" ]; then
+              held=$(gh issue view "$existing" --json body,comments \
+                --jq '[.body, .comments[].body] | map(select(contains("<!-- watch: needs a person to read and close -->"))) | length')
+              if [ "$held" != "0" ]; then
+                echo "issue #$existing holds items reported once; leaving it open for a person to close"
+                exit 0
+              fi
               gh issue close "$existing" \
                 --comment "Nothing new and nothing moved on the last run. Closing; the watcher will reopen this if that changes."
             fi

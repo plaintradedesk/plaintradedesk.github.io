@@ -401,6 +401,39 @@ const editJson = (dir, name, fn) => {
   }
 
   {
+    // The dates the source watcher compares with today. A malformed one would
+    // be skipped by the watcher in silence, so it has to fail here instead.
+    const dir = tempRepo();
+    editJson(dir, 'shocks.json', d => {
+      d.shocks[3].dates = [
+        { date: '2027-02-30', kind: 'ends', what: 'a day the calendar does not have' },
+        { date: '2027-03-01', kind: 'expires', what: 'a kind nobody defined' },
+        { date: '2027-03-02', kind: 'review', what: '  ' },
+        { date: '2027-03-03', kind: 'starts', what: 'twice' },
+        { date: '2027-03-03', kind: 'starts', what: 'Twice' }
+      ];
+    });
+    const r = build(dir);
+    ok('a malformed dated event fails the build, and each fault is named',
+       r.code !== 0 && r.out.includes(shockData[3].id)
+       && /dates\[0\]\.date must be a real/.test(r.out)
+       && /dates\[1\]\.kind "expires"/.test(r.out)
+       && /dates\[2\]\.what is empty/.test(r.out)
+       && /dates\[4\] repeats an earlier entry/.test(r.out));
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
+    const dir = tempRepo();
+    editJson(dir, 'shocks.json', d => {
+      d.shocks[3].dates = [{ date: '2027-03-01', kind: 'review', what: 'a well-formed date' }];
+    });
+    const r = build(dir, ['--validate-only']);
+    ok('a well-formed dated event passes', r.code === 0);
+    rmSync(dir, { recursive: true, force: true });
+  }
+
+  {
     const dir = tempRepo();
     editJson(dir, 'shocks.json', d => { d.shocks[2].status = 'forecast'; });
     const r = build(dir);

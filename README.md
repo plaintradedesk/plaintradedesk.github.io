@@ -251,6 +251,15 @@ Things worth knowing before you save it:
 - `unverified: true` is available for a record carried over from working notes. It shows on
   the page with a visible flag and puts the record in the known-gaps list. There are none at
   the moment and it is better if it stays that way.
+- **`dates` is optional**, and is how a record tells the source watcher about a day that
+  matters: a measure starting or ending, a tribunal due to report. Each entry is
+  `{ "date": "2027-01-15", "kind": "review", "what": "Trade Tribunal inquiry expected to conclude" }`,
+  with `kind` one of `starts`, `ends` or `review`. The build fails on a date the calendar
+  does not have, an unknown kind, an empty `what`, or the same date and `what` twice. Add only
+  dates the record and its sources already state, and leave out past dates that have already
+  been dealt with. These are not shown on the site and are not offered for translation; they
+  exist for the watcher, which reports them as coming up a week ahead and as arrived once the
+  day comes, until the record's `verified` date is on or after it.
 
 ### Status, and the two vocabularies
 
@@ -452,18 +461,46 @@ check the record. It is not to raise the threshold.
 ## What the source watcher tells you
 
 `watch.yml` runs twice a day, at 03:15 and 15:15 Toronto time, and can be triggered by hand
-on a day when something is expected. It reads six places: both parts of the Canada Gazette,
-the CBSA customs notice index, Finance Canada news, the Prime Minister's statements, and the
-US Federal Register. It also re-reads every URL cited by a record and compares a hash of the
-page's meaningful content against the last run.
+on a day when something is expected. It reads seven feeds: both parts of the Canada Gazette,
+the CBSA customs notice index, Finance Canada news, the Prime Minister's statements, and two
+US Federal Register queries (documents mentioning Canada and tariffs, and presidential
+documents naming Canada, which is the only way the 21 September procurement memorandum
+appears at all). It also re-reads every URL cited by a record and compares a hash of the
+page's meaningful content against the last run, and it compares the `dates` records carry
+with today.
+
+How it decides an item is relevant, since that is where it went blind before October 2026:
+
+- the shared vocabulary (surtax, tariff, remission, safeguard, Section 338 and 232, and so on),
+  for every feed;
+- an instrument the records cite or name: SOR and SI numbers, customs notice numbers,
+  `Proclamation 11061`-style numbers, Federal Register document numbers from cited links, and
+  instruments named in words such as "United States Surtax Order (2026)". A name like
+  "Regulations Amending the Employment Insurance Regulations" also yields "Employment
+  Insurance Regulations", so the next amendment to a regulation a record cites is caught;
+- on the two Federal Register feeds only, the words US instruments use about Canada:
+  duties, importation, discrimination against the commerce, procurement, adjusting imports,
+  Section 301. They stay off the shared list because CBSA uses "importation" about dogs and
+  firearms;
+- on the Prime Minister's feed only, a rule of its own: "trade" together with the United
+  States in the title or link, or a call with the President of the United States.
+
+To see what that throws away, without changing anything:
+
+```
+node watch/watch.mjs --dry-run --show-dropped
+```
 
 **It never edits a record.** It writes nothing under `data/`, and the only file it commits is
 `watch/state.json`. Moving a `verified` date is always a person's act, after opening the
 primary instrument and reading it. That is the whole boundary, and the test suite fails if
 anybody widens it.
 
-An issue from it has up to five sections, and each is a pointer rather than a conclusion:
+An issue from it has up to seven sections, and each is a pointer rather than a conclusion:
 
+- **Dates in the records.** A date a record states is within the next seven days, or has
+  arrived and the record has not been checked since. Each is said once per phase, not on
+  every run. It never moves a status or a `verified` date.
 - **New material.** Something was published that names an instrument a record cites, or uses
   the vocabulary the fact base uses. It names the related record ids, and says plainly when
   nothing matched, because that is the signal that a new record may be needed.
@@ -474,18 +511,27 @@ An issue from it has up to five sections, and each is a pointer rather than a co
   unread, never as unchanged, and no new hash is recorded, so the next run still compares
   against the last reading that actually succeeded.
 - **Sources that read fine but parsed to nothing.** The page answered, and the watcher got no
-  items out of it at all. None of the six sources can honestly be empty, so this means the page
+  items out of it at all. None of these sources can honestly be empty, so this means the page
   changed shape under the reader. It is not a quiet week, and it is not unread either.
 - **Sources that read noticeably fewer items than usual.** Under half the source's recent
   floor, once there are at least three earlier readings to compare against. Same cause, caught
   earlier: a reader that still fits part of the page.
+- **Sources that read fine and have offered nothing relevant for weeks.** Four weeks without
+  a single relevant item from a feed that reads normally. Possibly a quiet source, possibly a
+  relevance rule that cannot see it; `--show-dropped` tells you which. Said once a month at
+  most.
 
-When all five are empty it closes the issue rather than commenting on it. An issue reopened
-daily with "nothing found" trains you to ignore it.
+Closing. New material, a moved source and an arrived date are reported once: the next run
+has already marked them seen. So an issue carrying any of them stays open until **you** close
+it, and later runs add comments to it rather than opening another. The body carries a hidden
+marker that the workflow looks for before closing. An issue holding only things that say
+themselves again until they are fixed (unread or misparsed sources, a quiet feed, a date
+coming up) still closes itself on the next quiet run. An issue reopened daily with "nothing
+found" trains you to ignore it.
 
 What to do with one: read the document it points at. Then follow the same five steps as the
-weekly issue above. The watcher shortens the list of things you have to check; it does not
-check them for you.
+weekly issue above, and close the issue. The watcher shortens the list of things you have to
+check; it does not check them for you.
 
 Gate 2 remains the backstop. If every issue is ignored for thirty days the build refuses and
 nothing publishes. The watcher does not change that and is not allowed to.

@@ -24,8 +24,9 @@ import { fileURLToPath } from 'node:url';
 import { Client } from './net.mjs';
 import { contentHash } from './extract.mjs';
 import { FEEDS, loadFactBase, isRelevant, relatedRecords } from './sources.mjs';
-import { composeBody, hasSomethingToSay, summarise } from './report.mjs';
-import { today } from '../src/util.mjs';
+import { composeBody, hasSomethingToSay, needsAPerson, summarise } from './report.mjs';
+import { dateEvents } from './dates.mjs';
+import { today, dayDiff } from '../src/util.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.join(here, '..');
@@ -75,6 +76,19 @@ const MIN_COUNT_HISTORY = 3;
  */
 const THIN_FRACTION = 0.5;
 
+/**
+ * How long a feed may read fine and accept nothing before that is worth a line.
+ *
+ * The Prime Minister's feed accepted nothing for five weeks after the watcher
+ * shipped, because its relevance test could not match the way his statements
+ * are titled, and there was no way to know without opening state.json. Four
+ * weeks is long enough that an honestly quiet source is not nagged, and short
+ * enough that a blind one is noticed inside a month. Reported at most once per
+ * period per feed, and never for the Gazette, whose issues are read whole and
+ * judged entry by entry rather than as a list that ought to hold something.
+ */
+const QUIET_DAYS = 28;
+
 /* ------------------------------------------------------------------ */
 /* The boundary that is the product                                    */
 
@@ -117,7 +131,7 @@ function writeGuarded(root, file, text) {
 /* State                                                               */
 
 export function emptyState() {
-  return { version: STATE_VERSION, lastRun: null, feeds: {}, sources: {} };
+  return { version: STATE_VERSION, lastRun: null, feeds: {}, sources: {}, dates: {} };
 }
 
 export function loadState(file) {
@@ -128,7 +142,8 @@ export function loadState(file) {
       version: STATE_VERSION,
       lastRun: s.lastRun || null,
       feeds: s.feeds || {},
-      sources: s.sources || {}
+      sources: s.sources || {},
+      dates: s.dates || {}
     };
   } catch (e) {
     // A corrupt state file means "start again from baseline", which reports
@@ -190,17 +205,18 @@ function response(status, body, headers) {
 async function readIssue(client, feed, issue, factBase) {
   const res = await client.get(issue.link);
   if (res.kind === 'unread') return { ok: false, reason: res.reason };
-  if (res.kind === 'unchanged') return { ok: true, items: [] };
+  if (res.kind === 'unchanged') return { ok: true, items: [], dropped: [] };
 
   const entries = feed.expand(res.body, issue.link);
   // An issue of the Gazette always contains at least one instrument. Opening
   // one and finding none means the contents page no longer has the shape the
   // parser expects, not that the issue was empty.
-  if (!entries.length) return { ok: true, items: [], empty: true };
+  if (!entries.length) return { ok: true, items: [], dropped: [], empty: true };
 
   const items = [];
+  const dropped = [];
   for (const entry of entries) {
-    if (!isRelevant(entry, factBase)) continue;
+    if (!isRelevant(entry, factBase, feed)) { dropped.push(entry); continue; }
     items.push({
       feed: feed.key,
       name: feed.name,
@@ -212,7 +228,7 @@ async function readIssue(client, feed, issue, factBase) {
       issue: issue.title
     });
   }
-  return { ok: true, items };
+  return { ok: true, items, dropped };
 }
 
 /* ------------------------------------------------------------------ */
@@ -225,7 +241,7 @@ export async function run(opts = {}) {
 
   const factBase = loadFactBase(root);
   const state = loadState(statePath);
-  const next = { version: STATE_VERSION, lastRun: runDate, feeds: {}, sources: {} };
+  const next = { version: STATE_VERSION, lastRun: runDate, feeds: {}, sources: {}, dates: {} };
 
   const client = opts.client || new Client({
     fetchImpl: opts.fetchImpl,
@@ -265,6 +281,24 @@ export async function run(opts = {}) {
    * compare against and any threshold would be invented rather than observed.
    */
   const thinParse = [];
+  /**
+   * Read fine, and nothing it held was judged relevant for four weeks. Not a
+   * fault in the page, possibly a fault in the judging; see QUIET_DAYS.
+   */
+  const quietFeeds = [];
+  /**
+   * What each feed read and judged not relevant, this run. Never in the issue,
+   * which would bury the signal under everything correctly ignored; printed by
+   * --show-dropped so that the judging can be inspected on demand.
+   */
+  const dropped = [];
+  /**
+   * Ids already reported, by any feed, on this run or an earlier one. Both
+   * Federal Register queries return the same proclamation when it names Canada
+   * and says "tariff", and it should arrive once.
+   */
+  const reported = new Set(Object.values(state.feeds)
+    .flatMap(f => (Array.isArray(f.seen) ? f.seen : [])));
 
   /* ---- half one: new material ---- */
   for (const feed of (opts.feeds || FEEDS)) {
@@ -283,7 +317,7 @@ export async function run(opts = {}) {
     if (res.kind === 'unchanged') { next.feeds[feed.key] = prev; continue; }
 
     const parsed = feed.parse(res.body, feed.url);
-    // Before the relevance filter, deliberately. None of these six sources is
+    // Before the relevance filter, deliberately. None of these sources is
     // asked for a date range; every one is a standing list of the most recent
     // items of its kind, so an empty parse is a broken reader rather than a
     // quiet week, and it is worth saying out loud on its own.
@@ -304,7 +338,12 @@ export async function run(opts = {}) {
     // An expanding feed lists issues rather than instruments, and an issue's
     // own title can never match a record. Every issue is tracked so it is
     // opened once; whether anything in it matters is decided on its contents.
-    const items = feed.expand ? parsed : parsed.filter(i => isRelevant(i, factBase));
+    let items = parsed;
+    const droppedHere = [];
+    if (!feed.expand) {
+      items = [];
+      for (const i of parsed) (isRelevant(i, factBase, feed) ? items : droppedHere).push(i);
+    }
     const seen = Array.isArray(prev.seen) ? prev.seen : null;
     const ids = [];
 
@@ -337,7 +376,9 @@ export async function run(opts = {}) {
             emptyParse.push({ what: `${feed.name}, ${item.title || item.id}`, url: item.link });
           }
           newItems.push(...read.items);
-        } else {
+          droppedHere.push(...read.dropped);
+        } else if (!reported.has(item.id)) {
+          reported.add(item.id);
           newItems.push({
             feed: feed.key,
             name: feed.name,
@@ -354,6 +395,23 @@ export async function run(opts = {}) {
       // A first sighting of a feed is a baseline, not a hundred new items.
       ids.push(...items.map(i => i.id));
     }
+    if (droppedHere.length) dropped.push({ key: feed.key, what: feed.name, items: droppedHere });
+
+    // Quiet, judged on what the list holds now rather than on what was new:
+    // a feed whose relevant items are all old ones is reading fine.
+    const watchedSince = prev.watchedSince || runDate;
+    let lastRelevant = prev.lastRelevant || null;
+    let quietReported = prev.quietReported || null;
+    if (!feed.expand) {
+      if (items.length) lastRelevant = runDate;
+      const since = lastRelevant || watchedSince;
+      const quietFor = dayDiff(since, runDate);
+      if (!items.length && quietFor >= QUIET_DAYS
+          && (!quietReported || dayDiff(quietReported, runDate) >= QUIET_DAYS)) {
+        quietFeeds.push({ what: feed.name, url: feed.url, since, days: quietFor, read: parsed.length });
+        quietReported = runDate;
+      }
+    }
 
     next.feeds[feed.key] = {
       seen: [...new Set([...ids, ...(seen || [])])].slice(0, KEEP_SEEN),
@@ -364,7 +422,10 @@ export async function run(opts = {}) {
       counts: [parsed.length, ...history].slice(0, KEEP_COUNTS),
       etag: res.etag || prev.etag,
       lastModified: res.lastModified || prev.lastModified,
-      lastRead: runDate
+      lastRead: runDate,
+      watchedSince,
+      ...(lastRelevant ? { lastRelevant } : {}),
+      ...(quietReported ? { quietReported } : {})
     };
   }
 
@@ -392,13 +453,24 @@ export async function run(opts = {}) {
     };
   }
 
-  const report = { newItems, moved, unread, emptyParse, thinParse, runDate };
+  /* ---- the calendar: dates the records themselves state ---- */
+  const dates = dateEvents(factBase.shocks, runDate, state.dates);
+  next.dates = dates.next;
+
+  const report = {
+    newItems, moved, unread, emptyParse, thinParse, quietFeeds,
+    comingUp: dates.comingUp, arrived: dates.arrived, runDate
+  };
   const result = {
     report,
     state: next,
     raise: hasSomethingToSay(report),
+    // Whether what was found needs a person before the issue may close. See
+    // needsAPerson; the body carries the marker the workflow looks for.
+    sticky: needsAPerson(report),
     summary: summarise(report),
     body: hasSomethingToSay(report) ? composeBody(report) : '',
+    dropped,
     counts: { cited: factBase.citedBy.size, feeds: (opts.feeds || FEEDS).length }
   };
 
@@ -421,13 +493,30 @@ const HELP = `The Plain Trade Desk source watcher.
   --out PATH       write the issue body here; empty when there is nothing to say
   --json PATH      write the machine-readable report here
   --dry-run        do not write state
+  --show-dropped   also list, feed by feed, what was read and judged not relevant
   --no-robots      skip the robots.txt check (fixtures only)
   --delay MS       pause between requests (default 1000)
   --help
 
-It reads government sources and reports what a person should go and read.
-It never writes anything under data/ and never sets a verified date.
+It reads government sources and reports what a person should go and read,
+including dates the records themselves state that are coming up or have
+arrived. It never writes anything under data/ and never sets a verified date.
+
+To see what the relevance rules are throwing away without changing anything:
+
+  node watch/watch.mjs --dry-run --show-dropped
 `;
+
+/** The --show-dropped listing. Plain text for a terminal, never an issue. */
+export function formatDropped(dropped) {
+  if (!dropped.length) return 'Dropped as not relevant: nothing, on any feed read this run.\n';
+  const out = ['Dropped as not relevant, by feed (read this run, judged and set aside):'];
+  for (const d of dropped) {
+    out.push('', `  ${d.what} (${d.items.length})`);
+    for (const i of d.items) out.push(`    - ${i.title || i.id}${i.link ? `\n      ${i.link}` : ''}`);
+  }
+  return out.join('\n') + '\n';
+}
 
 function parseArgs(argv) {
   const o = {};
@@ -440,6 +529,7 @@ function parseArgs(argv) {
     else if (a === '--out') o.out = val();
     else if (a === '--json') o.json = val();
     else if (a === '--dry-run') o.dryRun = true;
+    else if (a === '--show-dropped') o.showDropped = true;
     else if (a === '--no-robots') o.checkRobots = false;
     else if (a === '--delay') o.delayMs = Number(val());
     else if (a === '--root') o.root = val();
@@ -462,7 +552,11 @@ if (isMain) {
     process.stdout.write(`Plain Trade Desk watcher, ${r.report.runDate}\n`);
     process.stdout.write(`  ${r.counts.feeds} feeds, ${r.counts.cited} cited sources\n`);
     process.stdout.write(`  ${r.summary}\n`);
+    if (o.showDropped) process.stdout.write('\n' + formatDropped(r.dropped));
     if (process.env.GITHUB_OUTPUT) {
+      // Whether to close a quiet issue is decided from the marker in the issue
+      // itself, not from this run, because the items holding it open were
+      // reported by an earlier run.
       writeFileSync(process.env.GITHUB_OUTPUT, `raise=${r.raise ? 'yes' : 'no'}\n`, { flag: 'a' });
     }
     process.exit(0);
