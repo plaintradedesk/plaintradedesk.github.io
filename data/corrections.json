@@ -1,6 +1,21 @@
 {
   "corrections": [
     {
+      "date": "15 Oct 2026",
+      "what": "The Employment Insurance extension became law on 11 October. From 11 October until today this page still said it was not yet law and that the no-waiting-period rule covered only claims starting by 10 October 2026.",
+      "detail": "The extension is SOR/2026-203, published in the Canada Gazette on 7 October 2026 and in force 11 October 2026. For claims starting up to 9 October 2027 there is no one-week waiting period and severance or vacation pay is not counted against benefits; long-tenured workers whose claims start by 12 June 2027 get 20 extra weeks; and only the reason a claimant's most recent job ended is reviewed. The page had been accurate when last checked on 5 October. Our source watcher flagged a change to Canada's EI page on 6 October, but the alert closed the next day without being read, so for five days the page told laid-off workers to check dates with Service Canada instead of giving them. Anyone who held off applying because of that should apply now."
+    },
+    {
+      "date": "15 Oct 2026",
+      "what": "The 15-year maximum term on the Large Enterprise Tariff Loan Facility has been in effect since 25 August. This page said it was not yet confirmed.",
+      "detail": "The facility's administrator, CEEFC, announced on 25 August 2026 that the maximum loan term rose from 10 to 15 years, and the liquidity period from 24 to 36 months, effective that day. We had checked only its factsheet, which still says up to ten years. The record now relies on the administrator's announcement and notes that the factsheet has not been updated."
+    },
+    {
+      "date": "15 Oct 2026",
+      "what": "The source for the Prime Minister's 22 August remarks linked to his statement of the evening before.",
+      "detail": "The trade-talks record and the support-package record both cited \"Prime Minister's remarks, 22 August 2026\" but linked to the shorter 21 August statement, which does not contain most of what the trade-talks record quotes (French language and culture, more than 20 deals, doubling market access from ASEAN to India over six months, European Union talks this fall). The link now goes to the 22 August remarks, which do, and the 21 August statement is listed separately. One wording change: the record had said the six-month doubling would come \"through ASEAN and India\"; the remarks say \"through new trade deals, from ASEAN to India\". The point about restricting Canada's other trade deals came from his answers to reporters' questions that day, and the record now says so."
+    },
+    {
       "date": "5 Oct 2026",
       "what": "The Section 338 import ban record said it covered selected Canadian motor vehicles. The only vehicle line on the ban is motorcycles over 800 cc. Cars, trucks and auto parts are not barred.",
       "detail": "The record's title and plain register said the ban applied to \"motor vehicles, dairy and alcohol\", following the title of Proclamation 11063. That title names the category of the underlying 50 percent duty, not what is barred. Read line by line against the annexes CBP attached to CSMS 70050970, the motor vehicles annex holds one tariff line, 8711.50.00, motorcycles with a piston engine over 800 cc. The dairy annex holds whey, and also invert molasses, four molasses lines and non-alcoholic beer, which the record had folded into \"dairy\". This mattered because a reader who exports cars or parts would have thought those goods were barred, when they still enter at the 50 percent duty. The title and plain register now say motorcycles, whey, molasses and drinks; the operator and policy registers give the annex contents; the proclamation's own title is kept as published."
