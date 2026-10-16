@@ -9,6 +9,32 @@
  */
 import { esc, escAttr, fmtDate, dayDiff } from '../util.mjs';
 
+/**
+ * A fact longer than this sits under the register text; a shorter one goes in
+ * the "at a glance" panel beside it on a wide screen.
+ *
+ * Length rather than a field on each fact, because it is the property that
+ * actually decides whether a value fits an 18.5rem panel, and a field would be
+ * one more thing to keep right on every fact of every record. Without the split
+ * the panel runs far taller than the text beside it: "Confirmed active" on the
+ * support package is over a thousand characters. The mockups drew the line at
+ * about ninety, but two October values sat within a character of that (91 and
+ * 90), and the 90-character one left the cabinets panel three lines taller
+ * than its text. Eighty has nothing within six characters of it either side.
+ */
+export const LONG_FACT = 80;
+
+export const splitFacts = facts => ({
+  side: facts.filter(f => String(f.value).length <= LONG_FACT),
+  long: facts.filter(f => String(f.value).length > LONG_FACT)
+});
+
+const factList = (facts, cls, pad) => facts.length
+  ? `\n${pad}<dl class="facts ${cls}">\n` +
+    facts.map(f => `${pad}  <dt>${esc(f.label)}</dt>\n${pad}  <dd>${esc(f.value)}</dd>`).join('\n') +
+    `\n${pad}</dl>`
+  : '';
+
 export function shockCard(s, register, vocab, labels, ctx) {
   const age = dayDiff(s.verified, ctx.today);
   // An archived site says once, at the top of every page, that it is no longer
@@ -24,14 +50,11 @@ export function shockCard(s, register, vocab, labels, ctx) {
     ? `\n          <span class="evidence">${esc(labels.trend)}</span>`
     : '';
 
-  // A definition list, because a fact is a label and a value, and because dt/dd
-  // pairs fall into grid rows in DOM order without any wrapper. A one-line
-  // value reads as a chip; a two-sentence value gets its own labelled block.
-  const facts = s.facts.length
-    ? `\n        <dl class="facts">\n` +
-      s.facts.map(f => `          <dt>${esc(f.label)}</dt>\n          <dd>${esc(f.value)}</dd>`).join('\n') +
-      `\n        </dl>`
-    : '';
+  // Definition lists, because a fact is a label and a value, and because dt/dd
+  // pairs fall into grid rows in DOM order without any wrapper. Long facts stay
+  // with the text they explain; short ones form the side panel, which comes
+  // after the text in the markup so a screen reader reads the text first.
+  const { side, long } = splitFacts(s.facts);
 
   const links = s.sources.map(src =>
     `          <a href="${escAttr(src.url)}" target="_blank" rel="noopener noreferrer">${esc(src.label)}</a>`
@@ -53,7 +76,7 @@ export function shockCard(s, register, vocab, labels, ctx) {
   // data. Every piece gets the same class, so a register without one renders
   // exactly as it always has.
   const paragraphs = String(s[register]).split(/\n\n+/).map(piece =>
-    `          <p class="register${register === 'plain' ? ' plain' : ''}">${esc(piece.trim())}</p>`
+    `            <p class="register${register === 'plain' ? ' plain' : ''}">${esc(piece.trim())}</p>`
   ).join('\n');
 
   return `        <article class="card${trend ? ' trend' : ''}" data-id="${escAttr(s.id)}" data-sectors="${escAttr(s.sectors.join(' '))}">
@@ -61,7 +84,9 @@ export function shockCard(s, register, vocab, labels, ctx) {
             <h3>${esc(s.title)}</h3>
             <span class="status ${escAttr(s.status)}">${esc(vocab[s.evidence_class][s.status])}</span>${evidence}${flag}
           </div>
-${paragraphs}${facts}
+          <div class="cardbody">
+${paragraphs}${factList(long, 'long', '            ')}
+          </div>${factList(side, 'side', '          ')}
           <div class="srcs">
 ${sources}
             <span class="verif mono">${esc(labels.checked.replace('{date}', fmtDate(s.verified)))}</span>

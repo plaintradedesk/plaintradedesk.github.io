@@ -386,6 +386,72 @@ a.dl{
 }
 a.dl:hover{text-decoration:underline}
 a.pagelink.download{border-color:var(--accent)}
+/* The download pill also carries .download, so it took that box's padding,
+   margin and corners, and the row stretched the three pills beside it into
+   80-pixel ovals. It is a pill like its neighbours, with the accent border. */
+.sitenav{align-items:center}
+a.pagelink.download{margin:0;padding:5px 13px;border-radius:999px}
+
+/* --- wrapping, everywhere ---
+   Fewer one-word last lines. Firefox ignores it harmlessly. Not justification:
+   WCAG 1.4.8 advises against justified text, whose uneven word spacing makes
+   rivers that are hardest on readers with dyslexia. */
+p, dd, .action small{text-wrap:pretty}
+
+/* --- the card body ---
+   The register text and any long facts, wrapped so a wide screen can give them
+   one column. On a narrow screen the wrapper steps aside and the card stacks
+   exactly as it did before it existed. */
+.cardbody{display:contents}
+
+/* --- desktop: make the boxes and the text agree ---
+   At 1440 pixels a card was about 1,040 wide and its text stopped at the 68ch
+   measure, about 615, so 40 percent of every card was empty on the right, and
+   the lede, card text, steps and footer each ended at a different x. Now a card
+   is two columns: the text, and an "at a glance" panel of its short facts. The
+   lede, the season hint, the explainer and the footer stop where card text does,
+   so the page has one left edge and a few right edges that line up. Below 960
+   pixels none of this applies.
+
+   --edge is the distance from the content's right edge to where card text ends:
+   the card's padding, the gap, and the panel. Anything else that should end at
+   the same x subtracts it, adding back its own left padding. */
+@media (min-width:960px){
+  :root{--side:18.5rem;--gap-side:2.25rem;--cardpad:26px;
+    --edge:calc(var(--cardpad) + var(--gap-side) + var(--side))}
+
+  .card{
+    display:grid;grid-template-columns:minmax(0,1fr) var(--side);
+    column-gap:var(--gap-side);row-gap:14px;padding:22px var(--cardpad) 18px;
+  }
+  .card-top{grid-column:1 / -1}
+  .cardbody{grid-column:1;display:flex;flex-direction:column;gap:12px;min-width:0}
+  .card .register{max-width:none}
+  .card .facts.side{
+    grid-column:2;align-self:start;display:block;margin:0;padding:12px 15px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:8px;
+  }
+  .card .facts.side dt{margin:9px 0 1px;padding:0}
+  .card .facts.side dt:first-child{margin-top:0}
+  .card .facts.side dd{font-size:.86rem;line-height:1.4;max-width:none}
+  .card .facts.long dd{max-width:none}
+  .card .srcs{grid-column:1 / -1}
+
+  .lede{max-width:calc(100% - var(--edge))}
+  .seasons .hint{max-width:calc(100% + 18px - var(--edge))}
+  .mech > p{max-width:calc(100% + 22px - var(--edge))}
+  footer p{max-width:calc(100% - var(--edge))}
+
+  /* Steps: a grid of cards, the timing above the text rather than beside it. */
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;border:0;background:transparent;overflow:visible}
+  .action{
+    flex-direction:column;gap:6px;padding:16px 18px;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  }
+  .action:last-child{border-bottom:1px solid var(--line)}
+  .action .txt{max-width:none}
+  .by{min-width:0}
+}
 
 /* --- the 404 --- */
 .notfound .doorlist{margin:12px 0 0;padding-left:1.1rem;color:var(--muted)}

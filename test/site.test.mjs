@@ -29,6 +29,7 @@
  */
 import { chromium } from 'playwright';
 import { shareCard } from '../src/templates/share.mjs';
+import { splitFacts, LONG_FACT } from '../src/templates/shock.mjs';
 import { readFileSync, readdirSync, cpSync, rmSync, mkdtempSync, writeFileSync, existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -164,6 +165,59 @@ const editJson = (dir, name, fn) => {
   const policy = await text('#cards');
   ok('steel surtax carries its instrument number', /SOR\/2025-95/.test(policy));
   ok('steel surtax states how current the consolidated text is', /current to 21 September 2026/.test(policy));
+
+  /* ------------------------------------------------------------------ */
+  g('LAYOUT: on a wide screen the boxes and the text agree');
+
+  {
+    ok('a fact over 80 characters goes under the text, one of 80 or fewer beside it',
+       splitFacts([{ value: 'x'.repeat(80) }, { value: 'x'.repeat(81) }]).side.length === 1
+       && splitFacts([{ value: 'x'.repeat(80) }, { value: 'x'.repeat(81) }]).long[0].value.length === 81
+       && LONG_FACT === 80);
+    const all = shockData.flatMap(s => s.facts);
+    const again = shockData.map(s => splitFacts(s.facts));
+    ok('the split is total and loses nothing', again.reduce((n, x) => n + x.side.length + x.long.length, 0) === all.length);
+
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await go('index.html');
+    const shape = await page.evaluate(() => {
+      const c = document.querySelector('.card[data-id="US_S338_2026-08"]');
+      const kids = [...c.children].map(k => k.className);
+      const body = c.querySelector('.cardbody'), side = c.querySelector('.facts.side');
+      const reg = c.querySelector('.register').getBoundingClientRect();
+      const lede = document.querySelector('.lede p').getBoundingClientRect();
+      return {
+        kids,
+        longInBody: [...body.querySelectorAll('.facts.long dt')].map(d => d.textContent),
+        sideFacts: [...side.querySelectorAll('dt')].map(d => d.textContent),
+        sideRightOfText: side.getBoundingClientRect().left > reg.right,
+        regRight: Math.round(reg.right), ledeRight: Math.round(lede.right),
+        stepCols: new Set([...document.querySelectorAll('#actions .action:not([hidden])')]
+          .map(a => Math.round(a.getBoundingClientRect().left))).size
+      };
+    });
+    ok('the long fact sits in the card body, the short ones in the side panel',
+       shape.longInBody.join() === 'Coverage' && shape.sideFacts.join() === 'In force since,Scale,CUSMA exempt');
+    ok('reading order is title, body, side panel, sources',
+       shape.kids.join('|') === 'card-top|cardbody|facts side|srcs');
+    ok('at 1440 the side panel is beside the text', shape.sideRightOfText);
+    ok('at 1440 the lede ends where the card text ends (within a few pixels)',
+       Math.abs(shape.ledeRight - shape.regRight) <= 30);
+    ok('at 1440 the steps are a two-column grid', shape.stepCols === 2);
+
+    await page.setViewportSize({ width: 360, height: 800 });
+    await go('index.html');
+    const narrow = await page.evaluate(() => {
+      const c = document.querySelector('.card[data-id="US_S338_2026-08"]');
+      const reg = c.querySelector('.register').getBoundingClientRect();
+      const side = c.querySelector('.facts.side').getBoundingClientRect();
+      return { stacked: side.top >= reg.bottom,
+        overflow: document.documentElement.scrollWidth > window.innerWidth };
+    });
+    ok('at 360 the card stacks as before, facts under the text', narrow.stacked);
+    ok('at 360 nothing scrolls sideways', !narrow.overflow);
+    await page.setViewportSize({ width: 1280, height: 720 });
+  }
 
   /* ------------------------------------------------------------------ */
   g('SEASONS: they filter steps, never facts');

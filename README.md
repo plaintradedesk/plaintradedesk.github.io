@@ -251,6 +251,10 @@ Things worth knowing before you save it:
 - `unverified: true` is available for a record carried over from working notes. It shows on
   the page with a visible flag and puts the record in the known-gaps list. There are none at
   the moment and it is better if it stays that way.
+- **A fact's length decides where it sits on a wide screen.** Values of 80 characters or fewer
+  go in the "at a glance" panel beside the text; longer ones sit under the text. A record with
+  a short register and several short facts can leave the panel taller than the text, so check
+  the card at 1440 pixels when you add one.
 - **`dates` is optional**, and is how a record tells the source watcher about a day that
   matters: a measure starting or ending, a tribunal due to report. Each entry is
   `{ "date": "2027-01-15", "kind": "review", "what": "Trade Tribunal inquiry expected to conclude" }`,
