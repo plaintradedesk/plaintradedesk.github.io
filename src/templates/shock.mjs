@@ -17,7 +17,8 @@ import { esc, escAttr, fmtDate, dayDiff } from '../util.mjs';
  * actually decides whether a value fits an 18.5rem panel, and a field would be
  * one more thing to keep right on every fact of every record. Without the split
  * the panel runs far taller than the text beside it: "Confirmed active" on the
- * support package is over a thousand characters. The mockups drew the line at
+ * support package was over a thousand characters until it was split into short
+ * facts on 25 October 2026. The mockups drew the line at
  * about ninety, but two October values sat within a character of that (91 and
  * 90), and the 90-character one left the cabinets panel three lines taller
  * than its text. Eighty has nothing within six characters of it either side.

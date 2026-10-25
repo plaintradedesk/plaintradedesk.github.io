@@ -315,6 +315,24 @@
       "reviewed": "2026-10-16"
     },
     {
+      "id": "ACT_CLAIM_INPUT_REMISSION",
+      "text": "If you import US goods to use in making or processing something in Canada, claim surtax remission under code 25-0466C.",
+      "note": "The counter-tariff on manufacturing inputs can be remitted under the United States Surtax Remission Order (2025). Claim within two years of import, and keep records showing the goods went into manufacturing, processing or packaging.",
+      "by": "Now",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "CA_RETAL_2026-09"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null,
+      "reviewed": "2026-10-25"
+    },
+    {
       "id": "ACT_CONFIRM_INCOTERMS",
       "text": "Confirm who pays the duty under your Incoterms on every live shipment in both directions.",
       "note": "This is the most common expensive surprise. The importer of record carries the liability regardless of who filed the paperwork.",
@@ -460,7 +478,7 @@
       "seasons": [],
       "family": false,
       "refer": null,
-      "reviewed": "2026-10-16"
+      "reviewed": "2026-10-25"
     },
     {
       "id": "ACT_WATCH_DELIVERY_MECHANISM",
@@ -482,8 +500,8 @@
     },
     {
       "id": "ACT_WATCH_S338_CHALLENGE",
-      "text": "Any court challenge to the first-ever use of Section 338.",
-      "note": "The statute has no judicial precedent. A successful challenge would unwind the 22 August measures entirely.",
+      "text": "Gellert Global Group Corp. v. Trump, No. 26-cv-04636 in the US Court of International Trade, and the ruling on its preliminary injunction motion.",
+      "note": "The first challenge to Section 338, filed 20 October 2026 for a US importer and a proposed class of importers. It asks for the duties to be struck down and refunded with interest; the motion, filed 23 October, asks for collection to stop meanwhile and does not touch the import ban. Nothing has been decided.",
       "by": "Watch",
       "urgent": false,
       "doors": [
@@ -496,7 +514,7 @@
       "seasons": [],
       "family": false,
       "refer": null,
-      "reviewed": "2026-10-16"
+      "reviewed": "2026-10-25"
     }
   ]
 }

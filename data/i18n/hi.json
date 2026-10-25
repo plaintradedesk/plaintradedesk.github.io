@@ -588,7 +588,7 @@
       "t": ""
     },
     "shocks.US_S338_2026-08.plain": {
-      "en": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, plywood, circuit boards and some vehicles. On 15 September 2026 some products were added to the list and a few, cement among them, were taken off, so a product's place on it is worth re-checking. If your workplace ships any of those south, this is the week to ask your employer what it means for orders.",
+      "en": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, plywood, circuit boards and some vehicles. The list keeps moving. On 15 September some products were added and a few, cement among them, were taken off. From 30 October some thin plywood, some paper and packing boxes and some machinery come off, and carpets, sweetened cocoa, some valves and other goods go on. So a product's place on it is worth re-checking. If your workplace ships any of those south, this is the week to ask your employer what it means for orders. A US importer has asked a US court to strike the tax down. Nothing has been decided.",
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[0].label": {
@@ -604,7 +604,7 @@
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[1].value": {
-      "en": "554 tariff lines, three proclamations, as of 22 August 2026. From 15 September 2026, US Customs guidance (CSMS 69851916) reports 122 classifications added and 10 removed under two Federal Register scope modifications; no new total is stated there and none is computed here",
+      "en": "554 tariff lines, three proclamations, as of 22 August 2026: 63 under heading 9903.03.12, 52 under 9903.03.13 and 439 under 9903.03.14, per US Customs' own list. From 15 September 2026, US Customs guidance (CSMS 69851916) reports 122 classifications added and 10 removed under two Federal Register scope modifications. From 30 October 2026, a proclamation signed 23 October adds 100 subheadings to 9903.03.14 and removes 22. None of these states a new total and none is computed here",
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[2].label": {
@@ -612,7 +612,7 @@
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[2].value": {
-      "en": "Roughly 5 percent of Canadian goods exports to the US",
+      "en": "Roughly 5 percent of Canadian goods exports to the US, a law-firm estimate",
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[3].label": {
@@ -724,7 +724,7 @@
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.plain": {
-      "en": "Canada is answering with its own taxes on American goods, which took effect on Tuesday 8 September, the day after Labour Day. The list was published 25 August: steel, dairy, appliances, farm equipment, paper, electronics and more, covering 27.6 billion dollars of what Canada buys from the US. Each product gets matched to whatever rate the US is charging on the equivalent Canadian good, so some items carry 15 percent, some 25, some 50.",
+      "en": "Canada is answering with its own taxes on American goods, which took effect on Tuesday 8 September, the day after Labour Day. The list was published 25 August: steel, dairy, appliances, farm equipment, paper, electronics and more, covering 27.6 billion dollars of what Canada buys from the US. Each product gets matched to whatever rate the US is charging on the equivalent Canadian good, so some items carry 15 percent, some 25, some 50. If your business brings in American parts or materials to make or process something here, the counter-tax on them can be refunded, or not charged at all, if it is claimed. Ask your customs broker about remission.",
       "t": ""
     },
     "shocks.CA_RETAL_2026-09.facts[0].label": {
@@ -759,12 +759,20 @@
       "en": "15, 25 or 50 percent, matching the US rate line for line",
       "t": ""
     },
+    "shocks.CA_RETAL_2026-09.facts[4].label": {
+      "en": "Remission for manufacturing inputs",
+      "t": ""
+    },
+    "shocks.CA_RETAL_2026-09.facts[4].value": {
+      "en": "Surtax on US goods imported for use in Canada in manufacturing or processing any good can be remitted under the United States Surtax Remission Order (2025), as amended by SOR/2026-186. CBSA special authorization code 25-0466C; claim within two years of importation",
+      "t": ""
+    },
     "shocks.CA_SUPPORT_2026-08.title": {
       "en": "Federal support package for affected workers and businesses",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.plain": {
-      "en": "The federal government has now published exactly what it is doing to help workers and businesses hurt by these tariffs: an extra 7.5 billion dollars announced 25 August, on top of nearly 25 billion dollars already put into support programs over the past year and a half. It covers loans and grants for affected businesses, extra help for large employers under strain, and better Employment Insurance for people who are laid off or have their hours cut. As of 15 October the programs are running, not just promised. If your hours are cut, ask your employer about Work-Sharing and the expanded EI measures, since those are the two programs built to keep people on payroll or afloat between jobs. If you are laid off or your hours are cut, apply for EI right away rather than waiting. The better EI rules are now law. For a claim that starts by 9 October 2027, there is no one-week unpaid wait before benefits begin, and severance or vacation pay you get when you leave a job does not reduce your EI. EI also looks only at why your most recent job ended. If you have worked and paid into EI for most of the past ten years and claimed little or no EI in the past three, a claim that starts by 12 June 2027 can get up to 20 extra weeks of benefits.",
+      "en": "The federal government is spending an extra 7.5 billion dollars, announced 25 August, to help workers and businesses hurt by these tariffs, on top of nearly 25 billion dollars over the past year and a half. It covers loans and grants for affected businesses, help for large employers under strain, and better Employment Insurance. As of 15 October all of it is running, not just promised. If you are laid off or your hours are cut, apply for EI right away, and ask your employer about Work-Sharing, which keeps people on payroll at reduced hours. The better EI rules are law. For a claim that starts by 9 October 2027, there is no one-week unpaid wait, severance or vacation pay you get when you leave a job does not reduce your EI, and only the reason your most recent job ended is looked at. If you have worked and paid into EI for most of the past ten years and claimed little or no EI in the past three, a claim that starts by 12 June 2027 can get up to 20 extra weeks.",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[0].label": {
@@ -796,7 +804,31 @@
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[3].value": {
-      "en": "All five pieces. The Canada Strong Diversification Fund, created \"effective immediately\" as a 2 billion dollar stream of the existing Strategic Response Fund. The BDC Pivot to Grow loan, which BDC's own page says is available until 31 March 2028. The Employment Insurance measures, extended in law by SOR/2026-203, in force 11 October 2026: no one-week waiting period and no deduction of separation pay for claims starting up to 9 October 2027, and 20 extra weeks for long-tenured workers whose claims start by 12 June 2027. The Regional Tariff Response Initiative's higher cap, which FedDev Ontario's own program page states as current terms: up to 3 million dollars in combined non-repayable funding, made up of up to 2 million in liquidity assistance and up to 1 million for a pivot project. And the Large Enterprise Tariff Loan Facility's new terms, which the facility's administrator CEEFC announced on 25 August as in effect that day: up to 36 months of liquidity needs, and a maximum loan term raised from 10 to 15 years. CEEFC's separate factsheet still says up to ten years",
+      "en": "All five pieces, each on its own program page, as of 15 October 2026",
+      "t": ""
+    },
+    "shocks.CA_SUPPORT_2026-08.facts[4].label": {
+      "en": "EI, no waiting week",
+      "t": ""
+    },
+    "shocks.CA_SUPPORT_2026-08.facts[4].value": {
+      "en": "Claims starting by 9 October 2027 (SOR/2026-203)",
+      "t": ""
+    },
+    "shocks.CA_SUPPORT_2026-08.facts[5].label": {
+      "en": "EI, 20 extra weeks",
+      "t": ""
+    },
+    "shocks.CA_SUPPORT_2026-08.facts[5].value": {
+      "en": "Long-tenured workers, claims starting by 12 June 2027",
+      "t": ""
+    },
+    "shocks.CA_SUPPORT_2026-08.facts[6].label": {
+      "en": "Large-firm loan term",
+      "t": ""
+    },
+    "shocks.CA_SUPPORT_2026-08.facts[6].value": {
+      "en": "Up to 15 years, covering up to 36 months of liquidity needs",
       "t": ""
     },
     "shocks.CA_STEEL_ALU_2025.title": {

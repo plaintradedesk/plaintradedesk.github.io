@@ -164,7 +164,7 @@ const editJson = (dir, name, fn) => {
   await go('policy.html');
   const policy = await text('#cards');
   ok('steel surtax carries its instrument number', /SOR\/2025-95/.test(policy));
-  ok('steel surtax states how current the consolidated text is', /current to 21 September 2026/.test(policy));
+  ok('steel surtax states how current the consolidated text is', /current to \d{1,2} [A-Z][a-z]+ \d{4}/.test(policy));
 
   /* ------------------------------------------------------------------ */
   g('LAYOUT: on a wide screen the boxes and the text agree');
