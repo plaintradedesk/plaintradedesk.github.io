@@ -588,7 +588,7 @@
       "t": ""
     },
     "shocks.US_S338_2026-08.plain": {
-      "en": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, plywood, circuit boards and some vehicles. The list keeps moving. On 15 September some products were added and a few, cement among them, were taken off. From 30 October some thin plywood, some paper and packing boxes and some machinery come off, and carpets, sweetened cocoa, some valves and other goods go on. So a product's place on it is worth re-checking. If your workplace ships any of those south, this is the week to ask your employer what it means for orders. A US importer has asked a US court to strike the tax down. Nothing has been decided.",
+      "en": "The United States has put a 50 percent tax on about one twentieth of what Canada sells them. Most trade is not on this list. It does cover hockey equipment, furniture, clothing, wine and beer, dairy, plywood, circuit boards and some vehicles. The list keeps moving. On 15 September some products were added and a few, cement among them, were taken off. On 30 October some thin plywood, some paper and packing boxes and some machinery came off, and carpets, sweetened cocoa, some valves and other goods went on. So a product's place on it is worth re-checking. If your workplace ships any of those south, this is the week to ask your employer what it means for orders. A US importer has asked a US court to strike the tax down. Nothing has been decided.",
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[0].label": {
@@ -604,7 +604,7 @@
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[1].value": {
-      "en": "554 tariff lines, three proclamations, as of 22 August 2026: 63 under heading 9903.03.12, 52 under 9903.03.13 and 439 under 9903.03.14, per US Customs' own list. From 15 September 2026, US Customs guidance (CSMS 69851916) reports 122 classifications added and 10 removed under two Federal Register scope modifications. From 30 October 2026, a proclamation signed 23 October adds 100 subheadings to 9903.03.14 and removes 22. None of these states a new total and none is computed here",
+      "en": "554 tariff lines, three proclamations, as of 22 August 2026: 63 under heading 9903.03.12, 52 under 9903.03.13 and 439 under 9903.03.14, per US Customs' own list. From 15 September 2026, US Customs guidance (CSMS 69851916) reports 122 classifications added and 10 removed under two Federal Register scope modifications. From 30 October 2026, Proclamation 11076, signed 23 October, adds 100 subheadings to 9903.03.14 and removes 22, per CBP's CSMS 70314289. None of these states a new total and none is computed here",
       "t": ""
     },
     "shocks.US_S338_2026-08.facts[2].label": {
@@ -829,6 +829,54 @@
     },
     "shocks.CA_SUPPORT_2026-08.facts[6].value": {
       "en": "Up to 15 years, covering up to 36 months of liquidity needs",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.title": {
+      "en": "Canada and Ontario action plan for steel and auto",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.plain": {
+      "en": "On 21 October the federal and Ontario governments announced 8.7 billion dollars for Ontario's steel and car industries and for roads to a mining region in the north. It is a promise of money over the next few years, not money anyone can apply for yet. If you work in steel or auto, it does not change your pay, your hours or your Employment Insurance today. The help that is already running for workers hit by the tariffs is the federal support package, which this site describes separately.",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[0].label": {
+      "en": "Announced",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[0].value": {
+      "en": "21 October 2026, by the Prime Minister and the Premier of Ontario",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[1].label": {
+      "en": "Steel",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[1].value": {
+      "en": "Joint Steel Action Fund: $3.55B federal, $1.67B Ontario, over five years",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[2].label": {
+      "en": "Auto",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[2].value": {
+      "en": "$2.5B over two years for auto capital projects, federal and Ontario",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[3].label": {
+      "en": "Open for applications",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[3].value": {
+      "en": "Nothing yet. No intake, application page or start date is given",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[4].label": {
+      "en": "Not covered here",
+      "t": ""
+    },
+    "shocks.CA_ONTARIO_PLAN_2026-10.facts[4].value": {
+      "en": "Ring of Fire roads, permitting and mining projects in the same plan",
       "t": ""
     },
     "shocks.CA_STEEL_ALU_2025.title": {
