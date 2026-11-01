@@ -735,6 +735,62 @@
       "en": "Vehicles and parts, trucks, wood, chips, drugs, wind turbines, softwood AD/CVD",
       "t": ""
     },
+    "shocks.US_IEEPA_2025.title": {
+      "en": "The US emergency tariff on Canadian goods, which has ended, and its refunds",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.plain": {
+      "en": "From March 2025 the United States charged an emergency tariff on Canadian goods that did not qualify under the free-trade agreement, 25 percent at first and 35 percent from August 2025. The US Supreme Court ruled on 20 February 2026 that the law it was based on does not allow tariffs, and the tariff stopped for goods entering the United States from 24 February 2026. It does not apply now. A 10 percent stopgap charge on imports from all countries followed, which did not apply to goods that qualified under the free-trade agreement, and it expired after 23 July 2026. The money is being paid back, but only to whoever was the official US importer on each shipment. If that was your company, you may be owed a refund. If your US customer was the importer, the refund is theirs, not yours. What the US does charge Canadian goods now is in the records on the Section 338 tariffs and the Section 232 steel, aluminum and copper tariffs.",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[0].label": {
+      "en": "In force",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[0].value": {
+      "en": "4 March 2025 to entries before 24 February 2026",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[1].label": {
+      "en": "Rate",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[1].value": {
+      "en": "25 percent, 35 percent from 1 August 2025; 10 percent on energy and potash",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[2].label": {
+      "en": "CUSMA goods",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[2].value": {
+      "en": "Exempt from 7 March 2025",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[3].label": {
+      "en": "Struck down",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[3].value": {
+      "en": "US Supreme Court, Learning Resources v. Trump, 20 February 2026",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[4].label": {
+      "en": "Refunds",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[4].value": {
+      "en": "To the US importer of record, through CAPE in ACE; no deadline published",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[5].label": {
+      "en": "Section 122 surcharge",
+      "t": ""
+    },
+    "shocks.US_IEEPA_2025.facts[5].value": {
+      "en": "10 percent, 24 February to 23 July 2026; CUSMA goods exempt; expired",
+      "t": ""
+    },
     "shocks.US_PROCUREMENT_2026-09.title": {
       "en": "United States moves to shut Canadian goods out of federal civil procurement",
       "t": ""

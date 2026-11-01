@@ -375,6 +375,24 @@
       "reviewed": "2026-11-01"
     },
     {
+      "id": "ACT_CLAIM_IEEPA_REFUND",
+      "text": "If your company was the US importer of record on goods that paid the IEEPA tariff, file a CAPE Declaration for the refund.",
+      "note": "File in the ACE Portal, yourself or through the broker that filed the entries, with a list of the entry numbers. Refunds go only to a US bank account; a foreign importer without one can name a US customs broker as notify party. Entries whose liquidation is already final are not accepted yet. If your US customer was the importer, the refund is theirs. Confirm with your broker.",
+      "by": "Now",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "US_IEEPA_2025"
+      ],
+      "sectors": [],
+      "seasons": [],
+      "family": false,
+      "refer": null,
+      "reviewed": "2026-11-01"
+    },
+    {
       "id": "ACT_CONFIRM_INCOTERMS",
       "text": "Confirm who pays the duty under your Incoterms on every live shipment in both directions.",
       "note": "This is the most common expensive surprise. The importer of record carries the liability regardless of who filed the paperwork.",

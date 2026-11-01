@@ -303,6 +303,94 @@
       ]
     },
     {
+      "id": "US_IEEPA_2025",
+      "title": "The US emergency tariff on Canadian goods, which has ended, and its refunds",
+      "status": "ended",
+      "evidence_class": "instrument",
+      "effective": "2025-03-04",
+      "verified": "2026-11-01",
+      "sectors": [],
+      "doors": [
+        "business",
+        "policy"
+      ],
+      "facts": [
+        {
+          "label": "In force",
+          "value": "4 March 2025 to entries before 24 February 2026"
+        },
+        {
+          "label": "Rate",
+          "value": "25 percent, 35 percent from 1 August 2025; 10 percent on energy and potash"
+        },
+        {
+          "label": "CUSMA goods",
+          "value": "Exempt from 7 March 2025"
+        },
+        {
+          "label": "Struck down",
+          "value": "US Supreme Court, Learning Resources v. Trump, 20 February 2026"
+        },
+        {
+          "label": "Refunds",
+          "value": "To the US importer of record, through CAPE in ACE; no deadline published"
+        },
+        {
+          "label": "Section 122 surcharge",
+          "value": "10 percent, 24 February to 23 July 2026; CUSMA goods exempt; expired"
+        }
+      ],
+      "plain": "From March 2025 the United States charged an emergency tariff on Canadian goods that did not qualify under the free-trade agreement, 25 percent at first and 35 percent from August 2025. The US Supreme Court ruled on 20 February 2026 that the law it was based on does not allow tariffs, and the tariff stopped for goods entering the United States from 24 February 2026. It does not apply now. A 10 percent stopgap charge on imports from all countries followed, which did not apply to goods that qualified under the free-trade agreement, and it expired after 23 July 2026. The money is being paid back, but only to whoever was the official US importer on each shipment. If that was your company, you may be owed a refund. If your US customer was the importer, the refund is theirs, not yours. What the US does charge Canadian goods now is in the records on the Section 338 tariffs and the Section 232 steel, aluminum and copper tariffs.",
+      "operator": "The tariff ended for goods entered from 12:00am Eastern on 24 February 2026, and US Customs is refunding what was paid, with interest. Only the importer of record on each entry can claim, or the licensed customs broker that filed the entry for it; a lawyer cannot file. A Canadian firm that imported into the United States as a non-resident importer of record paid the duty and is the one that claims. If your US customer or another party was the importer of record, the refund goes to them, and you should not expect one yourself.\n\nThe claim is a CAPE Declaration, filed in the ACE Portal as a CSV file listing the entry numbers and nothing else, by the importer or its broker. You need an ACE Portal account with an importer sub-account and refund bank details on file, because refunds are paid only by ACH to a US bank account. A foreign importer without a US account can instead designate a US customs broker as its notify party to receive the refund (CBP Form 4811). Gather the entry numbers and dates for every entry that paid the duty; CBP's ES-003 report in ACE lists entry lines with IEEPA duty. CBP says valid refunds generally arrive 60 to 90 days after a declaration is accepted.\n\nAs of CBP's refunds page of 28 October 2026, CAPE takes entries that are unliquidated or liquidated within the previous 80 days, and entries flagged for reconciliation with no reconciliation yet filed. It does not yet take entries whose liquidation is final, entries under an open protest, drawback or warehouse entries, or entries not filed in ACE; CBP lists these as being evaluated for later phases. For entries outside the first phase, CBP says it offers no legal guidance on whether a case needs to be filed at the Court of International Trade. CBP has published no deadline for filing a CAPE Declaration. Each entry can go on only one accepted declaration, and a declaration cannot be amended or withdrawn. CBP charges no fee; a party asking for one in CBP's name is a scam, per CBP. Confirm which of your entries qualify, and how, with a customs broker.",
+      "policy": "Executive Order 14193 of 1 February 2025, Imposing Duties To Address the Flow of Illicit Drugs Across Our Northern Border (90 FR 9113), imposed under the International Emergency Economic Powers Act an additional 25 percent duty on products of Canada and 10 percent on Canadian energy and energy resources, from 4 February 2025. Executive Order 14197 of 3 February (90 FR 9183) paused it until 12:01am Eastern on 4 March 2025. Executive Order 14231 of 6 March (90 FR 11785) exempted goods entered free of duty as goods of Canada under general note 11 to the HTSUS, the CUSMA provisions, and set potash at 10 percent, from 12:01am on 7 March 2025. Executive Order 14325 of 31 July (90 FR 37957) raised the 25 percent rate to 35 percent for goods entered from 12:01am Eastern Daylight Time on 1 August 2025, leaving the energy and potash rates and the CUSMA exemption as they were.\n\nThe Supreme Court decided Learning Resources, Inc. v. Trump, No. 24-1287, on 20 February 2026, with V.O.S. Selections, No. 25-250, and held that \"IEEPA does not authorize the President to impose tariffs\". The opinion of the Court was delivered by the Chief Justice; Justices Thomas, Kavanaugh and Alito dissented. Executive Order 14389 of the same day, Ending Certain Tariff Actions (91 FR 9437, published 25 February 2026, document 2026-03832), provides that the IEEPA duties imposed by Executive Order 14193, as amended, and eight other orders \"shall no longer be in effect and, as soon as practicable, shall no longer be collected\", leaves the national emergencies in place, and does not affect duties under Section 232 or Section 301. CBP's CSMS 67834313 of 22 February 2026 ended collection for goods entered for consumption, or withdrawn from warehouse, from 12:00am Eastern on 24 February 2026, and made the IEEPA tariff numbers inactive in ACE from that date. The tariff schedule still prints heading 9903.01.10 for products of Canada at 35 percent in HTS Revision 22; no primary source read here explains why, and this record offers no explanation.\n\nRefunds are processed through CAPE, the Consolidated Administration and Processing of Entries function in ACE, whose first phase CSMS 68340863 scheduled to deploy at 8am Eastern on 20 April 2026, with a second deployment on 29 June 2026 for entries flagged for reconciliation. CBP's IEEPA duty refunds page, last modified 28 October 2026, describes who may file (the importer of record or the broker that filed the entries), how (a CSV of entry numbers in the ACE Portal), payment (ACH to a US bank account, to the importer or its Form 4811 notify party, with interest under 19 U.S.C. 1505, netted against other amounts due on the entry), and what is not yet accepted (among others, entries whose liquidation is final). CBP's ACE Portal and ACH refunds questions, last modified 30 October 2026, set out the notify-party route for a foreign importer without a US bank account. No deadline for filing a CAPE Declaration was found in CBP's texts. No CBP text read here describes a third deployment or refunds on finally liquidated entries.\n\nThe temporary import surcharge that followed, Proclamation 11012 of 20 February 2026 under Section 122 of the Trade Act of 1974 (91 FR 9339, document 2026-03824), imposed 10 percent on imports from all countries for goods entered from 12:01am on 24 February 2026, \"through 12:01 a.m. eastern daylight time on July 24, 2026\" unless extended by an Act of Congress. It did not apply to goods entered free of duty as goods of Canada or Mexico under general note 11 (the CUSMA provisions), nor to articles subject to Section 232. No Federal Register document extending it was found, and the HTS records that its headings, 9903.03.01 to 9903.03.11, \"expired at the close of July 23, 2026\".\n\nWhat the United States charges Canadian goods now is in the Section 338 record and the Section 232 metals record.",
+      "sources": [
+        {
+          "label": "Executive Order 14193, duties on products of Canada, Federal Register 7 February 2025, 90 FR 9113",
+          "url": "https://www.federalregister.gov/d/2025-02406"
+        },
+        {
+          "label": "Executive Order 14197, the pause to 4 March 2025, 90 FR 9183",
+          "url": "https://www.federalregister.gov/d/2025-02478"
+        },
+        {
+          "label": "Executive Order 14231, the CUSMA exemption and potash, 90 FR 11785",
+          "url": "https://www.federalregister.gov/d/2025-03990"
+        },
+        {
+          "label": "Executive Order 14325, the 35 percent rate from 1 August 2025, 90 FR 37957",
+          "url": "https://www.federalregister.gov/d/2025-14999"
+        },
+        {
+          "label": "Supreme Court of the United States, Learning Resources, Inc. v. Trump, No. 24-1287, decided 20 February 2026",
+          "url": "https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf"
+        },
+        {
+          "label": "Executive Order 14389, Ending Certain Tariff Actions, Federal Register 25 February 2026, 91 FR 9437",
+          "url": "https://www.federalregister.gov/d/2026-03832"
+        },
+        {
+          "label": "US Customs and Border Protection, CSMS 67834313, ending collection of IEEPA duties, 22 February 2026",
+          "url": "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/40b11c9"
+        },
+        {
+          "label": "US Customs and Border Protection, IEEPA duty refunds and CAPE",
+          "url": "https://www.cbp.gov/trade/programs-administration/trade-remedies/ieepa-duty-refunds"
+        },
+        {
+          "label": "US Customs and Border Protection, CSMS 68340863, CAPE deployment of 20 April 2026",
+          "url": "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/412cc7f"
+        },
+        {
+          "label": "US Customs and Border Protection, ACE Portal and ACH refunds questions (foreign importers)",
+          "url": "https://www.cbp.gov/trade/automated/ace-portal-and-ach-refunds-faqs"
+        },
+        {
+          "label": "Proclamation 11012, the Section 122 temporary import surcharge, Federal Register 25 February 2026, 91 FR 9339",
+          "url": "https://www.federalregister.gov/d/2026-03824"
+        }
+      ]
+    },
+    {
       "id": "US_PROCUREMENT_2026-09",
       "title": "United States moves to shut Canadian goods out of federal civil procurement",
       "status": "announced",
