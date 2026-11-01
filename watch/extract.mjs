@@ -145,6 +145,28 @@ export function parseFeed(xml) {
 }
 
 /**
+ * GovDelivery's feed for the CBP account, which carries every bulletin whole.
+ *
+ * Read like any RSS feed, plus the words of the bulletin itself, because a
+ * CSMS title is not enough to judge it by: the Section 232 messages often name
+ * no country in the title, and 70314289 names no instrument there, only
+ * "Certain Goods of Canada". The text is for judging only. Nothing writes it to
+ * state, and the report shows the title and the link as for any other item.
+ */
+export function parseGovDelivery(xml) {
+  const out = [];
+  for (const item of String(xml).match(/<item\b[\s\S]*?<\/item>/gi) || []) {
+    const [entry] = parseFeed(item);
+    if (!entry) continue;
+    const raw = (item.match(/<description\b[^>]*>([\s\S]*?)<\/description>/i) || [])[1] || '';
+    const html = raw.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1');
+    entry.text = clean(html.replace(COMMENTS, ' ').replace(DROP_ELEMENTS, ' '));
+    out.push(entry);
+  }
+  return out;
+}
+
+/**
  * One issue of the Canada Gazette, from the table of contents page its feed
  * item links to.
  *

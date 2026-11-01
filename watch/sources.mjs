@@ -14,12 +14,13 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import {
   parseFeed, parseFederalRegister, parseIndex,
-  parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax
+  parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax, parseGovDelivery
 } from './extract.mjs';
 
 /**
  * The places worth reading, in the order the brief lists them. Six until
- * October 2026, when the Federal Register gained a second query; see below.
+ * October 2026, when the Federal Register gained a second query, and eight
+ * from November 2026, with US Customs' CSMS messages; see below.
  *
  * `weight` is not a score. It only marks the two Part I style sources whose
  * items are proposals rather than instruments, so the report can say so.
@@ -111,6 +112,23 @@ export const FEEDS = [
     parse: parseFederalRegister,
     vocabulary: () => US_VOCABULARY,
     note: 'proclamations, orders and memoranda that name Canada'
+  },
+  {
+    key: 'csms',
+    name: 'US Customs CSMS messages',
+    // Added November 2026. Until then the watcher only re-read CSMS messages a
+    // record already cited, so it never saw 70314289 of 29 October, the one
+    // that put Proclamation 11076 into effect. This is GovDelivery's own RSS
+    // for the CBP account, chosen over CBP's CSMS archive page because it is
+    // a feed rather than a page to scrape, and because it carries each
+    // bulletin's full text. It is account-wide: newsroom and media updates,
+    // PGA and ACE notices arrive too, which is why the rule below asks for a
+    // CSMS title first. It holds the last 25 bulletins, about four days in an
+    // ordinary week, and the watcher runs twice a day.
+    url: 'https://public.govdelivery.com/accounts/USDHSCBP/feed.rss',
+    parse: parseGovDelivery,
+    only: (item, factBase) => csmsRelevant(item, factBase),
+    note: 'how US Customs puts a proclamation into effect'
   }
 ];
 
@@ -167,6 +185,45 @@ export function pmoRelevant(item) {
   if (trade && us) return true;
   return /\bpresident of the united states\b/.test(title)
     || /president-united-states/.test(slug);
+}
+
+/**
+ * The CSMS feed has a rule of its own, and it replaces the shared tests rather
+ * than adding to them.
+ *
+ * The shared vocabulary would take in every Section 232 message about any
+ * country, and CBP sends several a month. So: a CSMS message, not a newsroom or
+ * ACE notice; Canada named in it; and either a trade measure this site follows
+ * (Section 338, Section 232, a 9903.03 or 9903.04 heading) or a proclamation a
+ * record cites. Judged on the bulletin's text, since the title alone said
+ * neither "Section 338" nor a proclamation in some of the messages that mattered.
+ */
+const US_MEASURE = /\bsection 338\b|\bsection 232\b|\b9903\.0[34]\.\d{2}\b/;
+
+export function csmsRelevant(item, factBase) {
+  if (!/^csms\s*#/i.test(String(item.title || '').trim())) return false;
+  const hay = norm(`${item.title} ${item.text || ''}`);
+  if (!/\bcanad(?:a|ian)\b/.test(hay)) return false;
+  if (US_MEASURE.test(hay)) return true;
+  const named = proclamationNumbers(hay);
+  for (const token of factBase.instruments.keys()) {
+    if (token.startsWith('proclamation ') && named.has(token.slice('proclamation '.length))) return true;
+  }
+  return false;
+}
+
+/**
+ * Every proclamation number a text names, lists included. CBP writes
+ * "Presidential Proclamations 11061, 11062, and 11063", which no single
+ * "proclamation 11061" token is a substring of; that is the import ban's own
+ * message, and it says neither "Section 338" nor a heading in its title.
+ */
+export function proclamationNumbers(text) {
+  const out = new Set();
+  for (const m of String(text).matchAll(/\bproclamations?\s+(?:no\.\s*)?((?:\d{4,5}(?:,?\s*(?:and\s+)?)?)+)/gi)) {
+    for (const n of m[1].match(/\d{4,5}/g)) out.add(n);
+  }
+  return out;
 }
 
 /**
@@ -312,6 +369,8 @@ export function titleWords(title) {
  * test, which is what the Gazette's issue entries and the old callers use.
  */
 export function isRelevant(item, factBase, feed = null) {
+  // A feed with a rule that replaces these tests, which so far is only CSMS.
+  if (feed && feed.only) return feed.only(item, factBase);
   const hay = norm(`${item.title} ${item.link}`);
   if (VOCABULARY.some(v => hay.includes(v))) return true;
   for (const token of factBase.instruments.keys()) if (hay.includes(token)) return true;
@@ -333,9 +392,13 @@ export function isRelevant(item, factBase, feed = null) {
  */
 export function relatedRecords(item, factBase) {
   const hay = norm(`${item.title} ${item.link}`);
+  // An item that brings its own text (a CSMS bulletin) is matched by
+  // instrument on that text too, since that is where it names the proclamation.
+  // Keywords stay on the title: a long text shares two words with most records.
+  const body = item.text ? norm(item.text) : '';
   const byInstrument = new Set();
   for (const [token, ids] of factBase.instruments) {
-    if (hay.includes(token)) ids.forEach(id => byInstrument.add(id));
+    if (hay.includes(token) || body.includes(token)) ids.forEach(id => byInstrument.add(id));
   }
   if (byInstrument.size) return [...byInstrument];
 

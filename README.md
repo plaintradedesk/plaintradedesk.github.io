@@ -475,11 +475,12 @@ check the record. It is not to raise the threshold.
 ## What the source watcher tells you
 
 `watch.yml` runs twice a day, at 03:15 and 15:15 Toronto time, and can be triggered by hand
-on a day when something is expected. It reads seven feeds: both parts of the Canada Gazette,
-the CBSA customs notice index, Finance Canada news, the Prime Minister's statements, and two
+on a day when something is expected. It reads eight feeds: both parts of the Canada Gazette,
+the CBSA customs notice index, Finance Canada news, the Prime Minister's statements, two
 US Federal Register queries (documents mentioning Canada and tariffs, and presidential
 documents naming Canada, which is the only way the 21 September procurement memorandum
-appears at all). It also re-reads every URL cited by a record and compares a hash of the
+appears at all), and US Customs' CSMS messages, from GovDelivery's RSS for the CBP account
+(added November 2026, after it missed CSMS 70314289). It also re-reads every URL cited by a record and compares a hash of the
 page's meaningful content against the last run, and it compares the `dates` records carry
 with today.
 
@@ -497,7 +498,11 @@ How it decides an item is relevant, since that is where it went blind before Oct
   Section 301. They stay off the shared list because CBSA uses "importation" about dogs and
   firearms;
 - on the Prime Minister's feed only, a rule of its own: "trade" together with the United
-  States in the title or link, or a call with the President of the United States.
+  States in the title or link, or a call with the President of the United States;
+- on the CSMS feed, a rule that replaces all of the above, judged on the bulletin's text: a
+  CSMS message (not a newsroom or ACE notice) that names Canada and either Section 338,
+  Section 232, a 9903.03 or 9903.04 heading, or a proclamation a record cites. The shared
+  vocabulary would let in every Section 232 message about any country.
 
 To see what that throws away, without changing anything:
 

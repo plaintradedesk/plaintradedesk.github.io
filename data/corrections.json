@@ -1,6 +1,16 @@
 {
   "corrections": [
     {
+      "date": "1 Nov 2026",
+      "what": "The US 50 percent duties have applied on top of Section 232 duties since 15 September, for every heading but dairy. This page said Section 232 goods were generally excluded.",
+      "detail": "The July proclamations did exclude goods already paying a Section 232 duty. The 15 September proclamations reversed that for the alcoholic-beverage and motor-vehicle duties (headings 9903.03.12 and 9903.03.14), and the 23 October proclamation repeated it. US Customs has allowed only dairy goods under 9903.03.13 to claim the 9903.03.15 carve-out since 15 September, and the tariff schedule in force from 30 October says the same. The record now says which heading is which, from what date, and the business register tells an exporter of steel, aluminum, copper, vehicle, wood and similar goods to price both duties."
+    },
+    {
+      "date": "1 Nov 2026",
+      "what": "The counter-tariff record's source for the Prime Minister's 22 August remarks linked to his statement of 21 August.",
+      "detail": "The same mistake was corrected on two other records on 15 October and missed on this one. The link now goes to the 22 August remarks, which say Canada \"will match Washington's new tariffs dollar for dollar\", and the 21 August statement is listed separately. A news report that had been cited for the announcement is removed, since the Prime Minister's remarks and Finance Canada's releases carry everything it supported."
+    },
+    {
       "date": "16 Oct 2026",
       "what": "Several of the \"What you can do\" steps still described the world before 8 September. They have been rewritten for the present.",
       "detail": "Steps marked \"Before 8 Sept\" still said the Canadian counter-tariffs were about to start and that their product list was not yet published; one told readers to treat product claims as unconfirmed until the order appeared in the Canada Gazette, which happened on 23 September; one suggested waiting for a list that has been public since 25 August; and the business steps were framed around bringing orders forward before a surtax that has been in force since 8 September. The policy steps asked readers to watch for the surtax order, which is published, and for how the support package would be delivered, which is now known. A step about the US procurement memorandum said the measure did not exist yet; it exists, but has not yet removed any product. Steps labelled \"This week\" since August now say \"Now\". Records carried a staleness check and steps did not, which is why none of this was flagged. Steps now carry the date they were last reviewed, the build refuses one not reviewed in sixty days, and a step tied to a date must say when it stops being true."

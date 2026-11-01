@@ -333,6 +333,26 @@
       "reviewed": "2026-10-25"
     },
     {
+      "id": "ACT_CLAIM_METALS_REMISSION",
+      "text": "If you import US steel or aluminum to make something in Canada, check whether its surtax can be remitted.",
+      "note": "Aluminum for manufacturing imported before 1 July 2027 qualifies (code 25-0466C). Steel qualifies only if it was imported before 1 February 2026, unless it goes into motor vehicles and parts or aircraft and spacecraft, which qualify until 1 July 2027 (code 25-0466S01). Claim within two years of import, and confirm with your broker.",
+      "by": "Now",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "CA_STEEL_ALU_2025"
+      ],
+      "sectors": [
+        "steel"
+      ],
+      "seasons": [],
+      "family": false,
+      "refer": null,
+      "reviewed": "2026-11-01"
+    },
+    {
       "id": "ACT_CONFIRM_INCOTERMS",
       "text": "Confirm who pays the duty under your Incoterms on every live shipment in both directions.",
       "note": "This is the most common expensive surprise. The importer of record carries the liability regardless of who filed the paperwork.",

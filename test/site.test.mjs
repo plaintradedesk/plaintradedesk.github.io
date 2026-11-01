@@ -197,7 +197,7 @@ const editJson = (dir, name, fn) => {
       };
     });
     ok('the long fact sits in the card body, the short ones in the side panel',
-       shape.longInBody.join() === 'Coverage' && shape.sideFacts.join() === 'In force since,Scale,CUSMA exempt');
+       shape.longInBody.join() === 'Coverage' && shape.sideFacts.join() === 'In force since,Scale,CUSMA exempt,With Section 232');
     ok('reading order is title, body, side panel, sources',
        shape.kids.join('|') === 'card-top|cardbody|facts side|srcs');
     ok('at 1440 the side panel is beside the text', shape.sideRightOfText);

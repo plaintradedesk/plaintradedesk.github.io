@@ -1,5 +1,5 @@
 {
-  "_comment": "Fixture responses for the watcher. The six feeds are named, then the issue contents pages the two Gazette feeds link to, since reading the Gazette takes a second request. The \"*\" entry stands in for every cited source URL, so this file never has to know how many of them there are or what they are. The test suite writes its own manifest into a temporary directory for the cases that need a 403, a 304 or a changed page.",
+  "_comment": "Fixture responses for the watcher. The feeds are named, then the issue contents pages the two Gazette feeds link to, since reading the Gazette takes a second request. The \"*\" entry stands in for every cited source URL, so this file never has to know how many of them there are or what they are. The test suite writes its own manifest into a temporary directory for the cases that need a 403, a 304 or a changed page.",
   "https://gazette.gc.ca/rss/p2-eng.xml": {
     "status": 200,
     "body": "gazette2-baseline.xml"
@@ -51,6 +51,10 @@
   "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[type][]=PRESDOCU&conditions[term]=Canada&fields[]=document_number&fields[]=title&fields[]=html_url&fields[]=publication_date": {
     "status": 200,
     "body": "fedreg-pres.json"
+  },
+  "https://public.govdelivery.com/accounts/USDHSCBP/feed.rss": {
+    "status": 200,
+    "body": "csms-baseline.xml"
   },
   "*": {
     "status": 200,

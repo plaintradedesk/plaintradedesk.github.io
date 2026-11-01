@@ -28,7 +28,7 @@ import { run, refuseDataPath, fixtureFetch, loadState, emptyState, formatDropped
 import { Client, parseRobots, robotsAllow, USER_AGENT } from '../watch/net.mjs';
 import {
   contentHash, meaningfulText, parseFeed, parseFederalRegister, parseIndex,
-  parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax
+  parseGazetteIssue, parseNoticeTable, parseCanadaNews, parseDrupalAjax, parseGovDelivery
 } from '../watch/extract.mjs';
 import {
   FEEDS, VOCABULARY, US_VOCABULARY, loadFactBase, instrumentTokens, instrumentNames,
@@ -95,7 +95,8 @@ const FEED_BODY = {
   finance: 'finance-news.json',
   pmo: 'pmo-news.json',
   fedreg: 'fedreg.json',
-  fedregpres: 'fedreg-pres.json'
+  fedregpres: 'fedreg-pres.json',
+  csms: 'csms-baseline.xml'
 };
 
 const feed = key => FEEDS.find(f => f.key === key);
@@ -889,6 +890,58 @@ const runWith = (root, dir, extra = {}) => run({
     const again = await runWith(root, fixtures(path.join(root, 'fx3'),
       { feeds: { fedreg: 'fedreg-new.json', fedregpres: 'fedreg-pres-new.json' } }));
     ok('and not again on the next run, from either', !again.report.newItems.some(i => /2026-99901/.test(i.link)));
+  }
+
+  /* ---------------------------------------------------------------- */
+  g('CSMS: new US Customs messages, which the watcher used to miss');
+
+  // CSMS 70314289 of 29 October put Proclamation 11076 into effect, and the
+  // watcher never saw it: it only re-read bulletins a record already cited.
+  // The fixtures are cut from the real GovDelivery feed of 1 November, bodies
+  // trimmed, with one made-up Section 232 message that names no country.
+  {
+    const root = tempRoot();
+    await runWith(root, fixtures(path.join(root, 'fx')));
+    const r = await runWith(root, fixtures(path.join(root, 'fx2'), { feeds: { csms: 'csms-new.xml' } }));
+    const hit = r.report.newItems.find(i => i.feed === 'csms' && /70314289/.test(i.title));
+    ok('a new CSMS on the Section 338 duties is reported (70314289 would have been caught)', !!hit);
+    ok('and it is matched to the Section 338 record by the proclamation its text names',
+       !!hit && hit.records.includes('US_S338_2026-08'));
+    ok('it is the only CSMS item reported',
+       r.report.newItems.filter(i => i.feed === 'csms').length === 1);
+    const dropped = r.dropped.find(d => d.key === 'csms');
+    const droppedIds = dropped ? dropped.items.map(i => i.id) : [];
+    ok('a CSMS not about Canada is dropped, even one on Section 232', droppedIds.includes('70290001'));
+    ok('as are ACE notices, PGA messages and newsroom updates',
+       ['70329550', '70319931', '70330358'].every(id => droppedIds.includes(id)));
+  }
+
+  {
+    const fb = loadFactBase(ROOT);
+    const bare = { ...fb, instruments: new Map() };
+    const csms = feed('csms');
+    const item = (title, text) => ({ title, link: 'https://content.govdelivery.com/x', text });
+    ok('the rule reads the text, not only the title',
+       isRelevant(item('CSMS # 1 - Further Modifying Additional Duties', 'certain goods of Canada under heading 9903.03.14'), bare, csms));
+    ok('Canada with a cited proclamation is enough, with no measure named',
+       isRelevant(item('CSMS # 2 - Guidance', 'goods of Canada under Proclamation 11048'), fb, csms));
+    ok('a list of proclamations counts, as CBP writes them in the import ban\'s message',
+       isRelevant(item('CSMS # 70050970 - Certain Canadian Products Excluded from Importation into the United States; Presidential Proclamations 11061, 11062, and 11063', ''), fb, csms));
+    ok('but not a proclamation no record cites',
+       !isRelevant(item('CSMS # 3 - Guidance', 'goods of Canada under Proclamation 10001'), fb, csms));
+    ok('Section 232 without Canada is not enough',
+       !isRelevant(item('CSMS # 4 - Section 232 Duties on Copper', 'section 232 duties on copper articles'), fb, csms));
+    ok('Canada without a measure is not enough',
+       !isRelevant(item('CSMS # 5 - Canada Border Crossing Hours', 'ports of entry on the border with Canada'), fb, csms));
+    ok('a newsroom update is not a CSMS, whatever it says',
+       !isRelevant(item('U.S. Customs and Border Protection Newsroom Update', 'Section 338 duties on goods of Canada'), fb, csms));
+    ok('the CSMS rule replaces the shared vocabulary, which would take any Section 232 title',
+       isRelevant({ title: 'Section 232 duties on copper', link: 'x' }, bare)
+       && !isRelevant(item('CSMS # 6 - Section 232 duties on copper', ''), bare, csms));
+    const parsed = parseGovDelivery(readFileSync(path.join(FIX, 'csms-new.xml'), 'utf8'));
+    ok('the GovDelivery reader keeps each bulletin\'s words and drops its styles',
+       parsed.length === 7 && parsed.every(i => i.id && i.link && typeof i.text === 'string')
+       && parsed.some(i => /proclamation 11048/i.test(i.text)) && !parsed.some(i => /padding/.test(i.text)));
   }
 
   /* ---------------------------------------------------------------- */
