@@ -679,6 +679,62 @@
       "en": "The 15 September changes to the 50 percent duty's coverage, which altered what is taxed, not whether it may enter",
       "t": ""
     },
+    "shocks.US_S232_METALS_2026.title": {
+      "en": "United States Section 232 duties on Canadian steel, aluminum and copper",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.plain": {
+      "en": "The United States charges its own tariff, under a national-security law called Section 232, on steel, aluminum and copper from every country, Canada included. Since 6 April 2026 it is charged on the whole value of a product, not only on the metal in it. Metal itself and many simple metal products pay 50 percent. Many other products made mostly of metal pay 25 percent. Farm equipment, fixed factory machinery and power equipment, and some home heating and cooling equipment pay less, 15 percent in total, until the end of 2027. Mobile industrial machines that qualify under the free-trade agreement pay 25 percent only on the part that was not made in the United States. The US buyer pays the tariff, so it reaches Canadian firms as lost orders and lower prices. This is separate from the 50 percent tariff the US put on some Canadian goods in August, and since 15 September a product on both lists pays both, unless it is a dairy product. Other US national-security tariffs that hit Canada are not covered here: on cars and car parts, trucks and buses, lumber, furniture and kitchen cabinets, computer chips, brand-name drugs and wind turbines. Neither are the separate US anti-dumping and countervailing duties on Canadian softwood lumber.",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[0].label": {
+      "en": "Metal articles",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[0].value": {
+      "en": "50 percent of the full value (9903.82.02), since 6 April 2026",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[1].label": {
+      "en": "Other derivatives",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[1].value": {
+      "en": "25 percent of the full value (9903.82.09), since 6 April 2026",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[2].label": {
+      "en": "Farm, fixed industrial, HVAC",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[2].value": {
+      "en": "15 percent in total with ordinary duty, until 31 December 2027",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[3].label": {
+      "en": "CUSMA content rule",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[3].value": {
+      "en": "Mobile industrial equipment: 25 percent on non-US content, 15 percent floor",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[4].label": {
+      "en": "Producer programme",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[4].value": {
+      "en": "Up to half off for approved producers; CBP filing rules not yet issued",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[5].label": {
+      "en": "Not covered here",
+      "t": ""
+    },
+    "shocks.US_S232_METALS_2026.facts[5].value": {
+      "en": "Vehicles and parts, trucks, wood, chips, drugs, wind turbines, softwood AD/CVD",
+      "t": ""
+    },
     "shocks.US_PROCUREMENT_2026-09.title": {
       "en": "United States moves to shut Canadian goods out of federal civil procurement",
       "t": ""

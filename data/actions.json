@@ -353,6 +353,28 @@
       "reviewed": "2026-11-01"
     },
     {
+      "id": "ACT_DOCUMENT_US_CONTENT",
+      "text": "If you export CUSMA-qualifying mobile industrial equipment, give your US customer records of its US content.",
+      "note": "Until 31 December 2027 the US Section 232 duty on these machines is charged only on the non-US content, with up to 40 percent of the value counted as US content. Since 14 October, US content means parts made or substantially transformed in the United States plus US-melted or US-smelted metal. The importer has to show it, so confirm with your broker what records they need.",
+      "by": "Now",
+      "until": "2027-12-31",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "US_S232_METALS_2026"
+      ],
+      "sectors": [
+        "machinery",
+        "steel"
+      ],
+      "seasons": [],
+      "family": false,
+      "refer": null,
+      "reviewed": "2026-11-01"
+    },
+    {
       "id": "ACT_CONFIRM_INCOTERMS",
       "text": "Confirm who pays the duty under your Incoterms on every live shipment in both directions.",
       "note": "This is the most common expensive surprise. The importer of record carries the liability regardless of who filed the paperwork.",
