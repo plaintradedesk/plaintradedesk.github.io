@@ -798,7 +798,7 @@
         227,
         227,
         227,
-        226,
+        227,
         226
       ],
       "lastRead": "2026-11-01",
@@ -898,6 +898,7 @@
         "2026-14997",
         "2026-14992",
         "2026-14991",
+        "2026-14990",
         "2026-11314"
       ],
       "counts": [
@@ -1039,6 +1040,107 @@
       "etag": "W/\"1b979a0c2881d7399e20a56c61e51748\"",
       "lastRead": "2026-11-01"
     },
+    "https://www.federalregister.gov/d/2026-06960": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2026-11314": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2026-20938": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2025-19639": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2026-07987": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2026-14990": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/4117593": {
+      "hash": "8da50a624ec314300033aae7f1a9b684",
+      "etag": "W/\"25d003676198db80f9d9b7899373c261\"",
+      "lastRead": "2026-11-01"
+    },
+    "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/4160fe7": {
+      "hash": "f61aaa9c9a7654ffd6f69e3ebdb66d10",
+      "etag": "W/\"b8adb035595ba2be05616fab2566e43e\"",
+      "lastRead": "2026-11-01"
+    },
+    "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/41aa83d": {
+      "hash": "ccf89232181956160160c32a8dd7dacb",
+      "etag": "W/\"32b12f0a70f7ffdc9a39d11c7d35063f\"",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.cbp.gov/trade/programs-administration/trade-remedies": {
+      "hash": "9b249f0ef15af1f2e7b651b5105cec74",
+      "etag": "\"1793571054\"",
+      "lastModified": "Sun, 01 Nov 2026 22:10:54 GMT",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2026-22049": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2025-02406": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2025-02478": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2025-03990": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2025-14999": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf": {
+      "hash": "9fcee70f60d58adfcafed438e6a633c9",
+      "etag": "\"803af8ec70a2dc1:0\"",
+      "lastModified": "Fri, 20 Feb 2026 13:58:01 GMT",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2026-03832": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
+    "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/40b11c9": {
+      "hash": "d4d5cdce92c68f90ab67caa43a817033",
+      "etag": "W/\"449edabaee6e0375099ddd40e1e639ca\"",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.cbp.gov/trade/programs-administration/trade-remedies/ieepa-duty-refunds": {
+      "hash": "86bf4bcb20c424b223ec0dff21c87000",
+      "etag": "\"1793569831\"",
+      "lastModified": "Sun, 01 Nov 2026 21:50:31 GMT",
+      "lastRead": "2026-11-01"
+    },
+    "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/412cc7f": {
+      "hash": "256473be1d0dc6f63ed14f24d73e9c90",
+      "etag": "W/\"867ece9ab074636dfb238533184670e2\"",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.cbp.gov/trade/automated/ace-portal-and-ach-refunds-faqs": {
+      "hash": "102cf1035e9dd8082fab83234dd02ec8",
+      "etag": "\"1793573288\"",
+      "lastModified": "Sun, 01 Nov 2026 22:48:08 GMT",
+      "lastRead": "2026-11-01"
+    },
+    "https://www.federalregister.gov/d/2026-03824": {
+      "hash": "7184d99cf10a1b03ac1afc2c07169b06",
+      "lastRead": "2026-11-01"
+    },
     "https://www.federalregister.gov/d/2026-19336": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
       "lastRead": "2026-11-01"
@@ -1070,7 +1172,7 @@
     },
     "https://www.canada.ca/en/department-finance/programs/international-trade-finance-policy/canadas-response-us-tariffs/complete-list-us-products-subject-to-counter-tariffs.html": {
       "hash": "3dee5e04d017c9353e9fbc2fb51f5554",
-      "lastModified": "Sun, 01 Nov 2026 17:26:36 GMT",
+      "lastModified": "Sun, 01 Nov 2026 21:35:53 GMT",
       "lastRead": "2026-11-01"
     },
     "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2025-122/FullText.html": {
@@ -1083,7 +1185,7 @@
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/05/government-of-canada-announces-a-new-1-billion-business-development-bank-of-canada-program-and-500-million-in-additional-funding-for-the-regional-t.html": {
       "hash": "3b58c01da596f3345541432f88f758cd",
-      "lastModified": "Sun, 01 Nov 2026 17:23:26 GMT",
+      "lastModified": "Sun, 01 Nov 2026 22:48:35 GMT",
       "lastRead": "2026-11-01"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/support-for-canadian-workers-and-businesses-affected-by-us-tariffs.html": {
@@ -1097,7 +1199,7 @@
     },
     "https://www.canada.ca/en/services/benefits/ei/temporary-measures-for-major-economic-conditions.html": {
       "hash": "610a3fb3dea9f4787d42901a25c7503e",
-      "lastModified": "Sun, 01 Nov 2026 17:24:41 GMT",
+      "lastModified": "Sun, 01 Nov 2026 19:00:28 GMT",
       "lastRead": "2026-11-01"
     },
     "https://gazette.gc.ca/rp-pr/p2/2026/2026-04-08/html/sor-dors64-eng.html": {
@@ -1110,8 +1212,8 @@
     },
     "https://feddev-ontario.canada.ca/en/funding-southern-ontario/regional-tariff-response-initiative-southern-ontario": {
       "hash": "2ceafd39eb00e646f93638029ae85eae",
-      "etag": "W/\"1793568047\"",
-      "lastModified": "Sun, 01 Nov 2026 21:20:47 GMT",
+      "etag": "W/\"1793573326\"",
+      "lastModified": "Sun, 01 Nov 2026 22:48:46 GMT",
       "lastRead": "2026-11-01"
     },
     "https://ceefc-cfuec.ca/letl-factsheet/": {
@@ -1159,7 +1261,7 @@
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html": {
       "hash": "e650e547d9b2a3a6b68846b31f41f356",
-      "lastModified": "Sun, 01 Nov 2026 17:30:23 GMT",
+      "lastModified": "Sun, 01 Nov 2026 20:12:22 GMT",
       "lastRead": "2026-11-01"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html": {
@@ -1168,19 +1270,19 @@
     },
     "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html": {
       "hash": "3a085067dd885a41846aabb5f6b04c52",
-      "lastModified": "Sun, 01 Nov 2026 17:54:32 GMT",
+      "lastModified": "Sun, 01 Nov 2026 22:49:06 GMT",
       "lastRead": "2026-11-01"
     },
     "https://www.citt-tcce.gc.ca/en/safeguard-inquiries/safeguard-public-hearings": {
       "hash": "b842bad4c73c02dafd6efca58cce198d",
-      "etag": "\"1793568079\"",
-      "lastModified": "Sun, 01 Nov 2026 21:21:19 GMT",
+      "etag": "\"1793573348\"",
+      "lastModified": "Sun, 01 Nov 2026 22:49:08 GMT",
       "lastRead": "2026-11-01"
     },
     "https://www.citt-tcce.gc.ca/en/safeguard-inquiries/active-safeguard-inquiries": {
       "hash": "6c46a87ff6376e1f93163b48f1edf1f6",
-      "etag": "\"1793568080\"",
-      "lastModified": "Sun, 01 Nov 2026 21:21:20 GMT",
+      "etag": "\"1793573349\"",
+      "lastModified": "Sun, 01 Nov 2026 22:49:09 GMT",
       "lastRead": "2026-11-01"
     },
     "https://www.americanrhetoric.com/speeches/markcarney-canada-us-failed-trade-deal.htm": {
