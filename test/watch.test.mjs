@@ -765,7 +765,7 @@ const runWith = (root, dir, extra = {}) => run({
         'https://www.pm.gc.ca/en/news/news-releases/2026/10/21/prime-minister-carney-travels-brussels-canada-eu-summit'],
       ['pmo', 'Statement by Prime Minister Carney on Thanksgiving',
         'https://www.pm.gc.ca/en/news/statements/2026/10/12/statement-prime-minister-carney-thanksgiving'],
-      // Finance, whose rule did not change, on real titles from its feed.
+      // Finance, whose only addition is a budget's release, on real titles from its feed.
       ['finance', 'Canada successfully prices seventh green bond issuance, raising $2 billion'],
       ['finance', 'Minister Champagne to travel to the United Kingdom and Ireland to strengthen economic and security ties with Europe'],
       ['finance', 'Minister Champagne introduces legislation to extend the federal fuel excise tax relief for Canadians'],
@@ -782,6 +782,49 @@ const runWith = (root, dir, extra = {}) => run({
          bare, feed('pmo')));
     ok('the Prime Minister rule is the feed\'s own and widens no other feed',
        !isRelevant({ title: 'Canada-U.S. trade negotiations', link: 'https://x/y' }, bare, feed('finance')));
+
+    // Budget 2026, tabled 5 November 2026. The Finance feed as it read on
+    // 6 November: every one of these was set aside, the two budget releases
+    // included. Exactly those two should get through, and nothing else should.
+    const FIN = 'https://www.canada.ca/en/department-finance/news/2026/';
+    const FINANCE_2026_11_06 = [
+      [true, 'Budget 2026: Key Measures', '11/budget-2026-key-measures.html'],
+      [true, 'Government of Canada releases Budget 2026: Masters of our destiny',
+        '11/government-of-canada-releases-budget-2026-masters-of-our-destiny.html'],
+      [false, 'Joint Statement of the Government of Canada and the Bank of Canada on the Renewal of the Monetary Policy Framework',
+        '11/joint-statement-of-the-government-of-canada-and-the-bank-of-canada-on-the-renewal-of-the-monetary-policy-framework.html'],
+      [false, 'Remarks by the Minister of Finance and National Revenue', '11/remarks-by-the-minister-of-finance-and-national-revenue.html'],
+      [false, 'Mortgage Insurance Rule Changes to Support “Missing Middle” Housing',
+        '11/mortgage-insurance-rule-changes-to-support-missing-middle-housing.html'],
+      [false, 'Minister Champagne in Montréal to discuss Budget 2026 ', '11/minister-champagne-in-montreal-to-discuss-budget-2026.html'],
+      [false, 'Ministers Champagne and Sidhu to welcome Chinese Vice Premier He Lifeng and his delegation to Canada to advance economic cooperation',
+        '11/ministers-champagne-and-sidhu-to-welcome-chinese-vice-premier-he-lifeng-and-his-delegation-to-canada-to-advance-economic-cooperation.html'],
+      [false, 'Canada, Minister Champagne table legislation cracking down on financial crime and the illicit use of mail',
+        '11/canada-minister-champagne-table-legislation-cracking-down-on-financial-crime-and-the-illicit-use-of-mail.html'],
+      [false, 'Minister Champagne to make his own budget shoes at a pre-budget event in Montreal, Quebec',
+        '11/minister-champagne-to-make-his-own-budget-shoes-at-a-pre-budget-event-in-montreal-quebec.html'],
+      [false, 'Minister Champagne to deliver economic addresses and participate in armchair discussions ahead of Budget 2026',
+        '10/minister-champagne-to-deliver-economic-addresses-and-participate-in-armchair-discussions-ahead-of-budget-2026.html'],
+      [false, 'Government of Canada to release Budget 2026 on November‎ 5',
+        '10/government-of-canada-to-release-budget-2026-on-november-5-2026.html'],
+      [false, 'Legislation passes to extend the federal fuel excise tax relief for Canadians',
+        '10/legislation-passes-to-extend-the-federal-fuel-excise-tax-relief-for-canadians.html'],
+      [false, 'Joint statement from Canada and the United Kingdom', '10/joint-statement-from-canada-and-the-united-kingdom.html'],
+      [false, 'The Government of Canada introduces new Productivity Mega Deduction to help businesses invest, grow and create jobs in Canada',
+        '10/the-government-of-canada-introduces-new-productivity-mega-deduction-to-help-businesses-invest-grow-and-create-jobs-in-canada.html']
+    ];
+    const finSays = FINANCE_2026_11_06.map(([, title, slug]) => isRelevant({ title, link: FIN + slug }, bare, feed('finance')));
+    ok('a budget\'s release reaches a person, though its title never says tariff (Budget 2026, dropped on 5 November)',
+       FINANCE_2026_11_06.every(([want], i) => !want || finSays[i]));
+    ok('events about a budget, and the rest of the Finance feed, are still set aside',
+       FINANCE_2026_11_06.every(([want], i) => want || !finSays[i]));
+    ok('a fall economic statement is a budget for this purpose',
+       isRelevant({ title: 'Fall Economic Statement 2027: Key Measures', link: 'https://x/y' }, bare, feed('finance'))
+       && isRelevant({ title: 'Minister tables the Fall Economic Statement', link: 'https://x/y' }, bare, feed('finance')));
+    ok('the budget rule is Finance\'s own and widens no other feed',
+       ['pmo', 'gazette2', 'cbsa', 'fedreg'].every(k =>
+         !isRelevant({ title: 'Budget 2026: Key Measures', link: 'https://x/y' }, bare, feed(k))));
+
     ok('the US words are not in the shared vocabulary',
        US_VOCABULARY.every(w => !VOCABULARY.includes(w)));
     ok('only the two Federal Register feeds carry the US words',

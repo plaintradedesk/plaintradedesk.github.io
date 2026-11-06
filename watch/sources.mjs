@@ -69,6 +69,7 @@ export const FEEDS = [
     url: 'https://api.io.canada.ca/io-server/gc/news/en/v2'
       + '?dept=departmentfinance&sort=publishedDate&orderBy=desc&pick=25',
     parse: parseCanadaNews,
+    relevant: item => financeRelevant(item),
     note: 'announcements; status stays announced until Gazette or CBSA catches up'
   },
   {
@@ -185,6 +186,32 @@ export function pmoRelevant(item) {
   if (trade && us) return true;
   return /\bpresident of the united states\b/.test(title)
     || /president-united-states/.test(slug);
+}
+
+/**
+ * Finance adds one thing to the shared tests: the release of a budget or a fall
+ * economic statement.
+ *
+ * Budget 2026 was tabled on 5 November and the feed read both of its releases,
+ * "Budget 2026: Key Measures" and "Government of Canada releases Budget 2026:
+ * Masters of our destiny", and set both aside, because a budget's title never
+ * says tariff. A budget is where new money for tariff support is announced, so
+ * it has to reach a person even when it turns out to change nothing here.
+ *
+ * Only the release itself. A title that starts with the budget's name, or one
+ * where the budget is released, tabled, delivered or presented, in those verb
+ * forms only: "to release Budget 2026 on November 5", "in Montréal to discuss
+ * Budget 2026" and "ahead of Budget 2026" are events about a budget, and the
+ * feed carries several of those every year.
+ */
+const FISCAL = String.raw`(?:budget \d{4}|fall economic statement(?: \d{4})?)`;
+const FISCAL_LEAD = new RegExp(String.raw`^${FISCAL}\b`);
+const FISCAL_RELEASED = new RegExp(
+  String.raw`\b(?:releases|released|tables|tabled|delivers|delivered|presents|presented|unveils|unveiled)\s+(?:the\s+)?${FISCAL}\b`);
+
+export function financeRelevant(item) {
+  const title = norm(item.title).replace(/[​-‏⁠﻿]/g, '');
+  return FISCAL_LEAD.test(title) || FISCAL_RELEASED.test(title);
 }
 
 /**
