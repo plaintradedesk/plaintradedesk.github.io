@@ -363,9 +363,11 @@ model.
 
 ## Languages
 
-Nothing is translated and the site is English only. `data/i18n/` is room for that to change
-without the fact base having to be rearranged first, because retrofitting this once the fact
-base has grown is the expensive version.
+The site is English only, by decision, and nothing is translated. French, Punjabi and Spanish
+are kept ready, in that order of priority, in case a language is ever added. Hindi and Urdu
+were dropped on 1 November 2026. `data/i18n/` is room for that to change without the fact base
+having to be rearranged first, because retrofitting this once the fact base has grown is the
+expensive version.
 
 One file per language, keyed by a stable path, each entry carrying the English it is a
 translation of:
@@ -380,10 +382,9 @@ translation of:
 | Language | Carries |
 |:---|:---|
 | `fr` | Everything, including the policy register. Federal adoption would effectively require French |
-| `pa`, `hi`, `ur` | The plain register and the interface only |
+| `pa`, `es` | The plain register and the interface only |
 
-Punjabi, Hindi and Urdu matter more than French for reach in Brampton specifically. Only the
-plain register is worth translating: the policy register is read by people who read policy in
+Punjabi matters for reach in Brampton specifically. Only the plain register is worth translating: the policy register is read by people who read policy in
 English, and a half-translated legal instrument is worse than none. Source labels are never
 offered for translation, because "CBSA Customs Notice 26-99" is the name of a document and a
 translated name does not find it.

@@ -1,11 +1,13 @@
 /**
  * Room for a second language beside every string a reader sees.
  *
- * Nothing is translated yet and the build emits English only. This exists now
- * because retrofitting it once the fact base has grown is the expensive
- * version, and because two things are already true: federal adoption would
- * effectively require French, and for reach in Brampton specifically Punjabi,
- * Hindi and Urdu matter more than French does.
+ * The site is English only, by decision, and the build emits English only.
+ * Nothing is translated. French, Punjabi and Spanish are kept ready, in that
+ * order of priority, should a language ever be added: federal adoption would
+ * effectively require French, and Punjabi matters for reach in Brampton
+ * specifically. Hindi and Urdu were dropped on 1 November 2026. This exists
+ * now because retrofitting it once the fact base has grown is the expensive
+ * version.
  *
  * The shape is a file per language keyed by a stable path, rather than
  * `{ en, fr }` on every field in the data files. Two reasons. The fact base is
@@ -18,8 +20,7 @@
  *
  *   data/i18n/fr.json      every string
  *   data/i18n/pa.json      the plain register and the interface only
- *   data/i18n/hi.json      the same
- *   data/i18n/ur.json      the same
+ *   data/i18n/es.json      the same
  *
  * Only the plain register is ever worth translating for reach. The policy
  * register is read by people who read policy in English, and a half-translated
@@ -40,8 +41,7 @@ export const PLAIN_ONLY = ['ui', 'plain'];
 export const LANGUAGES = {
   fr: { name: 'French', scopes: FULL },
   pa: { name: 'Punjabi', scopes: PLAIN_ONLY },
-  hi: { name: 'Hindi', scopes: PLAIN_ONLY },
-  ur: { name: 'Urdu', scopes: PLAIN_ONLY }
+  es: { name: 'Spanish', scopes: PLAIN_ONLY }
 };
 
 /* Strings inside the site copy block that are not prose. */

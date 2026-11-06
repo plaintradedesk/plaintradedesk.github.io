@@ -1,6 +1,6 @@
 {
-  "language": "hi",
-  "name": "Hindi",
+  "language": "es",
+  "name": "Spanish",
   "scopes": [
     "ui",
     "plain"
@@ -892,7 +892,7 @@
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.plain": {
-      "en": "The federal government is spending an extra 7.5 billion dollars, announced 25 August, to help workers and businesses hurt by these tariffs, on top of nearly 25 billion dollars over the past year and a half. It covers loans and grants for affected businesses, help for large employers under strain, and better Employment Insurance. As of 15 October all of it is running, not just promised. If you are laid off or your hours are cut, apply for EI right away, and ask your employer about Work-Sharing, which keeps people on payroll at reduced hours. The better EI rules are law. For a claim that starts by 9 October 2027, there is no one-week unpaid wait, severance or vacation pay you get when you leave a job does not reduce your EI, and only the reason your most recent job ended is looked at. If you have worked and paid into EI for most of the past ten years and claimed little or no EI in the past three, a claim that starts by 12 June 2027 can get up to 20 extra weeks.",
+      "en": "The federal government is spending an extra 7.5 billion dollars, announced 25 August, to help workers and businesses hurt by these tariffs, on top of nearly 25 billion dollars over the past year and a half. It covers loans and grants for affected businesses, help for large employers under strain, and better Employment Insurance. As of 6 November all of it is running, not just promised. If you are laid off or your hours are cut, apply for EI right away, and ask your employer about Work-Sharing, which keeps people on payroll at reduced hours. The better EI rules are law. For a claim that starts by 9 October 2027, there is no one-week unpaid wait, severance or vacation pay you get when you leave a job does not reduce your EI, and only the reason your most recent job ended is looked at. If you have worked and paid into EI for most of the past ten years and claimed little or no EI in the past three, a claim that starts by 12 June 2027 can get up to 20 extra weeks.",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[0].label": {
@@ -924,7 +924,7 @@
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[3].value": {
-      "en": "All five pieces, each on its own program page, as of 15 October 2026",
+      "en": "All five pieces, each on its own program page, as of 6 November 2026",
       "t": ""
     },
     "shocks.CA_SUPPORT_2026-08.facts[4].label": {

@@ -30,6 +30,7 @@
 import { chromium } from 'playwright';
 import { shareCard } from '../src/templates/share.mjs';
 import { splitFacts, LONG_FACT } from '../src/templates/shock.mjs';
+import { LANGUAGES } from '../src/i18n.mjs';
 import { readFileSync, readdirSync, cpSync, rmSync, mkdtempSync, writeFileSync, existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -753,23 +754,38 @@ const editJson = (dir, name, fn) => {
 
   {
     const langs = readdirSync(path.join(ROOT, 'data', 'i18n')).filter(n => n.endsWith('.json'));
-    ok('every language named in the plan has a file', langs.length === 4
-       && ['fr.json', 'hi.json', 'pa.json', 'ur.json'].every(n => langs.includes(n)));
+    // AD's decision of 1 November 2026: English only; French, Punjabi and
+    // Spanish kept ready in that order; Hindi and Urdu dropped.
+    ok('every language named in the plan has a file, and only those', langs.length === 3
+       && ['fr.json', 'pa.json', 'es.json'].every(n => langs.includes(n)));
+    ok('the plan lists French, Punjabi and Spanish, in that order of priority',
+       Object.keys(LANGUAGES).join(',') === 'fr,pa,es');
 
-    const fr = JSON.parse(readFileSync(path.join(ROOT, 'data', 'i18n', 'fr.json'), 'utf8'));
-    const pa = JSON.parse(readFileSync(path.join(ROOT, 'data', 'i18n', 'pa.json'), 'utf8'));
+    const table = lang => JSON.parse(readFileSync(path.join(ROOT, 'data', 'i18n', `${lang}.json`), 'utf8'));
+    const fr = table('fr');
     ok('French has room for every string, including the policy register',
        Object.keys(fr.strings).length > 250
        && Object.keys(fr.strings).some(k => k.endsWith('.policy')));
     // Only the plain register is worth translating for reach. A half-translated
     // legal instrument is worse than none.
-    ok('Punjabi, Hindi and Urdu carry the plain register and not the policy one',
-       Object.keys(pa.strings).length > 200
-       && !Object.keys(pa.strings).some(k => k.endsWith('.policy')));
+    ok('Punjabi and Spanish carry the plain register and not the policy one',
+       ['pa', 'es'].every(l => {
+         const s = table(l).strings;
+         return Object.keys(s).length > 200 && !Object.keys(s).some(k => k.endsWith('.policy'));
+       }));
     ok('every translation is empty, and every entry carries the English it is for',
-       Object.values(fr.strings).every(r => r.t === '' && typeof r.en === 'string' && r.en.length > 0));
+       Object.keys(LANGUAGES).every(l => Object.values(table(l).strings)
+         .every(r => r.t === '' && typeof r.en === 'string' && r.en.length > 0)));
     ok('a source label is never offered for translation, because it is a document name',
        !Object.keys(fr.strings).some(k => /sources\[/.test(k)));
+
+    // English only: no language directory, no hreflang, no switcher.
+    const pages = readdirSync(DIST).filter(n => n.endsWith('.html'));
+    ok('the published build is English only, with no hreflang and no language directory',
+       pages.length > 0
+       && pages.every(n => /<html lang="en/.test(readFileSync(path.join(DIST, n), 'utf8'))
+                        && !/hreflang/i.test(readFileSync(path.join(DIST, n), 'utf8')))
+       && !Object.keys(LANGUAGES).some(l => existsSync(path.join(DIST, l))));
   }
 
   {
