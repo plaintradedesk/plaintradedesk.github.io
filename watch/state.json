@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastRun": "2026-11-06",
+  "lastRun": "2026-11-07",
   "feeds": {
     "gazette2": {
       "seen": [
@@ -256,6 +256,8 @@
     },
     "gazette1": {
       "seen": [
+        "https://gazette.gc.ca/rp-pr/p1/2026/2026-11-07/html/index-eng.html",
+        "https://gazette.gc.ca/rp-pr/p1/2026/2026-11-06-x8/html/extra8-eng.html",
         "https://gazette.gc.ca/rp-pr/p1/2026/2026-10-31/html/index-eng.html",
         "https://gazette.gc.ca/rp-pr/p1/2026/2026-10-24/html/index-eng.html",
         "https://gazette.gc.ca/rp-pr/p1/2026/2026-10-17/html/index-eng.html",
@@ -696,18 +698,18 @@
         "https://gazette.gc.ca/rp-pr/p1/2019/2019-12-03-x17/html/extra17-eng.html"
       ],
       "counts": [
+        443,
         441,
         440,
         439,
         438,
         437,
         436,
-        435,
-        434
+        435
       ],
-      "etag": "\"494ed-65f0d7d7f6485\"",
-      "lastModified": "Fri, 30 Oct 2026 11:56:44 GMT",
-      "lastRead": "2026-10-30",
+      "etag": "\"49a52-65f9a94bf5347\"",
+      "lastModified": "Fri, 06 Nov 2026 12:16:25 GMT",
+      "lastRead": "2026-11-07",
       "watchedSince": "2026-10-16"
     },
     "cbsa": {
@@ -803,12 +805,14 @@
         227,
         227
       ],
-      "lastRead": "2026-11-06",
+      "lastRead": "2026-11-07",
       "watchedSince": "2026-10-16",
-      "lastRelevant": "2026-11-06"
+      "lastRelevant": "2026-11-07"
     },
     "finance": {
       "seen": [
+        "https://www.canada.ca/en/department-finance/news/2026/11/budget-2026-key-measures.html",
+        "https://www.canada.ca/en/department-finance/news/2026/11/government-of-canada-releases-budget-2026-masters-of-our-destiny.html",
         "https://www.canada.ca/en/department-finance/news/2026/11/protecting-canadians-from-financial-crimes-and-safeguarding-the-integrity-of-the-financial-and-postal-systems.html",
         "https://www.canada.ca/en/department-finance/news/2026/08/the-governement-of-canada-highlights-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html",
         "https://www.canada.ca/en/department-finance/news/2026/08/secretary-of-state-long-in-sarnia-to-highlight-canadian-response-to-us-tariffs.html",
@@ -830,10 +834,10 @@
         25,
         25
       ],
-      "etag": "W/\"4242-dekpyY+yR8xE+Zs4YJbPhamwonQ\"",
-      "lastRead": "2026-11-06",
+      "etag": "W/\"4186-msBWC01LHEi9oAtMW1konkP/MkA\"",
+      "lastRead": "2026-11-07",
       "watchedSince": "2026-10-16",
-      "lastRelevant": "2026-11-06"
+      "lastRelevant": "2026-11-07"
     },
     "pmo": {
       "seen": [
@@ -851,7 +855,7 @@
         10,
         10
       ],
-      "lastRead": "2026-11-06",
+      "lastRead": "2026-11-07",
       "watchedSince": "2026-10-16",
       "lastRelevant": "2026-10-25"
     },
@@ -882,9 +886,9 @@
         40,
         40
       ],
-      "lastRead": "2026-11-06",
+      "lastRead": "2026-11-07",
       "watchedSince": "2026-10-16",
-      "lastRelevant": "2026-11-06"
+      "lastRelevant": "2026-11-07"
     },
     "fedregpres": {
       "seen": [
@@ -915,9 +919,9 @@
         20,
         20
       ],
-      "lastRead": "2026-11-06",
+      "lastRead": "2026-11-07",
       "watchedSince": "2026-10-16",
-      "lastRelevant": "2026-11-06"
+      "lastRelevant": "2026-11-07"
     },
     "csms": {
       "seen": [
@@ -929,10 +933,11 @@
         25,
         25,
         25,
+        25,
         25
       ],
-      "etag": "W/\"be56b37263df3abe7bfaa92027437b7c\"",
-      "lastRead": "2026-11-06",
+      "etag": "W/\"9dab70b27cb261928cdddb7478a1d0a9\"",
+      "lastRead": "2026-11-07",
       "watchedSince": "2026-11-01",
       "lastRelevant": "2026-11-03"
     }
@@ -941,7 +946,7 @@
     "https://content.govdelivery.com/bulletins/gd/USDHSCBP-4261d04": {
       "hash": "b8b4c933694bbcec8ed24bc1f4a181f4",
       "etag": "W/\"c6022af73a68ff34c7157e445bcb3060\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.whitecase.com/insight-alert/trump-administration-imposes-50-tariffs-certain-canadian-products-first-use-section": {
       "hash": "1bf5f3270f1ad6779405dd279b5a3178",
@@ -951,21 +956,21 @@
     },
     "https://www.ghy.com/trade-compliance/us-imposes-50-section-338-tariffs-on-canadian-imports-dairy-alcoholic-beverages-and-motor-vehicles/": {
       "hash": "59de094f5c08f8a3dc1ceefb839a58ee",
-      "lastModified": "Fri, 06 Nov 2026 15:00:03 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 08:54:31 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/documents/2026/09/14/2026-18839/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/documents/2026/09/14/2026-18838/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/bulletins/gd/USDHSCBP-429db0c": {
       "hash": "540e819f84790772383701c97353e0b1",
       "etag": "W/\"7b21fe291c51ef5f0a5ad0fa3f95170e\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/attachments/USDHSCBP/2026/08/21/file_attachments/3754630/Section%20338%20Canada%20HTS%20LIST%20Final.pdf": {
       "hash": "5924e93e2f2091631ace13dea3fcb14a",
@@ -975,7 +980,7 @@
     },
     "https://www.whitehouse.gov/presidential-actions/2026/10/further-modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-motor-vehicles/": {
       "hash": "f4b5afaf699d51bc83a43b0a0a6a202e",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.whitehouse.gov/wp-content/uploads/2026/10/2026ModifyingAuto338.prc_.AnnexI-3.pdf": {
       "hash": "db863372a012d7bcd8a9809856784b74",
@@ -991,12 +996,12 @@
     },
     "https://www.federalregister.gov/documents/2026/10/30/2026-22292/further-modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/bulletins/gd/USDHSCBP-430e931": {
       "hash": "e1c1a73183be3dbcd5dea49fb09634a1",
       "etag": "W/\"efccac87060fbae91c44fba391c004db\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/attachments/USDHSCBP/2026/10/29/file_attachments/3836209/Section%20338%20Canada%20Modified%20HTS%20LIST%2010.25.2026.pdf": {
       "hash": "e5eea055d7c0b125980b74d3fb6c26c0",
@@ -1018,101 +1023,101 @@
     },
     "https://www.federalregister.gov/d/2026-14997": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-14991": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-14992": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2099": {
       "hash": "3f41474274a7f6a0b124ffc6baaf8b82",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/documents/2026/09/14/2026-18837/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/documents/2026/09/14/2026-18836/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/documents/2026/09/14/2026-18835/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/bulletins/gd/USDHSCBP-42ce49a": {
       "hash": "9471348abed9c11f98f568e9b978f0a9",
       "etag": "W/\"1b979a0c2881d7399e20a56c61e51748\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-06960": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-11314": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-20938": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2025-19639": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-07987": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-14990": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/4117593": {
       "hash": "8da50a624ec314300033aae7f1a9b684",
       "etag": "W/\"25d003676198db80f9d9b7899373c261\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/4160fe7": {
       "hash": "f61aaa9c9a7654ffd6f69e3ebdb66d10",
       "etag": "W/\"b8adb035595ba2be05616fab2566e43e\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/41aa83d": {
       "hash": "ccf89232181956160160c32a8dd7dacb",
       "etag": "W/\"32b12f0a70f7ffdc9a39d11c7d35063f\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.cbp.gov/trade/programs-administration/trade-remedies": {
       "hash": "d64e6764f7686cd289af41aace3d035d",
-      "etag": "\"1793975272\"",
-      "lastModified": "Fri, 06 Nov 2026 14:27:52 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794059969\"",
+      "lastModified": "Sat, 07 Nov 2026 13:59:29 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-22049": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2025-02406": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2025-02478": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2025-03990": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2025-14999": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf": {
       "hash": "9fcee70f60d58adfcafed438e6a633c9",
@@ -1122,127 +1127,144 @@
     },
     "https://www.federalregister.gov/d/2026-03832": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/40b11c9": {
       "hash": "d4d5cdce92c68f90ab67caa43a817033",
       "etag": "W/\"449edabaee6e0375099ddd40e1e639ca\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.cbp.gov/trade/programs-administration/trade-remedies/ieepa-duty-refunds": {
       "hash": "58c53c3634d58538cbd4ed7ad8d88e1f",
-      "etag": "\"1793976289\"",
-      "lastModified": "Fri, 06 Nov 2026 14:44:49 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794056465\"",
+      "lastModified": "Sat, 07 Nov 2026 13:01:05 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/412cc7f": {
       "hash": "256473be1d0dc6f63ed14f24d73e9c90",
       "etag": "W/\"867ece9ab074636dfb238533184670e2\"",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.cbp.gov/trade/automated/ace-portal-and-ach-refunds-faqs": {
       "hash": "102cf1035e9dd8082fab83234dd02ec8",
-      "etag": "\"1793973660\"",
-      "lastModified": "Fri, 06 Nov 2026 14:01:00 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794058405\"",
+      "lastModified": "Sat, 07 Nov 2026 13:33:25 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-03824": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.federalregister.gov/d/2026-19336": {
       "hash": "7184d99cf10a1b03ac1afc2c07169b06",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.pm.gc.ca/en/news/speeches/2026/08/22/prime-minister-carney-delivers-remarks-canada-us-trade-negotiations": {
       "hash": "b4934cc0408f65c1cc0ab448fe1e577b",
-      "etag": "\"1793949869\"",
-      "lastModified": "Fri, 06 Nov 2026 07:24:29 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794035901\"",
+      "lastModified": "Sat, 07 Nov 2026 07:18:21 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations": {
       "hash": "5ab30825388462cae7b6493df48baf2e",
-      "etag": "\"1793949832\"",
-      "lastModified": "Fri, 06 Nov 2026 07:23:52 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794035804\"",
+      "lastModified": "Sat, 07 Nov 2026 07:16:44 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html": {
       "hash": "5a937941aa9a17402dc51ff3a46278b1",
-      "lastModified": "Fri, 06 Nov 2026 11:30:46 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 04:02:46 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-23-eng.html": {
       "hash": "76dfedef653b2de48478321863033cf3",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://gazette.gc.ca/rp-pr/p2/2026/2026-09-23/html/sor-dors186-eng.html": {
       "hash": "e875210ed9d84ad118880d2cac2efbcc",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/department-finance/programs/international-trade-finance-policy/canadas-response-us-tariffs/complete-list-us-products-subject-to-counter-tariffs.html": {
       "hash": "3dee5e04d017c9353e9fbc2fb51f5554",
-      "lastModified": "Fri, 06 Nov 2026 14:46:21 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 06:37:30 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2025-122/FullText.html": {
       "hash": "7a61e160b6f2c579a4e7554215e6a5b4",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-19-eng.html": {
       "hash": "79bcc318eeb655d7fe4eab2d044aaafe",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/05/government-of-canada-announces-a-new-1-billion-business-development-bank-of-canada-program-and-500-million-in-additional-funding-for-the-regional-t.html": {
       "hash": "3b58c01da596f3345541432f88f758cd",
-      "lastModified": "Fri, 06 Nov 2026 15:01:25 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 04:25:07 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/support-for-canadian-workers-and-businesses-affected-by-us-tariffs.html": {
       "hash": "677ad9b44002b69250e4d5b79c94b741",
-      "lastModified": "Fri, 06 Nov 2026 15:01:29 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 06:34:30 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.bdc.ca/en/financing/pivot-grow-loan": {
       "hash": "4910cc386f08af2390fe239c9a1acb45",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/services/benefits/ei/temporary-measures-for-major-economic-conditions.html": {
       "hash": "610a3fb3dea9f4787d42901a25c7503e",
-      "lastModified": "Fri, 06 Nov 2026 14:17:25 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 03:59:31 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://gazette.gc.ca/rp-pr/p2/2026/2026-04-08/html/sor-dors64-eng.html": {
       "hash": "01e4eaca86875a9dca226abd5b6bee43",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://gazette.gc.ca/rp-pr/p2/2026/2026-10-07/html/sor-dors203-eng.html": {
       "hash": "8a770ddeb9593d636e0fe467e92fcb24",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://feddev-ontario.canada.ca/en/funding-southern-ontario/regional-tariff-response-initiative-southern-ontario": {
       "hash": "2ceafd39eb00e646f93638029ae85eae",
-      "etag": "W/\"1793977292\"",
-      "lastModified": "Fri, 06 Nov 2026 15:01:32 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "W/\"1794060022\"",
+      "lastModified": "Sat, 07 Nov 2026 14:00:22 GMT",
+      "lastRead": "2026-11-07"
+    },
+    "https://www.canada.ca/en/economic-development-southern-ontario/news/2026/09/eligible-businesses-and-organizations-in-southern-ontario-can-now-apply-for-support-through-the-enhanced-regional-tariff-response-initiative.html": {
+      "hash": "63db8571814fa5e989ed2a110a733dfc",
+      "lastModified": "Sat, 07 Nov 2026 03:32:48 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://ceefc-cfuec.ca/letl-factsheet/": {
       "hash": "7fd708caf438b2f905a9ced4ab978cdd",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://ceefc-cfuec.ca/august-25-announcement/": {
       "hash": "7337fceb9dd340169bd7e091f9358809",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
+    },
+    "https://budget.canada.ca/2026/report-rapport/chap2-en.html": {
+      "hash": "3d79ae09467c8e95ab585be7fcabd7e7",
+      "etag": "\"0x8DF3B86A4683856\"",
+      "lastModified": "Thu, 05 Nov 2026 21:49:17 GMT",
+      "lastRead": "2026-11-07"
+    },
+    "https://budget.canada.ca/2026/report-rapport/chap3-en.html": {
+      "hash": "60b0a93e3811258ec4d5f663e3f388f2",
+      "etag": "\"0x8DF3C211DA9D4AD\"",
+      "lastModified": "Fri, 06 Nov 2026 16:15:03 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.pm.gc.ca/en/news/news-releases/2026/10/21/prime-minister-carney-and-premier-ford-launch-new-action-plan-protect": {
       "hash": "1e4a490789b1e766802489288f9442b3",
-      "etag": "\"1793948909\"",
-      "lastModified": "Fri, 06 Nov 2026 07:08:29 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794036743\"",
+      "lastModified": "Sat, 07 Nov 2026 07:32:23 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/10/prime-minister-carney-and-premier-ford-launch-new-action-plan-to-protect-workers-from-tariffs-and-strengthen-ontario-industries.html": {
       "hash": "376c52f7767b2b23252350c448460ff0",
-      "lastModified": "Fri, 06 Nov 2026 13:06:00 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 03:11:03 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://news.ontario.ca/en/release/1008173": {
       "hash": "9574a5c32b89f5f3af0843d28a39a1c9",
@@ -1258,41 +1280,41 @@
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-11-eng.html": {
       "hash": "49225d61f16b34402b11dbebb8b5d9fb",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2025-95/page-1.html": {
       "hash": "6ea628e40c2c16186b4e3fd16178173b",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-07-eng.html": {
       "hash": "4f46f5d6a4fad73158c36c9edcceb295",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html": {
       "hash": "e650e547d9b2a3a6b68846b31f41f356",
-      "lastModified": "Fri, 06 Nov 2026 12:01:22 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 04:52:47 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html": {
       "hash": "42ad792bd358e3428d405879ee43f42e",
-      "lastRead": "2026-11-06"
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html": {
       "hash": "3a085067dd885a41846aabb5f6b04c52",
-      "lastModified": "Fri, 06 Nov 2026 14:29:26 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 09:38:27 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.citt-tcce.gc.ca/en/safeguard-inquiries/safeguard-public-hearings": {
       "hash": "be96b71efc0768c68c5f4533d834e069",
-      "etag": "\"1793977323\"",
-      "lastModified": "Fri, 06 Nov 2026 15:02:03 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794060054\"",
+      "lastModified": "Sat, 07 Nov 2026 14:00:54 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.citt-tcce.gc.ca/en/safeguard-inquiries/active-safeguard-inquiries": {
       "hash": "07e2b3f4c9ebb69bb7dbbeab57973ec4",
-      "etag": "\"1793977324\"",
-      "lastModified": "Fri, 06 Nov 2026 15:02:04 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794060057\"",
+      "lastModified": "Sat, 07 Nov 2026 14:00:57 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.americanrhetoric.com/speeches/markcarney-canada-us-failed-trade-deal.htm": {
       "hash": "d5e2a36de5ee48178a9b90f7fdf6d8c4",
@@ -1301,20 +1323,20 @@
     },
     "https://www.pm.gc.ca/en/news/readouts/2026/10/11/prime-minister-carney-speaks-president-united-states-donald-j-trump": {
       "hash": "c3b5deb7b4af3a0fe6c8113cb8e5addf",
-      "etag": "\"1793949088\"",
-      "lastModified": "Fri, 06 Nov 2026 07:11:28 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794037738\"",
+      "lastModified": "Sat, 07 Nov 2026 07:48:58 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.pm.gc.ca/en/news/speeches/2026/10/21/prime-minister-carney-and-premier-ford-launch-new-action-plan-protect": {
       "hash": "32476fc45ab84d100a6b5a42f15182aa",
-      "etag": "\"1793957718\"",
-      "lastModified": "Fri, 06 Nov 2026 09:35:18 GMT",
-      "lastRead": "2026-11-06"
+      "etag": "\"1794043748\"",
+      "lastModified": "Sat, 07 Nov 2026 09:29:08 GMT",
+      "lastRead": "2026-11-07"
     },
     "https://www.canada.ca/en/global-affairs/news/2026/10/minister-leblanc-chairs-meeting-of-advisory-committee-on-canada-us-economic-relations-to-discuss-current-trade-situation-and-opportunities.html": {
       "hash": "9b147f50b6e34b091f0e76f8e8e5cbdf",
-      "lastModified": "Fri, 06 Nov 2026 15:02:16 GMT",
-      "lastRead": "2026-11-06"
+      "lastModified": "Sat, 07 Nov 2026 11:20:35 GMT",
+      "lastRead": "2026-11-07"
     }
   },
   "dates": {
