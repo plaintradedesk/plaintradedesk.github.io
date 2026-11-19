@@ -316,8 +316,8 @@
     },
     {
       "id": "ACT_CLAIM_INPUT_REMISSION",
-      "text": "If you import US goods to use in making or processing something in Canada, claim surtax remission under code 25-0466C.",
-      "note": "The counter-tariff on manufacturing inputs can be remitted under the United States Surtax Remission Order (2025). Claim within two years of import, and keep records showing the goods went into manufacturing, processing or packaging.",
+      "text": "If you import US goods to make, process or package something in Canada, or to use in mining, quarrying or oil and gas, claim surtax remission (code 25-0466C, or 25-0466S02 for mining and extraction).",
+      "note": "The counter-tariff on these inputs can be remitted under the United States Surtax Remission Order (2025). Claim within four years of import; if you did not claim at import, adjust the declaration for a refund (CBSA Customs Notice 26-26). Certain trailers lose this relief for goods imported from 1 December 2026, and certain aluminum extrusions, aluminum wire and paperboard from 1 February 2027; Schedule 7 of Finance's Remission List names the tariff lines. Keep records showing how the goods were used.",
       "by": "Now",
       "urgent": false,
       "doors": [
@@ -330,12 +330,12 @@
       "seasons": [],
       "family": false,
       "refer": null,
-      "reviewed": "2026-10-25"
+      "reviewed": "2026-11-18"
     },
     {
       "id": "ACT_CLAIM_METALS_REMISSION",
       "text": "If you import US steel or aluminum to make something in Canada, check whether its surtax can be remitted.",
-      "note": "Aluminum for manufacturing imported before 1 July 2027 qualifies (code 25-0466C). Steel qualifies only if it was imported before 1 February 2026, unless it goes into motor vehicles and parts or aircraft and spacecraft, which qualify until 1 July 2027 (code 25-0466S01). Claim within two years of import, and confirm with your broker.",
+      "note": "Aluminum for manufacturing, or since 9 November for mining, quarrying or oil and gas, qualifies if imported before 1 July 2028 (code 25-0466C, or 25-0466S02 for mining). Certain aluminum extrusions, wire, tubes and pipes lose the manufacturing relief from 1 February 2027. Steel qualifies only if it was imported before 1 February 2026, unless it goes into motor vehicles and parts or aircraft and spacecraft, which qualify until 1 July 2028 (code 25-0466S01). Claim within four years of import, and confirm with your broker.",
       "by": "Now",
       "urgent": false,
       "doors": [
@@ -350,7 +350,7 @@
       "seasons": [],
       "family": false,
       "refer": null,
-      "reviewed": "2026-11-01"
+      "reviewed": "2026-11-18"
     },
     {
       "id": "ACT_DOCUMENT_US_CONTENT",

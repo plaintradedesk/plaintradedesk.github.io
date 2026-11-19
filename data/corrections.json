@@ -1,6 +1,11 @@
 {
   "corrections": [
     {
+      "date": "18 Nov 2026",
+      "what": "The surtax remission order changed on 9 November. From then until 18 November this site still said claims had to be made within two years and gave 1 July 2027 as the cut-off for aluminum inputs and other relief.",
+      "detail": "SOR/2026-235, in force 9 November 2026 and published in the Canada Gazette on 18 November, gives importers four years from importation to claim remission, moves the 1 July 2027 import cut-offs for goods for health, safety and security, for aluminum used as an input and for steel and aluminum in vehicles and aircraft to 1 July 2028, adds public education entities and goods used in mining, quarrying or oil and gas extraction, and removes input relief for certain trailers from 1 December 2026 and certain paperboard and aluminum extrusions, wire, tubes and pipes from 1 February 2027. The counter-tariff record, the steel and aluminum record and both remission steps now follow the order's text. Finance Canada's release says horizontal relief runs to 30 June 2028 for all input goods; the order sets that date only for aluminum among them, and sets none for other goods under the 2026 counter-tariffs, so the records say so rather than repeat the release."
+    },
+    {
       "date": "1 Nov 2026",
       "what": "The US 50 percent duties have applied on top of Section 232 duties since 15 September, for every heading but dairy. This page said Section 232 goods were generally excluded.",
       "detail": "The July proclamations did exclude goods already paying a Section 232 duty. The 15 September proclamations reversed that for the alcoholic-beverage and motor-vehicle duties (headings 9903.03.12 and 9903.03.14), and the 23 October proclamation repeated it. US Customs has allowed only dairy goods under 9903.03.13 to claim the 9903.03.15 carve-out since 15 September, and the tariff schedule in force from 30 October says the same. The record now says which heading is which, from what date, and the business register tells an exporter of steel, aluminum, copper, vehicle, wood and similar goods to price both duties."
