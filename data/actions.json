@@ -393,6 +393,26 @@
       "reviewed": "2026-11-01"
     },
     {
+      "id": "ACT_FORESTRY_SUPPORT_BDC",
+      "text": "If you run a forestry manufacturer or forestry service company hurt by US tariffs or the downturn, apply to BDC's Forestry Support Program for working-capital or investment financing.",
+      "note": "Liquidity support lends $250,000 to $25 million to manufacturers, on a 36-month interest-only loan with a final balloon payment, and $250,000 to $10 million to harvesting and hauling companies, over up to 96 months. Transformation support lends manufacturers up to $25 million for an investment project, with repayment over up to 144 months and a transformation plan required. You need a Canadian head office, at least $1 million in annual revenue and three years in operation, and must have covered your obligations before 2025 (sawmills excepted). Sawmills and finished wood product makers must face US tariffs or lumber duties; others must show revenue down 20 percent or EBITDA down 15 percent. A sawmill or remanufacturer with a Softwood Lumber Guarantee loan cannot get liquidity support. BDC gives no rate and no deadline: the program runs until its envelope is used. Start with BDC's online application; a representative then asks for documents, including three years of financial statements.",
+      "by": "Now",
+      "urgent": false,
+      "doors": [
+        "business"
+      ],
+      "shocks": [
+        "CA_SUPPORT_2026-08"
+      ],
+      "sectors": [
+        "wood"
+      ],
+      "seasons": [],
+      "family": false,
+      "refer": null,
+      "reviewed": "2026-11-18"
+    },
+    {
       "id": "ACT_CONFIRM_INCOTERMS",
       "text": "Confirm who pays the duty under your Incoterms on every live shipment in both directions.",
       "note": "This is the most common expensive surprise. The importer of record carries the liability regardless of who filed the paperwork.",
