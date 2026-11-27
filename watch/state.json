@@ -843,7 +843,7 @@
         25,
         25
       ],
-      "etag": "W/\"3c7e-M86lzznf6KUyq5162IAEP6TLxMQ\"",
+      "etag": "W/\"3cde-8Mpzz4grpbruFpxpPmghWYetzVs\"",
       "lastRead": "2026-11-27",
       "watchedSince": "2026-10-16",
       "lastRelevant": "2026-11-27"
@@ -1106,8 +1106,8 @@
     },
     "https://www.cbp.gov/trade/programs-administration/trade-remedies": {
       "hash": "75abaf48360c3bf06217fc32c264d22a",
-      "etag": "\"1795742113\"",
-      "lastModified": "Fri, 27 Nov 2026 01:15:13 GMT",
+      "etag": "\"1795799533\"",
+      "lastModified": "Fri, 27 Nov 2026 17:12:13 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.federalregister.gov/d/2026-22049": {
@@ -1147,8 +1147,8 @@
     },
     "https://www.cbp.gov/trade/programs-administration/trade-remedies/ieepa-duty-refunds": {
       "hash": "58c53c3634d58538cbd4ed7ad8d88e1f",
-      "etag": "\"1795743813\"",
-      "lastModified": "Fri, 27 Nov 2026 01:43:33 GMT",
+      "etag": "\"1795798693\"",
+      "lastModified": "Fri, 27 Nov 2026 16:58:13 GMT",
       "lastRead": "2026-11-27"
     },
     "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/412cc7f": {
@@ -1158,8 +1158,8 @@
     },
     "https://www.cbp.gov/trade/automated/ace-portal-and-ach-refunds-faqs": {
       "hash": "102cf1035e9dd8082fab83234dd02ec8",
-      "etag": "\"1795745429\"",
-      "lastModified": "Fri, 27 Nov 2026 02:10:29 GMT",
+      "etag": "\"1795800463\"",
+      "lastModified": "Fri, 27 Nov 2026 17:27:43 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.federalregister.gov/d/2026-03824": {
@@ -1172,19 +1172,19 @@
     },
     "https://www.pm.gc.ca/en/news/speeches/2026/08/22/prime-minister-carney-delivers-remarks-canada-us-trade-negotiations": {
       "hash": "b4934cc0408f65c1cc0ab448fe1e577b",
-      "etag": "\"1795710599\"",
-      "lastModified": "Thu, 26 Nov 2026 16:29:59 GMT",
-      "lastRead": "2026-11-26"
+      "etag": "\"1795763749\"",
+      "lastModified": "Fri, 27 Nov 2026 07:15:49 GMT",
+      "lastRead": "2026-11-27"
     },
     "https://www.pm.gc.ca/en/news/statements/2026/08/21/statement-prime-minister-carney-canada-us-trade-negotiations": {
       "hash": "5ab30825388462cae7b6493df48baf2e",
-      "etag": "\"1795677495\"",
-      "lastModified": "Thu, 26 Nov 2026 07:18:15 GMT",
-      "lastRead": "2026-11-26"
+      "etag": "\"1795767085\"",
+      "lastModified": "Fri, 27 Nov 2026 08:11:25 GMT",
+      "lastRead": "2026-11-27"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/list-of-products-from-the-united-states-subject-to-counter-tariffs-effective-september-8-2026.html": {
       "hash": "5a937941aa9a17402dc51ff3a46278b1",
-      "lastModified": "Fri, 27 Nov 2026 01:55:42 GMT",
+      "lastModified": "Fri, 27 Nov 2026 15:46:19 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-23-eng.html": {
@@ -1197,7 +1197,7 @@
     },
     "https://www.canada.ca/en/department-finance/programs/international-trade-finance-policy/canadas-response-us-tariffs/complete-list-us-products-subject-to-counter-tariffs.html": {
       "hash": "3dee5e04d017c9353e9fbc2fb51f5554",
-      "lastModified": "Thu, 26 Nov 2026 23:47:43 GMT",
+      "lastModified": "Fri, 27 Nov 2026 13:44:31 GMT",
       "lastRead": "2026-11-27"
     },
     "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2025-122/FullText.html": {
@@ -1214,12 +1214,12 @@
     },
     "https://www.canada.ca/en/department-finance/news/2026/11/canada-modifies-tariff-relief-measures-to-better-support-workers-and-businesses.html": {
       "hash": "42f1833a008595d750f7a0ca168be5dc",
-      "lastModified": "Fri, 27 Nov 2026 01:19:33 GMT",
+      "lastModified": "Fri, 27 Nov 2026 15:36:50 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.canada.ca/en/department-finance/programs/international-trade-finance-policy/canadas-tariff-responses/tariff-relief-canadian-importing-goods-us/consolidated-list-remission-on-us-surtaxes.html": {
       "hash": "a87f72fd848a4823550e5c2491606292",
-      "lastModified": "Fri, 27 Nov 2026 02:10:54 GMT",
+      "lastModified": "Fri, 27 Nov 2026 14:06:03 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-26-eng.html": {
@@ -1228,12 +1228,12 @@
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/05/government-of-canada-announces-a-new-1-billion-business-development-bank-of-canada-program-and-500-million-in-additional-funding-for-the-regional-t.html": {
       "hash": "3b58c01da596f3345541432f88f758cd",
-      "lastModified": "Fri, 27 Nov 2026 02:10:58 GMT",
+      "lastModified": "Fri, 27 Nov 2026 17:28:20 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/support-for-canadian-workers-and-businesses-affected-by-us-tariffs.html": {
       "hash": "677ad9b44002b69250e4d5b79c94b741",
-      "lastModified": "Fri, 27 Nov 2026 00:25:37 GMT",
+      "lastModified": "Fri, 27 Nov 2026 17:28:22 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.bdc.ca/en/financing/pivot-grow-loan": {
@@ -1242,7 +1242,7 @@
     },
     "https://www.canada.ca/en/services/benefits/ei/temporary-measures-for-major-economic-conditions.html": {
       "hash": "610a3fb3dea9f4787d42901a25c7503e",
-      "lastModified": "Thu, 26 Nov 2026 23:42:43 GMT",
+      "lastModified": "Fri, 27 Nov 2026 16:05:43 GMT",
       "lastRead": "2026-11-27"
     },
     "https://gazette.gc.ca/rp-pr/p2/2026/2026-04-08/html/sor-dors64-eng.html": {
@@ -1255,13 +1255,13 @@
     },
     "https://feddev-ontario.canada.ca/en/funding-southern-ontario/regional-tariff-response-initiative-southern-ontario": {
       "hash": "2ceafd39eb00e646f93638029ae85eae",
-      "etag": "W/\"1795745469\"",
-      "lastModified": "Fri, 27 Nov 2026 02:11:09 GMT",
+      "etag": "W/\"1795800510\"",
+      "lastModified": "Fri, 27 Nov 2026 17:28:30 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.canada.ca/en/economic-development-southern-ontario/news/2026/09/eligible-businesses-and-organizations-in-southern-ontario-can-now-apply-for-support-through-the-enhanced-regional-tariff-response-initiative.html": {
       "hash": "63db8571814fa5e989ed2a110a733dfc",
-      "lastModified": "Fri, 27 Nov 2026 02:11:13 GMT",
+      "lastModified": "Fri, 27 Nov 2026 16:56:54 GMT",
       "lastRead": "2026-11-27"
     },
     "https://ceefc-cfuec.ca/letl-factsheet/": {
@@ -1286,7 +1286,6 @@
     },
     "https://www.canada.ca/en/employment-social-development/programs/training-agreements/workforce-tariff-response.html": {
       "hash": "53d27476bef8d0230b5c040ab60e7619",
-      "lastModified": "Thu, 26 Nov 2026 23:25:55 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.bdc.ca/en/solutions/forestry-support-program": {
@@ -1303,13 +1302,13 @@
     },
     "https://www.pm.gc.ca/en/news/news-releases/2026/10/21/prime-minister-carney-and-premier-ford-launch-new-action-plan-protect": {
       "hash": "1e4a490789b1e766802489288f9442b3",
-      "etag": "\"1795677867\"",
-      "lastModified": "Thu, 26 Nov 2026 07:24:27 GMT",
-      "lastRead": "2026-11-26"
+      "etag": "\"1795763480\"",
+      "lastModified": "Fri, 27 Nov 2026 07:11:20 GMT",
+      "lastRead": "2026-11-27"
     },
     "https://www.canada.ca/en/innovation-science-economic-development/news/2026/10/prime-minister-carney-and-premier-ford-launch-new-action-plan-to-protect-workers-from-tariffs-and-strengthen-ontario-industries.html": {
       "hash": "376c52f7767b2b23252350c448460ff0",
-      "lastModified": "Fri, 27 Nov 2026 02:11:29 GMT",
+      "lastModified": "Fri, 27 Nov 2026 14:48:41 GMT",
       "lastRead": "2026-11-27"
     },
     "https://news.ontario.ca/en/release/1008173": {
@@ -1338,7 +1337,7 @@
     },
     "https://www.canada.ca/en/department-finance/news/2026/08/canada-announces-targeted-countermeasures-and-substantive-support-for-workers-and-businesses-in-response-to-us-tariffs.html": {
       "hash": "e650e547d9b2a3a6b68846b31f41f356",
-      "lastModified": "Fri, 27 Nov 2026 02:11:39 GMT",
+      "lastModified": "Fri, 27 Nov 2026 13:38:38 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn26-17-eng.html": {
@@ -1347,19 +1346,19 @@
     },
     "https://www.canada.ca/en/department-finance/news/2026/07/canada-imposes-provisional-safeguard-tariff-on-imports-of-wood-cabinets-and-vanities-to-protect-canadian-manufacturers-and-workers.html": {
       "hash": "3a085067dd885a41846aabb5f6b04c52",
-      "lastModified": "Fri, 27 Nov 2026 00:09:36 GMT",
+      "lastModified": "Fri, 27 Nov 2026 17:29:03 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.citt-tcce.gc.ca/en/safeguard-inquiries/safeguard-public-hearings": {
       "hash": "f1206f9152f2a2f1f5085f207756f479",
-      "etag": "\"1795745505\"",
-      "lastModified": "Fri, 27 Nov 2026 02:11:45 GMT",
+      "etag": "\"1795800544\"",
+      "lastModified": "Fri, 27 Nov 2026 17:29:04 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.citt-tcce.gc.ca/en/safeguard-inquiries/active-safeguard-inquiries": {
       "hash": "cd87fcdcb1ab7e7068db1cc1dfa62a08",
-      "etag": "\"1795745507\"",
-      "lastModified": "Fri, 27 Nov 2026 02:11:47 GMT",
+      "etag": "\"1795800546\"",
+      "lastModified": "Fri, 27 Nov 2026 17:29:06 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.americanrhetoric.com/speeches/markcarney-canada-us-failed-trade-deal.htm": {
@@ -1369,32 +1368,32 @@
     },
     "https://www.pm.gc.ca/en/news/readouts/2026/10/11/prime-minister-carney-speaks-president-united-states-donald-j-trump": {
       "hash": "c3b5deb7b4af3a0fe6c8113cb8e5addf",
-      "etag": "\"1795677775\"",
-      "lastModified": "Thu, 26 Nov 2026 07:22:55 GMT",
-      "lastRead": "2026-11-26"
+      "etag": "\"1795765019\"",
+      "lastModified": "Fri, 27 Nov 2026 07:36:59 GMT",
+      "lastRead": "2026-11-27"
     },
     "https://www.pm.gc.ca/en/news/speeches/2026/10/21/prime-minister-carney-and-premier-ford-launch-new-action-plan-protect": {
       "hash": "32476fc45ab84d100a6b5a42f15182aa",
-      "etag": "\"1795685313\"",
-      "lastModified": "Thu, 26 Nov 2026 09:28:33 GMT",
-      "lastRead": "2026-11-26"
+      "etag": "\"1795770231\"",
+      "lastModified": "Fri, 27 Nov 2026 09:03:51 GMT",
+      "lastRead": "2026-11-27"
     },
     "https://www.canada.ca/en/global-affairs/news/2026/10/minister-leblanc-chairs-meeting-of-advisory-committee-on-canada-us-economic-relations-to-discuss-current-trade-situation-and-opportunities.html": {
       "hash": "9b147f50b6e34b091f0e76f8e8e5cbdf",
-      "lastModified": "Fri, 27 Nov 2026 02:11:56 GMT",
+      "lastModified": "Fri, 27 Nov 2026 13:58:04 GMT",
       "lastRead": "2026-11-27"
     },
     "https://www.pm.gc.ca/en/news/readouts/2026/11/18/prime-minister-carney-meets-president-united-states-donald-j-trump": {
       "hash": "f6b3e0a702aa23c5b854ca1a8ccc18b6",
-      "etag": "\"1795677292\"",
-      "lastModified": "Thu, 26 Nov 2026 07:14:52 GMT",
-      "lastRead": "2026-11-26"
+      "etag": "\"1795763511\"",
+      "lastModified": "Fri, 27 Nov 2026 07:11:51 GMT",
+      "lastRead": "2026-11-27"
     },
     "https://www.pm.gc.ca/en/news/readouts/2026/11/17/prime-minister-carney-meets-president-mexico-claudia-sheinbaum": {
       "hash": "ca6a6b46a0d1d1de543cbdf714520615",
-      "etag": "\"1795677292\"",
-      "lastModified": "Thu, 26 Nov 2026 07:14:52 GMT",
-      "lastRead": "2026-11-26"
+      "etag": "\"1795763511\"",
+      "lastModified": "Fri, 27 Nov 2026 07:11:51 GMT",
+      "lastRead": "2026-11-27"
     }
   },
   "dates": {
